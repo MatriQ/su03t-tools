@@ -109,7 +109,7 @@ jobs:
           if [ "$RUNNER_OS" = macOS ]; then
             ditto -x -k "dist/SU03T-Tools-v$RELEASE_VERSION-macOS-universal.zip" archive-smoke
             BINARY="$PWD/archive-smoke/SU03T Update.app/Contents/MacOS/su03t-update"
-            lipo -verify_arch arm64 x86_64 "$BINARY"
+            lipo "$BINARY" -verify_arch arm64 x86_64
             codesign --verify --deep --strict 'archive-smoke/SU03T Update.app'
           else
             tar -xzf "dist/SU03T-Tools-v$RELEASE_VERSION-$PACKAGE_PLATFORM.tar.gz" -C archive-smoke
