@@ -38,5 +38,7 @@ for kind in ['debug','release']:
     update=(vendor/f'uni_app_{kind}_update.bin').read_bytes()
     assert full[65536:]==update
 facts['samples']={'update_equals_full_slice_from':'0x10000','not_a_general_format_validator':True}
-(root/'analysis/wire-facts.json').write_text(json.dumps(facts,indent=2)+'\n')
+output = root/'analysis/wire-facts.json'
+output.parent.mkdir(parents=True, exist_ok=True)
+output.write_text(json.dumps(facts,indent=2)+'\n')
 print('Verified CRC table and both update/full image relations; wrote analysis/wire-facts.json')
