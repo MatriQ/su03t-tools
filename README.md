@@ -4,7 +4,7 @@
 
 面向 **SU-03T / 蜂鸟 M** 的串口固件升级与调试工具，使用 Rust 构建原生桌面界面和 CLI，支持 macOS、Linux。
 
-[![CI](https://github.com/MatriQ/su03t-macos/actions/workflows/check.yml/badge.svg)](https://github.com/MatriQ/su03t-macos/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml/badge.svg)](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ![中文升级界面](docs/images/transfer-zh.png)
 
@@ -23,7 +23,7 @@
 macOS（Apple Silicon / Intel）与 Linux（x86_64 / ARM64）均可执行：
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash
+curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash
 ```
 
 安装器选择对应平台的最新稳定包并校验 SHA-256。macOS 默认安装到 `~/Applications/SU03T Update.app`；Linux 默认安装到 `~/.local/share/su03t-tools/vX.Y.Z`，命令链接为 `~/.local/bin/su03t-update`。安装完成后显示启动命令，原有运行中的应用请退出后重新打开。
@@ -31,12 +31,12 @@ curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/instal
 指定版本或安装目录：
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.3 --prefix "$HOME/Applications"
+curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash -s -- --version v0.5.3 --prefix "$HOME/Applications"
 ```
 
 `--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](install.sh) 阅读后执行。Linux 若提示 PATH 未包含命令目录，请按安装器输出添加，或使用显示的完整路径启动。
 
-手动安装可从 [Releases](https://github.com/MatriQ/su03t-macos/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。macOS 应用使用临时签名、未公证，首次打开按系统标准流程确认来源；安装器保留系统的安全检查。
+手动安装可从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。macOS 应用使用临时签名、未公证，首次打开按系统标准流程确认来源；安装器保留系统的安全检查。
 
 macOS 构建目标为 12.0。Linux 发行包在 Ubuntu 24.04 上构建，需要兼容的 glibc 和运行库；其他环境可从源码构建。Debian / Ubuntu 桌面运行库示例：
 
@@ -145,7 +145,7 @@ bash scripts/package-linux.sh                     # 在 Linux 上打包
 
 ## 打包与自动发布
 
-[Packages and releases CI](https://github.com/MatriQ/su03t-macos/actions/workflows/release.yml) 在 main 提交和 PR 上构建三平台安装包，产物保留 14 天。推送 `vX.Y.Z` 标签，或在 GitHub 发布对应 Release 后，会检查版本、执行源码测试、打包和验证，再自动上传安装包、`install.sh` 及统一 SHA-256 文件。
+[Packages and releases CI](https://github.com/MatriQ/su03t-tools/actions/workflows/release.yml) 在 main 提交和 PR 上构建三平台安装包，产物保留 14 天。推送 `vX.Y.Z` 标签，或在 GitHub 发布对应 Release 后，会检查版本、执行源码测试、打包和验证，再自动上传安装包、`install.sh` 及统一 SHA-256 文件。
 
 发布新版本时，先更新 `Cargo.toml` / `Cargo.lock` 中的版本以及 macOS bundle build number，提交后推送相同版本的标签。例如：
 

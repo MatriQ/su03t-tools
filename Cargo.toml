@@ -4,7 +4,7 @@ version = "0.5.3"
 edition = "2024"
 description = "SU-03T firmware transfer and serial diagnostics for macOS and Linux"
 license = "MIT"
-repository = "https://github.com/MatriQ/su03t-macos"
+repository = "https://github.com/MatriQ/su03t-tools"
 readme = "README.md"
 
 [dependencies]

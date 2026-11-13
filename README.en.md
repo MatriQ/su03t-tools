@@ -4,7 +4,7 @@
 
 A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool for macOS and Linux, built in Rust with a desktop UI and CLI.
 
-[![CI](https://github.com/MatriQ/su03t-macos/actions/workflows/check.yml/badge.svg)](https://github.com/MatriQ/su03t-macos/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml/badge.svg)](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ![English firmware upgrade interface](docs/images/transfer-en.png)
 
@@ -23,7 +23,7 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 On macOS (Apple Silicon / Intel) or Linux (x86_64 / ARM64), run:
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash
+curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash
 ```
 
 The installer selects the latest stable package for your platform and verifies SHA-256. The macOS destination is `~/Applications/SU03T Update.app`. Linux uses `~/.local/share/su03t-tools/vX.Y.Z` with a command link at `~/.local/bin/su03t-update`. The installer prints the launch command; quit an older running instance before opening the new app.
@@ -31,12 +31,12 @@ The installer selects the latest stable package for your platform and verifies S
 Choose a version or destination:
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.3 --prefix "$HOME/Applications"
+curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash -s -- --version v0.5.3 --prefix "$HOME/Applications"
 ```
 
 On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](install.sh) before running it. If the command directory is absent from PATH, follow the installer's output or use the full executable path.
 
-For manual installation, download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-macos/releases/latest), with the matching `SHA256SUMS.txt`. The Mac app is ad-hoc signed and not notarized; use the standard macOS approval flow after verifying the source. The installer retains OS security checks.
+For manual installation, download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), with the matching `SHA256SUMS.txt`. The Mac app is ad-hoc signed and not notarized; use the standard macOS approval flow after verifying the source. The installer retains OS security checks.
 
 The macOS deployment target is 12.0. Linux packages are built on Ubuntu 24.04 and need compatible glibc and runtime libraries; build from source for other environments. Debian / Ubuntu desktop runtime packages:
 
@@ -145,7 +145,7 @@ Chinese text requires an available CJK font. Linux serial permissions are manage
 
 ## Packaging and automated releases
 
-[Packages and releases CI](https://github.com/MatriQ/su03t-macos/actions/workflows/release.yml) builds all three packages for main commits and pull requests, retaining artifacts for 14 days. A `vX.Y.Z` tag push, or publishing the corresponding GitHub Release, validates the version, runs source checks, builds and verifies the packages, then uploads them with `install.sh` and a combined SHA-256 manifest.
+[Packages and releases CI](https://github.com/MatriQ/su03t-tools/actions/workflows/release.yml) builds all three packages for main commits and pull requests, retaining artifacts for 14 days. A `vX.Y.Z` tag push, or publishing the corresponding GitHub Release, validates the version, runs source checks, builds and verifies the packages, then uploads them with `install.sh` and a combined SHA-256 manifest.
 
 To release a new version, update `Cargo.toml`, `Cargo.lock` and the macOS bundle build number, commit, then push a matching tag. For example:
 
