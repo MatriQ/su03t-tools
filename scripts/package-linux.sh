@@ -12,9 +12,9 @@ rm -rf "$PACKAGE_DIR"
 mkdir -p "$PACKAGE_DIR" dist
 cp "${CARGO_TARGET_DIR:-target}/release/su03t-update" README.md LICENSE "$PACKAGE_DIR/"
 if [[ -f README.en.md ]]; then cp README.en.md "$PACKAGE_DIR/"; fi
-mkdir -p "$PACKAGE_DIR/docs"
-for PACKAGE_DOC in docs/protocol.md docs/validation.md; do
-  if [[ -f "$PACKAGE_DOC" ]]; then cp "$PACKAGE_DOC" "$PACKAGE_DIR/docs/"; fi
+mkdir -p "$PACKAGE_DIR/.harness/docs" "$PACKAGE_DIR/docs"
+for PACKAGE_DOC in .harness/docs/protocol.md .harness/docs/validation.md; do
+  cp "$PACKAGE_DOC" "$PACKAGE_DIR/.harness/docs/"
 done
 if [[ -d docs/images ]]; then cp -R docs/images "$PACKAGE_DIR/docs/"; fi
 python3 scripts/collect-licenses.py --target "$(rustc -vV | sed -n 's/^host: //p')" --output "$PACKAGE_DIR"

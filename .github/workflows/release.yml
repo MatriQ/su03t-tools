@@ -120,6 +120,8 @@ jobs:
           else
             tar -xzf "dist/SU03T-Tools-v$RELEASE_VERSION-$PACKAGE_PLATFORM.tar.gz" -C archive-smoke
             BINARY="$PWD/archive-smoke/su03t-update"
+            test -s archive-smoke/.harness/docs/protocol.md
+            test -s archive-smoke/.harness/docs/validation.md
           fi
           test "$("$BINARY" --version)" = "su03t-update $RELEASE_VERSION"
           python3 tests/client_acceptance.py "$BINARY"

@@ -1,5 +1,5 @@
 //! SU-03T updater protocol, reconstructed from the vendor's 2021 DLL.
-//! See docs/protocol.md for protocol details and hardware verification limits.
+//! See .harness/docs/protocol.md for protocol details and hardware verification limits.
 pub mod capture;
 #[cfg(feature = "gui")]
 pub mod driver_check;
@@ -18,7 +18,7 @@ pub const NAK: u8 = 0x15;
 pub const CAN: u8 = 0x18;
 pub const EOT: u8 = 0x04;
 /// Vendor SPL_DOWNLOAD=1 branches directly with the already-pushed ASCII '2'.
-/// See docs/protocol.md; real hardware received CCC.
+/// See .harness/docs/protocol.md; real hardware received CCC.
 pub const STARTUP_TRIGGER: u8 = 0x32;
 
 #[derive(Debug, Clone)]
