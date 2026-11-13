@@ -4,7 +4,7 @@
 
 Packaging and installation changes use 14 installer scenarios (11 portable Linux-layout scenarios plus 3 native macOS signing scenarios) and 9 release-helper scenarios. The tests cover version/architecture selection, upgrades, checksum failures, unsafe archive paths, foreign destinations, missing packages, complete manifests, interrupted drafts and immutable published assets. They use temporary prefixes and mock downloads.
 
-The packaging workflow verifies the executable extracted from each archive with the CLI PTY suites. The Mac package also verifies both Mach-O slices and its ad-hoc signature after extraction. Binary installation does not provide missing-driver installation, physical USB flashing or voice-function acceptance.
+The packaging workflow verifies the executable extracted from each archive with the CLI PTY suites and installs each real package into a temporary prefix through mocked downloads. Linux GUI startup is checked for eight seconds under Xvfb with software rendering. The Mac package also verifies both Mach-O slices and its ad-hoc signature after extraction. Binary installation does not provide missing-driver installation, physical USB flashing or voice-function acceptance.
 
 ## v0.5.1
 
