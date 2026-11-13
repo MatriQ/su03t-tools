@@ -31,7 +31,7 @@ curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/instal
 指定版本或安装目录：
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.2 --prefix "$HOME/Applications"
+curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.3 --prefix "$HOME/Applications"
 ```
 
 `--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](install.sh) 阅读后执行。Linux 若提示 PATH 未包含命令目录，请按安装器输出添加，或使用显示的完整路径启动。
@@ -150,11 +150,11 @@ bash scripts/package-linux.sh                     # 在 Linux 上打包
 发布新版本时，先更新 `Cargo.toml` / `Cargo.lock` 中的版本以及 macOS bundle build number，提交后推送相同版本的标签。例如：
 
 ```bash
-git tag -a v0.5.2 -m "SU-03T Tools 0.5.2"
-git push origin v0.5.2
+git tag -a v0.5.3 -m "SU-03T Tools 0.5.3"
+git push origin v0.5.3
 ```
 
-也可以在 Actions 中手动运行打包流程：留空 tag 仅生成构建产物，填写已有标签则发布该版本。自动化适用于 v0.5.2 及后续标签。标签与 Cargo 版本不一致时会停止；新 Release 先以草稿上传并校验，三个平台全部完成后再公开。重复运行已完整发布的版本会验证已有产物，保持已发布文件不变。
+也可以在 Actions 中手动运行打包流程：留空 tag 仅生成构建产物，填写已有标签则发布该版本。自动化适用于 v0.5.3 及后续标签。标签与 Cargo 版本不一致时会停止；新 Release 先以草稿上传并校验，三个平台全部完成后再公开。重复运行已完整发布的版本会验证已有产物，保持已发布文件不变。
 
 ## 测试与兼容范围
 
