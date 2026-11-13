@@ -2,9 +2,11 @@
 //! See docs/protocol.md for protocol details and hardware verification limits.
 pub mod capture;
 pub mod firmware;
+pub mod flash_event;
 pub mod profiles;
 pub mod serial_debug;
 use anyhow::{Context, Result, bail};
+use flash_event::{FlashEvent, RetryReason, Target};
 use std::io::{self, Read, Write};
 use std::time::{Duration, Instant};
 
@@ -100,21 +102,44 @@ pub fn send_with_handshake_observer<T: Read + Write + ?Sized>(
     io: &mut T,
     firmware: &[u8],
     options: &Options,
-    mut progress: impl FnMut(usize, usize),
+    progress: impl FnMut(usize, usize),
     received: impl FnMut(u8),
 ) -> Result<()> {
+    send_observed(io, firmware, options, progress, received, |_| {})
+}
+
+/// Events report actual transport boundaries. Writing and waiting for an ACK are
+/// separate: a blocked OS write must never be presented as a device timeout.
+pub fn send_observed<T: Read + Write + ?Sized>(
+    io: &mut T,
+    firmware: &[u8],
+    options: &Options,
+    mut progress: impl FnMut(usize, usize),
+    received: impl FnMut(u8),
+    mut event: impl FnMut(FlashEvent),
+) -> Result<()> {
     anyhow::ensure!(!firmware.is_empty(), "firmware is empty");
-    wait_for_handshake(io, options, received)?;
+    wait_for_handshake_observed(io, options, received, &mut event)?;
     progress(0, firmware.len());
     for (index, payload) in firmware.chunks(BLOCK_SIZE).enumerate() {
         let p = packet((index + 1) as u8, payload)?;
-        exchange(io, &p, options).with_context(|| format!("block {} failed", index + 1))?;
+        exchange(
+            io,
+            &p,
+            options,
+            Target::Block {
+                index: index + 1,
+                total: firmware.len().div_ceil(BLOCK_SIZE),
+            },
+            &mut event,
+        )
+        .with_context(|| format!("block {} failed", index + 1))?;
         progress(
             ((index + 1) * BLOCK_SIZE).min(firmware.len()),
             firmware.len(),
         );
     }
-    exchange(io, &[EOT], options)
+    exchange(io, &[EOT], options, Target::Eot, &mut event)
         .context("EOT was not acknowledged; transfer completion is unconfirmed")?;
     Ok(())
 }
@@ -123,8 +148,20 @@ pub fn send_with_handshake_observer<T: Read + Write + ?Sized>(
 pub fn wait_for_handshake<T: Read + Write + ?Sized>(
     io: &mut T,
     options: &Options,
-    mut received: impl FnMut(u8),
+    received: impl FnMut(u8),
 ) -> Result<()> {
+    wait_for_handshake_observed(io, options, received, |_| {})
+}
+
+pub fn wait_for_handshake_observed<T: Read + Write + ?Sized>(
+    io: &mut T,
+    options: &Options,
+    mut received: impl FnMut(u8),
+    mut event: impl FnMut(FlashEvent),
+) -> Result<()> {
+    event(FlashEvent::HandshakeWaiting {
+        timeout_ms: options.handshake_timeout.as_millis().min(u64::MAX as u128) as u64,
+    });
     let deadline = Instant::now() + options.handshake_timeout;
     let mut recent = [0u8; 3];
     let mut last_trigger = None::<Instant>;
@@ -152,6 +189,7 @@ pub fn wait_for_handshake<T: Read + Write + ?Sized>(
                     bail!("device returned NNN (vendor skip signal); no firmware was sent");
                 }
                 if recent == *b"CCC" {
+                    event(FlashEvent::HandshakeReceived);
                     break;
                 }
             }
@@ -168,18 +206,53 @@ pub fn wait_for_handshake<T: Read + Write + ?Sized>(
     Ok(())
 }
 
-fn exchange<T: Read + Write + ?Sized>(io: &mut T, data: &[u8], options: &Options) -> Result<()> {
-    for _ in 0..=options.retries {
+fn exchange<T: Read + Write + ?Sized>(
+    io: &mut T,
+    data: &[u8],
+    options: &Options,
+    target: Target,
+    event: &mut impl FnMut(FlashEvent),
+) -> Result<()> {
+    for retry in 0..=options.retries {
+        event(FlashEvent::Writing {
+            target,
+            retry,
+            max_retries: options.retries,
+        });
         io.write_all(data).context("write serial port")?;
         io.flush().context("flush serial port")?;
+        event(FlashEvent::WaitingAck {
+            target,
+            retry,
+            timeout_ms: options.response_timeout.as_millis().min(u64::MAX as u128) as u64,
+        });
         let deadline = Instant::now() + options.response_timeout;
-        loop {
+        let mut observed = 0;
+        let reason = loop {
             match byte_until(io, deadline)? {
-                Some(ACK) => return Ok(()),
-                Some(NAK) | None => break,
+                Some(ACK) => {
+                    event(FlashEvent::Acknowledged { target });
+                    return Ok(());
+                }
+                Some(NAK) => break RetryReason::Nak,
+                None => break RetryReason::Timeout,
                 Some(CAN) => bail!("device cancelled transfer (CAN)"),
-                Some(_) => {} // Boot text or residual C bytes are not ACKs.
+                Some(byte) => {
+                    // Bound diagnostics for a noisy device; never drop protocol input.
+                    if observed < 16 {
+                        event(FlashEvent::Received { target, byte });
+                    }
+                    observed += 1;
+                }
             }
+        };
+        if retry < options.retries {
+            event(FlashEvent::Retry {
+                target,
+                retry: retry + 1,
+                max_retries: options.retries,
+                reason,
+            });
         }
     }
     bail!("retry limit reached without ACK")
@@ -371,5 +444,160 @@ mod tests {
         options.trigger = true;
         wait_for_handshake(&mut transport, &options, |_| {}).unwrap();
         assert_eq!(transport.output, b"2");
+    }
+    #[test]
+    fn transfer_events_report_writes_ack_waits_retries_and_final_ack() {
+        let mut transport = mock(b"CCC\x15\x06\x06");
+        let mut events = Vec::new();
+        send_observed(
+            &mut transport,
+            b"firmware",
+            &opts(),
+            |_, _| {},
+            |_| {},
+            |event| events.push(event),
+        )
+        .unwrap();
+        let block = Target::Block { index: 1, total: 1 };
+        assert_eq!(events[0], FlashEvent::HandshakeWaiting { timeout_ms: 10 });
+        assert_eq!(events[1], FlashEvent::HandshakeReceived);
+        assert_eq!(
+            events[2],
+            FlashEvent::Writing {
+                target: block,
+                retry: 0,
+                max_retries: 1
+            }
+        );
+        assert_eq!(
+            events[3],
+            FlashEvent::WaitingAck {
+                target: block,
+                retry: 0,
+                timeout_ms: 1
+            }
+        );
+        assert_eq!(
+            events[4],
+            FlashEvent::Retry {
+                target: block,
+                retry: 1,
+                max_retries: 1,
+                reason: RetryReason::Nak
+            }
+        );
+        assert!(events.contains(&FlashEvent::Acknowledged { target: block }));
+        assert_eq!(
+            events.last(),
+            Some(&FlashEvent::Acknowledged {
+                target: Target::Eot
+            })
+        );
+        let packet = packet(1, b"firmware").unwrap();
+        assert_eq!(
+            transport.output,
+            [packet.clone(), packet, vec![EOT]].concat()
+        );
+    }
+    #[test]
+    fn write_failure_cannot_be_reported_as_waiting_for_device_ack() {
+        struct Broken(Mock);
+        impl Read for Broken {
+            fn read(&mut self, b: &mut [u8]) -> io::Result<usize> {
+                self.0.read(b)
+            }
+        }
+        impl Write for Broken {
+            fn write(&mut self, _: &[u8]) -> io::Result<usize> {
+                Err(io::ErrorKind::BrokenPipe.into())
+            }
+            fn flush(&mut self) -> io::Result<()> {
+                Ok(())
+            }
+        }
+        let mut transport = Broken(mock(b"CCC"));
+        let mut events = Vec::new();
+        let error = send_observed(
+            &mut transport,
+            b"firmware",
+            &opts(),
+            |_, _| {},
+            |_| {},
+            |event| events.push(event),
+        )
+        .unwrap_err();
+        assert!(format!("{error:#}").contains("write serial port"));
+        assert!(matches!(events.last(), Some(FlashEvent::Writing { .. })));
+        assert!(
+            !events
+                .iter()
+                .any(|e| matches!(e, FlashEvent::WaitingAck { .. }))
+        );
+    }
+    #[test]
+    fn noisy_transfer_input_is_consumed_but_diagnostic_events_are_bounded() {
+        let mut input = b"CCC".to_vec();
+        input.extend(vec![b'C'; 512]);
+        input.extend([ACK, ACK]);
+        let mut transport = mock(&input);
+        let mut events = Vec::new();
+        send_observed(
+            &mut transport,
+            b"firmware",
+            &opts(),
+            |_, _| {},
+            |_| {},
+            |e| events.push(e),
+        )
+        .unwrap();
+        assert_eq!(
+            events
+                .iter()
+                .filter(|e| matches!(e, FlashEvent::Received { .. }))
+                .count(),
+            16
+        );
+        assert!(matches!(
+            events.last(),
+            Some(FlashEvent::Acknowledged {
+                target: Target::Eot
+            })
+        ));
+    }
+    #[test]
+    fn response_timeouts_emit_retries_for_the_same_block() {
+        let mut transport = mock(b"CCC");
+        let mut events = Vec::new();
+        assert!(
+            send_observed(
+                &mut transport,
+                b"firmware",
+                &opts(),
+                |_, _| {},
+                |_| {},
+                |e| events.push(e)
+            )
+            .is_err()
+        );
+        assert_eq!(
+            events
+                .iter()
+                .filter(|e| matches!(e, FlashEvent::Writing { .. }))
+                .count(),
+            2
+        );
+        assert!(events.contains(&FlashEvent::Retry {
+            target: Target::Block { index: 1, total: 1 },
+            retry: 1,
+            max_retries: 1,
+            reason: RetryReason::Timeout
+        }));
+        assert!(!events.iter().any(|e| matches!(
+            e,
+            FlashEvent::Writing {
+                target: Target::Eot,
+                ..
+            }
+        )));
     }
 }

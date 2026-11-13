@@ -60,6 +60,9 @@ enum Commands {
         /// 仅限macOS PTY模拟测试
         #[arg(long, hide = true)]
         virtual_port: bool,
+        /// Structured worker events for the native UI.
+        #[arg(long, hide = true)]
+        events: bool,
     },
     /// 只诊断启动握手，绝不传固件；默认只接收
     Probe {
@@ -74,6 +77,8 @@ enum Commands {
         trigger: bool,
         #[arg(long, hide = true)]
         virtual_port: bool,
+        #[arg(long, hide = true)]
+        events: bool,
     },
     /// 串口调试：默认只监听；发送必须显式指定；Ctrl+C结束
     Monitor(DebugArgs),
@@ -308,6 +313,110 @@ fn monitor(args: DebugArgs) -> Result<()> {
         std::thread::sleep(Duration::from_millis(5));
     }
 }
+fn emit_event(event: su03t_update::flash_event::FlashEvent) {
+    println!(
+        "{}{}",
+        su03t_update::flash_event::EVENT_PREFIX,
+        serde_json::to_string(&event).expect("serializable worker event")
+    );
+}
+
+/// The default human-readable CLI remains compatible. The GUI uses this separate
+/// event stream and never has to infer transport state from translated log text.
+fn structured_transfer(
+    port: &str,
+    baud: u32,
+    virtual_port: bool,
+    image_request: Option<(&std::path::Path, bool, Option<&str>)>,
+    options: &su03t_update::Options,
+) -> Result<()> {
+    use su03t_update::flash_event::FlashEvent;
+    let probe = image_request.is_none();
+    let result = (|| -> Result<()> {
+        ensure!(
+            baud > 0 && !options.handshake_timeout.is_zero() && !options.response_timeout.is_zero(),
+            "baud rate and timeouts must be greater than zero"
+        );
+        let image = image_request
+            .map(|(path, allow, expected)| -> Result<Image> {
+                let image = Image::load(path, allow)?;
+                image.verify_expected(expected)?;
+                emit_event(FlashEvent::Image {
+                    path: image.path.display().to_string(),
+                    bytes: image.bytes().len(),
+                    sha256: image.sha256.clone(),
+                });
+                Ok(image)
+            })
+            .transpose()?;
+        let mut io = open(port, baud, virtual_port)?;
+        emit_event(FlashEvent::PortOpened {
+            port: port.into(),
+            baud,
+        });
+        let started = Instant::now();
+        let mut trace = HandshakeTrace::default();
+        let receive = |byte| {
+            trace.count += 1;
+            if trace.sample.len() < 256 {
+                trace.sample.push(byte);
+            }
+            if trace.count <= 8 {
+                emit_event(FlashEvent::StartupRx {
+                    byte,
+                    elapsed_ms: started.elapsed().as_millis() as u64,
+                });
+            }
+        };
+        let result = if let Some(image) = image {
+            su03t_update::send_observed(
+                io.as_mut(),
+                image.bytes(),
+                options,
+                |done, total| emit_event(FlashEvent::Progress { done, total }),
+                receive,
+                emit_event,
+            )
+        } else {
+            su03t_update::wait_for_handshake_observed(io.as_mut(), options, receive, emit_event)
+        };
+        emit_event(FlashEvent::StartupSummary {
+            count: trace.count,
+            sample: trace.sample,
+        });
+        result?;
+        // Drop the serial handle before reporting completion.
+        drop(io);
+        emit_event(FlashEvent::Completed { probe });
+        Ok(())
+    })();
+    if let Err(error) = &result {
+        let detail = format!("{error:#}");
+        let code = if detail.contains("waiting for CCC timed out") {
+            "handshake_timeout"
+        } else if detail.contains("NNN") {
+            "device_skip"
+        } else if detail.contains("CAN") {
+            "device_cancelled"
+        } else if detail.contains("SHA-256") {
+            "firmware_changed"
+        } else if detail.contains("retry limit") {
+            "ack_timeout"
+        } else if detail.contains("无法打开") || detail.contains("打开测试PTY") {
+            "open_port"
+        } else if detail.contains("固件") {
+            "firmware"
+        } else {
+            "transport"
+        };
+        emit_event(FlashEvent::Failed {
+            code: code.into(),
+            detail,
+        });
+    }
+    result
+}
+
 fn main() -> Result<()> {
     match Args::parse().command {
         None => {
@@ -348,7 +457,22 @@ fn main() -> Result<()> {
             allow_other_filename,
             expected_sha256,
             virtual_port,
+            events,
         }) => {
+            if events {
+                return structured_transfer(
+                    &port,
+                    baud,
+                    virtual_port,
+                    Some((&firmware, allow_other_filename, expected_sha256.as_deref())),
+                    &su03t_update::Options {
+                        handshake_timeout: Duration::from_secs(wait),
+                        response_timeout: Duration::from_millis(timeout_ms),
+                        retries,
+                        trigger: !passive,
+                    },
+                );
+            }
             ensure!(
                 baud > 0 && wait > 0 && timeout_ms > 0,
                 "波特率和超时时间必须大于0"
@@ -413,7 +537,21 @@ fn main() -> Result<()> {
             wait,
             trigger,
             virtual_port,
+            events,
         }) => {
+            if events {
+                return structured_transfer(
+                    &port,
+                    baud,
+                    virtual_port,
+                    None,
+                    &su03t_update::Options {
+                        handshake_timeout: Duration::from_secs(wait),
+                        trigger,
+                        ..Default::default()
+                    },
+                );
+            }
             ensure!(baud > 0 && wait > 0, "波特率和等待时间必须大于0");
             eprintln!(
                 "{}\n启动诊断：{port} / {baud} / 8N1；不传固件，不发送擦除或复位命令。",

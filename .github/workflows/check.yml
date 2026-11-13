@@ -30,5 +30,6 @@ jobs:
       - run: cargo clippy --locked --all-targets -- -D warnings
       - run: cargo build --locked
       - run: python3 tests/client_acceptance.py target/debug/su03t-update
+      - run: python3 tests/transfer_events.py target/debug/su03t-update
       - if: runner.os == 'macOS'
         run: python3 tests/simulate_device.py target/debug/su03t-update
