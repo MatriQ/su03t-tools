@@ -16,7 +16,7 @@ permissions:
   contents: read
 concurrency:
   group: packages-${{ inputs.tag || github.event.release.tag_name || github.ref_name }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ !(startsWith(github.ref, 'refs/tags/') || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && inputs.tag != '')) }}
 jobs:
   metadata:
     runs-on: ubuntu-24.04
@@ -60,7 +60,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-15
+          - os: macos-latest
             platform: macOS-universal
           - os: ubuntu-24.04
             platform: Linux-x86_64
