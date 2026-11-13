@@ -41,11 +41,22 @@ def exercise(cancel=False, skip=False, drop_ack=False):
             # The vendor startup trigger must be sent before simulated power-on.
             assert read(1) == b'2'
             os.write(master, b'boot\r\nCC')
-            time.sleep(.005)
+            time.sleep(.05 if skip else .005)
             os.write(master, b'C' if not skip else b'\r\nNNN')
             if skip:
+                # macOS PTY tcdrain waits for the peer to consume outgoing bytes.
+                # A trigger can be queued while the simulated bootloader replies.
+                wire = bytearray()
+                deadline = time.monotonic() + 5
+                while proc.poll() is None:
+                    assert time.monotonic() < deadline, 'CLI did not handle NNN'
+                    if select.select([master], [], [], .02)[0]:
+                        wire.extend(os.read(master, 4096))
+                while select.select([master], [], [], 0)[0]:
+                    wire.extend(os.read(master, 4096))
                 out, err = proc.communicate(timeout=5)
                 assert proc.returncode != 0 and b'NNN' in err, err
+                assert set(wire) <= {0x32}, 'firmware was sent after NNN'
                 return
             if cancel:
                 # Consume queued startup ASCII 2 bytes, then exactly one first packet.
