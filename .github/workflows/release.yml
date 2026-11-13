@@ -177,4 +177,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.metadata.outputs.tag }}
-        run: python3 scripts/release_assets.py publish --repo "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG" --directory release-assets
+        run: |
+          for ATTEMPT in 1 2 3 4; do
+            if python3 scripts/release_assets.py publish --repo "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG" --directory release-assets; then
+              exit 0
+            fi
+            if [ "$ATTEMPT" -lt 4 ]; then
+              printf 'Publication attempt %s failed; retrying in 20 seconds.\n' "$ATTEMPT" >&2
+              sleep 20
+            fi
+          done
+          exit 1
