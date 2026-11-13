@@ -19,6 +19,8 @@ use su03t_update::{
 };
 #[path = "debug_ui.rs"]
 mod debug_ui;
+#[path = "driver_ui.rs"]
+mod driver_ui;
 #[path = "ui_i18n.rs"]
 mod i18n;
 #[path = "port_picker.rs"]
@@ -258,6 +260,7 @@ struct Updater {
     mode: Mode,
     debugger: debug_ui::Debugger,
     finder: port_picker::Finder,
+    driver_check: driver_ui::Checker,
 }
 impl Default for Updater {
     fn default() -> Self {
@@ -312,6 +315,7 @@ impl Default for Updater {
             mode: Mode::Upgrade,
             debugger: debug_ui::Debugger::default(),
             finder: port_picker::Finder::default(),
+            driver_check: driver_ui::Checker::default(),
         };
         app.refresh_ports();
         #[cfg(all(debug_assertions, not(test)))]
@@ -1372,6 +1376,15 @@ impl eframe::App for Updater {
         i18n::set(self.language, self.system_english);
         self.poll();
         self.debugger.poll();
+        if cfg!(target_os = "macos") {
+            self.driver_check
+                .observe_ports(self.ports.iter().map(|p| p.path.clone()));
+            self.driver_check
+                .poll(ctx, self.job.is_some() || self.debugger.busy());
+            if let Some((zh, en)) = self.driver_check.take_summary() {
+                self.note(zh, en);
+            }
+        }
         if self.mode == Mode::Upgrade
             && self.job.is_none()
             && let Some(path) =
@@ -1395,6 +1408,7 @@ impl eframe::App for Updater {
                 let before=self.mode;ui.add_enabled_ui(self.job.is_none()&&!self.debugger.busy(),|ui|{ui.selectable_value(&mut self.mode,Mode::Debug,tr("语音调试","Voice debug"));ui.selectable_value(&mut self.mode,Mode::BootLog,tr("B8 日志","B8 logs"));ui.selectable_value(&mut self.mode,Mode::Upgrade,tr("固件升级","Firmware"));});
                 if before!=self.mode{match self.mode{Mode::Debug=>self.debugger.set_profile(Profile::Car),Mode::BootLog=>self.debugger.set_profile(Profile::B8),Mode::Upgrade=>{}}}
                 if self.job.is_some(){label(ui,tr("串口正在使用","Serial port in use"));}
+                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center),|ui|self.driver_check.entry(ui));
             });ui.add_space(12.0);
             if self.mode!=Mode::Upgrade{
                 let blocked=self.job.is_some();
@@ -1416,6 +1430,7 @@ impl eframe::App for Updater {
                 port_picker::Target::Debug => self.debugger.select_port(port.path),
             }
         }
+        self.driver_check.show(ctx);
         #[cfg(all(debug_assertions, not(test)))]
         self.capture_preview(ctx);
         ctx.request_repaint_after(if self.job.is_some() || self.debugger.busy() {
@@ -1474,6 +1489,7 @@ pub fn run() -> eframe::Result {
             style.visuals.override_text_color = Some(INK);
             style.visuals.panel_fill = PAPER;
             style.visuals.selection.bg_fill = Color32::from_rgb(210, 233, 224);
+            style.visuals.hyperlink_color = TEAL;
             style.visuals.widgets.hovered.bg_fill = Color32::from_rgb(230, 241, 233);
             style.spacing.item_spacing = Vec2::new(7.0, 4.0);
             style.spacing.button_padding = Vec2::new(9.0, 6.0);
@@ -1485,7 +1501,12 @@ pub fn run() -> eframe::Result {
                 .text_styles
                 .insert(egui::TextStyle::Button, egui::FontId::proportional(11.0));
             cc.egui_ctx.set_style(style);
-            Ok(Box::new(Updater::default()))
+            let mut app = Updater::default();
+            let preview = cfg!(debug_assertions) && std::env::var_os("SU03T_UI_PREVIEW").is_some();
+            if cfg!(target_os = "macos") && !preview {
+                app.driver_check.start(&cc.egui_ctx);
+            }
+            Ok(Box::new(app))
         }),
     )
 }
@@ -1528,7 +1549,21 @@ impl Updater {
             data.insert_temp(id, frame);
             frame
         });
-        if frame == 6 {
+        let now = ctx.input(|input| input.time);
+        let ready = ctx.data_mut(|data| {
+            let started_id = egui::Id::new("ui-capture-started");
+            let requested_id = egui::Id::new("ui-capture-requested");
+            let started = data.get_temp::<f64>(started_id).unwrap_or(now);
+            data.insert_temp(started_id, started);
+            let requested = data.get_temp::<bool>(requested_id).unwrap_or(false);
+            if frame >= 6 && now - started >= 0.4 && !requested {
+                data.insert_temp(requested_id, true);
+                true
+            } else {
+                false
+            }
+        });
+        if ready {
             ctx.send_viewport_cmd(egui::ViewportCommand::Screenshot(Default::default()));
         }
     }
@@ -1545,6 +1580,14 @@ impl Updater {
                 _ => self.language,
             };
             i18n::set(self.language, self.system_english);
+        }
+        if scene.starts_with("drivers-") {
+            self.driver_check.preview(scene == "drivers-ready");
+            self.note(
+                "界面预览：驱动状态为模拟，未打开串口。",
+                "UI PREVIEW: simulated driver status; no serial port was opened.",
+            );
+            return;
         }
         self.started = Some(Instant::now());
         self.total = 1_259_048;
