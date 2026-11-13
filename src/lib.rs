@@ -1,6 +1,8 @@
 //! SU-03T updater protocol, reconstructed from the vendor's 2021 DLL.
 //! See docs/protocol.md for protocol details and hardware verification limits.
 pub mod capture;
+#[cfg(feature = "gui")]
+pub mod driver_check;
 pub mod firmware;
 pub mod flash_event;
 pub mod profiles;
