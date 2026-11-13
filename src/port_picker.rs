@@ -1,4 +1,5 @@
 //! Enumerate ports without opening them, and guide unplug/replug identification.
+use super::i18n::{display, t, ui_format};
 use super::{INK, LINE, MUTED, TEAL, card, label};
 use eframe::egui::{self, Color32, RichText, Vec2};
 use std::{
@@ -23,7 +24,7 @@ impl PortDetails {
             .or_else(|| self.manufacturer.clone().filter(|s| !s.trim().is_empty()))
             .unwrap_or_else(|| {
                 if self.usb_id.is_some() {
-                    "USB 串口设备".into()
+                    t("USB 串口设备").into()
                 } else {
                     self.path.clone()
                 }
@@ -195,32 +196,32 @@ impl Finder {
         let mut chosen = None;
         let response=egui::Modal::new(egui::Id::new("find-serial-port")).frame(card().inner_margin(26)).show(ctx,|ui| {
             ui.set_width(500.0f32.min((ctx.content_rect().width()-100.0).max(280.0)));
-            ui.label(RichText::new("通过插拔找到串口").size(23.0).strong().color(INK));
-            ui.add_space(6.0);label(ui,"只需拔插目标 USB 转串口，其他设备保持连接。");
+            ui.label(RichText::new(t("通过插拔找到串口")).size(23.0).strong().color(INK));
+            ui.add_space(6.0);label(ui,t("只需拔插目标 USB 转串口，其他设备保持连接。"));
             ui.add_space(16.0);
             ui.horizontal(|ui| {
                 let step=if self.discovery.is_none() {0} else if self.discovery.as_ref().is_some_and(|d|d.candidates.is_empty()) {1} else {2};
-                for (i,text) in ["1  拔下设备","2  插回设备","3  确认串口"].iter().enumerate() {
+                for (i,text) in [t("1  拔下设备"),t("2  插回设备"),t("3  确认串口")].iter().enumerate() {
                     ui.label(RichText::new(*text).size(12.0).strong().color(if step==i {TEAL} else {MUTED}));
                     if i<2 {ui.label(RichText::new("  →  ").color(MUTED));}
                 }
             });
             ui.add_space(20.0);
             if self.discovery.is_none() {
-                ui.label(RichText::new("先从 Mac 拔下目标 USB 转串口").size(16.0).strong());
+                ui.label(RichText::new(t("先从 Mac 拔下目标 USB 转串口")).size(16.0).strong());
                 ui.add_space(8.0);
-                ui.label("芯片主板若已独立供电，可以保持供电。拔下后稍等片刻，再点击下面的按钮记录当前设备列表。");
+                ui.label(t("芯片主板若已独立供电，可以保持供电。拔下后稍等片刻，再点击下面的按钮记录当前设备列表。"));
                 ui.add_space(16.0);
-                if ui.add(egui::Button::new(RichText::new("已拔下，开始检测").color(Color32::WHITE)).fill(TEAL).min_size(Vec2::new(ui.available_width(),40.0))).clicked() {self.capture();}
+                if ui.add(egui::Button::new(RichText::new(t("已拔下，开始检测")).color(Color32::WHITE)).fill(TEAL).min_size(Vec2::new(ui.available_width(),40.0))).clicked() {self.capture();}
             } else {
                 let candidates=self.discovery.as_ref().map(|d|d.candidates.clone()).unwrap_or_default();
                 if candidates.is_empty() {
-                    ui.horizontal(|ui| {ui.spinner();ui.label(RichText::new("现在插回 USB 转串口").size(16.0).strong());});
-                    ui.add_space(8.0);ui.label("正在自动检测新增串口。通常几秒内会出现，无需手动刷新。");
-                    ui.add_space(8.0);label(ui,"一直没有变化？检查USB数据线和驱动，或重新记录拔下后的基准。");
+                    ui.horizontal(|ui| {ui.spinner();ui.label(RichText::new(t("现在插回 USB 转串口")).size(16.0).strong());});
+                    ui.add_space(8.0);ui.label(t("正在自动检测新增串口。通常几秒内会出现，无需手动刷新。"));
+                    ui.add_space(8.0);label(ui,t("一直没有变化？检查USB数据线和驱动，或重新记录拔下后的基准。"));
                 } else {
-                    ui.label(RichText::new(format!("发现 {} 个新增串口",candidates.len())).size(16.0).strong().color(TEAL));
-                    label(ui,if candidates.len()>1 {"请选择与你刚插回的设备对应的一项；也可重新拔插确认。"} else {"确认下方设备信息，再应用到当前页面。"});
+                    ui.label(RichText::new(ui_format!("发现 {} 个新增串口", "Found {} new serial ports",candidates.len())).size(16.0).strong().color(TEAL));
+                    label(ui,if candidates.len()>1 {t("请选择与你刚插回的设备对应的一项；也可重新拔插确认。")} else {t("确认下方设备信息，再应用到当前页面。")});
                     ui.add_space(10.0);
                     egui::ScrollArea::vertical().id_salt("port-candidates").max_height(220.0).show(ui,|ui| {
                         for port in &candidates {
@@ -229,26 +230,26 @@ impl Finder {
                                     ui.set_min_width(ui.available_width());
                                     ui.radio_value(&mut self.selected,port.path.clone(),RichText::new(port.title()).strong());
                                     ui.label(RichText::new(&port.path).monospace().size(12.0));
-                                    label(ui,&port.identity());
+                                    label(ui,&display(&port.identity()));
                                 });ui.add_space(6.0);
                         }
                     });
                     ui.add_space(12.0);
-                    if ui.add_enabled(!self.selected.is_empty(),egui::Button::new(RichText::new("使用此串口").color(Color32::WHITE)).fill(TEAL).min_size(Vec2::new(ui.available_width(),40.0))).clicked() {
+                    if ui.add_enabled(!self.selected.is_empty(),egui::Button::new(RichText::new(t("使用此串口")).color(Color32::WHITE)).fill(TEAL).min_size(Vec2::new(ui.available_width(),40.0))).clicked() {
                         // Rescan before applying: a candidate removed since the last poll must not be used.
                         let intended=self.selected.clone();
                         self.refresh();
                         if let Some(port)=self.discovery.as_ref().and_then(|d|d.selected(&intended)) {chosen=Some((target,port));}
-                        else if self.error.is_none() {self.error=Some("刚选择的串口已移除，请重新选择。".into());}
+                        else if self.error.is_none() {self.error=Some(t("刚选择的串口已移除，请重新选择。").into());}
                     }
                 }
                 ui.add_space(12.0);
-                if ui.button("重新从拔下设备开始").clicked() {self.discovery=None;self.selected.clear();self.error=None;}
+                if ui.button(t("重新从拔下设备开始")).clicked() {self.discovery=None;self.selected.clear();self.error=None;}
             }
-            if let Some(error)=&self.error {ui.add_space(8.0);ui.colored_label(Color32::from_rgb(185,64,52),error);}
+            if let Some(error)=&self.error {ui.add_space(8.0);ui.colored_label(Color32::from_rgb(185,64,52),display(error).as_ref());}
             ui.add_space(14.0);ui.separator();ui.add_space(8.0);
-            label(ui,"此过程只读取设备列表，不打开串口，也不向芯片发送指令。识别到的是 USB 转串口，不代表已确认后端芯片型号。");
-            if ui.button("取消").clicked() {self.target=None;}
+            label(ui,t("此过程只读取设备列表，不打开串口，也不向芯片发送指令。识别到的是 USB 转串口，不代表已确认后端芯片型号。"));
+            if ui.button(t("取消")).clicked() {self.target=None;}
         });
         if response.should_close() || chosen.is_some() {
             self.target = None;
@@ -261,7 +262,7 @@ pub(super) fn select_ui(ui: &mut egui::Ui, id: &str, path: &mut String, ports: &
     let selected = ports.iter().find(|p| p.path == *path);
     let title = selected.map(|p| p.title()).unwrap_or_else(|| {
         if path.is_empty() {
-            "选择串口…".into()
+            t("选择串口…").into()
         } else {
             path.clone()
         }
@@ -277,7 +278,7 @@ pub(super) fn select_ui(ui: &mut egui::Ui, id: &str, path: &mut String, ports: &
                     port.path.clone(),
                     format!("{} · {}", port.title(), port.path),
                 );
-                response.on_hover_text(port.identity());
+                response.on_hover_text(display(&port.identity()).into_owned());
             }
         });
 }
@@ -288,10 +289,10 @@ pub(super) fn details_ui(ui: &mut egui::Ui, path: &str, ports: &[PortDetails]) {
     ui.add(egui::Label::new(RichText::new(path).size(11.0).monospace().color(MUTED)).truncate())
         .on_hover_text(path);
     if let Some(port) = ports.iter().find(|p| p.path == path) {
-        egui::CollapsingHeader::new("设备信息")
+        egui::CollapsingHeader::new(t("设备信息"))
             .id_salt(path)
             .show(ui, |ui| {
-                label(ui, &port.identity());
+                label(ui, &display(&port.identity()));
             });
     }
 }
