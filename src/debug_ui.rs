@@ -1,3 +1,4 @@
+use super::i18n::{choose as tr, display, t, ui_format};
 use super::{MUTED, TEAL, card, label, port_picker, section};
 use eframe::egui::{self, Color32, RichText, Vec2};
 use std::path::PathBuf;
@@ -22,6 +23,23 @@ enum Format {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn switching_language_translates_system_records_but_preserves_device_text() {
+        let mut debugger = Debugger::default();
+        debugger.info("串口已打开。说出模块唤醒词和命令，观察接收数据。");
+        debugger.receive_event(Event::Received {
+            at: Duration::from_millis(10),
+            bytes: "停止\r\n".as_bytes().to_vec(),
+        });
+        super::super::i18n::set(super::super::i18n::Language::En, false);
+        let output = debugger.export();
+        assert!(output.starts_with("SU-03T serial debug log"));
+        assert!(output.contains("Serial port open."));
+        assert!(output.contains("停止"));
+        super::super::i18n::set(super::super::i18n::Language::Zh, false);
+        assert!(debugger.export().starts_with("SU-03T 串口调试日志"));
+    }
     #[test]
     fn clearing_display_preserves_session_counters_raw_capture_and_command_counts() {
         let mut debugger = Debugger::default();
@@ -56,7 +74,7 @@ enum Ending {
 impl Ending {
     fn name(self) -> &'static str {
         match self {
-            Self::None => "不追加",
+            Self::None => t("不追加"),
             Self::Lf => "LF",
             Self::Cr => "CR",
             Self::CrLf => "CRLF",
@@ -134,7 +152,12 @@ pub(super) struct Debugger {
     input: String,
     input_error: Option<String>,
     follow: bool,
+    log_offset: f32,
+    evicted_pending: u64,
     copied: Option<Instant>,
+    split: f32,
+    jump: bool,
+    unseen: u64,
 }
 impl Default for Debugger {
     fn default() -> Self {
@@ -174,7 +197,12 @@ impl Default for Debugger {
             input: String::new(),
             input_error: None,
             follow: true,
+            log_offset: 0.0,
+            evicted_pending: 0,
             copied: None,
+            split: 0.53,
+            jump: false,
+            unseen: 0,
         };
         me.refresh();
         me
@@ -219,12 +247,18 @@ impl Debugger {
         }
     }
     fn append(&mut self, record: Record) {
+        if !self.follow {
+            self.unseen = self.unseen.saturating_add(1);
+        }
         self.log_cost += record.cost();
         self.records.push_back(record);
         while self.records.len() > RECORD_LIMIT || self.log_cost > LOG_LIMIT {
             if let Some(old) = self.records.pop_front() {
                 self.log_cost -= old.cost();
                 self.removed += 1;
+                if !self.follow {
+                    self.evicted_pending += 1;
+                }
             }
         }
     }
@@ -238,9 +272,14 @@ impl Debugger {
     }
     fn clear(&mut self) {
         self.records.clear();
+        self.log_offset = 0.0;
+        self.evicted_pending = 0;
         self.log_cost = 0;
         self.removed = 0;
         self.copied = None;
+        self.follow = true;
+        self.jump = true;
+        self.unseen = 0;
     }
     fn connect(&mut self) {
         if self.busy() || self.port.trim().is_empty() || self.baud == 0 {
@@ -429,7 +468,7 @@ impl Debugger {
         }
     }
     fn export(&self) -> String {
-        let mut text = format!(
+        let mut text = display(&format!(
             "SU-03T 串口调试日志\n{}\nRX={} bytes, TX={} bytes, errors={}, duration={:.3}s\n相对时间；TX仅表示主机写入；记录按串口读取分块，不代表协议帧。\n已移除{}条较早记录；导出当前显示缓冲；独立RX缓冲保留{}字节，移除{}字节。\n\n",
             self.connection_label,
             self.rx,
@@ -439,14 +478,20 @@ impl Debugger {
             self.removed,
             self.raw.len(),
             self.raw.removed
-        );
+        )).into_owned();
         for r in &self.records {
             text.push_str(&format!(
                 "[{:.3}s] {} HEX=[{}] TEXT={}\n",
                 r.at.as_secs_f64(),
                 r.direction,
                 serial::hex(&r.bytes),
-                r.text.replace('\r', "\\r").replace('\n', "\\n")
+                if r.direction == "SYS" {
+                    display(&r.text).into_owned()
+                } else {
+                    r.text.clone()
+                }
+                .replace('\r', "\\r")
+                .replace('\n', "\\n")
             ));
         }
         text
@@ -456,26 +501,26 @@ impl Debugger {
             ui.set_min_width(ui.available_width());
             ui.label(
                 RichText::new(if self.profile == Profile::B8 {
-                    "B8 日志接收"
+                    t("B8 日志接收")
                 } else {
-                    "语音串口调试"
+                    t("语音串口调试")
                 })
                 .size(19.0)
                 .strong(),
             );
-            label(ui, self.profile.name());
+            label(ui, t(self.profile.name()));
             ui.add_space(18.0);
             ui.add_enabled_ui(!self.busy() && !blocked, |ui| {
                 if self.profile != Profile::B8 {
                     ui.horizontal_wrapped(|ui| {
                         if ui
-                            .selectable_label(self.profile == Profile::Car, "小车 · 9600")
+                            .selectable_label(self.profile == Profile::Car, t("小车 · 9600"))
                             .clicked()
                         {
                             self.set_profile(Profile::Car);
                         }
                         if ui
-                            .selectable_label(self.profile == Profile::Custom, "通用 · 115200")
+                            .selectable_label(self.profile == Profile::Custom, t("通用 · 115200"))
                             .clicked()
                         {
                             self.set_profile(Profile::Custom);
@@ -483,18 +528,18 @@ impl Debugger {
                     });
                     ui.add_space(12.0);
                 }
-                section(ui, "01", "选择串口");
+                section(ui, "01", t("选择串口"));
                 ui.horizontal(|ui| {
                     port_picker::select_ui(ui, "debug-port", &mut self.port, &self.ports);
-                    if ui.button("刷新").clicked() {
+                    if ui.button(t("刷新")).clicked() {
                         self.refresh();
                     }
                 });
                 port_picker::details_ui(ui, &self.port, &self.ports);
-                if ui.button("通过插拔识别串口…").clicked() {
+                if ui.button(t("通过插拔识别串口…")).clicked() {
                     finder.start(port_picker::Target::Debug);
                 }
-                egui::CollapsingHeader::new("手动输入串口路径").show(ui, |ui| {
+                egui::CollapsingHeader::new(t("手动输入串口路径")).show(ui, |ui| {
                     ui.add(
                         egui::TextEdit::singleline(&mut self.port)
                             .hint_text(if cfg!(target_os = "linux") {
@@ -506,9 +551,9 @@ impl Debugger {
                     );
                 });
                 ui.add_space(14.0);
-                section(ui, "02", "通信参数");
+                section(ui, "02", t("通信参数"));
                 ui.horizontal(|ui| {
-                    label(ui, "波特率");
+                    label(ui, t("波特率"));
                     egui::ComboBox::from_id_salt("debug-baud")
                         .width(135.0)
                         .selected_text(self.baud.to_string())
@@ -520,7 +565,7 @@ impl Debugger {
                         });
                 });
                 ui.horizontal(|ui| {
-                    label(ui, "自定义");
+                    label(ui, t("自定义"));
                     ui.add(
                         egui::DragValue::new(&mut self.baud)
                             .range(1..=3_000_000)
@@ -532,7 +577,7 @@ impl Debugger {
                     .num_columns(2)
                     .spacing([12.0, 8.0])
                     .show(ui, |ui| {
-                        label(ui, "数据位");
+                        label(ui, t("数据位"));
                         egui::ComboBox::from_id_salt("debug-data")
                             .width(135.0)
                             .selected_text(bits_name(self.data_bits))
@@ -547,18 +592,18 @@ impl Debugger {
                                 }
                             });
                         ui.end_row();
-                        label(ui, "流控");
+                        label(ui, t("流控"));
                         ui.add_enabled_ui(!self.profile.receive_only(), |ui| {
                             egui::ComboBox::from_id_salt("debug-flow")
                                 .width(135.0)
                                 .selected_text(match self.flow_control {
-                                    serialport::FlowControl::None => "无",
+                                    serialport::FlowControl::None => t("无"),
                                     serialport::FlowControl::Hardware => "RTS/CTS",
                                     serialport::FlowControl::Software => "XON/XOFF",
                                 })
                                 .show_ui(ui, |ui| {
                                     for (flow, name) in [
-                                        (serialport::FlowControl::None, "无"),
+                                        (serialport::FlowControl::None, t("无")),
                                         (serialport::FlowControl::Hardware, "RTS/CTS"),
                                         (serialport::FlowControl::Software, "XON/XOFF"),
                                     ] {
@@ -567,25 +612,25 @@ impl Debugger {
                                 });
                         });
                         ui.end_row();
-                        label(ui, "校验位");
+                        label(ui, t("校验位"));
                         egui::ComboBox::from_id_salt("debug-parity")
                             .width(135.0)
                             .selected_text(match self.parity {
-                                serialport::Parity::None => "None / 无",
-                                serialport::Parity::Even => "Even / 偶",
-                                serialport::Parity::Odd => "Odd / 奇",
+                                serialport::Parity::None => t("None / 无"),
+                                serialport::Parity::Even => t("Even / 偶"),
+                                serialport::Parity::Odd => t("Odd / 奇"),
                             })
                             .show_ui(ui, |ui| {
                                 for (v, s) in [
-                                    (serialport::Parity::None, "None / 无"),
-                                    (serialport::Parity::Even, "Even / 偶"),
-                                    (serialport::Parity::Odd, "Odd / 奇"),
+                                    (serialport::Parity::None, t("None / 无")),
+                                    (serialport::Parity::Even, t("Even / 偶")),
+                                    (serialport::Parity::Odd, t("Odd / 奇")),
                                 ] {
                                     ui.selectable_value(&mut self.parity, v, s);
                                 }
                             });
                         ui.end_row();
-                        label(ui, "停止位");
+                        label(ui, t("停止位"));
                         egui::ComboBox::from_id_salt("debug-stop")
                             .width(135.0)
                             .selected_text(stop_name(self.stop_bits))
@@ -597,16 +642,16 @@ impl Debugger {
                         ui.end_row();
                     });
                 ui.add_space(6.0);
-                label(ui, "参数仅用于当前连接，不会修改模块固件。");
+                label(ui, t("参数仅用于当前连接，不会修改模块固件。"));
                 ui.add_space(14.0);
-                section(ui, "03", "连续记录");
+                section(ui, "03", t("连续记录"));
                 label(
                     ui,
-                    "新连接开始新会话，重置统计与内存RX缓冲；已保存文件保持不变。",
+                    t("新连接开始新会话，重置统计与内存RX缓冲；已保存文件保持不变。"),
                 );
-                ui.checkbox(&mut self.record_enabled, "接收原始 BIN + 收发文本日志");
+                ui.checkbox(&mut self.record_enabled, t("接收原始 BIN + 收发文本日志"));
                 if self.record_enabled {
-                    if ui.button("选择保存目录…").clicked()
+                    if ui.button(t("选择保存目录…")).clicked()
                         && let Some(dir) = rfd::FileDialog::new().pick_folder()
                     {
                         self.record_dir = Some(dir);
@@ -614,11 +659,11 @@ impl Debugger {
                     if let Some(dir) = &self.record_dir {
                         label(ui, &dir.display().to_string());
                     } else {
-                        label(ui, "连接前请选择目录。");
+                        label(ui, t("连接前请选择目录。"));
                     }
                     label(
                         ui,
-                        "每流最多4个16MiB文件，超限覆盖本会话最早分卷；每次连接创建新文件。",
+                        t("每流最多4个16MiB文件，超限覆盖本会话最早分卷；每次连接创建新文件。"),
                     );
                 }
             });
@@ -628,9 +673,9 @@ impl Debugger {
                     .add_enabled(
                         !self.closing,
                         egui::Button::new(if self.closing {
-                            "正在断开…"
+                            t("正在断开…")
                         } else {
-                            "断开连接"
+                            t("断开连接")
                         })
                         .min_size(Vec2::new(ui.available_width(), 40.0)),
                     )
@@ -640,7 +685,7 @@ impl Debugger {
                         s.stop();
                     }
                     self.closing = true;
-                    self.status = "正在断开…".into();
+                    self.status = t("正在断开…").into();
                 }
             } else if ui
                 .add_enabled(
@@ -649,7 +694,7 @@ impl Debugger {
                         && self.baud > 0
                         && (!self.record_enabled || self.record_dir.is_some()),
                     egui::Button::new(
-                        RichText::new("连接并监听  →")
+                        RichText::new(t("连接并监听  →"))
                             .color(Color32::WHITE)
                             .strong(),
                     )
@@ -664,28 +709,28 @@ impl Debugger {
             label(
                 ui,
                 if blocked {
-                    "固件升级正在占用串口，请先停止升级。"
+                    t("固件升级正在占用串口，请先停止升级。")
                 } else {
-                    "连接后不会自动发送任何指令。"
+                    t("连接后不会自动发送任何指令。")
                 },
             );
             if let Some(error) = &self.error {
                 ui.add_space(8.0);
-                ui.colored_label(Color32::from_rgb(185, 64, 52), error);
+                ui.colored_label(Color32::from_rgb(185, 64, 52), display(error).as_ref());
             }
         });
         ui.add_space(14.0);
         egui::Frame::new().fill(Color32::from_rgb(234,240,234)).corner_radius(12).inner_margin(16).show(ui, |ui| {
             ui.set_min_width(ui.available_width());
-            ui.label(RichText::new("调试接线").strong().color(TEAL));
+            ui.label(RichText::new(t("调试接线")).strong().color(TEAL));
             ui.add_space(6.0);
-            ui.label(self.profile.wiring());
-            label(ui,"模块独立供电时，转接器 VCC 不接；必须共地。串口信号电平 3.3V。");
+            ui.label(t(self.profile.wiring()));
+            label(ui,t("模块独立供电时，转接器 VCC 不接；必须共地。串口信号电平 3.3V。"));
             ui.add_space(8.0);
-            label(ui, if self.profile == Profile::B8 { "57600 / 8N1 为蜂鸟M日志预设；实际输出取决于固件。B8连接不会发送数据或触发升级。" } else { "业务引脚按固件配置；小车版本20261107001使用B6/B7。其他固件需核对映射，板上丝印不能证明当前输出位置。" });
+            label(ui, if self.profile == Profile::B8 { t("57600 / 8N1 为蜂鸟M日志预设；实际输出取决于固件。B8连接不会发送数据或触发升级。") } else { t("业务引脚按固件配置；小车版本20261107001使用B6/B7。其他固件需核对映射，板上丝印不能证明当前输出位置。") });
         });
     }
-    fn console(&mut self, ui: &mut egui::Ui) {
+    fn overview(&mut self, ui: &mut egui::Ui) {
         card().show(ui, |ui| {
             ui.set_min_width(ui.available_width());
             ui.horizontal_wrapped(|ui| {
@@ -694,7 +739,12 @@ impl Debugger {
                 } else {
                     MUTED
                 };
-                ui.label(RichText::new(&self.status).size(16.0).strong().color(color));
+                ui.label(
+                    RichText::new(display(&self.status).as_ref())
+                        .size(16.0)
+                        .strong()
+                        .color(color),
+                );
                 if self.busy() && !self.connected {
                     ui.spinner();
                 }
@@ -714,8 +764,9 @@ impl Debugger {
                 );
                 ui.add_space(12.0);
                 ui.label(
-                    RichText::new(format!(
+                    RichText::new(ui_format!(
                         "错误 {}  ·  {:.1}s",
+                        "Errors {} · {:.1}s",
                         self.errors,
                         self.elapsed.as_secs_f64()
                     ))
@@ -723,19 +774,20 @@ impl Debugger {
                     .color(MUTED),
                 );
             });
-            label(ui, "TX 计数表示主机写入，不代表模块已确认。");
+            label(ui, t("TX 计数表示主机写入，不代表模块已确认。"));
         });
         ui.add_space(14.0);
         if self.profile == Profile::Car {
             card().inner_margin(16).show(ui, |ui| {
-                ui.label(RichText::new("小车语音反馈").strong());
+                ui.label(RichText::new(t("小车语音反馈")).strong());
                 label(
                     ui,
-                    "唤醒词：你好小美 · 仅解释20261107001固件的单字节输出；不自动发送指令",
+                    t("唤醒词：你好小美 · 仅解释20261107001固件的单字节输出；不自动发送指令"),
                 );
                 ui.add_space(8.0);
                 ui.horizontal_wrapped(|ui| {
                     for (index, (code, name)) in CAR_COMMANDS.iter().enumerate() {
+                        let name = t(name);
                         ui.vertical(|ui| {
                             ui.label(
                                 RichText::new(format!("{name} / {code:02X}"))
@@ -743,7 +795,7 @@ impl Debugger {
                                     .color(TEAL),
                             );
                             ui.label(
-                                RichText::new(format!("{} 次", self.car.counts[index]))
+                                RichText::new(ui_format!("{} 次", "{} times", self.car.counts[index]))
                                     .size(20.0)
                                     .strong(),
                             );
@@ -753,159 +805,60 @@ impl Debugger {
                 });
                 label(
                     ui,
-                    &format!(
-                        "最近：{} · 未知字节 {} · 次数为实际接收统计，不代表已完成实板验收",
-                        self.car.last.unwrap_or("等待语音反馈"),
+                    &ui_format!("最近：{} · 未知字节 {} · 次数为实际接收统计，不代表已完成实板验收", "Latest: {} · Unknown bytes: {} · Counts report received data, not hardware acceptance",
+                        t(self.car.last.unwrap_or("等待语音反馈")),
                         self.car.unknown
                     ),
                 );
             });
             ui.add_space(14.0);
         }
-        egui::Frame::new()
-            .fill(Color32::from_rgb(27, 41, 43))
-            .corner_radius(16)
-            .inner_margin(16)
-            .show(ui, |ui| {
-                ui.set_min_width(ui.available_width());
-                ui.horizontal(|ui| {
-                    ui.label(
-                        RichText::new("收发记录")
-                            .strong()
-                            .color(Color32::from_rgb(226, 235, 231)),
-                    );
-                    ui.add_space(8.0);
-                    for (v, name) in [(Format::Hex, "HEX"), (Format::Text, "UTF-8")] {
-                        if ui
-                            .add(
-                                egui::Button::new(RichText::new(name).size(11.0).color(
-                                    if self.view == v {
-                                        Color32::WHITE
-                                    } else {
-                                        Color32::from_gray(160)
-                                    },
-                                ))
-                                .fill(if self.view == v {
-                                    TEAL
-                                } else {
-                                    Color32::TRANSPARENT
-                                }),
-                            )
-                            .clicked()
-                        {
-                            self.view = v;
-                        }
-                    }
-                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        if ui.small_button("清空显示").clicked() {
-                            self.clear();
-                        }
-                    });
-                });
-                ui.add_space(8.0);
-                let mut text_style = (**ui.style()).clone();
-                text_style.visuals.override_text_color = Some(Color32::from_rgb(185, 209, 197));
-                ui.scope(|ui| {
-                    ui.set_style(text_style);
-                    ui.checkbox(&mut self.follow, "跟随最新记录");
-                    let height = (ui.available_height() - 380.0).clamp(140.0, 220.0);
-                    let scroll = egui::ScrollArea::both()
-                        .id_salt("debug-console")
-                        .auto_shrink([false, false])
-                        .max_height(height)
-                        .stick_to_bottom(self.follow);
-                    if self.records.is_empty() {
-                        scroll.show(ui, |ui| {
-                            ui.set_min_size(Vec2::new(ui.available_width(), height));
-                            ui.add_space(30.0);
-                            ui.label("连接后，说出唤醒词和指令，观察模块输出。");
-                            ui.add_space(6.0);
-                            ui.small("HEX 显示原始字节，UTF-8 显示文本；分块不代表协议帧。");
-                        });
-                    } else {
-                        scroll.show_rows(ui, 20.0, self.records.len(), |ui, range| {
-                            for index in range {
-                                let record = &self.records[index];
-                                let value = if self.view == Format::Hex && !record.bytes.is_empty()
-                                {
-                                    serial::hex(&record.bytes)
-                                } else {
-                                    record.text.replace('\r', "\\r").replace('\n', "\\n")
-                                };
-                                let color = match record.direction {
-                                    "RX" => Color32::from_rgb(152, 215, 185),
-                                    "TX" => Color32::from_rgb(150, 193, 242),
-                                    _ => Color32::from_rgb(154, 174, 166),
-                                };
-                                ui.horizontal(|ui| {
-                                    ui.label(
-                                        RichText::new(format!(
-                                            "{:8.3}s  {}",
-                                            record.at.as_secs_f64(),
-                                            record.direction
-                                        ))
-                                        .monospace()
-                                        .size(11.0)
-                                        .color(color),
-                                    );
-                                    ui.add(egui::Label::new(
-                                        RichText::new(value).monospace().size(11.0).color(color),
-                                    ).extend());
-                                });
-                            }
-                        });
-                    }
-                });
-                ui.add_space(8.0);
-                ui.horizontal_wrapped(|ui| {
-                    ui.add_enabled_ui(!self.records.is_empty(), |ui| {
-                        let copied = self
-                            .copied
-                            .is_some_and(|t| t.elapsed() < Duration::from_secs(2));
-                        if ui
-                            .small_button(if copied { "已复制" } else { "复制日志" })
-                            .clicked()
-                        {
-                            ui.ctx().copy_text(self.export());
-                            self.copied = Some(Instant::now());
-                            ui.ctx().request_repaint_after(Duration::from_secs(2));
-                        }
-                        if ui.small_button("保存日志…").clicked()
-                            && let Some(path) = rfd::FileDialog::new()
-                                .set_file_name("su03t-debug.log")
-                                .add_filter("日志", &["log", "txt"])
-                                .save_file()
-                            {
-                                match std::fs::write(&path, self.export()) {
-                                    Ok(()) => self.info(format!("日志已保存：{}", path.display())),
-                                    Err(e) => self.error = Some(format!("保存日志失败：{e}")),
-                                }
-                            }
-                    });
-                    if ui.add_enabled(!self.raw.is_empty(), egui::Button::new("导出接收 BIN…").small()).clicked()
-                        && let Some(path) = rfd::FileDialog::new().set_file_name("su03t-rx.bin").add_filter("原始接收字节", &["bin"]).save_file() {
-                            match self.raw.save(&path) {
-                                Ok(()) => self.info(format!("原始接收缓冲已保存：{}（{}字节）", path.display(), self.raw.len())),
-                                Err(error) => { self.errors += 1; self.error = Some(format!("保存原始数据失败：{error}")); }
-                            }
-                        }
-                });
-                ui.label(
-                    RichText::new(format!(
-                        "显示缓冲已移除 {} 条 · RX缓冲保留 {} B，移除 {} B · 清空显示保留计数、RX缓冲及记录文件",
-                        self.removed, self.raw.len(), self.raw.removed
-                    ))
-                    .size(10.0)
-                    .color(Color32::from_rgb(137, 164, 152)),
-                );
+    }
+
+    fn log_panel(&mut self, ui: &mut egui::Ui) {
+        egui::Frame::new().fill(Color32::from_rgb(33,54,50)).corner_radius(10).inner_margin(12).show(ui, |ui| {
+            ui.set_min_width(ui.available_width());
+            *ui.visuals_mut() = egui::Visuals::dark(); ui.visuals_mut().override_text_color = Some(Color32::from_rgb(218,233,223));
+            ui.horizontal_wrapped(|ui| {
+                ui.strong(t("收发记录"));
+                for (format,name) in [(Format::Hex,"HEX"),(Format::Text,"UTF-8")] {ui.selectable_value(&mut self.view,format,name);}
+                ui.label(egui::RichText::new(if self.follow {tr("跟随最新","Following latest").to_owned()} else {format!("{} · +{}",tr("已暂停跟随","Follow paused"),self.unseen)}).size(10.0));
             });
+            ui.horizontal_wrapped(|ui| {
+                if ui.add_enabled(!self.follow,egui::Button::new(tr("回到底部并跟随","Jump to latest & follow")).small()).clicked(){self.jump=true;self.follow=true;self.unseen=0;}
+                if ui.add_enabled(!self.records.is_empty(),egui::Button::new(if self.copied.is_some_and(|t|t.elapsed()<Duration::from_secs(2)){t("已复制")}else{t("复制日志")}).small()).clicked(){ui.ctx().copy_text(self.export());self.copied=Some(Instant::now());}
+                if ui.add_enabled(!self.records.is_empty(),egui::Button::new(t("保存日志…")).small()).clicked()&&let Some(path)=rfd::FileDialog::new().set_file_name("su03t-debug.log").add_filter(t("日志"),&["log","txt"]).save_file(){match std::fs::write(&path,self.export()){Ok(())=>self.info(format!("日志已保存：{}",path.display())),Err(e)=>self.error=Some(format!("保存日志失败：{e}"))}}
+                if ui.add_enabled(!self.records.is_empty(),egui::Button::new(t("清空显示")).small()).clicked(){self.clear();}
+                if ui.add_enabled(!self.raw.is_empty(),egui::Button::new(t("导出接收 BIN…")).small()).clicked()&&let Some(path)=rfd::FileDialog::new().set_file_name("su03t-rx.bin").add_filter(t("原始接收字节"),&["bin"]).save_file(){match self.raw.save(&path){Ok(())=>self.info(format!("原始接收缓冲已保存：{}（{}字节）",path.display(),self.raw.len())),Err(error)=>{self.errors+=1;self.error=Some(format!("保存原始数据失败：{error}"));}}}
+            });
+            ui.add_space(5.0);ui.separator();ui.add_space(5.0);
+            let height=(ui.available_height()-38.0).max(40.0);
+            let mut scroll=egui::ScrollArea::both().id_salt("debug-console").auto_shrink([false,false]).max_height(height).stick_to_bottom(true);
+            if self.jump{scroll=scroll.vertical_scroll_offset(f32::MAX);self.jump=false;}
+            else if self.evicted_pending>0 && !self.follow {scroll=scroll.vertical_scroll_offset((self.log_offset-self.evicted_pending as f32*16.0).max(0.0));}
+            self.evicted_pending=0;
+            let out=ui.scope(|ui|{ui.spacing_mut().item_spacing.y=0.0;
+                if self.records.is_empty(){scroll.show(ui,|ui|{ui.set_min_height(height);ui.label(egui::RichText::new(t("连接后，说出唤醒词和指令，观察模块输出。")).size(11.0));})}
+                else{scroll.show_rows(ui,16.0,self.records.len(),|ui,range|{for index in range{
+                    let record=&self.records[index];
+                    let value=if self.view==Format::Hex&&!record.bytes.is_empty(){serial::hex(&record.bytes)}else{if record.direction=="SYS"{display(&record.text).into_owned()}else{record.text.clone()}.replace('\r',"\\r").replace('\n',"\\n")};
+                    let color=match record.direction{"RX"=>Color32::from_rgb(152,215,185),"TX"=>Color32::from_rgb(150,193,242),_=>Color32::from_rgb(181,208,191)};
+                    ui.add(egui::Label::new(egui::RichText::new(format!("[{:8.3}s] {} {value}",record.at.as_secs_f64(),record.direction)).monospace().size(11.0).line_height(Some(16.0)).color(color)).extend().selectable(true));
+                }})}
+            }).inner;
+            self.log_offset=out.state.offset.y;
+            self.follow=out.state.offset.y+out.inner_rect.height()>=out.content_size.y-0.5;if self.follow{self.unseen=0;}
+            ui.add_space(5.0);ui.label(egui::RichText::new(ui_format!("显示缓冲已移除 {} 条 · RX缓冲保留 {} B，移除 {} B · 清空显示保留计数、RX缓冲及记录文件", "Display dropped {} records · RX buffer: {} B, dropped {} B · Clearing keeps counts, RX buffer and recorded files",self.removed,self.raw.len(),self.raw.removed)).size(10.0));
+        });
+    }
+    fn sending(&mut self, ui: &mut egui::Ui) {
         ui.add_space(14.0);
         if self.profile.receive_only() {
             card().inner_margin(16).show(ui, |ui| {
-                ui.label(RichText::new("只接收 · 不发送").strong().color(TEAL));
+                ui.label(RichText::new(t("只接收 · 不发送")).strong().color(TEAL));
                 label(
                     ui,
-                    "B8 模式在通信核心禁止发送；转接器 TXD 保持不接。请用此模式观察上电日志。",
+                    t("B8 模式在通信核心禁止发送；转接器 TXD 保持不接。请用此模式观察上电日志。"),
                 );
             });
             return;
@@ -913,10 +866,10 @@ impl Debugger {
         card().show(ui, |ui| {
             ui.set_min_width(ui.available_width());
             ui.horizontal(|ui| {
-                ui.label(RichText::new("手动发送").strong());
+                ui.label(RichText::new(t("手动发送")).strong());
                 ui.add_space(10.0);
                 ui.selectable_value(&mut self.send_format, Format::Hex, "HEX");
-                ui.selectable_value(&mut self.send_format, Format::Text, "文本 UTF-8");
+                ui.selectable_value(&mut self.send_format, Format::Text, t("文本 UTF-8"));
             });
             ui.add_space(6.0);
             let input_id = ui.make_persistent_id("debug-send-input");
@@ -930,16 +883,16 @@ impl Debugger {
                     .desired_rows(2)
                     .font(egui::TextStyle::Monospace)
                     .hint_text(if self.send_format == Format::Hex {
-                        "例如 AA 01 55（仅示例，需与你的固件协议一致）"
+                        t("例如 AA 01 55（仅示例，需与你的固件协议一致）")
                     } else {
-                        "输入要发送给模块的文本"
+                        t("输入要发送给模块的文本")
                     }),
             );
             ui.add_space(8.0);
             let mut trigger = false;
             ui.horizontal(|ui| {
                 if self.send_format == Format::Text {
-                    label(ui, "追加结尾");
+                    label(ui, t("追加结尾"));
                     egui::ComboBox::from_id_salt("debug-ending")
                         .width(85.0)
                         .selected_text(self.ending.name())
@@ -949,13 +902,13 @@ impl Debugger {
                             }
                         });
                 } else {
-                    label(ui, "HEX 按原始字节发送，不追加结尾。");
+                    label(ui, t("HEX 按原始字节发送，不追加结尾。"));
                 }
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui
                         .add_enabled(
                             self.connected && !self.closing,
-                            egui::Button::new(RichText::new("发送 →").color(Color32::WHITE))
+                            egui::Button::new(RichText::new(t("发送 →")).color(Color32::WHITE))
                                 .fill(TEAL),
                         )
                         .clicked()
@@ -971,47 +924,47 @@ impl Debugger {
                 self.send();
             }
             if let Some(error) = &self.input_error {
-                ui.colored_label(Color32::from_rgb(185, 64, 52), error);
+                ui.colored_label(Color32::from_rgb(185, 64, 52), display(error).as_ref());
             }
             label(
                 ui,
                 if cfg!(target_os = "macos") {
-                    "⌘ Enter 发送 · 数据按输入原样发送，协议由固件定义。"
+                    t("⌘ Enter 发送 · 数据按输入原样发送，协议由固件定义。")
                 } else {
-                    "Ctrl Enter 发送 · 数据按输入原样发送，协议由固件定义。"
+                    t("Ctrl Enter 发送 · 数据按输入原样发送，协议由固件定义。")
                 },
             );
         });
     }
+
     pub(super) fn ui(
         &mut self,
         ui: &mut egui::Ui,
         blocked: bool,
         finder: &mut port_picker::Finder,
     ) {
-        egui::ScrollArea::vertical()
-            .id_salt("debug-workspace")
-            .auto_shrink([false, false])
-            .show(ui, |ui| {
-                let width = ui.available_width();
-                ui.horizontal_top(|ui| {
-                    ui.allocate_ui_with_layout(
-                        Vec2::new(322.0, 620.0),
-                        egui::Layout::top_down(egui::Align::Min),
-                        |ui| self.controls(ui, blocked, finder),
-                    );
+        let (left, right) = super::split_rects(ui, &mut self.split, "debug-splitter");
+        ui.scope_builder(egui::UiBuilder::new().max_rect(left), |ui| {
+            ui.set_clip_rect(left.intersect(ui.clip_rect()));
+            egui::ScrollArea::vertical()
+                .id_salt("debug-workspace")
+                .auto_shrink([false, false])
+                .max_height(left.height())
+                .show(ui, |ui| {
+                    self.controls(ui, blocked, finder);
                     ui.add_space(12.0);
-                    ui.allocate_ui_with_layout(
-                        Vec2::new((width - 342.0).max(300.0), 620.0),
-                        egui::Layout::top_down(egui::Align::Min),
-                        |ui| self.console(ui),
+                    self.overview(ui);
+                    ui.add_space(12.0);
+                    self.sending(ui);
+                    label(
+                        ui,
+                        t("听不到回包时，先核对固件是否启用了串口输出，再核对波特率、接线和共地。"),
                     );
                 });
-                ui.add_space(10.0);
-                label(
-                    ui,
-                    "听不到回包时，先核对固件是否启用了串口输出，再核对波特率、接线和共地。",
-                );
-            });
+        });
+        ui.scope_builder(egui::UiBuilder::new().max_rect(right), |ui| {
+            ui.set_clip_rect(right.intersect(ui.clip_rect()));
+            self.log_panel(ui);
+        });
     }
 }
