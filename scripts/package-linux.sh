@@ -16,4 +16,5 @@ for PACKAGE_DOC in docs/protocol.md docs/validation.md; do
   if [[ -f "$PACKAGE_DOC" ]]; then cp "$PACKAGE_DOC" "$PACKAGE_DIR/docs/"; fi
 done
 if [[ -d docs/images ]]; then cp -R docs/images "$PACKAGE_DIR/docs/"; fi
+python3 scripts/collect-licenses.py --target "$(rustc -vV | sed -n 's/^host: //p')" --output "$PACKAGE_DIR"
 tar -czf "dist/SU03T-Tools-v${PACKAGE_VERSION}-Linux-$(uname -m).tar.gz" -C "$PACKAGE_DIR" .

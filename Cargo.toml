@@ -1,9 +1,11 @@
 [package]
 name = "su03t-update"
-version = "0.4.1"
+version = "0.5.0"
 edition = "2024"
 description = "SU-03T firmware transfer and serial diagnostics for macOS and Linux"
 license = "MIT"
+repository = "https://github.com/MatriQ/su03t-macos"
+readme = "README.md"
 
 [dependencies]
 anyhow = "1"
@@ -23,3 +25,9 @@ gui = ["dep:eframe", "dep:rfd"]
 [dev-dependencies]
 libc = "0.2"
 tempfile = "3"
+
+# macOS 27 rejects some LLVM-stripped proc-macro dylibs (rust-lang/rust#157750).
+# Keep debug info in build-time tools; the shipped release binary is unaffected.
+[profile.release.build-override]
+debug = true
+strip = "none"

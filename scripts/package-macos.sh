@@ -31,6 +31,12 @@ cp "$PACKAGE_BINARY" "$APP/Contents/MacOS/.su03t-update.new"
 mv -f "$APP/Contents/MacOS/.su03t-update.new" "$APP/Contents/MacOS/su03t-update"
 chmod +x "$APP/Contents/MacOS/su03t-update"
 cp "$PROJECT_DIR/assets/AppIcon.icns" "$APP/Contents/Resources/AppIcon.icns"
+cp "$PROJECT_DIR/LICENSE" "$APP/Contents/Resources/LICENSE.txt"
+if [[ "$PACKAGE_MODE" == "--universal" ]]; then
+  python3 scripts/collect-licenses.py --target aarch64-apple-darwin --target x86_64-apple-darwin --output "$APP/Contents/Resources"
+else
+  python3 scripts/collect-licenses.py --target "$(rustc -vV | sed -n 's/^host: //p')" --output "$APP/Contents/Resources"
+fi
 APP_VERSION="$(cargo metadata --locked --no-deps --format-version 1 | python3 -c 'import json,sys; print(json.load(sys.stdin)["packages"][0]["version"])')"
 cat > "$APP/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
@@ -39,18 +45,27 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <dict>
   <key>CFBundleName</key><string>SU03T Update</string>
   <key>CFBundleDisplayName</key><string>SU-03T 升级与调试</string>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleLocalizations</key><array><string>en</string><string>zh-Hans</string></array>
   <key>CFBundleIdentifier</key><string>local.su03t.update</string>
   <key>CFBundleExecutable</key><string>su03t-update</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$APP_VERSION</string>
-  <key>CFBundleVersion</key><string>6</string>
+  <key>CFBundleVersion</key><string>7</string>
   <key>LSMinimumSystemVersion</key><string>12.0</string>
   <key>NSHighResolutionCapable</key><true/>
   <key>NSSupportsAutomaticGraphicsSwitching</key><true/>
 </dict>
 </plist>
 PLIST
+mkdir -p "$APP/Contents/Resources/en.lproj" "$APP/Contents/Resources/zh-Hans.lproj"
+cat > "$APP/Contents/Resources/en.lproj/InfoPlist.strings" <<'LOCALIZATION'
+"CFBundleDisplayName" = "SU-03T Tools";
+LOCALIZATION
+cat > "$APP/Contents/Resources/zh-Hans.lproj/InfoPlist.strings" <<'LOCALIZATION'
+"CFBundleDisplayName" = "SU-03T 升级与调试";
+LOCALIZATION
 plutil -lint "$APP/Contents/Info.plist"
 codesign --force --deep --sign - "$APP"
 codesign --verify --deep --strict "$APP"
