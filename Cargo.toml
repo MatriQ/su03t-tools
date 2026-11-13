@@ -1,0 +1,23 @@
+[package]
+name = "su03t-update"
+version = "0.4.1"
+edition = "2024"
+description = "SU-03T firmware transfer and serial diagnostics for macOS and Linux"
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+serialport = "4.8"
+eframe = { version = "0.33", optional = true, default-features = false, features = ["default_fonts", "glow", "x11", "wayland", "accesskit"] }
+rfd = { version = "0.15", optional = true }
+sha2 = "0.10"
+ctrlc = "3"
+
+[features]
+default = ["gui"]
+gui = ["dep:eframe", "dep:rfd"]
+
+[dev-dependencies]
+libc = "0.2"
+tempfile = "3"
