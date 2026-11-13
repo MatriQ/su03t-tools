@@ -1,5 +1,9 @@
 # Validation and compatibility
 
+## v0.5.4
+
+Repository metadata, release tooling and canonical installation URLs use `MatriQ/su03t-tools`. The 16 installer scenarios include reinstalling a Linux version with the previous repository marker, migrating it to the new marker, and preserving directories owned by another tool. Existing installation paths allow upgrades after the repository rename.
+
 ## v0.5.3
 
 Packaging and installation changes use 14 installer scenarios (11 portable Linux-layout scenarios plus 3 native macOS signing scenarios) and 14 release-helper scenarios. The tests cover version/architecture selection, upgrades, checksum failures, unsafe archive paths, foreign destinations, missing packages, complete manifests, interrupted drafts and immutable published assets. They use temporary prefixes and mock downloads. Release lookup covers published tags, paginated draft discovery and API errors; new drafts must be verified before publication.
