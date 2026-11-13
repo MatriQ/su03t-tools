@@ -221,7 +221,7 @@ def main():
     commands = parser.add_subparsers(dest='command', required=True)
     meta = commands.add_parser('metadata')
     meta.add_argument('--tag', default='')
-    meta.add_argument('--repo', default=os.environ.get('GITHUB_REPOSITORY', 'MatriQ/su03t-macos'))
+    meta.add_argument('--repo', default=os.environ.get('GITHUB_REPOSITORY', 'MatriQ/su03t-tools'))
     meta.add_argument('--check-release', action='store_true')
     commands.add_parser('macos-archive')
     checks = commands.add_parser('checksums')

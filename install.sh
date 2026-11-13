@@ -53,7 +53,7 @@ su03t_cleanup() {
 }
 su03t_main() {
   local requested_version=${SU03T_VERSION:-} prefix=${SU03T_INSTALL_PREFIX:-}
-  local repo='https://github.com/MatriQ/su03t-macos' resolved tag platform asset manifest expected actual
+  local repo='https://github.com/MatriQ/su03t-tools' resolved tag platform asset manifest expected actual
   local destination version_output target old_link
   SU03T_INSTALL_WORK=''
   SU03T_INSTALL_STAGE=''
@@ -151,8 +151,11 @@ su03t_main() {
     destination="$prefix/share/su03t-tools/$tag"
     if [ -e "$destination" ] || [ -L "$destination" ]; then
       [ ! -L "$destination" ] && [ -f "$destination/.su03t-install" ] \
-        && [ "$(head -n 1 "$destination/.su03t-install")" = 'MatriQ/su03t-macos' ] \
         || su03t_error 'Destination is not an installation managed by this script.'
+      case "$(head -n 1 "$destination/.su03t-install")" in
+        MatriQ/su03t-tools|MatriQ/su03t-macos) ;; # Accept installations made before the repository rename.
+        *) su03t_error 'Destination is not an installation managed by this script.' ;;
+      esac
     fi
     target="$prefix/bin/su03t-update"
     if [ -e "$target" ] || [ -L "$target" ]; then
@@ -162,7 +165,7 @@ su03t_main() {
     fi
     SU03T_INSTALL_STAGE=$(mktemp -d "$prefix/share/su03t-tools/.install.XXXXXXXX")
     mv "$SU03T_INSTALL_WORK/unpacked" "$SU03T_INSTALL_STAGE/package"
-    printf 'MatriQ/su03t-macos\n%s\n%s\n' "$tag" "$expected" > "$SU03T_INSTALL_STAGE/package/.su03t-install"
+    printf 'MatriQ/su03t-tools\n%s\n%s\n' "$tag" "$expected" > "$SU03T_INSTALL_STAGE/package/.su03t-install"
     su03t_replace "$SU03T_INSTALL_STAGE/package" "$destination" "$SU03T_INSTALL_STAGE/previous"
     ln -s "$destination/su03t-update" "$SU03T_INSTALL_STAGE/command"
     mv -f "$SU03T_INSTALL_STAGE/command" "$prefix/bin/su03t-update"

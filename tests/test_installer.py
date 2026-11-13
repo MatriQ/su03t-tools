@@ -12,7 +12,7 @@ import tempfile
 import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-REPO = 'https://github.com/MatriQ/su03t-macos'
+REPO = 'https://github.com/MatriQ/su03t-tools'
 
 
 class InstallerTests(unittest.TestCase):
@@ -33,7 +33,7 @@ class InstallerTests(unittest.TestCase):
         (self.stub / 'curl').write_text('#!' + sys.executable + '\n' + '''import os,pathlib,shutil,sys
 args=sys.argv[1:]
 url=next(a for a in args if a.startswith('https://'))
-base='https://github.com/MatriQ/su03t-macos/releases/'
+base='https://github.com/MatriQ/su03t-tools/releases/'
 if not url.startswith(base): sys.exit(99)
 if url==base+'latest':
     print(base+'tag/v1.2.4',end='')
@@ -121,6 +121,22 @@ shutil.copyfile(source,args[args.index(flag)+1])
         self.install('v1.2.4')
         self.assertEqual(self.installed_version(), 'su03t-update 1.2.4')
         self.assertTrue((self.prefix / 'share/su03t-tools/v1.2.3/su03t-update').is_file())
+
+    def test_installation_from_the_previous_repository_can_be_reinstalled(self):
+        self.install('v1.2.3')
+        marker = self.prefix / 'share/su03t-tools/v1.2.3/.su03t-install'
+        marker.write_text(marker.read_text().replace('MatriQ/su03t-tools', 'MatriQ/su03t-macos', 1))
+        self.install('v1.2.3')
+        self.assertEqual(self.installed_version(), 'su03t-update 1.2.3')
+        self.assertEqual(marker.read_text().splitlines()[0], 'MatriQ/su03t-tools')
+
+    def test_foreign_installation_marker_is_preserved(self):
+        self.install('v1.2.3')
+        marker = self.prefix / 'share/su03t-tools/v1.2.3/.su03t-install'
+        marker.write_text('example/unrelated-tool\n')
+        self.install('v1.2.3', success=False)
+        self.assertEqual(self.installed_version(), 'su03t-update 1.2.3')
+        self.assertEqual(marker.read_text(), 'example/unrelated-tool\n')
 
     def test_checksum_failure_preserves_existing_installation(self):
         self.install('v1.2.3')
