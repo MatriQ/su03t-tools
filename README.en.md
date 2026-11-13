@@ -45,7 +45,7 @@ sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client
   libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
 ```
 
-See [validation](docs/validation.md) for the tested OS, board and driver scope.
+See [validation](.harness/docs/validation.md) for the tested OS, board and driver scope.
 
 ## macOS startup driver check
 
@@ -173,7 +173,7 @@ python3 tests/simulate_device.py target/debug/su03t-update
 python3 tests/handshake_diagnostics.py target/debug/su03t-update
 ```
 
-Tests use virtual serial ports, not attached USB devices. They cover framing, CRC, sequence wrap, retries, cancellation, changed-file rejection, missing final acknowledgment, log clearing and scroll following. Read the [protocol notes](docs/protocol.md), [validation record](docs/validation.md) and [contribution guide](CONTRIBUTING.md).
+Tests use virtual serial ports, not attached USB devices. They cover framing, CRC, sequence wrap, retries, cancellation, changed-file rejection, missing final acknowledgment, log clearing and scroll following. Read the [protocol notes](.harness/docs/protocol.md), [validation record](.harness/docs/validation.md) and [contribution guide](CONTRIBUTING.md).
 
 Firmware upgrading remains experimental and is not assumed compatible with other module models. `CCC` does not identify a model. EOT ACK confirms the end of transfer only: **it does not verify flash readback, normal boot or voice functions.** Use firmware and a bootloader known to match your module.
 

@@ -45,7 +45,7 @@ sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client
   libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
 ```
 
-具体系统、板型和驱动兼容性见[验证范围](docs/validation.md)。
+具体系统、板型和驱动兼容性见[验证范围](.harness/docs/validation.md)。
 
 ## macOS 启动驱动检查
 
@@ -173,7 +173,7 @@ python3 tests/simulate_device.py target/debug/su03t-update
 python3 tests/handshake_diagnostics.py target/debug/su03t-update
 ```
 
-测试使用虚拟串口，不打开已连接的 USB 设备。覆盖包格式、CRC、序号回绕、重传、取消、文件变化拒绝、缺失结束确认、日志清除与自动跟随等。参见[协议说明](docs/protocol.md)、[验证记录](docs/validation.md)及[贡献指南](CONTRIBUTING.md)。
+测试使用虚拟串口，不打开已连接的 USB 设备。覆盖包格式、CRC、序号回绕、重传、取消、文件变化拒绝、缺失结束确认、日志清除与自动跟随等。参见[协议说明](.harness/docs/protocol.md)、[验证记录](.harness/docs/validation.md)及[贡献指南](CONTRIBUTING.md)。
 
 串口升级仍是实验性功能，不能默认用于其他型号。`CCC` 不识别型号，EOT ACK 只确认传输结束，**不等于读回校验、正常启动或语音功能验证**。请始终使用已确认适配的固件和启动程序。
 
