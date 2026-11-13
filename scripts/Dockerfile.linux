@@ -1,0 +1,7 @@
+FROM rust:1.95-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    pkg-config libudev-dev libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev \
+    libgl1-mesa-dev libegl1-mesa-dev libx11-dev libxcursor-dev libxi-dev \
+    libxrandr-dev libxinerama-dev xvfb xauth fonts-noto-cjk python3 \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /work
