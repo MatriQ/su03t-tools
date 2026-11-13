@@ -41,7 +41,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='su03t-screenshots-') as directory:
         for language in ('zh', 'en'):
-            for scene in ('transfer', 'power', 'retry'):
+            for scene in ('transfer', 'power', 'retry', 'drivers-missing'):
                 stem = f'{scene}-{language}'
                 ppm = pathlib.Path(directory) / f'{stem}.ppm'
                 env = os.environ.copy()

@@ -20,9 +20,24 @@
 
 ## 安装
 
-从 [Releases](https://github.com/MatriQ/su03t-macos/releases) 下载 [macOS 通用包 v0.5.0](https://github.com/MatriQ/su03t-macos/releases/download/v0.5.0/SU03T-Tools-v0.5.0-macOS-universal.zip)，解压后打开 `SU03T Update.app`。包含 Apple Silicon 和 Intel 两个架构；应用使用临时签名，未公证，首次打开请按 macOS 的标准流程确认信任来源。校验文件随发行包提供。
+从 [Releases](https://github.com/MatriQ/su03t-macos/releases) 下载 [macOS 通用包 v0.5.1](https://github.com/MatriQ/su03t-macos/releases/download/v0.5.1/SU03T-Tools-v0.5.1-macOS-universal.zip)，解压后打开 `SU03T Update.app`。包含 Apple Silicon 和 Intel 两个架构；应用使用临时签名，未公证，首次打开请按 macOS 的标准流程确认信任来源。校验文件随发行包提供。
 
 Linux 请按下方步骤从源码构建。macOS 构建目标为 12.0，具体系统、板型和驱动兼容性以实际测试为准，见[验证范围](docs/validation.md)。
+
+## macOS 启动驱动检查
+
+打开应用后，会在后台检查 USB 转串口与串口接口的关联。顶部的驱动状态入口同时用于升级和调试页面，检测结果也会写入日志。
+
+- **驱动已就绪**：设备已创建串口接口，识别系统自带驱动和厂商驱动。
+- **USB 已识别，串口未就绪**：首次检测时自动打开说明，提供对应芯片的官方驱动链接和启用扩展的指引；同时检查设备是否处于串口模式。
+- **未检测到转串口**：先连接 USB 转串口，模块可以保持断电，再点“重新检查”。此时驱动状态尚未验证。
+- **检查失败**：显示错误并支持重试，仍可使用已有串口。
+
+![macOS 驱动检查与安装指引](docs/images/drivers-missing-zh.png)
+
+常见 WCH CH34x / CH91xx、Silicon Labs CP210x 和 FTDI 设备按 USB 产品 ID 识别。有自定义 USB ID 的设备，若未创建串口，请查阅板卡厂商说明。同型号多设备分别判断，USB 集线器不会借用下游设备的串口作为就绪证据。
+
+检查以只读方式查询系统设备信息，不打开串口。串口占用和访问权限在连接时确认；该检查不验证模块型号、供电或高波特率下的实际传输能力。驱动说明来自 [WCH 官方仓库](https://github.com/WCHSoftGroup/ch34xser_macos)、[Silicon Labs](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers) 和 [FTDI](https://ftdichip.com/drivers/vcp-drivers/)。
 
 ## 接线与模式
 
