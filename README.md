@@ -20,9 +20,32 @@
 
 ## 安装
 
-从 [Releases](https://github.com/MatriQ/su03t-macos/releases) 下载 [macOS 通用包 v0.5.1](https://github.com/MatriQ/su03t-macos/releases/download/v0.5.1/SU03T-Tools-v0.5.1-macOS-universal.zip)，解压后打开 `SU03T Update.app`。包含 Apple Silicon 和 Intel 两个架构；应用使用临时签名，未公证，首次打开请按 macOS 的标准流程确认信任来源。校验文件随发行包提供。
+macOS（Apple Silicon / Intel）与 Linux（x86_64 / ARM64）均可执行：
 
-Linux 请按下方步骤从源码构建。macOS 构建目标为 12.0，具体系统、板型和驱动兼容性以实际测试为准，见[验证范围](docs/validation.md)。
+```bash
+curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash
+```
+
+安装器选择对应平台的最新稳定包并校验 SHA-256。macOS 默认安装到 `~/Applications/SU03T Update.app`；Linux 默认安装到 `~/.local/share/su03t-tools/vX.Y.Z`，命令链接为 `~/.local/bin/su03t-update`。安装完成后显示启动命令，原有运行中的应用请退出后重新打开。
+
+指定版本或安装目录：
+
+```bash
+curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.2 --prefix "$HOME/Applications"
+```
+
+`--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](install.sh) 阅读后执行。Linux 若提示 PATH 未包含命令目录，请按安装器输出添加，或使用显示的完整路径启动。
+
+手动安装可从 [Releases](https://github.com/MatriQ/su03t-macos/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。macOS 应用使用临时签名、未公证，首次打开按系统标准流程确认来源；安装器保留系统的安全检查。
+
+macOS 构建目标为 12.0。Linux 发行包在 Ubuntu 24.04 上构建，需要兼容的 glibc 和运行库；其他环境可从源码构建。Debian / Ubuntu 桌面运行库示例：
+
+```bash
+sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client0 \
+  libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
+```
+
+具体系统、板型和驱动兼容性见[验证范围](docs/validation.md)。
 
 ## macOS 启动驱动检查
 
@@ -120,9 +143,24 @@ bash scripts/package-linux.sh                     # 在 Linux 上打包
 
 中文显示需要可用的中文字体。Linux 串口权限由系统配置决定；检查 dialout/uucp 组或设备权限，工具不会使用 sudo 打开串口。
 
+## 打包与自动发布
+
+[Packages and releases CI](https://github.com/MatriQ/su03t-macos/actions/workflows/release.yml) 在 main 提交和 PR 上构建三平台安装包，产物保留 14 天。推送 `vX.Y.Z` 标签，或在 GitHub 发布对应 Release 后，会检查版本、执行源码测试、打包和验证，再自动上传安装包、`install.sh` 及统一 SHA-256 文件。
+
+发布新版本时，先更新 `Cargo.toml` / `Cargo.lock` 中的版本以及 macOS bundle build number，提交后推送相同版本的标签。例如：
+
+```bash
+git tag -a v0.5.2 -m "SU-03T Tools 0.5.2"
+git push origin v0.5.2
+```
+
+也可以在 Actions 中手动运行打包流程：留空 tag 仅生成构建产物，填写已有标签则发布该版本。自动化适用于 v0.5.2 及后续标签。标签与 Cargo 版本不一致时会停止；新 Release 先以草稿上传并校验，三个平台全部完成后再公开。重复运行已完整发布的版本会验证已有产物，保持已发布文件不变。
+
 ## 测试与兼容范围
 
 ```bash
+python3 tests/test_installer.py
+python3 tests/test_release_assets.py
 cargo fmt --all --check
 cargo clippy --locked --all-targets -- -D warnings
 cargo test --locked

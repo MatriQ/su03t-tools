@@ -20,9 +20,32 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 
 ## Installation
 
-Download the [macOS universal v0.5.1 package](https://github.com/MatriQ/su03t-macos/releases/download/v0.5.1/SU03T-Tools-v0.5.1-macOS-universal.zip) from [Releases](https://github.com/MatriQ/su03t-macos/releases), extract it and open `SU03T Update.app`. It contains Apple Silicon and Intel slices. The app is ad-hoc signed and not notarized; use the normal macOS approval process after verifying that you trust the source. Checksums are supplied with the release.
+On macOS (Apple Silicon / Intel) or Linux (x86_64 / ARM64), run:
 
-For Linux, build from source below. The macOS deployment target is 12.0; actual OS, board and driver compatibility depends on testing. See [validation](docs/validation.md).
+```bash
+curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash
+```
+
+The installer selects the latest stable package for your platform and verifies SHA-256. The macOS destination is `~/Applications/SU03T Update.app`. Linux uses `~/.local/share/su03t-tools/vX.Y.Z` with a command link at `~/.local/bin/su03t-update`. The installer prints the launch command; quit an older running instance before opening the new app.
+
+Choose a version or destination:
+
+```bash
+curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.2 --prefix "$HOME/Applications"
+```
+
+On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](install.sh) before running it. If the command directory is absent from PATH, follow the installer's output or use the full executable path.
+
+For manual installation, download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-macos/releases/latest), with the matching `SHA256SUMS.txt`. The Mac app is ad-hoc signed and not notarized; use the standard macOS approval flow after verifying the source. The installer retains OS security checks.
+
+The macOS deployment target is 12.0. Linux packages are built on Ubuntu 24.04 and need compatible glibc and runtime libraries; build from source for other environments. Debian / Ubuntu desktop runtime packages:
+
+```bash
+sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client0 \
+  libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
+```
+
+See [validation](docs/validation.md) for the tested OS, board and driver scope.
 
 ## macOS startup driver check
 
@@ -120,9 +143,24 @@ Packaging requires Python 3 and the Rust documentation component (`rustup compon
 
 Chinese text requires an available CJK font. Linux serial permissions are managed by the OS; check dialout/uucp membership or device permissions. The application does not open ports using sudo.
 
+## Packaging and automated releases
+
+[Packages and releases CI](https://github.com/MatriQ/su03t-macos/actions/workflows/release.yml) builds all three packages for main commits and pull requests, retaining artifacts for 14 days. A `vX.Y.Z` tag push, or publishing the corresponding GitHub Release, validates the version, runs source checks, builds and verifies the packages, then uploads them with `install.sh` and a combined SHA-256 manifest.
+
+To release a new version, update `Cargo.toml`, `Cargo.lock` and the macOS bundle build number, commit, then push a matching tag. For example:
+
+```bash
+git tag -a v0.5.2 -m "SU-03T Tools 0.5.2"
+git push origin v0.5.2
+```
+
+The Actions workflow also supports manual runs: leave tag empty for artifacts only, or supply an existing tag to publish it. Automation starts with v0.5.2. Tag/version mismatches stop publication. New releases remain drafts until all three platforms and their checksums have been uploaded and verified. Repeating a complete published release verifies its existing assets without replacing them.
+
 ## Testing and compatibility
 
 ```bash
+python3 tests/test_installer.py
+python3 tests/test_release_assets.py
 cargo fmt --all --check
 cargo clippy --locked --all-targets -- -D warnings
 cargo test --locked

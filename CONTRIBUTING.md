@@ -29,3 +29,11 @@ Include the app version, OS, adapter model, baud rate, failure stage and a short
 Keep commits focused on a behavior or a fix, with a short imperative subject and a brief explanation where needed. State what was tested. Use your own Git identity; there is no need to rewrite authors or backdate work.
 
 Contributions to the original implementation are licensed under the project's MIT license. Include provenance and license information for any third-party material.
+
+## Releases
+
+Packaging runs on macOS 15, Ubuntu 24.04 x86_64 and Ubuntu 24.04 ARM64. The workflow builds artifacts for main and pull requests. Tag pushes and published release events also run the source checks and automatically attach the complete package set to the release. It requires only the repository's built-in `GITHUB_TOKEN`; write permission is isolated to the publish job.
+
+Set a stable X.Y.Z version in Cargo.toml/Cargo.lock, increase the Mac bundle build number, and push a matching annotated vX.Y.Z tag. Check both workflows. New releases are uploaded as drafts and published after verification; a retry can finish an incomplete draft. Published assets are kept immutable. If a published file differs, use a new version instead of replacing it.
+
+Run `python3 tests/test_installer.py` and `python3 tests/test_release_assets.py` when changing installation or release behavior. These use temporary prefixes, synthetic packages and mock downloads. They never install into the real user's Applications or .local directories. Linux archives target Ubuntu 24.04 runtime compatibility; broad distro or physical hardware acceptance requires separate tests.
