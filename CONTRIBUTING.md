@@ -32,7 +32,7 @@ Contributions to the original implementation are licensed under the project's MI
 
 ## Releases
 
-Packaging runs on macOS 15, Ubuntu 24.04 x86_64 and Ubuntu 24.04 ARM64. The workflow builds artifacts for main and pull requests. Tag pushes and published release events also run the source checks and automatically attach the complete package set to the release. It requires only the repository's built-in `GITHUB_TOKEN`; write permission is isolated to the publish job.
+Packaging runs on the current standard macOS runner, Ubuntu 24.04 x86_64 and Ubuntu 24.04 ARM64. The workflow builds artifacts for main and pull requests. Tag pushes and published release events also run the source checks and automatically attach the complete package set to the release. It requires only the repository's built-in `GITHUB_TOKEN`; write permission is isolated to the publish job.
 
 Set a stable X.Y.Z version in Cargo.toml/Cargo.lock, increase the Mac bundle build number, and push a matching annotated vX.Y.Z tag. Check both workflows. New releases are uploaded as drafts and published after verification; a retry can finish an incomplete draft. Published assets are kept immutable. If a published file differs, use a new version instead of replacing it.
 
