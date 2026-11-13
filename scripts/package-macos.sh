@@ -25,6 +25,8 @@ else
 fi
 
 APP="$PROJECT_DIR/dist/SU03T Update.app"
+# Each package starts from current sources, without stale resources from older builds.
+rm -rf "$APP/Contents/Resources" "$APP/Contents/_CodeSignature"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # Replace the executable atomically so a running debug session keeps its original inode.
 cp "$PACKAGE_BINARY" "$APP/Contents/MacOS/.su03t-update.new"
@@ -71,3 +73,7 @@ codesign --force --deep --sign - "$APP"
 codesign --verify --deep --strict "$APP"
 echo "Packaged: $APP"
 echo "Ad-hoc signature only; this app is not notarized."
+
+if [[ "$PACKAGE_MODE" == "--universal" ]]; then
+  python3 scripts/release_assets.py macos-archive
+fi

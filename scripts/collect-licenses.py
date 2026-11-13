@@ -19,7 +19,7 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CACHE = ROOT / 'target/third-party-license-cache'
 LICENSE_NAME = re.compile(r'licen[cs]e|copying|copyright|notice|\bofl\b|\bufl\b', re.I)
-UPSTREAM_NAMES = ('LICENSE', 'LICENSE.txt', 'LICENSE.md', 'LICENSE-MIT', 'LICENSE-APACHE', 'LICENSE.chromium', 'COPYING')
+UPSTREAM_NAMES = ('LICENSE', 'LICENSE.txt', 'LICENSE.md', 'LICENSE-MIT', 'LICENSE-APACHE', 'LICENSE.chromium', 'COPYING', 'LICENSE-MIT.txt', 'LICENSE-APACHE2.txt')
 
 
 def fetch(url):
@@ -68,7 +68,8 @@ def packages(targets):
 def notices(package):
     directory = pathlib.Path(package['manifest_path']).parent
     files = [p for p in directory.rglob('*') if p.is_file()
-             and LICENSE_NAME.search(p.name) and p.suffix not in ('.rs', '.py')]
+             and (LICENSE_NAME.search(p.name) or any(part.lower() in ('licenses', 'licences') for part in p.relative_to(directory).parts[:-1]))
+             and p.suffix not in ('.rs', '.py')]
     if package['license_file']:
         files.append(directory / package['license_file'])
     result = [(str(p.relative_to(directory)), p.read_text()) for p in sorted(set(files))]
