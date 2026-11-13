@@ -31,7 +31,7 @@ The installer selects the latest stable package for your platform and verifies S
 Choose a version or destination:
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.2 --prefix "$HOME/Applications"
+curl -fsSL https://github.com/MatriQ/su03t-macos/releases/latest/download/install.sh | bash -s -- --version v0.5.3 --prefix "$HOME/Applications"
 ```
 
 On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](install.sh) before running it. If the command directory is absent from PATH, follow the installer's output or use the full executable path.
@@ -150,11 +150,11 @@ Chinese text requires an available CJK font. Linux serial permissions are manage
 To release a new version, update `Cargo.toml`, `Cargo.lock` and the macOS bundle build number, commit, then push a matching tag. For example:
 
 ```bash
-git tag -a v0.5.2 -m "SU-03T Tools 0.5.2"
-git push origin v0.5.2
+git tag -a v0.5.3 -m "SU-03T Tools 0.5.3"
+git push origin v0.5.3
 ```
 
-The Actions workflow also supports manual runs: leave tag empty for artifacts only, or supply an existing tag to publish it. Automation starts with v0.5.2. Tag/version mismatches stop publication. New releases remain drafts until all three platforms and their checksums have been uploaded and verified. Repeating a complete published release verifies its existing assets without replacing them.
+The Actions workflow also supports manual runs: leave tag empty for artifacts only, or supply an existing tag to publish it. Automation starts with v0.5.3. Tag/version mismatches stop publication. New releases remain drafts until all three platforms and their checksums have been uploaded and verified. Repeating a complete published release verifies its existing assets without replacing them.
 
 ## Testing and compatibility
 
