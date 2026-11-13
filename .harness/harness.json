@@ -1,0 +1,315 @@
+{
+  "ci": {
+    "checks": [],
+    "provider": "github-actions"
+  },
+  "document_coverage": [
+    {
+      "path": ".harness/docs/index.md",
+      "topic": "index"
+    },
+    {
+      "path": ".harness/docs/development.md",
+      "topic": "development"
+    },
+    {
+      "path": ".harness/docs/testing.md",
+      "topic": "testing"
+    },
+    {
+      "heading": "Prerequisites",
+      "path": ".harness/docs/development.md",
+      "topic": "toolchain"
+    },
+    {
+      "heading": "Targets",
+      "path": ".harness/docs/release.md",
+      "topic": "environments"
+    },
+    {
+      "path": ".harness/docs/release.md",
+      "topic": "release"
+    },
+    {
+      "path": ".harness/docs/troubleshooting.md",
+      "topic": "operations"
+    }
+  ],
+  "documentation_root": ".harness/docs",
+  "documents": [
+    {
+      "body": "# Engineering guide\n\nSU-03T Tools is one Rust package, `su03t-update`, with an eframe/egui desktop UI and a CLI sharing the communication core. Release targets are macOS universal and Linux x86_64/ARM64. This harness covers the current repository; member `tools` resolves through the [local-context reader](../runtime/local-context.mjs).\n\n## Task routes\n\n| Task | Guide or workflow | Main implementation |\n| --- | --- | --- |\n| Implement a change | [Engineering](../skills/engineering/SKILL.md), [architecture](architecture.md) | [CLI](../../src/main.rs), [UI](../../src/gui.rs), [core](../../src/lib.rs) |\n| Prepare or start locally | [Local development](../skills/local-dev/SKILL.md), [development](development.md) | [Cargo manifest](../../Cargo.toml) |\n| Select checks | [Verify](../skills/verify/SKILL.md), [testing](testing.md) | [source CI](../../.github/workflows/check.yml), [PTY acceptance](../../tests/client_acceptance.py) |\n| Package or investigate delivery | [Release guide](release.md) | [package CI](../../.github/workflows/release.yml), [publisher](../../scripts/release_assets.py), [installer](../../install.sh) |\n| Diagnose no ACK after CCC | [Troubleshooting](troubleshooting.md#ccc-arrives-but-block-1-is-not-acknowledged), [protocol](protocol.md) | [core](../../src/lib.rs), [events](../../src/flash_event.rs) |\n| Investigate B8, captures or drivers | [Troubleshooting](troubleshooting.md), [architecture](architecture.md) | [serial session](../../src/serial_debug.rs), [driver scan](../../src/driver_check.rs) |\n| Refresh the harness | [Maintenance](maintenance.md) | [specification](../harness.json), [registry](../workspace.json) |\n\nRead the [required engineering rules](../rules/engineering.md) and [contribution guide](../../CONTRIBUTING.md) before changes. Procedures are reached through AGENTS.md and its CLAUDE.md alias; they are not registered native commands, auto-discovered Skills or custom agents.\n\n## Task coverage\n\n| Question | Answer and evidence route | Remaining boundary |\n| --- | --- | --- |\n| Does CCC identify the model? | [Protocol](protocol.md): startup handshake only. | Board/firmware compatibility requires separate acceptance. |\n| Why can block 1 wait about 155 seconds? | [Troubleshooting](troubleshooting.md#ccc-arrives-but-block-1-is-not-acknowledged): 31 attempts at five seconds each. | A blocked write is a separate phase. |\n| Does 100% mean success? | [Transfer journey](architecture.md#firmware-transfer-journey): acknowledged data precedes EOT ACK. | Readback, normal boot and voice behavior remain separate. |\n| Which checks avoid attached hardware? | [Testing](testing.md): unit tests and PTYs create their own fixtures. | Physical commands need a selected target and task scope. |\n| Can an older Linux installation be reused? | [Installation and recovery](release.md#installation-and-recovery): both repository markers are accepted. | Foreign destinations remain refused. |\n| Do files prove host activation? | [Maintenance](maintenance.md#activation-and-evidence): test loading separately. | Readiness does not transfer with a clone. |\n\nThe migrated [protocol](protocol.md) and [validation record](validation.md) own framing and historical compatibility claims. README files and CONTRIBUTING.md remain at the root by the user's choice. New AI-authored project prose belongs here. Machine paths, credentials, readiness and raw execution reports belong in ignored local state.\n",
+      "path": ".harness/docs/index.md"
+    },
+    {
+      "body": "# Architecture\n\n| Area | Responsibility |\n| --- | --- |\n| [main.rs](../../src/main.rs) | Clap entry: default-feature no-argument startup opens the GUI; ports, firmware-info, probe, monitor and flash expose the CLI. |\n| [lib.rs](../../src/lib.rs), [flash_event.rs](../../src/flash_event.rs) | CRC, framing, handshake, retries, EOT acknowledgment and language-independent transfer events. |\n| [firmware.rs](../../src/firmware.rs) | Bounds and reads the image once, screens filename/known boot-region content, hashes exact bytes and rejects an expected-hash mismatch before opening a port. |\n| [gui.rs](../../src/gui.rs) | Power guidance, activity log and phases. A separate CLI process owns flash/probe serial I/O and emits `SU03T_EVENT ` JSON lines; cancellation can terminate it. |\n| [serial_debug.rs](../../src/serial_debug.rs), [profiles.rs](../../src/profiles.rs) | Passive debug session, explicit TX, bounded queues and receive-only B8; application presets stay separate from flashing. |\n| [debug_ui.rs](../../src/debug_ui.rs), [capture.rs](../../src/capture.rs) | Display/raw RX retention, exports, counters and independent rotating recordings. RX chunks are not protocol frames. |\n| [driver_check.rs](../../src/driver_check.rs), [driver_ui.rs](../../src/driver_ui.rs), [port_picker.rs](../../src/port_picker.rs) | Port discovery and async guidance. macOS queries ioreg read-only and associates a USB node with its own serial descendants. |\n| [ui_i18n.rs](../../src/ui_i18n.rs), [ui_catalog.rs](../../src/ui_catalog.rs) | Chinese/English selection and text. Device data, paths and hashes preserve their original form. |\n\n## Firmware transfer journey\n\n1. Desktop selection hashes the image. The CLI worker loads its fixed buffer and verifies that expected SHA before opening the serial port.\n2. The host waits for three consecutive C bytes. Active flashing can repeat ASCII 2 (0x32); diagnostic probe defaults to passive. No firmware is sent before CCC; NNN stops the path.\n3. Frame each payload according to [protocol](protocol.md). Writing is emitted before write_all/flush; WaitingAck follows only after they return. A blocked write must not be called an expired ACK wait.\n4. ACK advances acknowledged image bytes. NAK or timeout retries the cached packet with the same sequence; CAN fails. Residual startup C and unrelated bytes are not ACK.\n5. Data can reach 100% before EOT. Success requires final EOT ACK. Missing final ACK leaves completion unconfirmed. Readback, normal boot and voice acceptance remain separate.\n\n## Diagnostic journey and state\n\nA Session owns the debug serial handle and releases it on stop/drop, including under event backpressure. Connect is passive. TX is explicit; B8 rejects sends in the core and disallows flow control that could generate outgoing signals. Car mode describes one application firmware's bytes, not a universal module protocol.\n\nDisplay and raw RX have separate bounds. Debug display clearing preserves counters, raw RX and recording files. Flash clear_logs clears display rows, eviction/offset bookkeeping and resumes following/jumps to latest; it preserves the live transfer phase, acknowledged/total bytes, target, retry count and failure context. New events still appear. Reading history pauses following; bottom/jump resumes it. Retain those behaviors in both UI languages. [CONTRIBUTING](../../CONTRIBUTING.md) owns the standing constraints.\n\nUSB drivers, supplied firmware, module power and bootloader identity are external. The app does not install drivers or control reset through DTR/RTS. Driver readiness does not establish exclusive access, wiring or high-baud reliability. See [testing](testing.md) and [validation](validation.md) for evidence limits.\n",
+      "path": ".harness/docs/architecture.md"
+    },
+    {
+      "body": "# Local development\n\nRun commands from the selected Git root. Compilation needs no service credential, database migration or application .env. An ignored workspace.local.md can bind machine checkouts, but a fresh clone can build without it.\n\n## Prerequisites\n\n| Tool | Source-backed requirement |\n| --- | --- |\n| Rust/Cargo | CI pins 1.95.0; reproduce CI with that version. See [manifest](../../Cargo.toml), [source CI](../../.github/workflows/check.yml), [rustup](https://rustup.rs/). |\n| Native compiler/libraries | macOS uses Xcode command-line tools. Linux needs a C toolchain, pkg-config and the native development libraries in [README](../../README.en.md#building-from-source). |\n| Python | Python 3.9+ runs stdlib-only tests/helpers (the scripts use removeprefix and modern built-in generics). |\n| Node | Node 24+ runs the harness checker, not the Rust application; no npm install is needed. |\n| Packaging | Python, rust-docs and platform utilities; see [release](release.md). |\n| GitHub CLI | gh reads authorized Actions/Release state. [Official install](https://github.com/cli/cli#installation); reuse credential storage and use gh auth login only when the task needs a new login. |\n\nInspect before installing tools or changing system configuration:\n\n~~~bash\npython3 .harness/resources/probes.py tools\n~~~\n\nUse the README's Debian/Ubuntu dependency list on Linux. Universal Mac packaging additionally needs both aarch64-apple-darwin and x86_64-apple-darwin targets. Preserve the Cargo release build-tool strip override for the documented [macOS 27 LINKEDIT issue](validation.md#macos-build-note).\n\n## Hardware-free startup\n\n~~~bash\ncargo build --locked --no-default-features\ncargo run --locked --no-default-features -- --version\ncargo run --locked --no-default-features -- --help\n~~~\n\nExpected: version matches Cargo.toml; help lists CLI subcommands. These commands do not open serial ports. The first compile needs dependency registry access unless cached. Omit --no-default-features to build the desktop-capable executable. Default-feature no-argument startup requires an active desktop session and opens a window; close it normally afterward. CLI-only no-argument startup is expected to request a subcommand and fail.\n\n## Synthetic file check\n\n~~~bash\nSU03T_SMOKE_DIR=$(mktemp -d)\ntrap 'rm -rf \"$SU03T_SMOKE_DIR\"' EXIT\nprintf 'harness smoke\\n' > \"$SU03T_SMOKE_DIR/smoke_update.bin\"\ncargo run --locked --no-default-features -- firmware-info --firmware \"$SU03T_SMOKE_DIR/smoke_update.bin\"\n~~~\n\nExpected: byte count and SHA-256 followed by the compatibility screening limit. The fixture is for this file-only command, never a board image. The EXIT trap removes it. After building, an independent machine-readable probe checks the version and fixture hash:\n\n~~~bash\npython3 .harness/resources/probes.py cli\n~~~\n\nIf CARGO_TARGET_DIR is set, the probe uses its debug executable. A zero exit and accepted:true establish this CLI path only. For UI work use default-feature checks in [testing](testing.md); use [simulated screenshots](../../CONTRIBUTING.md#native-screenshots) only with an active desktop. Keep a CJK font available.\n\nStop task-created processes, close PTYs and remove fixtures after checks. Keep caches in target/ and packages in dist/. Firmware, vendor executables, .env and private evidence stay excluded by [.gitignore](../../.gitignore). Do not run the application with sudo.\n",
+      "path": ".harness/docs/development.md"
+    },
+    {
+      "body": "# Verification\n\nChoose checks by affected behavior, from the Git root. Listed unit, PTY and installer suites create synthetic inputs and must not open attached USB hardware.\n\n| Change | Relevant evidence |\n| --- | --- |\n| Harness/docs | Portable checker, links, source freshness and detached fresh-clone check. A move also needs every caller and archive destination checked. |\n| Installer/release | Bash syntax, installer/publisher cases and a real archive installed into a temporary prefix when packaging changes. |\n| Transfer/firmware/events | Both Rust variants, client/events PTYs, and macOS simulation/handshake suites on macOS; retain independent CRC/padding assertions. |\n| UI/i18n/log/driver | Default-feature tests, fmt/Clippy, relevant PTYs, simulated screenshots for changed rendering. Driver parsing tests use synthetic property lists. |\n| Debug/B8/capture/disconnect | Rust serial tests plus client PTYs; preserve raw bytes and bounded cancellation under event backpressure. |\n| Packages | Extraction, version, architecture/signature, temporary installation and migrated document presence in package CI. |\n\nThe Clear-button regression tests are clear_during_retry_retains_progress_failure_context_and_new_events and actual_clear_button_preserves_live_transfer_state in [gui.rs](../../src/gui.rs); native_scroll_widget_pauses_on_history_and_resumes_at_bottom covers scroll following. Start with these default-feature tests for that behavior, then run the contribution/CI checks required for the wider change.\n\n## Commands\n\nWhen changing the installer, also run Bash syntax validation: bash -n install.sh.\n\n~~~bash\nnode .harness/runtime/check.mjs --workspace .\npython3 tests/test_installer.py\npython3 tests/test_release_assets.py\ncargo fmt --all --check\ncargo test --locked\ncargo test --locked --no-default-features\ncargo clippy --locked --all-targets -- -D warnings\ncargo build --locked\npython3 tests/client_acceptance.py target/debug/su03t-update\npython3 tests/transfer_events.py target/debug/su03t-update\n~~~\n\nBuild the intended variant before invoking its binary: CLI-only and default builds can replace the same debug path. If CARGO_TARGET_DIR is overridden, pass that location's executable to the PTY scripts. On macOS also run:\n\n~~~bash\npython3 tests/simulate_device.py target/debug/su03t-update\npython3 tests/handshake_diagnostics.py target/debug/su03t-update\n~~~\n\nThe last two explicitly use the macOS-only --virtual-port adapter. Portable client/events suites select the correct adapter. It is not a workaround for an actual device.\n\n## CI and reporting\n\n[Source CI](../../.github/workflows/check.yml) covers macOS/Ubuntu. [Package CI](../../.github/workflows/release.yml) covers Mac universal and Ubuntu x86_64/ARM64; it verifies real archives with PTYs and temporary installation, plus eight-second Xvfb GUI startup on Linux. The separate [harness gate](../../.github/workflows/harness-gate.yml) runs Node 24 artifact checks without this machine's local context.\n\nPTY passes establish modeled behavior. Xvfb survival establishes startup, not a full GUI session. Final EOT ACK establishes transfer completion, not readback or voice functions. Keep [historical hardware claims](validation.md) separate.\n\nReport revision/working tree, OS/architecture, variant, commands, outcomes and unresolved limits. Preserve first failures and retry reasons. Machine execution reports and raw logs stay ignored locally. Do not relax tests to accept unacknowledged transfer or premature GUI exit.\n",
+      "path": ".harness/docs/testing.md"
+    },
+    {
+      "body": "# Packaging and release\n\n## Targets\n\nConfirm [MatriQ/su03t-tools](https://github.com/MatriQ/su03t-tools) before a gh operation. CI source checks use macOS/Ubuntu; package runners are macos-latest, ubuntu-24.04 and ubuntu-24.04-arm. The universal Mac app contains arm64/x86_64 slices, targets macOS 12.0, and is ad-hoc signed, not notarized. Linux archives need Ubuntu 24.04-compatible glibc/native libraries. Windows source probes do not establish a supported release.\n\nEnvironments are the local checkout, GitHub-hosted CI, public Releases, and user desktops with explicitly selected adapters/boards. No backend, database, cloud region or hosted application service is configured. Hardware acceptance has its own board/firmware/power/wiring evidence.\n\n## Pipeline\n\n[release.yml](../../.github/workflows/release.yml) builds main/PR artifacts retained for 14 days. Matching version tags, published Release events, or manual runs with an existing tag enable publication. A manual run without a tag builds only. Metadata requires tag/version and checkout/tag commit equality.\n\n1. Update Cargo.toml/Cargo.lock version and Mac CFBundleVersion in [package-macos.sh](../../scripts/package-macos.sh). Update the version-bound harness CLI probe expectation, then refresh affected source/document reviews through [maintenance](maintenance.md).\n2. Run [checks](testing.md), review the diff and follow the current task's publication scope. Push an annotated matching vX.Y.Z tag. Do not retag an old release to hide a fix.\n3. Source quality and all three packages must pass. Extracted binaries, signature/architecture, PTYs and temporary-prefix installs are checked before publish.\n4. [release_assets.py](../../scripts/release_assets.py) verifies partial hashes, adds install.sh and a unified manifest, uploads a draft, verifies it, then publishes. Only publish has contents:write; CI uses the built-in GITHUB_TOKEN.\n5. Publication retries four times with 20 seconds between attempts, allowing draft read visibility to catch up. Incomplete drafts can resume. Complete published assets are verified without replacement; changed released bytes need a new version.\n\nAssets are three platform archives, install.sh and SU03T-Tools-vX.Y.Z-SHA256SUMS.txt. Platform suffixes identify archives; the repository has no OS suffix. Matching-host manual packaging commands:\n\n~~~bash\nbash scripts/package-macos.sh --universal\nbash scripts/package-linux.sh\n~~~\n\nRun the first only on macOS and the second only on Linux. Packaging needs rust-docs for bundled licenses. Linux includes protocol.md and validation.md under .harness/docs/ to retain README links after extraction.\n\n## Inspect delivery\n\n~~~bash\ngh api repos/MatriQ/su03t-tools --jq .full_name\ngh run list --repo MatriQ/su03t-tools --limit 5\ngh release view --repo MatriQ/su03t-tools\npython3 scripts/release_assets.py metadata --check-release\n~~~\n\nA gh version proves neither login nor target access. A repository read proves that read scope, not every release action. Select the actual run/version and compare commit, packaged --version and manifest. Metadata checks assets for the current package version; it does not prove a later main commit was released. Keep actual run URLs/evidence locally.\n\n## Installation and recovery\n\n[install.sh](../../install.sh) freezes one tag, verifies SHA-256 and archive layout, and stages on the destination filesystem. Mac defaults to ~/Applications/SU03T Update.app and validates identity/version/signature. Linux uses ~/.local/share/su03t-tools/vX.Y.Z and ~/.local/bin/su03t-update. Both old/new repository markers are accepted; foreign destinations are refused.\n\nVerify installation with a temporary --prefix, preserving real apps and sessions. Roll back the app with --version for a known compatible older release; Linux retains previous version directories. Firmware rollback is a separate explicit hardware operation. Published bytes remain immutable.\n\nFix source/package failures before publication. For publish failure inspect logs and existing draft first, then rerun failed jobs with original verified artifacts when appropriate. Resolve identity/permission errors in that exact context. See [contribution release policy](../../CONTRIBUTING.md#releases) and [validation limits](validation.md).\n",
+      "path": ".harness/docs/release.md"
+    },
+    {
+      "body": "# Troubleshooting\n\nCollect version, OS/architecture, adapter, selected baud/profile and a short sanitized elapsed log with its exact failure stage. Preserve event order and original bytes. Do not request proprietary firmware, credentials or an entire private log when a sanitized excerpt/hash suffices.\n\n## CCC arrives but block 1 is not acknowledged\n\nCCC establishes startup handshake, not a model or reliable full-duplex high-baud connection. Inspect the last worker event:\n\n| Last phase | Interpretation and next branch |\n| --- | --- |\n| HandshakeWaiting | No complete CCC. Review module power sequence, return wire, baud and bounded startup RX summary. |\n| Writing | write_all/flush has not returned. Investigate serial/driver blocking and cancellation; do not call it an ACK timeout. |\n| WaitingAck then Retry Timeout | Host write returned; no timely ACK. Preserve elapsed/retry context, then check compatibility, B6/B7, ground, power and adapter. |\n| Received other bytes | Input is not necessarily an ACK; keep bounded HEX, including residual C. |\n| Failed block 1 / retry limit | Attempts exhausted. Stop, retain failure context and verify the actual setup before reflashing. |\n\nDefault response timeout is five seconds and retries are 30 after the first attempt: approximately 155 seconds for one unacknowledged exchange, plus write/log overhead. Changing the timeout does not prove reliable transmission. Clear log changes display only. WaitingAck/Retry events distinguish this from a stalled OS write.\n\nFollow [exchange/handshake](../../src/lib.rs), [worker events](../../src/main.rs), [schema](../../src/flash_event.rs) and [UI mapping](../../src/gui.rs). [Protocol](protocol.md) owns framing/completion. [transfer_events.py](../../tests/transfer_events.py) covers missing initial/final ACK on PTYs.\n\n## Power, drivers and ports\n\nStart the host while the module is off, then power the module when prompted. Keep the USB adapter connected and switch module power. Use [board-specific wiring](../../README.en.md#wiring-and-modes): UART signals are 3.3 V and a separate module supply is typically 5 V; keep common ground and do not confuse signal/supply voltage.\n\nmacOS reads ioreg and device-path metadata. USB present without a descendant serial interface differs from no adapter or an inconclusive scan. Driver readiness does not prove a free port. Open failures branch to device path/unplugging, competing programs, and Linux dialout/uucp/device permissions. Do not automatically install drivers, change groups, reset boards or open arbitrary devices during investigation.\n\nEven passive probe opens its selected port and requires task scope. It sends no firmware/EOT/guessed erase/reset; startup triggering is explicit. Use PTYs for unattended code diagnosis. B8 remains receive-only in the core.\n\n## Completion and captures\n\n100% data progress precedes final EOT ACK. Missing final ACK leaves completion unconfirmed. Normal boot and voice acceptance need separate known-board checks after power cycling.\n\nDebug display clearing retains counters, raw RX and recordings; flash clearing retains progress/retry context. History reading pauses following. Recordings are .rx.bin/.log streams, each keeping four rotating 16 MiB files; new sessions need new prefixes. Inspect [capture](../../src/capture.rs), [session](../../src/serial_debug.rs) and [debug UI](../../src/debug_ui.rs) for independent buffers.\n\n## Build and publication\n\nmacOS 27 LINKEDIT failures follow the documented [build override](validation.md#macos-build-note). Linux loader failure requires archive architecture/runtime checks. Publication follows [release](release.md); an asset checksum mismatch must stop replacement.\n\nOperational evidence is the local session log/capture, CLI outcome and GitHub run/release; there is no production metrics service or queue. Escalate a sanitized reproducible issue with exact identifiers and separate modeled/physical evidence. No specific on-call owner or SLA has been established.\n",
+      "path": ".harness/docs/troubleshooting.md"
+    },
+    {
+      "body": "# Harness maintenance\n\nThe authored input is [harness.json](../harness.json); [workspace.json](../workspace.json) records choices and registry. Language is English, hosts are Codex/Claude Code, layout is centralized. AGENTS.md is regular; CLAUDE.md is a relative symlink. Supporting procedures are entry-point-routed.\n\n## Refresh and review\n\n1. Read required rules, affected guides and implementation/workflow sources. CONTRIBUTING.md retains standing authority.\n2. Edit the spec's prose and source/provenance mappings; use the installed harness-init Skill to preview/apply here. Do not suppress drift by changing the receipt/runtime.\n3. Review final bytes, register implementation/scripts with --source, and use the workspace helper's --review-document on real symlink targets. Inventory refresh alone is not prose review.\n4. Run portable integrity and strict workspace/generation checks. A fresh clone can run the checker without the original Skill or this machine's ignored context.\n\n~~~bash\nnode .harness/runtime/check.mjs --workspace .\n~~~\n\nNew AI prose belongs in .harness/docs/. The user kept README.md, README.en.md and CONTRIBUTING.md at the root and moved protocol.md/validation.md here. Keep callers and Linux archive paths aligned; preserve historical validation claims.\n\n## Local context\n\nworkspace.local.md is the sole optional machine binding/readiness entry. Parse it with:\n\n~~~bash\nnode .harness/runtime/local-context.mjs --workspace .\n~~~\n\nA fresh clone has no established binding. Use the installed workspace helper's plan/apply with member tools in init mode, this checkout's actual path and saved choices. Rebind after moving directories; do not copy personal paths/readiness from another machine. Keep raw reports under ignored local-evidence/ and link them locally. Never publish credentials or private device logs.\n\n## Activation and evidence\n\n[Codex reads AGENTS.md at startup](https://learn.chatgpt.com/docs/agent-configuration/agents-md); restart its session after an entry-point change. Claude Code loads CLAUDE.md, resolving the same content here. This centralized layout generates no native settings/hooks/custom-agent registration.\n\nKeep artifact integrity, host loading/trust, application execution and hosted CI separate. Node version is not host activation; a local pass is not hosted CI; PTY success is not physical flashing. Use the installed Skill's doctor with target-bound [probes](../resources/probes.py) and retain reports locally. Replay representative index questions from the final entry point; missing key mappings are documentation gaps.\n",
+      "path": ".harness/docs/maintenance.md"
+    }
+  ],
+  "language": "en",
+  "layout": "centralized",
+  "name": "SU-03T Tools engineering harness",
+  "resources": [
+    {
+      "body": "#!/usr/bin/env python3\n\"\"\"Bounded, hardware-free tool, CLI, GitHub-access and CI observations.\"\"\"\nimport argparse\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\nimport re\nimport subprocess\nimport tempfile\n\nROOT = Path(__file__).resolve().parents[2]\nREPOSITORY = 'MatriQ/su03t-tools'\n\ndef run(argv, timeout=10):\n    return subprocess.run(argv, cwd=ROOT, text=True, capture_output=True,\n                          timeout=timeout, check=True).stdout.strip()\n\ndef tools():\n    versions = {name: run(argv) for name, argv in {\n        'git':['git','--version'], 'node':['node','--version'],\n        'cargo':['cargo','--version'], 'rustc':['rustc','--version'],\n        'python':['python3','--version'], 'gh':['gh','--version'],\n    }.items()}\n    node = int(versions['node'].removeprefix('v').split('.')[0])\n    rust = tuple(map(int, re.search(r'(\\d+)\\.(\\d+)', versions['rustc']).groups()))\n    return {'target':{'environment':'local','identity':'development-toolchain'},\n            'accepted':node >= 24 and rust >= (1,95), 'versions':versions}\n\ndef access():\n    info = json.loads(run(['gh','api',f'repos/{REPOSITORY}']))\n    return {'target':{'environment':'github','identity':info['full_name']},\n            'accepted':info['full_name']==REPOSITORY and info['default_branch']=='main'}\n\ndef cli():\n    data = json.loads(run(['cargo','metadata','--locked','--no-deps','--format-version','1']))\n    package = next(p for p in data['packages'] if Path(p['manifest_path'])==ROOT/'Cargo.toml')\n    target = Path(os.environ.get('CARGO_TARGET_DIR',ROOT/'target'))\n    if not target.is_absolute():\n        target = ROOT/target\n    binary = target/'debug'/('su03t-update.exe' if os.name=='nt' else 'su03t-update')\n    version = run([str(binary),'--version'])\n    with tempfile.TemporaryDirectory(prefix='su03t-harness-smoke-') as directory:\n        image = Path(directory)/'smoke_update.bin'\n        payload = b'harness smoke\\n'\n        image.write_bytes(payload)\n        output = run([str(binary),'firmware-info','--firmware',str(image)])\n    observed = version.removeprefix('su03t-update ')\n    return {'target':{'environment':'local','identity':'su03t-update-cli'},\n            'artifact':{'kind':'package_version','value':observed},\n            'accepted':version==f\"su03t-update {package['version']}\" and hashlib.sha256(payload).hexdigest() in output}\n\nif __name__=='__main__':\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('check',choices=('tools','access','cli'))\n    args=parser.parse_args()\n    try:\n        result=globals()[args.check]()\n    except (OSError,ValueError,KeyError,StopIteration,subprocess.SubprocessError) as error:\n        print(json.dumps({'accepted':False,'error':type(error).__name__}))\n        raise SystemExit(1)\n    print(json.dumps(result,sort_keys=True))\n    raise SystemExit(0 if result['accepted'] else 1)\n",
+      "executable": true,
+      "path": ".harness/resources/probes.py"
+    }
+  ],
+  "rules": [
+    {
+      "body": "# Engineering constraints\n\nScope: firmware, UI/CLI, diagnostics, packaging and harness. [CONTRIBUTING](../../CONTRIBUTING.md) is the standing authority; [protocol](../docs/protocol.md) and [validation](../docs/validation.md) define behavior/evidence limits.\n\n- Use synthetic transports/PTys in tests. Never silently open attached USB hardware, send firmware, install drivers or manipulate power. Actual hardware work needs a selected target and scope already authorized by the task.\n- Hash exact fixed-buffer image bytes before port open; preserve changed-file refusal. Filename/hash screening does not prove compatibility.\n- Progress counts acknowledged bytes. Preserve Writing/WaitingAck and final EOT ACK. CCC does not identify the model; transfer success does not prove readback, boot or voice functions.\n- Separate application presets from firmware framing. Enforce B8 receive-only in the core; connect passively unless TX/trigger is explicit.\n- Preserve Chinese/English UI and log reading positions. Display clearing retains progress/counters/raw RX/recordings as applicable. Do not translate original device data, paths or hashes.\n- Keep proprietary firmware, vendor tools, credentials and private logs out of commits/screenshots. Ignored vendor analysis is optional, never a build prerequisite or a release asset.\n- Follow the task's publication scope, existing identities and focused commit style. Preserve published assets and tags; changed released bytes require a new version.\n- New AI project prose belongs under .harness/docs/ with updated navigation/sources. Reuse the user's keep/move choices. These instructions are not a native permission policy or hook.\n\n## Conditional Notion integration\n\nWhen a task calls Notion, retain the user-provided header contract exactly: Authorization: Bearer $NOTION_API_KEY; Notion-Version: 2022-06-28; Content-Type: application/json. Do not use another Authorization format. Keep the token value in the environment/credential store. This conditional instruction does not make Notion an application dependency.\n",
+      "name": "engineering"
+    }
+  ],
+  "schema_version": 1,
+  "skills": [
+    {
+      "body": "# Engineering workflow\n\nUse for a requested code/behavior change. Inputs: expected behavior, affected platform/variant and a reproducible symptom or acceptance criterion.\n\n1. Read [required rules](../../rules/engineering.md), [architecture](../../docs/architecture.md) and [CONTRIBUTING](../../../CONTRIBUTING.md). Locate the entry point, worker/core boundary and relevant tests.\n2. Establish before/after behavior. Keep firmware framing, presets and presentation separate. An available port does not authorize physical operation.\n3. Implement a cohesive change and update affected guides/callers, preserving Chinese/English behavior and original RX bytes.\n4. Follow [verify](../verify/SKILL.md) for meaningful checks. Retain failures and actual hardware/OS limits.\n5. Review the diff and report behavior, sources, commands/results and remaining acceptance. Follow existing task publication scope; add no invented approval gate or history rewrite.\n\nIf source contradicts prose, update the authored spec and refresh using [maintenance](../../docs/maintenance.md). Return exact evidence, not an inventory-based behavior claim.\n",
+      "description": "Implement a change while preserving firmware, serial and UI contracts.",
+      "name": "engineering"
+    },
+    {
+      "body": "# Local development workflow\n\nUse for setup/startup/prerequisite diagnosis. Inputs: checkout, host OS and desktop/CLI variant.\n\n1. Read [development](../../docs/development.md), inspect source/CI requirements and existing tools. Resolve optional checkout state through the canonical local reader.\n2. Follow the CLI build/version/help sequence and synthetic firmware-info fixture; run the independent CLI probe. Record actual target, version, variant and hash observation.\n3. A requested GUI run needs default features and an active desktop. Simulated screenshots follow CONTRIBUTING.md. Hardware flashing is a separate target-bound task.\n4. Clean fixtures, PTYs and created processes. Preserve local execution/failure evidence in ignored state; shared guides contain portable facts.\n\nFor compiler/library failure follow prerequisites. For wrong executable version rebuild the intended target. Reuse tools/authentication and change system configuration only in the requested setup scope. State which startup path actually ran.\n",
+      "description": "Prepare local prerequisites and prove a hardware-free startup path.",
+      "name": "local-dev"
+    },
+    {
+      "body": "# Verification workflow\n\nUse after a change or for regression reproduction. Inputs: diff, expected behavior, OS and feature variant.\n\n1. Read [testing](../../docs/testing.md) and [validation limits](../../docs/validation.md). Choose checks by affected behavior and inspect fixture/target boundaries.\n2. Run native commands from the right checkout; build before passing a binary to PTY scripts. Account for CARGO_TARGET_DIR and variants sharing the debug binary.\n3. For transfers distinguish Writing, WaitingAck, acknowledged data and final EOT ACK. Preserve changed-file refusal, B8 receive-only, retries and cancellation.\n4. For docs/harness run portable integrity and freshness review; for moved docs inspect README/archive destinations. Installer checks use temporary prefixes.\n5. Report exact commands/outcomes and retain first failures/retries. Broaden checks only for a new change, failure or unresolved concern.\n\nSimulated transfers do not establish physical flashing. Host activation/hosted CI are separate from artifact checks. Link relevant implementation/tests and keep private raw evidence local.\n",
+      "description": "Select meaningful unit, PTY, installer and package checks for a change.",
+      "name": "verify"
+    }
+  ],
+  "sources": [
+    {
+      "path": "Cargo.toml"
+    },
+    {
+      "path": "Cargo.lock"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "README.en.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": ".gitignore"
+    },
+    {
+      "path": ".github/workflows/check.yml"
+    },
+    {
+      "path": ".github/workflows/release.yml"
+    },
+    {
+      "path": "src/main.rs"
+    },
+    {
+      "path": "src/lib.rs"
+    },
+    {
+      "path": "src/firmware.rs"
+    },
+    {
+      "path": "src/flash_event.rs"
+    },
+    {
+      "path": "src/gui.rs"
+    },
+    {
+      "path": "src/debug_ui.rs"
+    },
+    {
+      "path": "src/serial_debug.rs"
+    },
+    {
+      "path": "src/capture.rs"
+    },
+    {
+      "path": "src/profiles.rs"
+    },
+    {
+      "path": "src/driver_check.rs"
+    },
+    {
+      "path": "src/driver_ui.rs"
+    },
+    {
+      "path": "src/port_picker.rs"
+    },
+    {
+      "path": "src/ui_i18n.rs"
+    },
+    {
+      "path": "src/ui_catalog.rs"
+    },
+    {
+      "path": "scripts/package-linux.sh"
+    },
+    {
+      "path": "scripts/package-macos.sh"
+    },
+    {
+      "path": "scripts/collect-licenses.py"
+    },
+    {
+      "path": "scripts/release_assets.py"
+    },
+    {
+      "path": "scripts/capture-ui.py"
+    },
+    {
+      "path": "scripts/Dockerfile.linux"
+    },
+    {
+      "path": "scripts/verify-linux.sh"
+    },
+    {
+      "path": "install.sh"
+    },
+    {
+      "path": "tests/client_acceptance.py"
+    },
+    {
+      "path": "tests/transfer_events.py"
+    },
+    {
+      "path": "tests/simulate_device.py"
+    },
+    {
+      "path": "tests/handshake_diagnostics.py"
+    },
+    {
+      "path": "tests/serial_debug_pty.rs"
+    },
+    {
+      "path": "tests/test_installer.py"
+    },
+    {
+      "path": "tests/test_release_assets.py"
+    },
+    {
+      "path": "tests/install_package.py"
+    },
+    {
+      "path": ".harness/docs/protocol.md"
+    },
+    {
+      "path": ".harness/docs/validation.md"
+    }
+  ],
+  "targets": [
+    "codex",
+    "claude-code"
+  ],
+  "verification": {
+    "checks": [
+      {
+        "criterion": "Git, Node >=24, Rust >=1.95, Cargo, Python and gh execute.",
+        "id": "development-tools",
+        "layer": "tool",
+        "probe": {
+          "argv": [
+            "python3",
+            ".harness/resources/probes.py",
+            "tools"
+          ],
+          "expect_json": {
+            "accepted": true,
+            "target": {
+              "environment": "local",
+              "identity": "development-toolchain"
+            }
+          },
+          "timeout_seconds": 60
+        },
+        "target": {
+          "environment": "local",
+          "identity": "development-toolchain"
+        }
+      },
+      {
+        "criterion": "Read the intended repository and main branch through the selected GitHub CLI.",
+        "id": "repository-access",
+        "layer": "access",
+        "platform": "github",
+        "probe": {
+          "argv": [
+            "python3",
+            ".harness/resources/probes.py",
+            "access"
+          ],
+          "expect_json": {
+            "accepted": true,
+            "target": {
+              "environment": "github",
+              "identity": "MatriQ/su03t-tools"
+            }
+          },
+          "timeout_seconds": 30
+        },
+        "target": {
+          "environment": "github",
+          "identity": "MatriQ/su03t-tools"
+        }
+      },
+      {
+        "artifact": {
+          "kind": "package_version",
+          "value": "0.5.4"
+        },
+        "criterion": "Built CLI matches Cargo version and independently hashed synthetic firmware-info input.",
+        "id": "cli-startup",
+        "layer": "smoke",
+        "probe": {
+          "argv": [
+            "python3",
+            ".harness/resources/probes.py",
+            "cli"
+          ],
+          "expect_json": {
+            "accepted": true,
+            "artifact": {
+              "kind": "package_version",
+              "value": "0.5.4"
+            },
+            "target": {
+              "environment": "local",
+              "identity": "su03t-update-cli"
+            }
+          },
+          "timeout_seconds": 30
+        },
+        "target": {
+          "environment": "local",
+          "identity": "su03t-update-cli"
+        }
+      }
+    ],
+    "max_age_seconds": 86400
+  }
+}

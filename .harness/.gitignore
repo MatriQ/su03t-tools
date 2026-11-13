@@ -1,0 +1,6 @@
+/.workspace.lock/
+/workspace.local.json
+/local-backups/
+/local-evidence/
+*.local.json
+*.local.md

@@ -1,0 +1,360 @@
+{
+  "files": [
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/index.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/index.md",
+      "sha256": "a87cfe6ea830584a17ba5829d76d3d27a187afb7ee92dbdedf47474e48f80864"
+    },
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/architecture.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/architecture.md",
+      "sha256": "c685244453037a37f8f050554e42edd2cddb128c736885dc111e2619343ddfa9"
+    },
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/development.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/development.md",
+      "sha256": "4ba6ce5416132423b3f1955fef9581d256618ac9f927c3e2352d5d4ddcd6229f"
+    },
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/testing.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/testing.md",
+      "sha256": "503cce2bf2fa1754d64e3814c61c483762bdc4e1d547552280a77a9dabafba22"
+    },
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/release.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/release.md",
+      "sha256": "29a0d0cc804832eb141e6d28269bd4cdb9ea45ec53df5a07a9e4a5c50025b23f"
+    },
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/troubleshooting.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/troubleshooting.md",
+      "sha256": "5332a0d79430cff69cdc4d22cece0261fc57322a538e28d2a35701cbc0934bf2"
+    },
+    {
+      "executable": false,
+      "kind": "document",
+      "logical_paths": [
+        ".harness/docs/maintenance.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/docs/maintenance.md",
+      "sha256": "49ee1d42fbc2b068d35ba8470c9faac621d30ab5e3f1c458b4cf674e15149106"
+    },
+    {
+      "executable": true,
+      "kind": "resource",
+      "logical_paths": [
+        ".harness/resources/probes.py"
+      ],
+      "owns_file": true,
+      "path": ".harness/resources/probes.py",
+      "sha256": "babf4ab631451e7fb6aded9dfab73beb3e11cf333e9cb6365161ba499b62a2dd"
+    },
+    {
+      "executable": false,
+      "kind": "skill",
+      "logical_paths": [
+        ".harness/skills/engineering/SKILL.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/skills/engineering/SKILL.md",
+      "sha256": "0321c6b5c125c60e3f1399aabcfade0b57456a990ed5897d22090b96e3698c35"
+    },
+    {
+      "executable": false,
+      "kind": "skill",
+      "logical_paths": [
+        ".harness/skills/local-dev/SKILL.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/skills/local-dev/SKILL.md",
+      "sha256": "1d6d4be3c49b0cedcd0431feeb4056d70b8d7df8a02189d87d8f3eb8d2c85d79"
+    },
+    {
+      "executable": false,
+      "kind": "skill",
+      "logical_paths": [
+        ".harness/skills/verify/SKILL.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/skills/verify/SKILL.md",
+      "sha256": "4903505019273af88346b742b2ca6075b59185ae1f772127d01af29d9ed15193"
+    },
+    {
+      "executable": false,
+      "kind": "rule",
+      "logical_paths": [
+        ".harness/rules/engineering.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/rules/engineering.md",
+      "sha256": "09be7d1dc2fc3ba90532373c328ee4ad3714453f42b2ad634f9d1e1370c30138"
+    },
+    {
+      "executable": false,
+      "kind": "entrypoint",
+      "logical_paths": [
+        "AGENTS.md"
+      ],
+      "managed_sha256": "5b3089feb139a8028406aeb77389ce0c1adbe72081578a78f9cb0085a636b5bf",
+      "owns_file": true,
+      "path": "AGENTS.md",
+      "sha256": "abae5422bfc71cb897408bb9a50651ba9d37ac67234650b96ffd0dd814d4cf7e"
+    },
+    {
+      "executable": false,
+      "kind": "entrypoint-alias",
+      "logical_paths": [
+        "CLAUDE.md"
+      ],
+      "owns_file": true,
+      "path": "CLAUDE.md",
+      "sha256": "a54ff182c7e8acf56acfd6e4b9c3ff41e2c41a31c9b211b2deb9df75d9a478f9",
+      "symlink_target": "AGENTS.md"
+    },
+    {
+      "executable": false,
+      "kind": "ci",
+      "logical_paths": [
+        ".github/workflows/harness-gate.yml"
+      ],
+      "owns_file": true,
+      "path": ".github/workflows/harness-gate.yml",
+      "sha256": "0c5b558db84c9567b592dae5c49146e06e098861bf997da937542f2e489cf6fb"
+    },
+    {
+      "executable": true,
+      "kind": "runtime",
+      "logical_paths": [
+        ".harness/runtime/check.mjs"
+      ],
+      "owns_file": true,
+      "path": ".harness/runtime/check.mjs",
+      "sha256": "75affc2846cf9fb9c205d87599f5234345c1bd7d5b756e25a05c81987fe7e03f"
+    },
+    {
+      "executable": false,
+      "kind": "runtime",
+      "logical_paths": [
+        ".harness/runtime/THIRD-PARTY-NOTICES.txt"
+      ],
+      "owns_file": true,
+      "path": ".harness/runtime/THIRD-PARTY-NOTICES.txt",
+      "sha256": "556d0a9a191f39808f50123611d11ee7cf183d1f8cd1b3d8d28e85bf76cbe1ba"
+    },
+    {
+      "executable": true,
+      "kind": "runtime",
+      "logical_paths": [
+        ".harness/runtime/local-context.mjs"
+      ],
+      "owns_file": true,
+      "path": ".harness/runtime/local-context.mjs",
+      "sha256": "5cdc6dcd5a58b0742a47036082a80dba74b05de28cbedbfa8aaa0ac472bdb276"
+    },
+    {
+      "executable": false,
+      "kind": "spec",
+      "logical_paths": [
+        ".harness/harness.json"
+      ],
+      "owns_file": true,
+      "path": ".harness/harness.json",
+      "sha256": "b75f44af58f74d6f856567a4c7995679335a9bbd433c166e0000256f9d2247f2"
+    }
+  ],
+  "profile_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "Cargo.toml",
+      "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+    },
+    {
+      "path": "README.md",
+      "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+    },
+    {
+      "path": "README.en.md",
+      "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d6d85eaefdbf81f4d68836a6a2a0a59486c4ddc5977a3b811039a233c2030a5b"
+    },
+    {
+      "path": ".github/workflows/check.yml",
+      "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "0451f3fd44d71ce675ec066ca19b0aced8db4a35d09a15fd74c6fa7d5aac4f0e"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "2aeefe651209dcee55e7e09ad95d7b765ca12e61d8fb41c41a4e088363f051ae"
+    },
+    {
+      "path": "src/firmware.rs",
+      "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
+    },
+    {
+      "path": "src/flash_event.rs",
+      "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
+    },
+    {
+      "path": "src/gui.rs",
+      "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+    },
+    {
+      "path": "src/debug_ui.rs",
+      "sha256": "78c3d27feaf2e993b1e5897884036410a19e9bfacfa8b766f5da8762f8d7a899"
+    },
+    {
+      "path": "src/serial_debug.rs",
+      "sha256": "70f83d057d655cf74d0fbf0b36e1c92f599309abbdc3a70c7e4730626e626af6"
+    },
+    {
+      "path": "src/capture.rs",
+      "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+    },
+    {
+      "path": "src/profiles.rs",
+      "sha256": "40b0005d34e525a1804be7c20805d25e75515760b24b761ddcecaa6f0acf4f7a"
+    },
+    {
+      "path": "src/driver_check.rs",
+      "sha256": "2a5a07d8c766bf4bec333e4dfae0be954faf4491ef849b3ce41bfa0bd325be30"
+    },
+    {
+      "path": "src/driver_ui.rs",
+      "sha256": "651242216af1eeabc362ec1a8ae4ea28632e189241ef32dda506724e7376d835"
+    },
+    {
+      "path": "src/port_picker.rs",
+      "sha256": "ab67e01e1a22c07f186f92898668804a016a95bf96ff2235d2e3aa89db899fb1"
+    },
+    {
+      "path": "src/ui_i18n.rs",
+      "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+    },
+    {
+      "path": "src/ui_catalog.rs",
+      "sha256": "ff23107efe263cfee1cec4564ff3cba1f2e0a02dfb608fd20836ec2cff2835f2"
+    },
+    {
+      "path": "scripts/package-linux.sh",
+      "sha256": "6063e620a3de66bec38e4e8aa8f896fdb119c7bea963c9f145c7dbc87eb01153"
+    },
+    {
+      "path": "scripts/package-macos.sh",
+      "sha256": "b243535064371125e1f52e4836adb04860b5cd474b158f417b91220ae9e5c619"
+    },
+    {
+      "path": "scripts/collect-licenses.py",
+      "sha256": "70c81ca6ac7886522b73a48925fc64c632b34665e9c6690bac2edbbd09c936e6"
+    },
+    {
+      "path": "scripts/release_assets.py",
+      "sha256": "f5bcf02cb4430f01e0e666b06eb799e5d46a8d92bccc854cf1100f936b248e9b"
+    },
+    {
+      "path": "scripts/capture-ui.py",
+      "sha256": "4e1a243b5def147d9c1543c8990201f479b38a9dee5a641ab6640ecd3a7ad87f"
+    },
+    {
+      "path": "scripts/Dockerfile.linux",
+      "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+    },
+    {
+      "path": "scripts/verify-linux.sh",
+      "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
+    },
+    {
+      "path": "install.sh",
+      "sha256": "1cea73e8d38e3a9d2e9f5430267a476f0f8970e0a72ff180216d43ca98d0b10d"
+    },
+    {
+      "path": "tests/client_acceptance.py",
+      "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+    },
+    {
+      "path": "tests/transfer_events.py",
+      "sha256": "c1ac4834a51fc00faf9526bb6c937cd57e185978fa21c7b0a73a401037b6eb15"
+    },
+    {
+      "path": "tests/simulate_device.py",
+      "sha256": "856526f0a286214b3c0e80bffe85ffd3210b9960ccabe63b4dfc02a6b9029a79"
+    },
+    {
+      "path": "tests/handshake_diagnostics.py",
+      "sha256": "be2ddec7cd2bb7dfe81366cc90eca243633ca8a653d5e3f727aaaf99774c574b"
+    },
+    {
+      "path": "tests/serial_debug_pty.rs",
+      "sha256": "e856ff7a56b7589677b9b1d796b112b662b01999c175413df86fd58e358e18da"
+    },
+    {
+      "path": "tests/test_installer.py",
+      "sha256": "f564a59613c7e83f216d5ea260ed0a2f5a2ada0478828a09b1fd1589f6a00a52"
+    },
+    {
+      "path": "tests/test_release_assets.py",
+      "sha256": "8c6c96b647af450b176301c9ba9f5ba329d118e5e434413a4adabc45e6cf94a6"
+    },
+    {
+      "path": "tests/install_package.py",
+      "sha256": "6902e3e0816ec5a83f6d52e99f48df560768b157a282b0b70dd800158ebfd8aa"
+    },
+    {
+      "path": ".harness/docs/protocol.md",
+      "sha256": "b0b28b82d7798a8aa381cc2cffe7962cd260370919ddf0c432f3dd4bbdfd4d40"
+    },
+    {
+      "path": ".harness/docs/validation.md",
+      "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+    }
+  ]
+}

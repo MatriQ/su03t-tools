@@ -1,0 +1,36 @@
+{
+  "jobs": {
+    "harness": {
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions/checkout@v7",
+          "with": {
+            "persist-credentials": false
+          }
+        },
+        {
+          "uses": "actions/setup-node@v7",
+          "with": {
+            "node-version": "24",
+            "package-manager-cache": false
+          }
+        },
+        {
+          "name": "Validate generated harness and hook cases",
+          "run": "node .harness/runtime/check.mjs --workspace ."
+        }
+      ],
+      "timeout-minutes": 10
+    }
+  },
+  "name": "Harness gate",
+  "on": {
+    "pull_request": {},
+    "push": {},
+    "workflow_call": {}
+  },
+  "permissions": {
+    "contents": "read"
+  }
+}
