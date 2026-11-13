@@ -17,10 +17,11 @@ sha2 = "0.10"
 ctrlc = "3"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+plist = { version = "1", optional = true, default-features = false }
 
 [features]
 default = ["gui"]
-gui = ["dep:eframe", "dep:rfd"]
+gui = ["dep:eframe", "dep:rfd", "dep:plist"]
 
 [dev-dependencies]
 libc = "0.2"
