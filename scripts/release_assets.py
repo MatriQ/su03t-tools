@@ -64,11 +64,22 @@ def parse_checksums(text):
 
 def release_info(repo, tag):
     result = subprocess.run(['gh', 'api', f'repos/{repo}/releases/tags/{tag}'], capture_output=True, text=True)
-    if result.returncode:
-        if 'HTTP 404' in result.stderr:
-            return None
+    if not result.returncode:
+        return json.loads(result.stdout)
+    if 'HTTP 404' not in result.stderr:
         raise RuntimeError(result.stderr.strip())
-    return json.loads(result.stdout)
+    # The tag endpoint returns published releases. The list endpoint also exposes
+    # drafts to writers, so an interrupted publication can find and resume one.
+    result = subprocess.run(
+        ['gh', 'api', '--paginate', '--slurp', f'repos/{repo}/releases?per_page=100'],
+        capture_output=True, text=True)
+    if result.returncode:
+        raise RuntimeError(result.stderr.strip())
+    for page in json.loads(result.stdout):
+        for info in page:
+            if info['tag_name'] == tag:
+                return info
+    return None
 
 
 def release_complete(repo, tag, value, allow_draft=False):
@@ -180,6 +191,8 @@ The installer verifies SHA-256 and uses user directories. Driver installation re
             run(['gh', 'release', 'create', tag, '--repo', repo, '--verify-tag', '--draft',
                  '--title', f'SU-03T Tools {tag}', '--notes-file', str(notes), '--generate-notes'])
             info = release_info(repo, tag)
+        if not info:
+            raise RuntimeError('Created release is not visible; retry publication to resume the draft')
         assets = {a['name']: a for a in info['assets']}
         upload = []
         for path in paths:

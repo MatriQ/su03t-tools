@@ -4,6 +4,7 @@ import argparse
 import contextlib
 import importlib.util
 import io
+import json
 import pathlib
 import subprocess
 import tempfile
@@ -86,6 +87,46 @@ class ReleaseAssetsTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'leaving the release unpublished'):
                 release.publish(argparse.Namespace(tag='v1.2.3', repo='example/repo', directory=self.assets))
             self.assertFalse(any(call.args[0][:3] == ['gh', 'release', 'edit'] for call in run.call_args_list))
+
+    def test_a_new_draft_is_uploaded_and_verified_before_publication(self):
+        with mock.patch.object(release, 'version', return_value=self.value), \
+             mock.patch.object(release, 'release_complete', side_effect=[False, True, True]), \
+             mock.patch.object(release, 'release_info', side_effect=[None, {'draft': True, 'assets': []}]), \
+             mock.patch.object(release, 'run') as run, contextlib.redirect_stdout(io.StringIO()):
+            release.publish(argparse.Namespace(tag='v1.2.3', repo='example/repo', directory=self.assets))
+            commands = [call.args[0] for call in run.call_args_list]
+            self.assertEqual([command[2] for command in commands], ['create', 'upload', 'edit'])
+            self.assertIn('--draft', commands[0])
+            self.assertIn('--clobber', commands[1])
+            self.assertIn('--draft=false', commands[2])
+
+    def test_published_release_is_queried_without_listing_drafts(self):
+        info = {'tag_name': 'v1.2.3', 'draft': False, 'assets': []}
+        with mock.patch.object(subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps(info))) as run:
+            self.assertEqual(release.release_info('example/repo', 'v1.2.3'), info)
+            self.assertEqual(run.call_count, 1)
+
+    def test_draft_is_found_on_a_later_release_list_page(self):
+        draft = {'tag_name': 'v1.2.3', 'draft': True, 'assets': []}
+        results = [subprocess.CompletedProcess([], 1, '', 'HTTP 404: not found'),
+                   subprocess.CompletedProcess([], 0, json.dumps([[{'tag_name': 'v2.0.0'}], [draft]]))]
+        with mock.patch.object(subprocess, 'run', side_effect=results) as run:
+            self.assertEqual(release.release_info('example/repo', 'v1.2.3'), draft)
+            self.assertEqual(run.call_args.args[0],
+                             ['gh', 'api', '--paginate', '--slurp', 'repos/example/repo/releases?per_page=100'])
+
+    def test_missing_release_returns_none_after_checking_drafts(self):
+        results = [subprocess.CompletedProcess([], 1, '', 'HTTP 404: not found'),
+                   subprocess.CompletedProcess([], 0, json.dumps([[{'tag_name': 'v2.0.0'}]]))]
+        with mock.patch.object(subprocess, 'run', side_effect=results):
+            self.assertIsNone(release.release_info('example/repo', 'v1.2.3'))
+
+    def test_draft_list_errors_are_not_hidden(self):
+        results = [subprocess.CompletedProcess([], 1, '', 'HTTP 404: not found'),
+                   subprocess.CompletedProcess([], 1, '', 'HTTP 403: forbidden')]
+        with mock.patch.object(subprocess, 'run', side_effect=results):
+            with self.assertRaisesRegex(RuntimeError, '403'):
+                release.release_info('example/repo', 'v1.2.3')
 
     def test_api_errors_other_than_not_found_are_not_hidden(self):
         result = subprocess.CompletedProcess([], 1, stdout='', stderr='HTTP 403: forbidden')
