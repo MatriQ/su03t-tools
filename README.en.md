@@ -20,9 +20,24 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 
 ## Installation
 
-Download the [macOS universal v0.5.0 package](https://github.com/MatriQ/su03t-macos/releases/download/v0.5.0/SU03T-Tools-v0.5.0-macOS-universal.zip) from [Releases](https://github.com/MatriQ/su03t-macos/releases), extract it and open `SU03T Update.app`. It contains Apple Silicon and Intel slices. The app is ad-hoc signed and not notarized; use the normal macOS approval process after verifying that you trust the source. Checksums are supplied with the release.
+Download the [macOS universal v0.5.1 package](https://github.com/MatriQ/su03t-macos/releases/download/v0.5.1/SU03T-Tools-v0.5.1-macOS-universal.zip) from [Releases](https://github.com/MatriQ/su03t-macos/releases), extract it and open `SU03T Update.app`. It contains Apple Silicon and Intel slices. The app is ad-hoc signed and not notarized; use the normal macOS approval process after verifying that you trust the source. Checksums are supplied with the release.
 
 For Linux, build from source below. The macOS deployment target is 12.0; actual OS, board and driver compatibility depends on testing. See [validation](docs/validation.md).
+
+## macOS startup driver check
+
+The app checks USB serial devices and their serial interfaces in the background at startup. The driver status entry is shared by upgrade and debug pages, and results are added to the activity log.
+
+- **Drivers ready:** a serial interface exists. Both system and vendor drivers are recognized.
+- **USB detected, serial interface missing:** the initial check opens guidance with the chip vendor's official driver link and extension approval instructions. Also check that the device is in serial mode.
+- **No adapter detected:** connect the USB serial adapter and choose **Check again**; the module may remain powered off. Driver readiness is unverified until an adapter is detected.
+- **Check failed:** inspect the error and retry, or continue using an existing port.
+
+![macOS driver check and installation guidance](docs/images/drivers-missing-en.png)
+
+Common WCH CH34x / CH91xx, Silicon Labs CP210x and FTDI products are identified by USB product IDs. For a device with custom IDs and no serial interface, consult the board manufacturer. Identical adapters are checked separately; a USB hub cannot claim a downstream device's serial port as its own.
+
+The check reads system device information without opening a serial port. Port usage and access permissions are checked when connecting. Module identity, power and actual high-baud transfer performance remain unverified. Driver resources: [WCH's official repository](https://github.com/WCHSoftGroup/ch34xser_macos), [Silicon Labs](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers), [FTDI](https://ftdichip.com/drivers/vcp-drivers/).
 
 ## Wiring and modes
 

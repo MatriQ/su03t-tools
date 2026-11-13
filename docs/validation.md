@@ -1,5 +1,15 @@
 # Validation and compatibility
 
+## v0.5.1
+
+The desktop suite contains 59 Rust tests; the CLI-only suite contains 30. This adds 14 driver classification and startup-state tests to the v0.5.0 coverage below.
+
+The macOS startup driver check uses USB device nodes and their own descendant serial interfaces. It accepts system and vendor drivers, distinguishes absent adapters from unbound adapters, and rejects stale results after a serial-device change. Registry errors remain unconfirmed checks, rather than missing-driver diagnoses.
+
+Tests use synthetic XML and binary property lists for system drivers, unbound devices, identical adapters, nested USB devices, duplicate registry entries, custom product IDs and multiport devices. Startup prompt tests cover absent devices, scan errors and unplugging during a check. A read-only check on the development Mac detected the attached WCH `1A86:7523` with its existing serial interface and active vendor driver. No serial port was opened by that check.
+
+Driver-check screenshots use simulated devices and do not establish missing-driver or installation acceptance on another Mac. Physical missing-driver, extension-approval and install/restart flows require separate validation.
+
 ## v0.5.0
 
 | Check | Result |
