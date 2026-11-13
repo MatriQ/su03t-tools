@@ -1,5 +1,11 @@
 # Validation and compatibility
 
+## v0.5.2
+
+Packaging and installation changes use 14 installer scenarios (11 portable Linux-layout scenarios plus 3 native macOS signing scenarios) and 9 release-helper scenarios. The tests cover version/architecture selection, upgrades, checksum failures, unsafe archive paths, foreign destinations, missing packages, complete manifests, interrupted drafts and immutable published assets. They use temporary prefixes and mock downloads.
+
+The packaging workflow verifies the executable extracted from each archive with the CLI PTY suites. The Mac package also verifies both Mach-O slices and its ad-hoc signature after extraction. Binary installation does not provide missing-driver installation, physical USB flashing or voice-function acceptance.
+
 ## v0.5.1
 
 The desktop suite contains 59 Rust tests; the CLI-only suite contains 30. This adds 14 driver classification and startup-state tests to the v0.5.0 coverage below.
