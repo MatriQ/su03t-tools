@@ -35,7 +35,7 @@ su03t_validate_paths() {
 su03t_lock() {
   local candidate="$1/.su03t-install.lock"
   mkdir "$candidate" 2>/dev/null || su03t_error "Another install is active in $1. If it was interrupted, remove $candidate before retrying."
-  lock=$candidate
+  SU03T_INSTALL_LOCK=$candidate
 }
 su03t_replace() {
   # A staging directory on the destination filesystem keeps replacement atomic.
@@ -46,10 +46,18 @@ su03t_replace() {
     su03t_error "Could not install $target; the previous installation was restored."
   fi
 }
+su03t_cleanup() {
+  if [ -n "${SU03T_INSTALL_STAGE:-}" ]; then rm -rf "$SU03T_INSTALL_STAGE"; fi
+  if [ -n "${SU03T_INSTALL_WORK:-}" ]; then rm -rf "$SU03T_INSTALL_WORK"; fi
+  if [ -n "${SU03T_INSTALL_LOCK:-}" ]; then rmdir "$SU03T_INSTALL_LOCK" 2>/dev/null || true; fi
+}
 su03t_main() {
   local requested_version=${SU03T_VERSION:-} prefix=${SU03T_INSTALL_PREFIX:-}
   local repo='https://github.com/MatriQ/su03t-macos' resolved tag platform asset manifest expected actual
-  local work='' stage='' lock='' destination version_output target old_link
+  local destination version_output target old_link
+  SU03T_INSTALL_WORK=''
+  SU03T_INSTALL_STAGE=''
+  SU03T_INSTALL_LOCK=''
   while [ "$#" -gt 0 ]; do
     case "$1" in
       --version) [ "$#" -ge 2 ] || su03t_error '--version needs a value.'; requested_version=$2; shift 2 ;;
@@ -81,26 +89,27 @@ su03t_main() {
   asset="SU03T-Tools-$tag-$platform"
   if [ "$SU03T_OS" = Darwin ]; then asset="$asset.zip"; else asset="$asset.tar.gz"; fi
   manifest="SU03T-Tools-$tag-SHA256SUMS.txt"
-  work=$(mktemp -d "${TMPDIR:-/tmp}/su03t-install.XXXXXXXX")
-  # These variables are local to main, whose scope remains active until exit.
-  trap 'if [ -n "$stage" ]; then rm -rf "$stage"; fi; if [ -n "$work" ]; then rm -rf "$work"; fi; if [ -n "$lock" ]; then rmdir "$lock" 2>/dev/null || true; fi' EXIT
+  SU03T_INSTALL_WORK=$(mktemp -d "${TMPDIR:-/tmp}/su03t-install.XXXXXXXX")
+  # Bash versions unwind local variables differently on errexit. Cleanup state
+  # remains available to the EXIT trap after main's local scope has ended.
+  trap su03t_cleanup EXIT
   printf 'Downloading SU-03T Tools %s (%s)...\n' "$tag" "$platform"
-  su03t_download "$repo/releases/download/$tag/$manifest" "$work/SHA256SUMS.txt"
-  expected=$(awk -v name="$asset" '$2 == name && NF == 2 { print $1; count++ } END { if (count != 1) exit 1 }' "$work/SHA256SUMS.txt") \
+  su03t_download "$repo/releases/download/$tag/$manifest" "$SU03T_INSTALL_WORK/SHA256SUMS.txt"
+  expected=$(awk -v name="$asset" '$2 == name && NF == 2 { print $1; count++ } END { if (count != 1) exit 1 }' "$SU03T_INSTALL_WORK/SHA256SUMS.txt") \
     || su03t_error "Release $tag does not contain a unique checksum for $asset."
   [[ "$expected" =~ ^[a-f0-9]{64}$ ]] || su03t_error 'Invalid SHA-256 manifest.'
-  su03t_download "$repo/releases/download/$tag/$asset" "$work/$asset"
-  actual=$(su03t_hash "$work/$asset")
+  su03t_download "$repo/releases/download/$tag/$asset" "$SU03T_INSTALL_WORK/$asset"
+  actual=$(su03t_hash "$SU03T_INSTALL_WORK/$asset")
   [ "$actual" = "$expected" ] || su03t_error 'SHA-256 mismatch; the existing installation was not changed.'
-  mkdir -p "$work/unpacked"
+  mkdir -p "$SU03T_INSTALL_WORK/unpacked"
   if [ "$SU03T_OS" = Darwin ]; then
     for target in ditto codesign zipinfo; do command -v "$target" >/dev/null 2>&1 || su03t_error "$target is required."; done
-    zipinfo -1 "$work/$asset" | su03t_validate_paths
-    if zipinfo -l "$work/$asset" | awk '$1 ~ /^l/ { found = 1 } END { exit !found }'; then
+    zipinfo -1 "$SU03T_INSTALL_WORK/$asset" | su03t_validate_paths
+    if zipinfo -l "$SU03T_INSTALL_WORK/$asset" | awk '$1 ~ /^l/ { found = 1 } END { exit !found }'; then
       su03t_error 'Symlinks are not supported in this app archive.'
     fi
-    ditto -x -k "$work/$asset" "$work/unpacked"
-    target="$work/unpacked/SU03T Update.app"
+    ditto -x -k "$SU03T_INSTALL_WORK/$asset" "$SU03T_INSTALL_WORK/unpacked"
+    target="$SU03T_INSTALL_WORK/unpacked/SU03T Update.app"
     [ -d "$target" ] && [ ! -L "$target" ] || su03t_error 'The app bundle is missing.'
     [ "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$target/Contents/Info.plist")" = local.su03t.update ] \
       || su03t_error 'Unexpected application identifier.'
@@ -116,23 +125,23 @@ su03t_main() {
         && [ "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$destination/Contents/Info.plist" 2>/dev/null)" = local.su03t.update ] \
         || su03t_error 'Destination contains another app or a symlink; choose a different --prefix.'
     fi
-    stage=$(mktemp -d "$prefix/.su03t-install.XXXXXXXX")
-    ditto "$target" "$stage/SU03T Update.app"
-    codesign --verify --deep --strict "$stage/SU03T Update.app"
-    su03t_replace "$stage/SU03T Update.app" "$destination" "$stage/previous.app"
+    SU03T_INSTALL_STAGE=$(mktemp -d "$prefix/.su03t-install.XXXXXXXX")
+    ditto "$target" "$SU03T_INSTALL_STAGE/SU03T Update.app"
+    codesign --verify --deep --strict "$SU03T_INSTALL_STAGE/SU03T Update.app"
+    su03t_replace "$SU03T_INSTALL_STAGE/SU03T Update.app" "$destination" "$SU03T_INSTALL_STAGE/previous.app"
     printf 'Installed: %s\nOpen with: open %q\n' "$destination" "$destination"
     printf '%s\n' 'Quit any older instance before opening the new app. First launch may require macOS approval; the app is not notarized.'
   else
     command -v tar >/dev/null 2>&1 || su03t_error 'tar is required.'
-    tar -tzf "$work/$asset" | su03t_validate_paths
-    if tar -tvzf "$work/$asset" | awk '$1 !~ /^[-d]/ { found = 1 } END { exit !found }'; then
+    tar -tzf "$SU03T_INSTALL_WORK/$asset" | su03t_validate_paths
+    if tar -tvzf "$SU03T_INSTALL_WORK/$asset" | awk '$1 !~ /^[-d]/ { found = 1 } END { exit !found }'; then
       su03t_error 'Only regular files and directories are supported in the Linux archive.'
     fi
-    tar -xzf "$work/$asset" -C "$work/unpacked"
-    target="$work/unpacked/su03t-update"
+    tar -xzf "$SU03T_INSTALL_WORK/$asset" -C "$SU03T_INSTALL_WORK/unpacked"
+    target="$SU03T_INSTALL_WORK/unpacked/su03t-update"
     [ -f "$target" ] && [ -x "$target" ] || su03t_error 'Executable is missing from the archive.'
-    if ! version_output=$("$target" --version 2>"$work/runtime-error"); then
-      cat "$work/runtime-error" >&2
+    if ! version_output=$("$target" --version 2>"$SU03T_INSTALL_WORK/runtime-error"); then
+      cat "$SU03T_INSTALL_WORK/runtime-error" >&2
       su03t_error 'The binary cannot run here. Check CPU architecture and Linux runtime libraries; see the README.'
     fi
     [ "$version_output" = "su03t-update ${tag#v}" ] || su03t_error 'Executable version does not match the release.'
@@ -151,17 +160,16 @@ su03t_main() {
       old_link=$(readlink "$target")
       case "$old_link" in "$prefix/share/su03t-tools/"*/su03t-update) ;; *) su03t_error 'The command path belongs to another installation.' ;; esac
     fi
-    stage=$(mktemp -d "$prefix/share/su03t-tools/.install.XXXXXXXX")
-    mv "$work/unpacked" "$stage/package"
-    printf 'MatriQ/su03t-macos\n%s\n%s\n' "$tag" "$expected" > "$stage/package/.su03t-install"
-    su03t_replace "$stage/package" "$destination" "$stage/previous"
-    ln -s "$destination/su03t-update" "$stage/command"
-    mv -f "$stage/command" "$prefix/bin/su03t-update"
+    SU03T_INSTALL_STAGE=$(mktemp -d "$prefix/share/su03t-tools/.install.XXXXXXXX")
+    mv "$SU03T_INSTALL_WORK/unpacked" "$SU03T_INSTALL_STAGE/package"
+    printf 'MatriQ/su03t-macos\n%s\n%s\n' "$tag" "$expected" > "$SU03T_INSTALL_STAGE/package/.su03t-install"
+    su03t_replace "$SU03T_INSTALL_STAGE/package" "$destination" "$SU03T_INSTALL_STAGE/previous"
+    ln -s "$destination/su03t-update" "$SU03T_INSTALL_STAGE/command"
+    mv -f "$SU03T_INSTALL_STAGE/command" "$prefix/bin/su03t-update"
     printf 'Installed: %s\nRun: %q\n' "$destination" "$prefix/bin/su03t-update"
     case ":$PATH:" in *":$prefix/bin:"*) ;; *) printf 'Add to PATH: export PATH=%q:"$PATH"\n' "$prefix/bin" ;; esac
   fi
-  rm -rf "$stage" "$work"
-  rmdir "$lock"
+  su03t_cleanup
   trap - EXIT
 }
 su03t_main "$@"
