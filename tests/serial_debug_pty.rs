@@ -108,6 +108,19 @@ fn disconnect_while_receive_queue_is_full_does_not_hang() {
     let (mut device, mut host) = TTYPort::pair().unwrap();
     host.set_timeout(Duration::from_millis(20)).unwrap();
     device.set_timeout(Duration::from_millis(50)).unwrap();
+    // The synthetic producer must remain bounded after the receiver stops.
+    // TTYPort polls before write(), but a blocking Linux PTY write can still
+    // fill the peer's remaining buffer and wait indefinitely inside write().
+    use std::os::fd::AsRawFd;
+    let fd = device.as_raw_fd();
+    // SAFETY: device owns this live descriptor; fcntl only updates its flags.
+    let flags = unsafe { libc::fcntl(fd, libc::F_GETFL) };
+    assert!(flags >= 0);
+    // SAFETY: the descriptor remains owned here and the flags contain no pointers.
+    assert_eq!(
+        unsafe { libc::fcntl(fd, libc::F_SETFL, flags | libc::O_NONBLOCK) },
+        0
+    );
     let session = Session::with_transport(host);
     event(&session, |e| matches!(e, Event::Connected));
     let writer = thread::spawn(move || {
