@@ -26,7 +26,7 @@ CRC uses polynomial `1021`, initial value `0000`, with the complete padded paylo
 - `18` / CAN cancels the transfer.
 - Residual startup `C` bytes and other data are not ACKs.
 
-Default response timeout: 5 seconds. Default retry limit: 30 retries after the first attempt. A block without any acknowledgment can therefore take about 155 seconds to fail.
+Default response timeout: 5 seconds. Default retry limit: 30 retries after the first attempt. A block without any acknowledgment can therefore take about 155 seconds to fail. The desktop UI reports each retry and distinguishes a pending serial write from waiting for an ACK.
 
 ## Completion
 
@@ -38,4 +38,4 @@ An acknowledged EOT confirms the end of transfer only. This implementation does 
 
 A selected file is read into a fixed memory buffer and hashed before the serial port opens. The desktop client passes the selected SHA-256 to its worker, which refuses a changed file. Filename, size and known boot-region checks are screening checks, not firmware authentication or proof of compatibility.
 
-Unit tests check framing, CRC, padding, sequence wrap and retry identity. PTY tests execute the real CLI with an independent Python CRC reference. Tests can run without vendor artifacts; an optional vendor CRC fixture is checked only when supplied locally under the ignored `vendor/` directory.
+Unit tests check framing, CRC, padding, sequence wrap and retry identity. PTY tests execute the real CLI with an independent Python CRC reference. Tests can run without vendor artifacts; an optional vendor CRC fixture is checked only when supplied locally under the ignored `vendor/` directory. See [validation](validation.md) for the physical-device boundary.
