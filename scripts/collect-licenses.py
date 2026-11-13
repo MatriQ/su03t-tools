@@ -44,7 +44,7 @@ def fetch(url):
 def packages(targets):
     selected = {}
     for target in targets:
-        command = ['cargo', 'metadata', '--locked', '--offline', '--format-version', '1']
+        command = ['cargo', 'metadata', '--locked', '--format-version', '1']
         if target:
             command += ['--filter-platform', target]
         metadata = json.loads(subprocess.check_output(command, cwd=ROOT))
