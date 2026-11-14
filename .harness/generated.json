@@ -226,7 +226,7 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "c0fd9d69c75e39aa8962e8361ff82c3cac415aab3b49a89dcae25e1d5496ae55"
+      "sha256": "e14646b96fffcefd51ca8052a2cbbd16211702f9e7c9ba8f10a13b6ff559a1b7"
     },
     {
       "path": "src/main.rs",
@@ -394,7 +394,7 @@
     },
     {
       "path": "tests/windows_gui_smoke.ps1",
-      "sha256": "6fd0a12c4699b3763be88622822fde99e7d7a2f769779184a1dc1dd7aed0d2a6"
+      "sha256": "f71def9123e0fc8beae053db0271bb5232a33584ebf6102c40bba20f4e5c0313"
     },
     {
       "path": ".github/workflows/verify-install.yml",

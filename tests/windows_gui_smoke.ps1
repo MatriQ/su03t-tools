@@ -10,23 +10,29 @@ using System;
 using System.Runtime.InteropServices;
 public static class NativeSmokeWindow {
     [StructLayout(LayoutKind.Sequential)] public struct Rect { public int Left, Top, Right, Bottom; }
-    [StructLayout(LayoutKind.Explicit, Size = 220)] public struct DisplayMode {
-        [FieldOffset(68)] public ushort Size;
-        [FieldOffset(72)] public uint Fields;
-        [FieldOffset(172)] public uint Width;
-        [FieldOffset(176)] public uint Height;
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)] public struct DisplayMode {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string DeviceName;
+        public ushort SpecVersion, DriverVersion, Size, DriverExtra;
+        public uint Fields;
+        public int PositionX, PositionY;
+        public uint Orientation, FixedOutput;
+        public short Color, Duplex, YResolution, TTOption, Collate;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string FormName;
+        public ushort LogPixels;
+        public uint BitsPerPixel, Width, Height, DisplayFlags, Frequency;
+        public uint IcmMethod, IcmIntent, MediaType, DitherType, Reserved1, Reserved2, PanningWidth, PanningHeight;
     }
     [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr window, out Rect rectangle);
     [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr window);
     [DllImport("user32.dll")] public static extern bool SetWindowPos(IntPtr window, IntPtr after, int x, int y, int width, int height, uint flags);
     [DllImport("user32.dll")] public static extern IntPtr SetThreadDpiAwarenessContext(IntPtr context);
-    [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern bool EnumDisplaySettings(string device, int mode, ref DisplayMode data);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)] public static extern bool EnumDisplaySettings(string device, int mode, ref DisplayMode data);
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern int ChangeDisplaySettings(ref DisplayMode data, uint flags);
 }
 '@
 $OriginalDisplay = New-Object NativeSmokeWindow+DisplayMode
-$OriginalDisplay.Size = 220
-if (![NativeSmokeWindow]::EnumDisplaySettings($null, -1, [ref]$OriginalDisplay)) { throw 'Could not read display mode.' }
+$OriginalDisplay.Size = [Runtime.InteropServices.Marshal]::SizeOf($OriginalDisplay)
+if (![NativeSmokeWindow]::EnumDisplaySettings($null, -1, [ref]$OriginalDisplay)) { throw "Could not read display mode: size=$($OriginalDisplay.Size) error=$([Runtime.InteropServices.Marshal]::GetLastWin32Error())" }
 $DisplayChanged = $false
 $DpiContext = [NativeSmokeWindow]::SetThreadDpiAwarenessContext([IntPtr](-4))
 $OriginalAppData = $env:APPDATA
@@ -43,7 +49,7 @@ try {
         $Selected = $null
         for ($Index = 0; $Index -lt 500; $Index++) {
             $Candidate = New-Object NativeSmokeWindow+DisplayMode
-            $Candidate.Size = 220
+            $Candidate.Size = [Runtime.InteropServices.Marshal]::SizeOf($Candidate)
             if (![NativeSmokeWindow]::EnumDisplaySettings($null, $Index, [ref]$Candidate)) { break }
             if ($Candidate.Width -eq 1920 -and $Candidate.Height -eq 1080) { $Selected = $Candidate; break }
             if ($Candidate.Width -ge 1280 -and $Candidate.Height -ge 960 -and (!$Selected -or $Candidate.Width * $Candidate.Height -lt $Selected.Width * $Selected.Height)) { $Selected = $Candidate }
@@ -55,7 +61,7 @@ try {
         Start-Sleep -Seconds 2
     }
     $CurrentDisplay = New-Object NativeSmokeWindow+DisplayMode
-    $CurrentDisplay.Size = 220
+    $CurrentDisplay.Size = [Runtime.InteropServices.Marshal]::SizeOf($CurrentDisplay)
     [NativeSmokeWindow]::EnumDisplaySettings($null, -1, [ref]$CurrentDisplay) | Out-Null
     foreach ($Language in @('zh', 'en')) {
         [IO.File]::WriteAllText($LanguageFile, ('"' + $Language + '"'), (New-Object Text.UTF8Encoding $false))
