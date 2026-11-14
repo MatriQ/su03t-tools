@@ -75,7 +75,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -290,7 +290,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -505,7 +505,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -720,7 +720,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -931,7 +931,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -1146,7 +1146,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -1361,7 +1361,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -1576,7 +1576,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -1787,7 +1787,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -2002,7 +2002,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -2217,7 +2217,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -2432,7 +2432,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -2647,7 +2647,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -2858,7 +2858,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -3069,7 +3069,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -3280,7 +3280,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -3491,7 +3491,7 @@
             },
             {
               "path": "install.ps1",
-              "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
             },
             {
               "path": "install.sh",
@@ -3777,7 +3777,7 @@
         },
         {
           "path": "install.ps1",
-          "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+          "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
         },
         {
           "path": "install.sh",

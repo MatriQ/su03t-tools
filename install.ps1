@@ -134,7 +134,7 @@ function Install-Su03tTools {
         $Json = @{ repository = 'MatriQ/su03t-tools'; version = $Tag } | ConvertTo-Json
         $NewMarker = Join-Path $Stage 'install.json'
         [IO.File]::WriteAllText($NewMarker, $Json, (New-Object Text.UTF8Encoding $false))
-        if (Test-Path -LiteralPath $Marker) { [IO.File]::Replace($NewMarker, $Marker, $null) }
+        if (Test-Path -LiteralPath $Marker) { [IO.File]::Replace($NewMarker, $Marker, (Join-Path $Stage 'previous-install.json')) }
         else { [IO.File]::Move($NewMarker, $Marker) }
     } catch {
         if ($MovedNew -and (Test-Path -LiteralPath $App)) { Remove-Item -LiteralPath $App -Recurse -Force }
