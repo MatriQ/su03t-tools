@@ -23,6 +23,14 @@ pub(super) fn set(language: Language, system_english: bool) {
     });
 }
 pub(super) fn system_english() -> bool {
+    #[cfg(windows)]
+    {
+        // Use the Windows display language rather than date/number locale settings.
+        let language = unsafe { windows_sys::Win32::Globalization::GetUserDefaultUILanguage() };
+        if language != 0 {
+            return language & 0x03ff != 0x0004; // LANG_CHINESE, including regional variants.
+        }
+    }
     #[cfg(target_os = "macos")]
     if let Ok(out) = std::process::Command::new("defaults")
         .args(["read", "-g", "AppleLanguages"])
@@ -51,7 +59,11 @@ fn preference_path() -> Option<PathBuf> {
                 .join("Library/Application Support/SU03T Tools/language.json"),
         )
     }
-    #[cfg(not(target_os = "macos"))]
+    #[cfg(windows)]
+    {
+        Some(PathBuf::from(std::env::var_os("APPDATA")?).join("SU03T Tools/language.json"))
+    }
+    #[cfg(not(any(target_os = "macos", windows)))]
     {
         let base = std::env::var_os("XDG_CONFIG_HOME")
             .map(PathBuf::from)
@@ -67,12 +79,15 @@ pub(super) fn load() -> Language {
 }
 pub(super) fn save(language: Language) -> std::io::Result<()> {
     if let Some(path) = preference_path() {
-        std::fs::create_dir_all(path.parent().expect("preferences parent"))?;
-        let tmp = path.with_extension(format!("{}.json.tmp", std::process::id()));
-        std::fs::write(&tmp, serde_json::to_vec(&language)?)?;
-        std::fs::rename(tmp, path)?;
+        save_to(&path, language)?;
     }
     Ok(())
+}
+fn save_to(path: &std::path::Path, language: Language) -> std::io::Result<()> {
+    std::fs::create_dir_all(path.parent().expect("preferences parent"))?;
+    let tmp = path.with_extension(format!("{}.json.tmp", std::process::id()));
+    std::fs::write(&tmp, serde_json::to_vec(&language)?)?;
+    std::fs::rename(tmp, path)
 }
 pub(super) fn choose<'a>(zh: &'a str, en: &'a str) -> &'a str {
     if english() { en } else { zh }
@@ -210,6 +225,17 @@ pub(super) use ui_format;
 mod tests {
     use super::*;
     #[test]
+    fn language_choice_can_replace_an_existing_preference_in_a_unicode_directory() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("中文 settings/language.json");
+        save_to(&path, Language::En).unwrap();
+        save_to(&path, Language::Zh).unwrap();
+        assert_eq!(
+            serde_json::from_slice::<Language>(&std::fs::read(path).unwrap()).unwrap(),
+            Language::Zh
+        );
+    }
+    #[test]
     fn translated_system_records_preserve_paths_and_can_switch_back() {
         set(Language::En, false);
         assert_eq!(
@@ -219,6 +245,10 @@ mod tests {
         assert_eq!(
             display("原始接收缓冲已保存：/tmp/a.bin（256字节）"),
             "Raw RX buffer saved: /tmp/a.bin (256 bytes)"
+        );
+        assert_eq!(
+            display(r"日志已保存：C:\Users\测试\serial.log"),
+            r"Log saved: C:\Users\测试\serial.log"
         );
         set(Language::Zh, false);
         assert_eq!(
