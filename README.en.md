@@ -8,7 +8,7 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 
 ![English firmware upgrade interface](docs/images/transfer-en.png)
 
-*Screenshots show the native app with simulated events. No physical serial port is connected; these are not hardware flashing acceptance results.*
+*Firmware flashing has passed acceptance testing on physical SU-03T hardware. See the [validation record](.harness/docs/validation.md#hardware-acceptance).*
 
 ## Features
 
@@ -69,10 +69,10 @@ The check reads system device information without opening a serial port. Port us
 | Mode | Default settings | Module / USB serial adapter |
 | --- | --- | --- |
 | Upgrade / startup probe | 921600 / 8N1 / no flow control | B7 → RXD, B6 ← TXD, GND ↔ GND |
-| Car voice-debug preset | 9600 / 8N1 / no flow control | B7 → RXD, B6 ← TXD, GND ↔ GND |
+| Serial diagnostics (custom mode) | 115200 / 8N1 / no flow control, configurable | Module TX → RXD, module RX ← TXD, GND ↔ GND; pins follow the firmware definition |
 | B8 startup logs | 57600 / 8N1 / receive only | B8 → RXD, GND ↔ GND; TXD disconnected |
 
-The car preset describes one application firmware, not a universal SU-03T application protocol. Custom mode supports other serial settings. The tool does not install drivers or control module reset through DTR/RTS.
+Match serial settings and pin mapping to the target firmware and adjust them in custom mode. The tool does not install drivers or control module reset through DTR/RTS.
 
 ## Upgrading firmware
 
@@ -118,7 +118,7 @@ su03t-update probe --port /dev/ttyUSB0 --baud 921600 --wait 15
 su03t-update flash --port /dev/ttyUSB0 --firmware firmware_update.bin
 ```
 
-On macOS, use the enumerated `/dev/cu.*` path. `probe` listens passively unless `--trigger` is supplied. `monitor` transmits only with explicit `--send-hex` or `--send-text` arguments; the car preset is `--profile car`. See `--help` for additional options. Desktop language selection does not change the existing CLI output format.
+On macOS, use the enumerated `/dev/cu.*` path. `probe` listens passively unless `--trigger` is supplied. `monitor` transmits only with explicit `--send-hex` or `--send-text` arguments. See `--help` for additional options. Desktop language selection does not change the existing CLI output format.
 
 ## Building from source
 

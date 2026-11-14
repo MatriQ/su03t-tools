@@ -20,11 +20,11 @@ Read the [required engineering rules](../rules/engineering.md) and [contribution
 
 | Question | Answer and evidence route | Remaining boundary |
 | --- | --- | --- |
-| Does CCC identify the model? | [Protocol](protocol.md): startup handshake only. | Board/firmware compatibility requires separate acceptance. |
+| Does CCC identify the model? | [Protocol](protocol.md): startup handshake only. | SU-03T flashing acceptance is recorded; additional target configurations have their own acceptance. |
 | Why can block 1 wait about 155 seconds? | [Troubleshooting](troubleshooting.md#ccc-arrives-but-block-1-is-not-acknowledged): 31 attempts at five seconds each. | A blocked write is a separate phase. |
 | Does 100% mean success? | [Transfer journey](architecture.md#firmware-transfer-journey): acknowledged data precedes EOT ACK. | Readback, normal boot and voice behavior remain separate. |
 | Which checks avoid attached hardware? | [Testing](testing.md): unit tests and PTYs create their own fixtures. | Physical commands need a selected target and task scope. |
 | Can an older Linux installation be reused? | [Installation and recovery](release.md#installation-and-recovery): both repository markers are accepted. | Foreign destinations remain refused. |
 | Do files prove host activation? | [Maintenance](maintenance.md#activation-and-evidence): test loading separately. | Readiness does not transfer with a clone. |
 
-The migrated [protocol](protocol.md) and [validation record](validation.md) own framing and historical compatibility claims. README files and CONTRIBUTING.md remain at the root by the user's choice. New AI-authored project prose belongs here. Machine paths, credentials, readiness and raw execution reports belong in ignored local state.
+The migrated [protocol](protocol.md) owns framing, and the [validation record](validation.md#hardware-acceptance) records passed SU-03T hardware flashing acceptance and historical test results. README files and CONTRIBUTING.md remain at the root by the user's choice. New AI-authored project prose belongs here. Machine paths, credentials, readiness and raw execution reports belong in ignored local state.

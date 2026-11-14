@@ -7,6 +7,7 @@ Scope: firmware, UI/CLI, diagnostics, packaging and harness. [CONTRIBUTING](../.
 - Progress counts acknowledged bytes. Preserve Writing/WaitingAck and final EOT ACK. CCC does not identify the model; transfer success does not prove readback, boot or voice functions.
 - Separate application presets from firmware framing. Enforce B8 receive-only in the core; connect passively unless TX/trigger is explicit.
 - Preserve Chinese/English UI and log reading positions. Display clearing retains progress/counters/raw RX/recordings as applicable. Do not translate original device data, paths or hashes.
+- Public documentation covers SU-03T firmware transfer and generic serial diagnostics. Use generic examples and omit application-specific project names and configurations.
 - Keep proprietary firmware, vendor tools, credentials and private logs out of commits/screenshots. Ignored vendor analysis is optional, never a build prerequisite or a release asset.
 - Follow the task's publication scope, existing identities and focused commit style. Preserve published assets and tags; changed released bytes require a new version.
 - New AI project prose belongs under .harness/docs/ with updated navigation/sources. Reuse the user's keep/move choices. These instructions are not a native permission policy or hook.

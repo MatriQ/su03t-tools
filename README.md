@@ -8,7 +8,7 @@
 
 ![中文升级界面](docs/images/transfer-zh.png)
 
-*截图来自原生应用的模拟预览，不连接物理串口，不代表实机烧录验收。*
+*已通过 SU-03T 实机刷机验收，详见[验证记录](.harness/docs/validation.md#hardware-acceptance)。*
 
 ## 功能
 
@@ -69,10 +69,10 @@ sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client
 | 模式 | 默认参数 | 模块与 USB 转串口接线 |
 | --- | --- | --- |
 | 固件升级 / 启动诊断 | 921600 / 8N1 / 无流控 | B7 → RXD、B6 ← TXD、GND ↔ GND |
-| 小车语音调试预设 | 9600 / 8N1 / 无流控 | B7 → RXD、B6 ← TXD、GND ↔ GND |
+| 串口调试（通用模式） | 115200 / 8N1 / 无流控，可调整 | 模块 TX → RXD、模块 RX ← TXD、GND ↔ GND；引脚按固件定义 |
 | B8 启动日志 | 57600 / 8N1 / 只接收 | B8 → RXD、GND ↔ GND，TXD 不接 |
 
-小车预设对应特定应用固件，不是所有 SU-03T 的统一业务参数。可选择通用模式并修改串口设置。工具不自动安装驱动，也不通过 DTR/RTS 控制模块复位。
+串口参数和引脚映射应以目标固件定义为准，可在通用模式中调整。工具不自动安装驱动，也不通过 DTR/RTS 控制模块复位。
 
 ## 固件升级
 
@@ -118,7 +118,7 @@ su03t-update probe --port /dev/ttyUSB0 --baud 921600 --wait 15
 su03t-update flash --port /dev/ttyUSB0 --firmware firmware_update.bin
 ```
 
-macOS 使用实际枚举的 `/dev/cu.*`。`probe` 默认被动监听，需要启动触发时显式加 `--trigger`。`monitor` 仅在显式指定 `--send-hex` 或 `--send-text` 时发送；小车预设为 `--profile car`。更多参数见 `--help`。
+macOS 使用实际枚举的 `/dev/cu.*`。`probe` 默认被动监听，需要启动触发时显式加 `--trigger`。`monitor` 仅在显式指定 `--send-hex` 或 `--send-text` 时发送。更多参数见 `--help`。
 
 ## 从源码构建
 
