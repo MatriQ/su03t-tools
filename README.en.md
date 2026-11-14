@@ -20,42 +20,65 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 
 ## Installation
 
-On macOS, install the app and `su03t-update` command from the independently maintained [Homebrew tap](https://github.com/MatriQ/homebrew-tap):
+### macOS: Homebrew (recommended)
+
+Install on Apple Silicon or Intel Macs using the project's [Homebrew tap](https://github.com/MatriQ/homebrew-tap):
 
 ```bash
 brew install --cask matriq/tap/su03t-tools
 ```
 
-Run `brew update` followed by `brew upgrade --cask matriq/tap/su03t-tools` to upgrade, or `brew uninstall --cask matriq/tap/su03t-tools` to uninstall. Homebrew installs the app in `/Applications` by default. Quit the app and resolve existing app or command conflicts before switching installers. The current release is not notarized; first launch still follows the macOS approval flow.
+The app is installed in `/Applications/SU03T Update.app` by default, with a `su03t-update` command. Open it from Applications, or run `su03t-update` to start the desktop interface.
 
-On macOS (Apple Silicon / Intel) or Linux (x86_64 / ARM64), run:
+Quit the app before upgrading, then run:
+
+```bash
+brew update
+brew upgrade --cask matriq/tap/su03t-tools
+```
+
+Uninstall with `brew uninstall --cask matriq/tap/su03t-tools`. See the [tap installation guide](https://github.com/MatriQ/homebrew-tap/blob/main/README.en.md) for a custom app directory and other options.
+
+### Install script: macOS / Linux
+
+The script supports macOS (Apple Silicon / Intel) and Linux (x86_64 / ARM64). It selects the latest stable package and verifies SHA-256:
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash
 ```
 
-The installer selects the latest stable package for your platform and verifies SHA-256. The macOS destination is `~/Applications/SU03T Update.app`. Linux uses `~/.local/share/su03t-tools/vX.Y.Z` with a command link at `~/.local/bin/su03t-update`. The installer prints the launch command; quit an older running instance before opening the new app.
+| System | Default installation | Launch |
+| --- | --- | --- |
+| macOS | `~/Applications/SU03T Update.app` | Open the app, or use the full command printed by the installer |
+| Linux | `~/.local/share/su03t-tools/vX.Y.Z` | `~/.local/bin/su03t-update`; use `su03t-update` when the command directory is in PATH |
+
+Run the script again to upgrade, after quitting the app. Choose one installation method and use it for updates; resolve existing app or command conflicts before switching methods.
 
 Choose a version or destination:
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
+curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
+  bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
 ```
 
-On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) before running it. If the command directory is absent from PATH, follow the installer's output or use the full executable path.
+On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) before running it.
 
-For manual installation, download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), with the matching `SHA256SUMS.txt`. The Mac app is ad-hoc signed and not notarized; use the standard macOS approval flow after verifying the source. The installer retains OS security checks.
+### Manual download
 
-The macOS deployment target is 12.0. Linux packages are built on Ubuntu 24.04 and need compatible glibc and runtime libraries; build from source for other environments. Debian / Ubuntu desktop runtime packages:
+Download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), and verify it with the `SHA256SUMS.txt` from the same release.
+
+### Runtime requirements and first launch
+
+The macOS deployment target is 12.0. The current app is ad-hoc signed and not notarized. Verify the download source, then follow macOS prompts to approve the first launch in System Settings > Privacy & Security.
+
+Linux packages are built on Ubuntu 24.04 and need compatible glibc and runtime libraries; see [building from source](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/development.md#building-from-source) for other environments. Debian / Ubuntu desktop runtime packages:
 
 ```bash
 sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client0 \
   libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
 ```
 
-Chinese text requires an available CJK font. Linux serial permissions are managed by the OS; check dialout/uucp membership or device permissions. The application does not open ports using sudo.
-
-See [validation](.harness/docs/validation.md) for the tested OS, board and driver scope.
+Chinese text requires an available CJK font. Linux serial permissions are managed by the OS; check dialout/uucp membership or device permissions. The app does not open ports using sudo. See [validation](.harness/docs/validation.md) for the tested OS, board and driver scope.
 
 ## macOS startup driver check
 
