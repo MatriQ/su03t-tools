@@ -469,7 +469,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/index.md",
-          "sha256": "63389c39a7b1d8c093fe365b162898c808c9f3de1563b56ae7defb7ef91da4d5",
+          "sha256": "23da742a6a29cb2850c6514b179d30063875b159e6c08a3426d80d0e64649f63",
           "sources": [
             {
               "path": ".cargo/config.toml",
