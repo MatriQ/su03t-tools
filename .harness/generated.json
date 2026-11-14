@@ -8,7 +8,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/index.md",
-      "sha256": "86cd070f4472646dda75e239ae3f1ed37091242ab53391a2c9bbf62cd78c1192"
+      "sha256": "91cfaf931b88822acc9dd3d75353b201ae6bb509de294369ee98c32ddad1f7b5"
     },
     {
       "executable": false,
@@ -48,7 +48,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/release.md",
-      "sha256": "e949b38c861e46955ca370f100f2205e84febb1587f7b7204e5531afee1189da"
+      "sha256": "4a3a32b2d37133c1c9af87608fb5348a1a3eb445f4c8b41a90dadae04b48b4f8"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "eaa13f66b3c866459e32efb11742ac9082c84949f490bba5cac83333c6b7d3f5"
+      "sha256": "4f99e12a5712cb659167c5b256a05ff0a321b109c9e286630fe61c707b9fe6f4"
     }
   ],
   "profile_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
@@ -206,11 +206,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
+      "sha256": "c1b27dc6928ec4e5d82af19498524d97e1019004b16ec8f940c163fcee902a4d"
     },
     {
       "path": "README.en.md",
-      "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
+      "sha256": "062705abe2fd8908a4c3031b663ec1d7eb458eb4b8f4ff9e33902c89f57be710"
     },
     {
       "path": "CONTRIBUTING.md",

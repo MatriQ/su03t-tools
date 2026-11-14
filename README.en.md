@@ -20,6 +20,14 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 
 ## Installation
 
+On macOS, install the app and `su03t-update` command from the independently maintained [Homebrew tap](https://github.com/MatriQ/homebrew-tap):
+
+```bash
+brew install --cask matriq/tap/su03t-tools
+```
+
+Run `brew update` followed by `brew upgrade --cask matriq/tap/su03t-tools` to upgrade, or `brew uninstall --cask matriq/tap/su03t-tools` to uninstall. Homebrew installs the app in `/Applications` by default. Quit the app and resolve existing app or command conflicts before switching installers. The current release is not notarized; first launch still follows the macOS approval flow.
+
 On macOS (Apple Silicon / Intel) or Linux (x86_64 / ARM64), run:
 
 ```bash

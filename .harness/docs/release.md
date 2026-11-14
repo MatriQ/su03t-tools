@@ -84,3 +84,13 @@ A gh version proves neither login nor target access. A repository read proves th
 Verify installation with a temporary --prefix, preserving real apps and sessions. Roll back the app with --version for a known compatible older release; Linux retains previous version directories. Firmware rollback is a separate explicit hardware operation. Published bytes remain immutable.
 
 Fix source/package failures before publication. For publish failure inspect logs and existing draft first, then rerun failed jobs with original verified artifacts when appropriate. Resolve identity/permission errors in that exact context. See [contribution release policy](../../CONTRIBUTING.md#releases) and [validation limits](validation.md).
+
+## Homebrew distribution
+
+The public [MatriQ/homebrew-tap](https://github.com/MatriQ/homebrew-tap) independently maintains the macOS Cask. Users install with `brew install --cask matriq/tap/su03t-tools`; Homebrew installs the app and links the same `su03t-update` CLI. The existing shell installer remains available for macOS and Linux. Quit the application before changing versions or uninstalling.
+
+The tap's Update Cask workflow polls the latest published stable Release hourly and supports manual dispatch. It verifies the actual Mac archive and checksum manifest against GitHub asset SHA-256 metadata, then checks that the manifest agrees with the archive. It refuses incomplete releases, prereleases, automatic downgrades and changed bytes for an existing version. Homebrew style, audit, livecheck, temporary-app-directory installation and uninstall checks run before the bot commits a new version. The tap uses its own built-in GITHUB_TOKEN and needs no cross-repository secret or source-release workflow change. Scheduled runs can be delayed by GitHub.
+
+[Tap maintenance and checks](https://github.com/MatriQ/homebrew-tap/blob/main/.harness/docs/index.md) belong to that separate repository; this harness does not enroll it as a source member. A release is available through Homebrew after its verified Cask update reaches the tap's default branch. Remove the tap's unsigned-release caveat when notarized artifacts become the supported upstream distribution.
+
+The current app remains ad-hoc signed and not notarized. Homebrew retains quarantine and macOS first-launch approval. Cask installation checks do not prove Gatekeeper acceptance, physical flashing or official Homebrew inclusion. Preserve existing apps and command links when switching installers; resolve conflicts explicitly instead of using force or removing quarantine.
