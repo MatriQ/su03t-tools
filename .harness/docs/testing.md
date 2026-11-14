@@ -39,6 +39,10 @@ python3 tests/handshake_diagnostics.py target/debug/su03t-update
 
 The last two explicitly use the macOS-only --virtual-port adapter. Portable client/events suites select the correct adapter. It is not a workaround for an actual device.
 
+## Coverage and compatibility
+
+Unit and PTY suites cover packet framing, CRC, padding, sequence wrap, retries, cancellation, changed-file rejection before serial open, missing final acknowledgment, display clearing and scroll following. They use synthetic input and newly created virtual serial ports. Read the [protocol](protocol.md), [hardware acceptance and historical validation](validation.md), and [contribution guide](../../CONTRIBUTING.md) for the corresponding contracts and acceptance scope.
+
 ## CI and reporting
 
 [Source CI](../../.github/workflows/check.yml) covers macOS/Ubuntu. [Package CI](../../.github/workflows/release.yml) covers Mac universal and Ubuntu x86_64/ARM64; it verifies real archives with PTYs and temporary installation, plus eight-second Xvfb GUI startup on Linux. The separate [harness gate](../../.github/workflows/harness-gate.yml) runs Node 24 artifact checks without this machine's local context.

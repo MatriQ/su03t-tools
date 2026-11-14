@@ -31,7 +31,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -39,7 +39,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -51,11 +51,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -182,7 +182,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/development.md",
-          "sha256": "4ba6ce5416132423b3f1955fef9581d256618ac9f927c3e2352d5d4ddcd6229f",
+          "sha256": "a1f34b18b84075d7b68a27ddfe3c60fe9adefb5ede15cb083d9d791c7c693c03",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -206,7 +206,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -214,7 +214,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -226,11 +226,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -381,7 +381,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -389,7 +389,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -401,11 +401,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -532,7 +532,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/maintenance.md",
-          "sha256": "49ee1d42fbc2b068d35ba8470c9faac621d30ab5e3f1c458b4cf674e15149106",
+          "sha256": "e82811c99d0570327aa75cecb6240710ed9901dfeb8d38b4c478c27b5661f3d8",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -556,7 +556,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -564,7 +564,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -576,11 +576,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -727,7 +727,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -735,7 +735,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -747,11 +747,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -878,7 +878,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/release.md",
-          "sha256": "29a0d0cc804832eb141e6d28269bd4cdb9ea45ec53df5a07a9e4a5c50025b23f",
+          "sha256": "e949b38c861e46955ca370f100f2205e84febb1587f7b7204e5531afee1189da",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -902,7 +902,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -910,7 +910,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -922,11 +922,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -1053,7 +1053,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/testing.md",
-          "sha256": "4eec2e4d26048d0be877ab4fee350fb0f119f1318e106728e34119a6550113e2",
+          "sha256": "c7b8182470aff9f924e483efeb60a47c46e8da7a7e17f6eab4621923136b7be0",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -1077,7 +1077,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -1085,7 +1085,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -1097,11 +1097,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -1252,7 +1252,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -1260,7 +1260,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -1272,11 +1272,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -1403,7 +1403,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/validation.md",
-          "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85",
+          "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -1431,7 +1431,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -1443,11 +1443,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -1574,7 +1574,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/rules/engineering.md",
-          "sha256": "aa0cbcb67014171d4968a228cde41835990247fdebe3e0a9332ea1f8e927dec5",
+          "sha256": "c7aaa4f789dc2bf4a4310087765807e451918c19bfe8c2f44e3fd0d4a0f5d5e7",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -1598,7 +1598,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -1606,7 +1606,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -1618,11 +1618,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -1773,7 +1773,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -1781,7 +1781,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -1793,11 +1793,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -1948,7 +1948,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -1956,7 +1956,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -1968,11 +1968,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -2123,7 +2123,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -2131,7 +2131,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -2143,11 +2143,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -2298,11 +2298,11 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -2314,11 +2314,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -2445,7 +2445,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": "CONTRIBUTING.md",
-          "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86",
+          "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -2469,7 +2469,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -2485,11 +2485,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -2616,7 +2616,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": "README.en.md",
-          "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0",
+          "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -2640,7 +2640,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -2648,7 +2648,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -2660,7 +2660,7 @@
             },
             {
               "path": "README.md",
-              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+              "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
             },
             {
               "path": "install.sh",
@@ -2787,7 +2787,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": "README.md",
-          "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f",
+          "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -2811,7 +2811,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+              "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
             },
             {
               "path": "AGENTS.md",
@@ -2819,7 +2819,7 @@
             },
             {
               "path": "CONTRIBUTING.md",
-              "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+              "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
             },
             {
               "path": "Cargo.lock",
@@ -2831,7 +2831,7 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+              "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
             },
             {
               "path": "install.sh",
@@ -3043,7 +3043,7 @@
         },
         {
           "path": ".harness/docs/validation.md",
-          "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
+          "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
         },
         {
           "path": "AGENTS.md",
@@ -3051,7 +3051,7 @@
         },
         {
           "path": "CONTRIBUTING.md",
-          "sha256": "3b7f319f5835f79f45348501245d3acb5a2851d08da90f3055cc88173eb9ec86"
+          "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
         },
         {
           "path": "Cargo.lock",
@@ -3063,11 +3063,11 @@
         },
         {
           "path": "README.en.md",
-          "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
+          "sha256": "e9c4ccd4af1466dd339232f9c2640867cf49507b5459baf8c31b99c0a35dcd7f"
         },
         {
           "path": "README.md",
-          "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
+          "sha256": "ff9dcb39efc2b1d3567f0126a0441525140060b21d00ddecdac0eb2a1b420c07"
         },
         {
           "path": "install.sh",
