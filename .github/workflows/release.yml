@@ -177,6 +177,14 @@ jobs:
           if ($LASTEXITCODE) { throw 'Packaged CLI checks failed.' }
           ./tests/test_windows_installer.ps1 -BinaryDirectory archive-smoke
           ./tests/windows_gui_smoke.ps1 -Directory archive-smoke
+          Expand-Archive "dist/SU03T-Tools-v$env:RELEASE_VERSION-Windows-x86_64-portable.zip" archive-smoke-portable
+          python3 tests/cli_smoke.py archive-smoke-portable/su03t-update.exe
+          if ($LASTEXITCODE) { throw 'Portable CLI checks failed.' }
+          ./tests/windows_gui_smoke.ps1 -Directory archive-smoke-portable -Portable -Output .harness/local-evidence/windows-ui/portable
+      - if: runner.os == 'Windows'
+        name: Verify the portable desktop with Windows PowerShell 5.1
+        shell: powershell
+        run: ./tests/windows_gui_smoke.ps1 -Directory archive-smoke-portable -Portable -Output .harness/local-evidence/windows-ui/portable-ps5
       - if: always() && runner.os == 'Windows'
         name: Retain Windows GUI evidence
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -190,8 +198,8 @@ jobs:
         with:
           name: package-${{ matrix.platform }}
           path: |
-            dist/SU03T-Tools-v${{ needs.metadata.outputs.version }}-${{ matrix.platform }}.*
-            dist/SU03T-Tools-v${{ needs.metadata.outputs.version }}-SHA256SUMS-${{ matrix.platform }}.txt
+            dist/SU03T-Tools-v${{ needs.metadata.outputs.version }}-${{ matrix.platform }}*
+            dist/SU03T-Tools-v${{ needs.metadata.outputs.version }}-SHA256SUMS-${{ matrix.platform }}*.txt
           if-no-files-found: error
           overwrite: true
           retention-days: 14

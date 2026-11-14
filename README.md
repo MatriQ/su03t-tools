@@ -41,9 +41,11 @@ brew upgrade --cask matriq/tap/su03t-tools
 
 ### Windows 10 / 11 x64
 
-从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 `Windows-x86_64.zip`，完整解压后双击 `su03t-tools.exe` 打开桌面界面；`su03t-update.exe` 用于命令行。两个程序请放在同一目录。
+**便携版**：从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载名称以 `Windows-x86_64-portable.zip` 结尾的包，完整解压到可写目录，双击 `su03t-tools.exe` 打开界面；`su03t-update.exe` 用于命令行，无需安装或管理员权限。
 
-也可在 PowerShell 中一键安装到当前用户目录，无需管理员权限：
+保留同目录的 `portable.flag` 和两个程序，语言设置保存到旁边的 `data/language.json`。退出后可移动整个文件夹，设置随之保留；更新时覆盖程序文件并保留 `data` 目录，删除整个文件夹即可移除便携版。便携版不写入 `%APPDATA%`，不创建开始菜单快捷方式。目录不可写时，界面会提示设置保存失败。
+
+**安装到用户目录**：在 PowerShell 中运行以下命令，无需管理员权限。此方式使用普通 `Windows-x86_64.zip`，语言设置保存到 `%APPDATA%\SU03T Tools`：
 
 ```powershell
 irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1 | iex
@@ -80,7 +82,7 @@ curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/instal
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
-  bash -s -- --version v0.6.0 --prefix "$HOME/Applications"
+  bash -s -- --version v0.6.1 --prefix "$HOME/Applications"
 ```
 
 `--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) 阅读后执行。

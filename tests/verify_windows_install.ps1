@@ -25,3 +25,16 @@ try {
 }
 if (Test-Path (Join-Path $Prefix 'app')) { throw 'Uninstall left application files behind.' }
 Write-Output "PASS: public $Tag Windows download, installer SHA-256, installation, Unicode path, CLI and uninstall"
+if ([version]($Tag.TrimStart('v')) -ge [version]'0.6.1') {
+  $Name = "SU03T-Tools-$Tag-Windows-x86_64-portable.zip"
+  gh release download $Tag --repo MatriQ/su03t-tools --pattern $Name --dir $Download
+  if ($LASTEXITCODE) { throw 'Public portable download failed.' }
+  $Archive = Join-Path $Download $Name
+  $Asset = @($Release.assets | Where-Object { $_.name -eq $Name })
+  if ($Asset.Count -ne 1 -or $Asset[0].digest -ne ('sha256:' + (Get-FileHash $Archive -Algorithm SHA256).Hash.ToLowerInvariant())) { throw 'Portable archive digest mismatch.' }
+  $Portable = Join-Path $Download 'portable'
+  Expand-Archive -LiteralPath $Archive -DestinationPath $Portable
+  if ((& (Join-Path $Portable 'su03t-update.exe') --version) -ne "su03t-update $($Tag.TrimStart('v'))") { throw 'Portable version mismatch.' }
+  ./tests/windows_gui_smoke.ps1 -Directory $Portable -Portable -Output .harness/local-evidence/public-windows-ui
+  Write-Output "PASS: public $Tag portable archive, SHA-256, native GUI, local settings and relocation"
+}

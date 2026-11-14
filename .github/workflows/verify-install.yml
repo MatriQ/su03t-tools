@@ -30,3 +30,11 @@ jobs:
         run: |
           & $env:VERIFY_SHELL -NoProfile -File tests/verify_windows_install.ps1 -Version $env:RELEASE_REQUEST
           if ($LASTEXITCODE) { throw 'Public Windows installation verification failed.' }
+      - if: always()
+        name: Retain public portable GUI evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: public-windows-ui-${{ matrix.shell }}
+          path: .harness/local-evidence/public-windows-ui/
+          if-no-files-found: ignore
+          retention-days: 14
