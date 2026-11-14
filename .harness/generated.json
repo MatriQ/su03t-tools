@@ -38,7 +38,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/testing.md",
-      "sha256": "5f2d9e0b34769efc0870e1ad706ec6d571827a43b14da1a526dda97a568dfeae"
+      "sha256": "5a28e0b657c7e21ca49c9f3b823177b01be2bb7c20afa4cb0f6ba54dcbbe7678"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "4b67de22c2a1ac15fa5ad77746c5dc29b751ce82ec4c3106c15f3acb618c6393"
+      "sha256": "4eafb0455f637e4188ceb47f15b23fdaf8d3c86278586ef8bef3d7a77e9a70d7"
     }
   ],
   "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
@@ -226,7 +226,7 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "e14646b96fffcefd51ca8052a2cbbd16211702f9e7c9ba8f10a13b6ff559a1b7"
+      "sha256": "2f6b234e4792fc1b741eb0456dcc3d01759b878ebbca2d4fcb8ff38b33f20656"
     },
     {
       "path": "src/main.rs",
@@ -394,7 +394,7 @@
     },
     {
       "path": "tests/windows_gui_smoke.ps1",
-      "sha256": "f71def9123e0fc8beae053db0271bb5232a33584ebf6102c40bba20f4e5c0313"
+      "sha256": "4ffbdfc510a76fc23e5f6bbee38ee6eb3677ad30aa5d5dbaf0850534a35805ef"
     },
     {
       "path": ".github/workflows/verify-install.yml",

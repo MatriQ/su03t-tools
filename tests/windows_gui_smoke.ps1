@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([Parameter(Mandatory = $true)][string]$Directory, [string]$Output = '.harness/local-evidence/windows-ui', [switch]$ResizeDisplay)
+param([Parameter(Mandatory = $true)][string]$Directory, [string]$Output = '.harness/local-evidence/windows-ui')
 $ErrorActionPreference = 'Stop'
 $Directory = [IO.Path]::GetFullPath($Directory)
 $Output = [IO.Path]::GetFullPath($Output)
@@ -10,30 +10,14 @@ using System;
 using System.Runtime.InteropServices;
 public static class NativeSmokeWindow {
     [StructLayout(LayoutKind.Sequential)] public struct Rect { public int Left, Top, Right, Bottom; }
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)] public struct DisplayMode {
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string DeviceName;
-        public ushort SpecVersion, DriverVersion, Size, DriverExtra;
-        public uint Fields;
-        public int PositionX, PositionY;
-        public uint Orientation, FixedOutput;
-        public short Color, Duplex, YResolution, TTOption, Collate;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string FormName;
-        public ushort LogPixels;
-        public uint BitsPerPixel, Width, Height, DisplayFlags, Frequency;
-        public uint IcmMethod, IcmIntent, MediaType, DitherType, Reserved1, Reserved2, PanningWidth, PanningHeight;
-    }
-    [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr window, out Rect rectangle);
+    [StructLayout(LayoutKind.Sequential)] public struct Point { public int X, Y; }
+    [DllImport("user32.dll")] public static extern bool GetClientRect(IntPtr window, out Rect rectangle);
+    [DllImport("user32.dll")] public static extern bool ClientToScreen(IntPtr window, ref Point point);
+    [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr window, int command);
     [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr window);
-    [DllImport("user32.dll")] public static extern bool SetWindowPos(IntPtr window, IntPtr after, int x, int y, int width, int height, uint flags);
     [DllImport("user32.dll")] public static extern IntPtr SetThreadDpiAwarenessContext(IntPtr context);
-    [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)] public static extern bool EnumDisplaySettings(string device, int mode, ref DisplayMode data);
-    [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern int ChangeDisplaySettings(ref DisplayMode data, uint flags);
 }
 '@
-$OriginalDisplay = New-Object NativeSmokeWindow+DisplayMode
-$OriginalDisplay.Size = [Runtime.InteropServices.Marshal]::SizeOf($OriginalDisplay)
-if (![NativeSmokeWindow]::EnumDisplaySettings($null, -1, [ref]$OriginalDisplay)) { throw "Could not read display mode: size=$($OriginalDisplay.Size) error=$([Runtime.InteropServices.Marshal]::GetLastWin32Error())" }
-$DisplayChanged = $false
 $DpiContext = [NativeSmokeWindow]::SetThreadDpiAwarenessContext([IntPtr](-4))
 $OriginalAppData = $env:APPDATA
 $Temporary = Join-Path ([IO.Path]::GetTempPath()) ('su03t-gui-' + [guid]::NewGuid().ToString('N'))
@@ -45,24 +29,6 @@ if (@(Get-Process -Name su03t-update -ErrorAction SilentlyContinue | Where-Objec
     throw 'An existing application must be preserved; run this check in an isolated environment.'
 }
 try {
-    if ($ResizeDisplay) {
-        $Selected = $null
-        for ($Index = 0; $Index -lt 500; $Index++) {
-            $Candidate = New-Object NativeSmokeWindow+DisplayMode
-            $Candidate.Size = [Runtime.InteropServices.Marshal]::SizeOf($Candidate)
-            if (![NativeSmokeWindow]::EnumDisplaySettings($null, $Index, [ref]$Candidate)) { break }
-            if ($Candidate.Width -eq 1920 -and $Candidate.Height -eq 1080) { $Selected = $Candidate; break }
-            if ($Candidate.Width -ge 1280 -and $Candidate.Height -ge 960 -and (!$Selected -or $Candidate.Width * $Candidate.Height -lt $Selected.Width * $Selected.Height)) { $Selected = $Candidate }
-        }
-        if (!$Selected) { throw 'No display mode large enough for full-window screenshots.' }
-        $Selected.Fields = $Selected.Fields -bor 0x180000
-        if ([NativeSmokeWindow]::ChangeDisplaySettings([ref]$Selected, 0) -ne 0) { throw 'Could not resize the isolated CI display.' }
-        $DisplayChanged = $true
-        Start-Sleep -Seconds 2
-    }
-    $CurrentDisplay = New-Object NativeSmokeWindow+DisplayMode
-    $CurrentDisplay.Size = [Runtime.InteropServices.Marshal]::SizeOf($CurrentDisplay)
-    [NativeSmokeWindow]::EnumDisplaySettings($null, -1, [ref]$CurrentDisplay) | Out-Null
     foreach ($Language in @('zh', 'en')) {
         [IO.File]::WriteAllText($LanguageFile, ('"' + $Language + '"'), (New-Object Text.UTF8Encoding $false))
         $Process = $null
@@ -86,21 +52,16 @@ try {
             Start-Sleep -Seconds 5
             $Process.Refresh()
             if ($Process.HasExited -or !$Process.Responding -or $Process.MainWindowTitle -notlike 'SU-03T Tools*') { throw 'Native GUI did not remain responsive.' }
+            [NativeSmokeWindow]::ShowWindow($Process.MainWindowHandle, 3) | Out-Null
             [NativeSmokeWindow]::SetForegroundWindow($Process.MainWindowHandle) | Out-Null
+            Start-Sleep -Milliseconds 900
             $Rectangle = New-Object NativeSmokeWindow+Rect
-            if (![NativeSmokeWindow]::GetWindowRect($Process.MainWindowHandle, [ref]$Rectangle)) { throw 'Could not read application window bounds.' }
-            $Width = $Rectangle.Right - $Rectangle.Left
-            $Height = $Rectangle.Bottom - $Rectangle.Top
-            if ($Width -gt $CurrentDisplay.Width -or $Height -gt $CurrentDisplay.Height) { throw 'Display is too small to capture the whole window; use -ResizeDisplay in isolated CI.' }
-            $X = [int](($CurrentDisplay.Width - $Width) / 2)
-            $Y = [int](($CurrentDisplay.Height - $Height) / 2)
-            [NativeSmokeWindow]::SetWindowPos($Process.MainWindowHandle, [IntPtr]::Zero, $X, $Y, 0, 0, 5) | Out-Null
-            Start-Sleep -Milliseconds 700
-            [NativeSmokeWindow]::GetWindowRect($Process.MainWindowHandle, [ref]$Rectangle) | Out-Null
+            $Origin = New-Object NativeSmokeWindow+Point
+            if (![NativeSmokeWindow]::GetClientRect($Process.MainWindowHandle, [ref]$Rectangle) -or ![NativeSmokeWindow]::ClientToScreen($Process.MainWindowHandle, [ref]$Origin)) { throw 'Could not read the native client area.' }
             $Image = New-Object Drawing.Bitmap ($Rectangle.Right - $Rectangle.Left), ($Rectangle.Bottom - $Rectangle.Top)
             $Graphics = [Drawing.Graphics]::FromImage($Image)
             try {
-                $Graphics.CopyFromScreen($Rectangle.Left, $Rectangle.Top, 0, 0, $Image.Size)
+                $Graphics.CopyFromScreen($Origin.X, $Origin.Y, 0, 0, $Image.Size)
                 $Image.Save("$Output/windows-$Language.png", [Drawing.Imaging.ImageFormat]::Png)
             } finally { $Graphics.Dispose(); $Image.Dispose() }
             $CloseRequested = $Process.CloseMainWindow()
@@ -115,7 +76,6 @@ try {
     }
 } finally {
     $env:APPDATA = $OriginalAppData
-    if ($DisplayChanged) { [NativeSmokeWindow]::ChangeDisplaySettings([ref]$OriginalDisplay, 0) | Out-Null }
     if ($DpiContext -ne [IntPtr]::Zero) { [NativeSmokeWindow]::SetThreadDpiAwarenessContext($DpiContext) | Out-Null }
     Remove-Item -LiteralPath $Temporary -Recurse -Force
 }
