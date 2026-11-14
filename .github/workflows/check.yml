@@ -16,11 +16,13 @@ concurrency:
   cancel-in-progress: true
 jobs:
   check:
-    timeout-minutes: 20
+    timeout-minutes: 35
+    env:
+      PYTHONUTF8: '1'
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-24.04]
+        os: [macos-latest, ubuntu-24.04, windows-2022]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -33,16 +35,32 @@ jobs:
           components: rustfmt, clippy
       - if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libudev-dev libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev
-      - run: python3 tests/test_installer.py
+      - if: runner.os != 'Windows'
+        run: python3 tests/test_installer.py
       - run: python3 tests/test_release_assets.py
       - run: cargo fmt --all --check
       - run: cargo test --locked
-        timeout-minutes: 5
+        timeout-minutes: 15
       - run: cargo test --locked --no-default-features
         timeout-minutes: 5
       - run: cargo clippy --locked --all-targets -- -D warnings
       - run: cargo build --locked
-      - run: python3 tests/client_acceptance.py target/debug/su03t-update
-      - run: python3 tests/transfer_events.py target/debug/su03t-update
+      - if: runner.os != 'Windows'
+        run: python3 tests/client_acceptance.py target/debug/su03t-update
+      - if: runner.os != 'Windows'
+        run: python3 tests/transfer_events.py target/debug/su03t-update
+      - if: runner.os == 'Windows'
+        run: |
+          cargo build --locked --features windows-launcher
+          if ($LASTEXITCODE) { throw 'Windows launcher build failed.' }
+          python3 tests/cli_smoke.py target/debug/su03t-update.exe
+      - if: runner.os == 'Windows'
+        name: Test the Windows installer with PowerShell 7
+        shell: pwsh
+        run: ./tests/test_windows_installer.ps1 -BinaryDirectory target/debug
+      - if: runner.os == 'Windows'
+        name: Test the Windows installer with Windows PowerShell 5.1
+        shell: powershell
+        run: ./tests/test_windows_installer.ps1 -BinaryDirectory target/debug
       - if: runner.os == 'macOS'
         run: python3 tests/simulate_device.py target/debug/su03t-update

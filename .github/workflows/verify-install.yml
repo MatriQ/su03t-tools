@@ -1,0 +1,32 @@
+name: Verify Windows installation
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published stable release to verify (latest or vX.Y.Z)
+        type: string
+        default: latest
+permissions:
+  contents: read
+jobs:
+  install:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [pwsh, powershell]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify the public installer and application
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_REQUEST: ${{ inputs.version }}
+          VERIFY_SHELL: ${{ matrix.shell }}
+          PYTHONUTF8: '1'
+        run: |
+          & $env:VERIFY_SHELL -NoProfile -File tests/verify_windows_install.ps1 -Version $env:RELEASE_REQUEST
+          if ($LASTEXITCODE) { throw 'Public Windows installation verification failed.' }

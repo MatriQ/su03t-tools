@@ -25,6 +25,7 @@ class ReleaseAssetsTests(unittest.TestCase):
         self.assets = self.root / 'assets'
         self.assets.mkdir()
         (self.root / 'install.sh').write_text('#!/bin/bash\nexit 0\n')
+        (self.root / 'install.ps1').write_text('Write-Output \"test\"\n')
         self.patch = mock.patch.object(release, 'ROOT', self.root)
         self.patch.start()
         self.addCleanup(self.patch.stop)
@@ -39,12 +40,44 @@ class ReleaseAssetsTests(unittest.TestCase):
         manifest = release.parse_checksums(paths[-1].read_text())
         self.assertEqual(set(manifest), {p.name for p in paths[:-1]})
         self.assertEqual(manifest['install.sh'], release.digest(self.root / 'install.sh'))
-        self.assertEqual(len(paths), 5)
+        self.assertEqual(len(paths), 7)
+        self.assertEqual(manifest['install.ps1'], release.digest(self.root / 'install.ps1'))
 
     def test_partial_build_cannot_be_published(self):
         (self.assets / release.archive_name(self.value, 'Linux-aarch64')).unlink()
         with self.assertRaises(FileNotFoundError):
             release.assemble(self.assets, self.value)
+
+    def test_windows_package_is_required_for_new_releases(self):
+        (self.assets / release.archive_name(self.value, 'Windows-x86_64')).unlink()
+        with self.assertRaises(FileNotFoundError):
+            release.assemble(self.assets, self.value)
+
+    def test_older_release_layout_is_preserved(self):
+        value = '0.5.4'
+        expected = {'install.sh'}
+        for platform in ('macOS-universal', 'Linux-x86_64', 'Linux-aarch64'):
+            archive = self.assets / release.archive_name(value, platform)
+            archive.write_bytes(platform.encode())
+            release.write_checksums(self.assets / f'SU03T-Tools-v{value}-SHA256SUMS-{platform}.txt', [archive])
+            expected.add(archive.name)
+        paths = release.assemble(self.assets, value)
+        self.assertEqual(set(release.parse_checksums(paths[-1].read_text())), expected)
+
+    def test_windows_zip_preserves_nested_unicode_documents(self):
+        directory = self.root / 'windows'
+        directory.mkdir()
+        for name in ('su03t-update.exe', 'su03t-tools.exe', 'LICENSE', 'THIRD_PARTY_NOTICES.txt'):
+            (directory / name).write_bytes(b'test')
+        document = directory / '.harness/docs/validation.md'
+        document.parent.mkdir(parents=True)
+        document.write_text('Unicode: 中文', encoding='utf-8')
+        with mock.patch.object(release, 'version', return_value=self.value):
+            release.windows_archive(directory)
+        import zipfile
+        archive = self.root / 'dist' / release.archive_name(self.value, 'Windows-x86_64')
+        with zipfile.ZipFile(archive) as bundle:
+            self.assertEqual(bundle.read('.harness/docs/validation.md').decode('utf-8'), 'Unicode: 中文')
 
     def test_changed_package_is_rejected_before_combining_checksums(self):
         (self.assets / release.archive_name(self.value, 'macOS-universal')).write_bytes(b'changed')
