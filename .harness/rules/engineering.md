@@ -10,6 +10,7 @@ Scope: firmware, UI/CLI, diagnostics, packaging and harness. [CONTRIBUTING](../.
 - Public documentation covers SU-03T firmware transfer and generic serial diagnostics. Use generic examples and omit application-specific project names and configurations.
 - Keep proprietary firmware, vendor tools, credentials and private logs out of commits/screenshots. Ignored vendor analysis is optional, never a build prerequisite or a release asset.
 - Follow the task's publication scope, existing identities and focused commit style. Preserve published assets and tags; changed released bytes require a new version.
+- Keep READMEs focused on features, installation and usage, with a brief Harness overview and links to development, testing and release guides. Maintain detailed engineering procedures under .harness/docs/.
 - New AI project prose belongs under .harness/docs/ with updated navigation/sources. Reuse the user's keep/move choices. These instructions are not a native permission policy or hook.
 
 ## Conditional Notion integration

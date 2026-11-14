@@ -8,7 +8,7 @@ Environments are the local checkout, GitHub-hosted CI, public Releases, and user
 
 ## Pipeline
 
-[release.yml](../../.github/workflows/release.yml) builds main/PR artifacts retained for 14 days. Matching version tags, published Release events, or manual runs with an existing tag enable publication. A manual run without a tag builds only. Metadata requires tag/version and checkout/tag commit equality.
+[release.yml](../../.github/workflows/release.yml) builds main/PR artifacts retained for 14 days. Matching version tags, published Release events, or manual runs with an existing tag enable publication. A manual run without a tag builds only. Automation is available for v0.5.3 and later tags. Metadata requires tag/version and checkout/tag commit equality.
 
 1. Update Cargo.toml/Cargo.lock version and Mac CFBundleVersion in [package-macos.sh](../../scripts/package-macos.sh). Update the version-bound harness CLI probe expectation, then refresh affected source/document reviews through [maintenance](maintenance.md).
 2. Run [checks](testing.md), review the diff and follow the current task's publication scope. Push an annotated matching vX.Y.Z tag. Do not retag an old release to hide a fix.
@@ -16,14 +16,55 @@ Environments are the local checkout, GitHub-hosted CI, public Releases, and user
 4. [release_assets.py](../../scripts/release_assets.py) verifies partial hashes, adds install.sh and a unified manifest, uploads a draft, verifies it, then publishes. Only publish has contents:write; CI uses the built-in GITHUB_TOKEN.
 5. Publication retries four times with 20 seconds between attempts, allowing draft read visibility to catch up. Incomplete drafts can resume. Complete published assets are verified without replacement; changed released bytes need a new version.
 
-Assets are three platform archives, install.sh and SU03T-Tools-vX.Y.Z-SHA256SUMS.txt. Platform suffixes identify archives; the repository has no OS suffix. Matching-host manual packaging commands:
+Assets are three platform archives, install.sh and SU03T-Tools-vX.Y.Z-SHA256SUMS.txt. Platform suffixes identify archives; the repository has no OS suffix.
+
+## Local packaging
+
+Complete [source-build prerequisites](development.md#native-dependencies) first. Packaging needs Python 3 and the Rust documentation component to collect dependency and standard-library licenses:
 
 ~~~bash
+rustup component add rust-docs
+~~~
+
+The first packaging run fetches missing license files from the dependencies' recorded upstream commits and caches them under target/.
+
+### macOS
+
+Build a native app bundle for the current Mac:
+
+~~~bash
+bash scripts/package-macos.sh
+~~~
+
+For a universal app, install both Rust targets and package both slices:
+
+~~~bash
+rustup target add aarch64-apple-darwin x86_64-apple-darwin
 bash scripts/package-macos.sh --universal
+~~~
+
+The app is written to dist/SU03T Update.app; universal mode also creates the release ZIP and platform checksum file. The app uses an ad-hoc signature and is not notarized.
+
+### Linux
+
+Run on Linux with the native libraries available:
+
+~~~bash
 bash scripts/package-linux.sh
 ~~~
 
-Run the first only on macOS and the second only on Linux. Packaging needs rust-docs for bundled licenses. Linux includes protocol.md and validation.md under .harness/docs/ to retain README links after extraction.
+The script writes the native archive and platform checksum to dist/. Protocol and validation documents stay under .harness/docs/ inside the archive so their local README links resolve. README engineering links point to the repository guides, which belong with the source checkout.
+
+## Publish a new version
+
+After updating and committing the version/build metadata described in the pipeline above, replace X.Y.Z with that new stable Cargo version:
+
+~~~bash
+git tag -a vX.Y.Z -m "SU-03T Tools X.Y.Z"
+git push origin vX.Y.Z
+~~~
+
+Expect source checks, all three platform packages and final publication to succeed. Tag/version mismatches stop publication. A manual workflow run with an existing tag follows the same guards; an empty tag produces artifacts only.
 
 ## Inspect delivery
 

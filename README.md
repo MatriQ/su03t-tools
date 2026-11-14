@@ -34,7 +34,7 @@ curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/instal
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
 ```
 
-`--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](install.sh) 阅读后执行。Linux 若提示 PATH 未包含命令目录，请按安装器输出添加，或使用显示的完整路径启动。
+`--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) 阅读后执行。Linux 若提示 PATH 未包含命令目录，请按安装器输出添加，或使用显示的完整路径启动。
 
 手动安装可从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。macOS 应用使用临时签名、未公证，首次打开按系统标准流程确认来源；安装器保留系统的安全检查。
 
@@ -44,6 +44,8 @@ macOS 构建目标为 12.0。Linux 发行包在 Ubuntu 24.04 上构建，需要�
 sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client0 \
   libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
 ```
+
+中文显示需要可用的中文字体。Linux 串口权限由系统配置决定；检查 dialout/uucp 组或设备权限，工具不会使用 sudo 打开串口。
 
 具体系统、板型和驱动兼容性见[验证范围](.harness/docs/validation.md)。
 
@@ -120,62 +122,20 @@ su03t-update flash --port /dev/ttyUSB0 --firmware firmware_update.bin
 
 macOS 使用实际枚举的 `/dev/cu.*`。`probe` 默认被动监听，需要启动触发时显式加 `--trigger`。`monitor` 仅在显式指定 `--send-hex` 或 `--send-text` 时发送。更多参数见 `--help`。
 
-## 从源码构建
+## 兼容范围
 
-需要 Rust stable 和本机 C 编译工具链；本项目使用 Rust 1.95 验证。Linux 还需 libudev 以及桌面相关开发库。Debian / Ubuntu 示例：
+串口升级仍是实验性功能，不能默认用于其他型号。`CCC` 不识别型号，EOT ACK 只确认传输结束，**不等于读回校验、正常启动或语音功能验证**。请始终使用已确认适配的固件和启动程序。参见[协议说明](.harness/docs/protocol.md)和[验证记录](.harness/docs/validation.md)。
 
-```bash
-sudo apt-get install build-essential pkg-config libudev-dev libxkbcommon-dev \
-  libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev \
-  libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev fonts-noto-cjk
-```
+## 开发与 Harness
 
-```bash
-cargo build --locked --release
-cargo build --locked --release --no-default-features  # 仅 CLI
-bash scripts/package-macos.sh                      # 本机 .app
-rustup target add aarch64-apple-darwin x86_64-apple-darwin
-bash scripts/package-macos.sh --universal           # macOS 通用 .app
-bash scripts/package-linux.sh                     # 在 Linux 上打包
-```
+本仓库的 Harness 将开发、验证与发布指引集中维护在 `.harness/docs/`，供维护者、Codex 和 Claude Code 共用。统一入口是 [AGENTS.md](https://github.com/MatriQ/su03t-tools/blob/main/AGENTS.md)，`CLAUDE.md` 指向同一入口。
 
-打包脚本需要 Python 3 和 Rust 文档组件（`rustup component add rust-docs`），以附带依赖与标准库的许可证。首次打包会从依赖记录的上游提交获取缺失的许可证文件，并缓存在 `target/`。
+- [从源码构建与本地开发](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/development.md#building-from-source)
+- [测试与验证](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/testing.md)
+- [打包与自动发布](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/release.md)
+- [Harness 导航](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/index.md)与[维护说明](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/maintenance.md)
 
-中文显示需要可用的中文字体。Linux 串口权限由系统配置决定；检查 dialout/uucp 组或设备权限，工具不会使用 sudo 打开串口。
-
-## 打包与自动发布
-
-[Packages and releases CI](https://github.com/MatriQ/su03t-tools/actions/workflows/release.yml) 在 main 提交和 PR 上构建三平台安装包，产物保留 14 天。推送 `vX.Y.Z` 标签，或在 GitHub 发布对应 Release 后，会检查版本、执行源码测试、打包和验证，再自动上传安装包、`install.sh` 及统一 SHA-256 文件。
-
-发布新版本时，先更新 `Cargo.toml` / `Cargo.lock` 中的版本以及 macOS bundle build number，提交后推送相同版本的标签。例如：
-
-```bash
-git tag -a v0.5.4 -m "SU-03T Tools 0.5.4"
-git push origin v0.5.4
-```
-
-也可以在 Actions 中手动运行打包流程：留空 tag 仅生成构建产物，填写已有标签则发布该版本。自动化适用于 v0.5.3 及后续标签。标签与 Cargo 版本不一致时会停止；新 Release 先以草稿上传并校验，三个平台全部完成后再公开。重复运行已完整发布的版本会验证已有产物，保持已发布文件不变。
-
-## 测试与兼容范围
-
-```bash
-python3 tests/test_installer.py
-python3 tests/test_release_assets.py
-cargo fmt --all --check
-cargo clippy --locked --all-targets -- -D warnings
-cargo test --locked
-cargo test --locked --no-default-features
-cargo build --locked
-python3 tests/client_acceptance.py target/debug/su03t-update
-python3 tests/transfer_events.py target/debug/su03t-update
-# 以下两项使用 macOS PTY 测试适配器
-python3 tests/simulate_device.py target/debug/su03t-update
-python3 tests/handshake_diagnostics.py target/debug/su03t-update
-```
-
-测试使用虚拟串口，不打开已连接的 USB 设备。覆盖包格式、CRC、序号回绕、重传、取消、文件变化拒绝、缺失结束确认、日志清除与自动跟随等。参见[协议说明](.harness/docs/protocol.md)、[验证记录](.harness/docs/validation.md)及[贡献指南](CONTRIBUTING.md)。
-
-串口升级仍是实验性功能，不能默认用于其他型号。`CCC` 不识别型号，EOT ACK 只确认传输结束，**不等于读回校验、正常启动或语音功能验证**。请始终使用已确认适配的固件和启动程序。
+参与开发前，请阅读[贡献指南](https://github.com/MatriQ/su03t-tools/blob/main/CONTRIBUTING.md)。
 
 ## 许可证与资料
 

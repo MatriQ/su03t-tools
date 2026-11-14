@@ -34,7 +34,7 @@ Choose a version or destination:
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
 ```
 
-On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](install.sh) before running it. If the command directory is absent from PATH, follow the installer's output or use the full executable path.
+On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) before running it. If the command directory is absent from PATH, follow the installer's output or use the full executable path.
 
 For manual installation, download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), with the matching `SHA256SUMS.txt`. The Mac app is ad-hoc signed and not notarized; use the standard macOS approval flow after verifying the source. The installer retains OS security checks.
 
@@ -44,6 +44,8 @@ The macOS deployment target is 12.0. Linux packages are built on Ubuntu 24.04 an
 sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client0 \
   libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
 ```
+
+Chinese text requires an available CJK font. Linux serial permissions are managed by the OS; check dialout/uucp membership or device permissions. The application does not open ports using sudo.
 
 See [validation](.harness/docs/validation.md) for the tested OS, board and driver scope.
 
@@ -120,62 +122,20 @@ su03t-update flash --port /dev/ttyUSB0 --firmware firmware_update.bin
 
 On macOS, use the enumerated `/dev/cu.*` path. `probe` listens passively unless `--trigger` is supplied. `monitor` transmits only with explicit `--send-hex` or `--send-text` arguments. See `--help` for additional options. Desktop language selection does not change the existing CLI output format.
 
-## Building from source
+## Compatibility
 
-Use Rust stable and native C build tools; this project was validated with Rust 1.95. Linux also needs libudev and desktop development libraries. For Debian / Ubuntu:
+Firmware upgrading remains experimental and is not assumed compatible with other module models. `CCC` does not identify a model. EOT ACK confirms the end of transfer only: **it does not verify flash readback, normal boot or voice functions.** Use firmware and a bootloader known to match your module. See the [protocol](.harness/docs/protocol.md) and [validation record](.harness/docs/validation.md).
 
-```bash
-sudo apt-get install build-essential pkg-config libudev-dev libxkbcommon-dev \
-  libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev \
-  libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev fonts-noto-cjk
-```
+## Development and Harness
 
-```bash
-cargo build --locked --release
-cargo build --locked --release --no-default-features  # CLI only
-bash scripts/package-macos.sh                       # Native .app
-rustup target add aarch64-apple-darwin x86_64-apple-darwin
-bash scripts/package-macos.sh --universal            # Universal macOS .app
-bash scripts/package-linux.sh                      # Run on Linux
-```
+The repository's Harness keeps shared development, verification and release guidance in `.harness/docs/` for maintainers, Codex and Claude Code. [AGENTS.md](https://github.com/MatriQ/su03t-tools/blob/main/AGENTS.md) is the canonical entry; `CLAUDE.md` links to it.
 
-Packaging requires Python 3 and the Rust documentation component (`rustup component add rust-docs`) to include dependency and standard-library notices. The first packaging run fetches missing license files at the dependencies’ recorded upstream commits and caches them under `target/`.
+- [Building from source and local development](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/development.md#building-from-source)
+- [Testing and verification](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/testing.md)
+- [Packaging and automated releases](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/release.md)
+- [Harness guide](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/index.md) and [maintenance](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/maintenance.md)
 
-Chinese text requires an available CJK font. Linux serial permissions are managed by the OS; check dialout/uucp membership or device permissions. The application does not open ports using sudo.
-
-## Packaging and automated releases
-
-[Packages and releases CI](https://github.com/MatriQ/su03t-tools/actions/workflows/release.yml) builds all three packages for main commits and pull requests, retaining artifacts for 14 days. A `vX.Y.Z` tag push, or publishing the corresponding GitHub Release, validates the version, runs source checks, builds and verifies the packages, then uploads them with `install.sh` and a combined SHA-256 manifest.
-
-To release a new version, update `Cargo.toml`, `Cargo.lock` and the macOS bundle build number, commit, then push a matching tag. For example:
-
-```bash
-git tag -a v0.5.4 -m "SU-03T Tools 0.5.4"
-git push origin v0.5.4
-```
-
-The Actions workflow also supports manual runs: leave tag empty for artifacts only, or supply an existing tag to publish it. Automation starts with v0.5.3. Tag/version mismatches stop publication. New releases remain drafts until all three platforms and their checksums have been uploaded and verified. Repeating a complete published release verifies its existing assets without replacing them.
-
-## Testing and compatibility
-
-```bash
-python3 tests/test_installer.py
-python3 tests/test_release_assets.py
-cargo fmt --all --check
-cargo clippy --locked --all-targets -- -D warnings
-cargo test --locked
-cargo test --locked --no-default-features
-cargo build --locked
-python3 tests/client_acceptance.py target/debug/su03t-update
-python3 tests/transfer_events.py target/debug/su03t-update
-# The next two suites use the macOS PTY adapter
-python3 tests/simulate_device.py target/debug/su03t-update
-python3 tests/handshake_diagnostics.py target/debug/su03t-update
-```
-
-Tests use virtual serial ports, not attached USB devices. They cover framing, CRC, sequence wrap, retries, cancellation, changed-file rejection, missing final acknowledgment, log clearing and scroll following. Read the [protocol notes](.harness/docs/protocol.md), [validation record](.harness/docs/validation.md) and [contribution guide](CONTRIBUTING.md).
-
-Firmware upgrading remains experimental and is not assumed compatible with other module models. `CCC` does not identify a model. EOT ACK confirms the end of transfer only: **it does not verify flash readback, normal boot or voice functions.** Use firmware and a bootloader known to match your module.
+Read the [contribution guide](https://github.com/MatriQ/su03t-tools/blob/main/CONTRIBUTING.md) before contributing.
 
 ## License and references
 

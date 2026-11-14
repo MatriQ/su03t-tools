@@ -13,7 +13,7 @@ The authored input is [harness.json](../harness.json); [workspace.json](../works
 node .harness/runtime/check.mjs --workspace .
 ~~~
 
-New AI prose belongs in .harness/docs/. The user kept README.md, README.en.md and CONTRIBUTING.md at the root and moved protocol.md/validation.md here. Keep callers and Linux archive paths aligned; preserve historical validation claims.
+New AI prose belongs in .harness/docs/. README.md, README.en.md and CONTRIBUTING.md remain at the root. Source-build, packaging, release and test procedures live in the development/release/testing guides here; READMEs retain a brief Harness overview and navigation. The protocol and validation records are maintained here. Keep callers and Linux archive paths aligned; preserve hardware acceptance and historical validation claims.
 
 ## Local context
 

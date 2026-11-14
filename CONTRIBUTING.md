@@ -4,7 +4,7 @@ Issues and pull requests are welcome in English or Chinese. See the [English REA
 
 ## Development
 
-Use Rust 1.95 and the platform libraries listed in the README. Run formatting, Clippy, the default-feature and CLI-only test suites, and the PTY acceptance scripts before submitting a change. CI checks macOS and Linux. Tests must not silently open attached USB devices or send firmware to hardware.
+Use Rust 1.95 and the platform libraries listed in the [development guide](.harness/docs/development.md#native-dependencies). Run formatting, Clippy, the default-feature and CLI-only test suites, and the PTY acceptance scripts before submitting a change. CI checks macOS and Linux. Tests must not silently open attached USB devices or send firmware to hardware.
 
 Keep firmware transfer behavior separate from application presets. Progress must count acknowledged bytes; 100% data progress must not imply final acknowledgment. Changes to framing, CRC, retry behavior or completion handling need wire-level regression evidence. Keep receive-only B8 mode enforced in the communication core.
 
@@ -34,6 +34,6 @@ Contributions to the original implementation are licensed under the project's MI
 
 Packaging runs on the current standard macOS runner, Ubuntu 24.04 x86_64 and Ubuntu 24.04 ARM64. The workflow builds artifacts for main and pull requests. Tag pushes and published release events also run the source checks and automatically attach the complete package set to the release. It requires only the repository's built-in `GITHUB_TOKEN`; write permission is isolated to the publish job.
 
-Set a stable X.Y.Z version in Cargo.toml/Cargo.lock, increase the Mac bundle build number, and push a matching annotated vX.Y.Z tag. Check both workflows. New releases are uploaded as drafts and published after verification; a retry can finish an incomplete draft. Publication retries up to four times, with 20 seconds between attempts, to allow a newly created draft to become visible to GitHub's read endpoints. Published assets are kept immutable. If a published file differs, use a new version instead of replacing it.
+Set a stable X.Y.Z version in Cargo.toml/Cargo.lock, increase the Mac bundle build number, and push a matching annotated vX.Y.Z tag. Check the source, package and harness workflows. New releases are uploaded as drafts and published after verification; a retry can finish an incomplete draft. Publication retries up to four times, with 20 seconds between attempts, to allow a newly created draft to become visible to GitHub's read endpoints. Published assets are kept immutable. If a published file differs, use a new version instead of replacing it.
 
 Run `python3 tests/test_installer.py` and `python3 tests/test_release_assets.py` when changing installation or release behavior. These use temporary prefixes, synthetic packages and mock downloads. They never install into the real user's Applications or .local directories. Linux archives target Ubuntu 24.04 runtime compatibility; broad distro or physical hardware acceptance requires separate tests.

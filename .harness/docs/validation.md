@@ -46,7 +46,7 @@ CI runs the source test suites on macOS and Linux. Linux GUI startup can also be
 
 ## Screenshots
 
-README screenshots illustrate the native desktop interface and are maintained through the [capture workflow](../../CONTRIBUTING.md#native-screenshots). The application captures its own framebuffer. Preview and capture controls are excluded from release builds.
+README screenshots illustrate the native desktop interface and are maintained through the [capture workflow](https://github.com/MatriQ/su03t-tools/blob/main/CONTRIBUTING.md#native-screenshots). The application captures its own framebuffer. Preview and capture controls are excluded from release builds.
 
 ## macOS build note
 
