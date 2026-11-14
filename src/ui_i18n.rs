@@ -23,6 +23,22 @@ pub(super) fn set(language: Language, system_english: bool) {
     });
 }
 pub(super) fn system_english() -> bool {
+    #[cfg(windows)]
+    {
+        let mut locale = [0u16; 85];
+        // The buffer is sized to LOCALE_NAME_MAX_LENGTH and writable for the call.
+        let length = unsafe {
+            windows_sys::Win32::Globalization::GetUserDefaultLocaleName(
+                locale.as_mut_ptr(),
+                locale.len() as i32,
+            )
+        };
+        if length > 1 {
+            return !String::from_utf16_lossy(&locale[..length as usize - 1])
+                .to_lowercase()
+                .starts_with("zh");
+        }
+    }
     #[cfg(target_os = "macos")]
     if let Ok(out) = std::process::Command::new("defaults")
         .args(["read", "-g", "AppleLanguages"])
@@ -51,7 +67,11 @@ fn preference_path() -> Option<PathBuf> {
                 .join("Library/Application Support/SU03T Tools/language.json"),
         )
     }
-    #[cfg(not(target_os = "macos"))]
+    #[cfg(windows)]
+    {
+        Some(PathBuf::from(std::env::var_os("APPDATA")?).join("SU03T Tools/language.json"))
+    }
+    #[cfg(not(any(target_os = "macos", windows)))]
     {
         let base = std::env::var_os("XDG_CONFIG_HOME")
             .map(PathBuf::from)

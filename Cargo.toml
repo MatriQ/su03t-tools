@@ -6,12 +6,13 @@ description = "SU-03T firmware transfer and serial diagnostics for macOS and Lin
 license = "MIT"
 repository = "https://github.com/MatriQ/su03t-tools"
 readme = "README.md"
+default-run = "su03t-update"
 
 [dependencies]
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }
 serialport = "4.8"
-eframe = { version = "0.33", optional = true, default-features = false, features = ["default_fonts", "glow", "x11", "wayland", "accesskit"] }
+eframe = { version = "0.33", optional = true, default-features = false, features = ["default_fonts", "accesskit"] }
 rfd = { version = "0.15", optional = true }
 sha2 = "0.10"
 ctrlc = "3"
@@ -22,6 +23,22 @@ plist = { version = "1", optional = true, default-features = false }
 [features]
 default = ["gui"]
 gui = ["dep:eframe", "dep:rfd", "dep:plist"]
+windows-launcher = ["gui"]
+
+[[bin]]
+name = "su03t-tools"
+path = "src/windows_launcher.rs"
+required-features = ["windows-launcher"]
+
+[target.'cfg(not(windows))'.dependencies]
+eframe = { version = "0.33", optional = true, default-features = false, features = ["glow", "x11", "wayland"] }
+
+[target.'cfg(windows)'.dependencies]
+eframe = { version = "0.33", optional = true, default-features = false, features = ["wgpu"] }
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Globalization", "Win32_UI_WindowsAndMessaging"] }
+
+[build-dependencies]
+embed-resource = "3"
 
 [dev-dependencies]
 libc = "0.2"

@@ -20,7 +20,7 @@ mod gui;
 #[derive(Parser)]
 #[command(
     version,
-    about = "SU-03T 调试与升级工具 · macOS / Linux；无参数打开桌面界面"
+    about = "SU-03T 调试与升级工具 · macOS / Linux / Windows；无参数打开桌面界面"
 )]
 struct Args {
     #[command(subcommand)]

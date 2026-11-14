@@ -7,11 +7,15 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/architecture.md",
-          "sha256": "0e881cc81bf5342f73daf297b94f1c528db617a571f99e547ab53d62c73f471c",
+          "sha256": "d5d17d3dd0e3434617c1e404fb869b2007451d1df4280e8a616f41dc40f397f0",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -43,11 +47,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -56,6 +60,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -115,7 +131,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -123,7 +139,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -143,7 +159,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -185,8 +209,12 @@
           "sha256": "a1f34b18b84075d7b68a27ddfe3c60fe9adefb5ede15cb083d9d791c7c693c03",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -218,11 +246,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -231,6 +259,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -290,7 +330,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -298,7 +338,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -318,7 +358,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -360,8 +408,12 @@
           "sha256": "91cfaf931b88822acc9dd3d75353b201ae6bb509de294369ee98c32ddad1f7b5",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -393,11 +445,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -406,6 +458,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -465,7 +529,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -473,7 +537,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -493,7 +557,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -535,8 +607,12 @@
           "sha256": "e82811c99d0570327aa75cecb6240710ed9901dfeb8d38b4c478c27b5661f3d8",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -568,11 +644,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -581,6 +657,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -640,7 +728,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -648,7 +736,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -668,7 +756,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -710,8 +806,12 @@
           "sha256": "b0b28b82d7798a8aa381cc2cffe7962cd260370919ddf0c432f3dd4bbdfd4d40",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -739,11 +839,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -752,6 +852,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -811,7 +923,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -819,7 +931,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -839,7 +951,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -881,8 +1001,12 @@
           "sha256": "4a3a32b2d37133c1c9af87608fb5348a1a3eb445f4c8b41a90dadae04b48b4f8",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -914,11 +1038,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -927,6 +1051,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -986,7 +1122,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -994,7 +1130,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -1014,7 +1150,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -1053,11 +1197,15 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/testing.md",
-          "sha256": "c7b8182470aff9f924e483efeb60a47c46e8da7a7e17f6eab4621923136b7be0",
+          "sha256": "712ec4cc6b5c39652dfce7a187fb3100f8f88d49bb1951444bf0d4191e520653",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1089,11 +1237,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -1102,6 +1250,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -1161,7 +1321,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -1169,7 +1329,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -1189,7 +1349,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -1231,8 +1399,12 @@
           "sha256": "5332a0d79430cff69cdc4d22cece0261fc57322a538e28d2a35701cbc0934bf2",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1264,11 +1436,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -1277,6 +1449,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -1336,7 +1520,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -1344,7 +1528,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -1364,7 +1548,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -1406,8 +1598,12 @@
           "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1435,11 +1631,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -1448,6 +1644,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -1507,7 +1715,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -1515,7 +1723,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -1535,7 +1743,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -1577,8 +1793,12 @@
           "sha256": "c7aaa4f789dc2bf4a4310087765807e451918c19bfe8c2f44e3fd0d4a0f5d5e7",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1610,11 +1830,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -1623,6 +1843,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -1682,7 +1914,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -1690,7 +1922,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -1710,7 +1942,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -1752,8 +1992,12 @@
           "sha256": "0321c6b5c125c60e3f1399aabcfade0b57456a990ed5897d22090b96e3698c35",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1785,11 +2029,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -1798,6 +2042,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -1857,7 +2113,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -1865,7 +2121,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -1885,7 +2141,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -1927,8 +2191,12 @@
           "sha256": "1d6d4be3c49b0cedcd0431feeb4056d70b8d7df8a02189d87d8f3eb8d2c85d79",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1960,11 +2228,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -1973,6 +2241,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -2032,7 +2312,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -2040,7 +2320,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -2060,7 +2340,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -2102,8 +2390,12 @@
           "sha256": "4903505019273af88346b742b2ca6075b59185ae1f772127d01af29d9ed15193",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2135,11 +2427,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -2148,6 +2440,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -2207,7 +2511,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -2215,7 +2519,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -2235,7 +2539,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -2277,8 +2589,12 @@
           "sha256": "abae5422bfc71cb897408bb9a50651ba9d37ac67234650b96ffd0dd814d4cf7e",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2306,11 +2622,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -2319,6 +2635,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -2378,7 +2706,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -2386,7 +2714,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -2406,7 +2734,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -2448,8 +2784,12 @@
           "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2477,11 +2817,11 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
@@ -2490,6 +2830,18 @@
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -2549,7 +2901,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -2557,7 +2909,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -2577,7 +2929,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -2619,8 +2979,12 @@
           "sha256": "b41a45104097f9b196637034897297938ab0c25a94a2b4100cc1fab81d79fb6c",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2652,15 +3016,27 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.md",
               "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -2720,7 +3096,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -2728,7 +3104,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -2748,7 +3124,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -2790,8 +3174,12 @@
           "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392",
           "sources": [
             {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
               "path": ".github/workflows/check.yml",
-              "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+              "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2823,15 +3211,27 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+              "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+              "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
             },
             {
               "path": "README.en.md",
               "sha256": "b41a45104097f9b196637034897297938ab0c25a94a2b4100cc1fab81d79fb6c"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
             },
             {
               "path": "install.sh",
@@ -2891,7 +3291,7 @@
             },
             {
               "path": "src/gui.rs",
-              "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+              "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
             },
             {
               "path": "src/lib.rs",
@@ -2899,7 +3299,7 @@
             },
             {
               "path": "src/main.rs",
-              "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
             },
             {
               "path": "src/port_picker.rs",
@@ -2919,7 +3319,15 @@
             },
             {
               "path": "src/ui_i18n.rs",
-              "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+              "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
             },
             {
               "path": "tests/client_acceptance.py",
@@ -2979,6 +3387,7 @@
       "mode": "init",
       "remote": "github.com/MatriQ/su03t-tools",
       "source_files": [
+        ".cargo/config.toml",
         ".github/workflows/check.yml",
         ".github/workflows/release.yml",
         ".gitignore",
@@ -2989,6 +3398,9 @@
         "Cargo.toml",
         "README.en.md",
         "README.md",
+        "assets/AppIcon.ico",
+        "assets/windows.rc",
+        "build.rs",
         "install.sh",
         "scripts/Dockerfile.linux",
         "scripts/capture-ui.py",
@@ -3011,6 +3423,8 @@
         "src/serial_debug.rs",
         "src/ui_catalog.rs",
         "src/ui_i18n.rs",
+        "src/windows_launcher.rs",
+        "tests/cli_smoke.py",
         "tests/client_acceptance.py",
         "tests/handshake_diagnostics.py",
         "tests/install_package.py",
@@ -3022,8 +3436,12 @@
       ],
       "sources": [
         {
+          "path": ".cargo/config.toml",
+          "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+        },
+        {
           "path": ".github/workflows/check.yml",
-          "sha256": "8df95e4f0c4a8aebeba634d80ea45c2a668e2087cabaeca38e11f22ad8ad8a3b"
+          "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
         },
         {
           "path": ".github/workflows/harness-gate.yml",
@@ -3055,11 +3473,11 @@
         },
         {
           "path": "Cargo.lock",
-          "sha256": "30b71da64594baf56153a591fcddf18a3fe85a070b3dd33e8e0f0d674f646cee"
+          "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
         },
         {
           "path": "Cargo.toml",
-          "sha256": "0766ec51b31836ffb8c1aa60ed22c461c958c4087beb03152a1d87cbd41353c1"
+          "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
         },
         {
           "path": "README.en.md",
@@ -3068,6 +3486,18 @@
         {
           "path": "README.md",
           "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+        },
+        {
+          "path": "assets/AppIcon.ico",
+          "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+        },
+        {
+          "path": "assets/windows.rc",
+          "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+        },
+        {
+          "path": "build.rs",
+          "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
         },
         {
           "path": "install.sh",
@@ -3127,7 +3557,7 @@
         },
         {
           "path": "src/gui.rs",
-          "sha256": "fdabe634df5454f6c4f0e4088ca1ea2d3d854ea6bd5f2a1da35d8c4ddaadd0cf"
+          "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
         },
         {
           "path": "src/lib.rs",
@@ -3135,7 +3565,7 @@
         },
         {
           "path": "src/main.rs",
-          "sha256": "53792a114e177978e0a21f48f5c78b41d667dcc5d12344483c2dc7689c376d66"
+          "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
         },
         {
           "path": "src/port_picker.rs",
@@ -3155,7 +3585,15 @@
         },
         {
           "path": "src/ui_i18n.rs",
-          "sha256": "86fbc43f2fd38ce436b50e59977b960fb1428ecdab1579e601aa636b12c8628a"
+          "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+        },
+        {
+          "path": "src/windows_launcher.rs",
+          "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+        },
+        {
+          "path": "tests/cli_smoke.py",
+          "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
         },
         {
           "path": "tests/client_acceptance.py",
