@@ -2,7 +2,7 @@
 
 简体中文 | [English](README.en.md)
 
-面向 **SU-03T / 蜂鸟 M** 的串口固件升级与调试工具，使用 Rust 构建原生桌面界面和 CLI，支持 macOS、Linux。
+面向 **SU-03T / 蜂鸟 M** 的串口固件升级与调试工具，使用 Rust 构建原生桌面界面和 CLI，支持 macOS、Linux 和 Windows。
 
 [![CI](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml/badge.svg)](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -39,6 +39,28 @@ brew upgrade --cask matriq/tap/su03t-tools
 
 卸载使用 `brew uninstall --cask matriq/tap/su03t-tools`。自定义应用目录等用法见 [tap 安装说明](https://github.com/MatriQ/homebrew-tap/blob/main/README.md)。
 
+### Windows 10 / 11 x64
+
+从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 `Windows-x86_64.zip`，完整解压后双击 `su03t-tools.exe` 打开桌面界面；`su03t-update.exe` 用于命令行。两个程序请放在同一目录。
+
+也可在 PowerShell 中一键安装到当前用户目录，无需管理员权限：
+
+```powershell
+irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1 | iex
+```
+
+脚本校验 SHA-256，默认安装到 `%LOCALAPPDATA%\Programs\SU03T Tools\app` 并创建开始菜单快捷方式，同时输出 CLI 完整路径。更新前退出应用，再运行同一命令。
+
+卸载时运行以下命令，保留语言设置：
+
+```powershell
+& ([scriptblock]::Create((irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1))) -Uninstall
+```
+
+串口使用设备管理器“端口（COM 和 LPT）”中显示的 `COM` 号，例如 `COM3`。未创建串口接口时，请按转接芯片厂商说明安装 Windows 驱动。Windows 实板刷机验收与软件 CI 验证分别记录在[验证范围](.harness/docs/validation.md)。
+
+![Windows 中文界面](docs/images/windows-zh.png)
+
 ### 安装脚本：macOS / Linux
 
 脚本支持 macOS（Apple Silicon / Intel）和 Linux（x86_64 / ARM64），自动选择最新稳定包并校验 SHA-256：
@@ -58,18 +80,20 @@ curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/instal
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
-  bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
+  bash -s -- --version v0.6.0 --prefix "$HOME/Applications"
 ```
 
 `--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) 阅读后执行。
 
 ### 手动下载
 
-从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。
+从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 macOS 通用 ZIP，对应架构的 Linux `.tar.gz`，或 Windows x64 ZIP，并用同一 Release 中的 `SHA256SUMS.txt` 校验。
 
 ### 运行要求与首次打开
 
 macOS 应用的构建目标为 12.0，当前使用临时签名、未公证。首次打开请确认下载来源，并按系统提示在“系统设置 → 隐私与安全性”中允许打开。
+
+Windows 安装包未签名，首次打开可能显示发布者未知的系统提示。Windows 提供 x64 版本，使用图形界面需要桌面会话。
 
 Linux 发行包在 Ubuntu 24.04 上构建，需要兼容的 glibc 和运行库；其他环境见[源码构建说明](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/development.md#building-from-source)。Debian / Ubuntu 桌面运行库示例：
 
@@ -151,7 +175,7 @@ su03t-update probe --port /dev/ttyUSB0 --baud 921600 --wait 15
 su03t-update flash --port /dev/ttyUSB0 --firmware firmware_update.bin
 ```
 
-macOS 使用实际枚举的 `/dev/cu.*`。`probe` 默认被动监听，需要启动触发时显式加 `--trigger`。`monitor` 仅在显式指定 `--send-hex` 或 `--send-text` 时发送。更多参数见 `--help`。
+Windows 在解压目录使用 `.\su03t-update.exe`，串口名使用实际 `COM` 号；PowerShell 安装后可使用安装器显示的 CLI 完整路径。macOS 使用实际枚举的 `/dev/cu.*`。`probe` 默认被动监听，需要启动触发时显式加 `--trigger`。`monitor` 仅在显式指定 `--send-hex` 或 `--send-text` 时发送。更多参数见 `--help`。
 
 ## 兼容范围
 
@@ -170,6 +194,6 @@ macOS 使用实际枚举的 `/dev/cu.*`。`probe` 默认被动监听，需要启
 
 ## 许可证与资料
 
-原创代码使用 [MIT License](LICENSE)。仓库不包含厂商固件、Windows 工具或驱动；第三方依赖和可选厂商资料保留各自许可证。本项目不是厂商官方客户端。
+原创代码使用 [MIT License](LICENSE)。仓库不包含厂商固件、厂商烧录工具或驱动；第三方依赖和可选厂商资料保留各自许可证。本项目不是厂商官方客户端。
 
 [SU-03T 模组资料](https://docs.aimachip.com/zh-cn/latest/file/offlineVoice/SU03T.html) · [蜂鸟 M FAQ](https://doc.hivoice.cn/udp/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html)

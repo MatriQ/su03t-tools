@@ -2,7 +2,7 @@
 
 ## Targets
 
-Confirm [MatriQ/su03t-tools](https://github.com/MatriQ/su03t-tools) before a gh operation. CI source checks use macOS/Ubuntu; package runners are macos-latest, ubuntu-24.04 and ubuntu-24.04-arm. The universal Mac app contains arm64/x86_64 slices, targets macOS 12.0, and is ad-hoc signed, not notarized. Linux archives need Ubuntu 24.04-compatible glibc/native libraries. Windows source probes do not establish a supported release.
+Confirm [MatriQ/su03t-tools](https://github.com/MatriQ/su03t-tools) before a gh operation. CI source checks use macOS, Ubuntu and Windows x64; package runners are macos-latest, ubuntu-24.04, ubuntu-24.04-arm and windows-2022. The universal Mac app contains arm64/x86_64 slices, targets macOS 12.0, and is ad-hoc signed, not notarized. Linux archives need Ubuntu 24.04-compatible glibc/native libraries. Windows packages target Windows 10/11 x64, contain desktop and console executables and retain system download protections. Native CI and physical-board acceptance remain distinct.
 
 Environments are the local checkout, GitHub-hosted CI, public Releases, and user desktops with explicitly selected adapters/boards. No backend, database, cloud region or hosted application service is configured. Hardware acceptance has its own board/firmware/power/wiring evidence.
 
@@ -12,11 +12,11 @@ Environments are the local checkout, GitHub-hosted CI, public Releases, and user
 
 1. Update Cargo.toml/Cargo.lock version and Mac CFBundleVersion in [package-macos.sh](../../scripts/package-macos.sh). Update the version-bound harness CLI probe expectation, then refresh affected source/document reviews through [maintenance](maintenance.md).
 2. Run [checks](testing.md), review the diff and follow the current task's publication scope. Push an annotated matching vX.Y.Z tag. Do not retag an old release to hide a fix.
-3. Source quality and all three packages must pass. Extracted binaries, signature/architecture, PTYs and temporary-prefix installs are checked before publish.
+3. Source quality and all four packages must pass. Extracted binaries, signature/architecture, PTYs and temporary-prefix installs are checked before publish.
 4. [release_assets.py](../../scripts/release_assets.py) verifies partial hashes, adds install.sh and a unified manifest, uploads a draft, verifies it, then publishes. Only publish has contents:write; CI uses the built-in GITHUB_TOKEN.
 5. Publication retries four times with 20 seconds between attempts, allowing draft read visibility to catch up. Incomplete drafts can resume. Complete published assets are verified without replacement; changed released bytes need a new version.
 
-Assets are three platform archives, install.sh and SU03T-Tools-vX.Y.Z-SHA256SUMS.txt. Platform suffixes identify archives; the repository has no OS suffix.
+From v0.6.0, assets are four platform archives, install.sh, install.ps1 and SU03T-Tools-vX.Y.Z-SHA256SUMS.txt. Platform suffixes identify archives; the repository has no OS suffix.
 
 ## Local packaging
 
@@ -64,7 +64,7 @@ git tag -a vX.Y.Z -m "SU-03T Tools X.Y.Z"
 git push origin vX.Y.Z
 ~~~
 
-Expect source checks, all three platform packages and final publication to succeed. Tag/version mismatches stop publication. A manual workflow run with an existing tag follows the same guards; an empty tag produces artifacts only.
+Expect source checks, all four platform packages and final publication to succeed. Tag/version mismatches stop publication. A manual workflow run with an existing tag follows the same guards; an empty tag produces artifacts only.
 
 ## Inspect delivery
 
@@ -94,3 +94,9 @@ The tap's Update Cask workflow polls the latest published stable Release hourly 
 [Tap maintenance and checks](https://github.com/MatriQ/homebrew-tap/blob/main/.harness/docs/index.md) belong to that separate repository; this harness does not enroll it as a source member. A release is available through Homebrew after its verified Cask update reaches the tap's default branch. Remove the tap's unsigned-release caveat when notarized artifacts become the supported upstream distribution.
 
 The current app remains ad-hoc signed and not notarized. Homebrew retains quarantine and macOS first-launch approval. Cask installation checks do not prove Gatekeeper acceptance, physical flashing or official Homebrew inclusion. Preserve existing apps and command links when switching installers; resolve conflicts explicitly instead of using force or removing quarantine.
+
+## Windows packaging
+
+On Windows x64 with Rust 1.95 MSVC, the Windows SDK, Python and rust-docs, run [package-windows.ps1](../../scripts/package-windows.ps1). It builds the GUI launcher and console executable with a static CRT, collects licenses and packages the readmes, images, protocol and validation records into a Windows-x86_64 ZIP. [install.ps1](../../install.ps1) installs into a user directory, verifies GitHub asset digests and the checksum manifest before replacement, validates the staged executable version, retains download-zone information and rolls back failed replacement. It supports Version, Prefix, NoShortcut and Uninstall parameters; it does not modify system PATH or install drivers. Windows package publication begins at v0.6.0; older release checks retain the three-platform layout. The release publisher requires the fourth archive and install.ps1 for those new versions. Native Windows package and GUI evidence is distinct from physical-board acceptance.
+
+After publication, [Verify Windows installation](../../.github/workflows/verify-install.yml) downloads install.ps1 from the selected public Release, checks its GitHub asset digest, installs the actual Windows archive into a temporary Unicode path and verifies CLI behavior and uninstall under PowerShell 7 and Windows PowerShell 5.1. This proves the public download path separately from local fixture-based package checks.
