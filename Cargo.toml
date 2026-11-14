@@ -2,7 +2,7 @@
 name = "su03t-update"
 version = "0.5.4"
 edition = "2024"
-description = "SU-03T firmware transfer and serial diagnostics for macOS and Linux"
+description = "SU-03T firmware transfer and serial diagnostics for macOS, Linux and Windows"
 license = "MIT"
 repository = "https://github.com/MatriQ/su03t-tools"
 readme = "README.md"
@@ -22,7 +22,7 @@ plist = { version = "1", optional = true, default-features = false }
 
 [features]
 default = ["gui"]
-gui = ["dep:eframe", "dep:rfd", "dep:plist"]
+gui = ["dep:eframe", "dep:rfd", "dep:plist", "dep:wgpu"]
 windows-launcher = ["gui"]
 
 [[bin]]
@@ -35,6 +35,7 @@ eframe = { version = "0.33", optional = true, default-features = false, features
 
 [target.'cfg(windows)'.dependencies]
 eframe = { version = "0.33", optional = true, default-features = false, features = ["wgpu"] }
+wgpu = { version = "27", optional = true, default-features = false, features = ["dx12", "wgsl"] }
 windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Globalization", "Win32_UI_WindowsAndMessaging"] }
 
 [build-dependencies]

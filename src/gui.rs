@@ -1445,6 +1445,12 @@ impl eframe::App for Updater {
         });
     }
 }
+#[cfg(all(test, windows))]
+#[test]
+fn windows_build_has_a_native_graphics_backend() {
+    assert!(wgpu::Instance::enabled_backend_features().contains(wgpu::Backends::DX12));
+}
+
 fn configure_fonts(ctx: &egui::Context) {
     let mut paths: Vec<PathBuf> = [
         "/System/Library/Fonts/PingFang.ttc",

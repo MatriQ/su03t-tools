@@ -33,6 +33,7 @@ with tempfile.TemporaryDirectory(prefix="su03t-cli-") as directory:
     events = run("flash", "--events", "--firmware", str(image), "--expected-sha256", "0" * 64, "--port", "COM0")
     records = [json.loads(line.removeprefix("SU03T_EVENT ")) for line in events.stdout.splitlines() if line.startswith("SU03T_EVENT ")]
     assert events.returncode != 0 and records and records[-1]["event"] == "failed", events.stdout + events.stderr
+    assert records[-1]["code"] == "firmware_changed", records
     blocked = run("monitor", "--profile", "b8", "--port", "COM0", "--send-hex", "00")
     assert blocked.returncode != 0 and "禁止发送" in blocked.stderr, blocked.stderr
 print("PASS: version/help, Unicode firmware path, independent SHA-256, hidden-worker events and refusals before port open")
