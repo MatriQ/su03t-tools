@@ -206,11 +206,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "c1b27dc6928ec4e5d82af19498524d97e1019004b16ec8f940c163fcee902a4d"
+      "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
     },
     {
       "path": "README.en.md",
-      "sha256": "062705abe2fd8908a4c3031b663ec1d7eb458eb4b8f4ff9e33902c89f57be710"
+      "sha256": "b41a45104097f9b196637034897297938ab0c25a94a2b4100cc1fab81d79fb6c"
     },
     {
       "path": "CONTRIBUTING.md",

@@ -20,42 +20,65 @@
 
 ## 安装
 
-macOS 可通过自维护的 [Homebrew tap](https://github.com/MatriQ/homebrew-tap) 安装应用和 `su03t-update` 命令：
+### macOS：Homebrew（推荐）
+
+适用于 Apple Silicon 和 Intel Mac，通过项目维护的 [Homebrew tap](https://github.com/MatriQ/homebrew-tap) 安装：
 
 ```bash
 brew install --cask matriq/tap/su03t-tools
 ```
 
-更新使用 `brew update` 后执行 `brew upgrade --cask matriq/tap/su03t-tools`；卸载使用 `brew uninstall --cask matriq/tap/su03t-tools`。Homebrew 默认将应用安装到 `/Applications`。更换安装方式前请退出应用并处理已有安装或命令冲突。当前版本未公证，首次打开仍需按 macOS 系统提示确认。
+应用默认安装到 `/Applications/SU03T Update.app`，同时提供 `su03t-update` 命令。安装后可从“应用程序”打开，或运行 `su03t-update` 启动桌面界面。
 
-macOS（Apple Silicon / Intel）与 Linux（x86_64 / ARM64）均可执行：
+更新前先退出应用，然后执行：
+
+```bash
+brew update
+brew upgrade --cask matriq/tap/su03t-tools
+```
+
+卸载使用 `brew uninstall --cask matriq/tap/su03t-tools`。自定义应用目录等用法见 [tap 安装说明](https://github.com/MatriQ/homebrew-tap/blob/main/README.md)。
+
+### 安装脚本：macOS / Linux
+
+脚本支持 macOS（Apple Silicon / Intel）和 Linux（x86_64 / ARM64），自动选择最新稳定包并校验 SHA-256：
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash
 ```
 
-安装器选择对应平台的最新稳定包并校验 SHA-256。macOS 默认安装到 `~/Applications/SU03T Update.app`；Linux 默认安装到 `~/.local/share/su03t-tools/vX.Y.Z`，命令链接为 `~/.local/bin/su03t-update`。安装完成后显示启动命令，原有运行中的应用请退出后重新打开。
+| 系统 | 默认安装位置 | 启动方式 |
+| --- | --- | --- |
+| macOS | `~/Applications/SU03T Update.app` | 打开应用，或使用安装器显示的完整命令 |
+| Linux | `~/.local/share/su03t-tools/vX.Y.Z` | `~/.local/bin/su03t-update`；命令目录在 PATH 中时可直接运行 `su03t-update` |
+
+更新时重新运行脚本；原有运行中的应用请先退出。请选择一种安装方式并使用同一方式更新，更换方式前处理已有应用或同名命令冲突。
 
 指定版本或安装目录：
 
 ```bash
-curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
+curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
+  bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
 ```
 
-`--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) 阅读后执行。Linux 若提示 PATH 未包含命令目录，请按安装器输出添加，或使用显示的完整路径启动。
+`--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) 阅读后执行。
 
-手动安装可从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。macOS 应用使用临时签名、未公证，首次打开按系统标准流程确认来源；安装器保留系统的安全检查。
+### 手动下载
 
-macOS 构建目标为 12.0。Linux 发行包在 Ubuntu 24.04 上构建，需要兼容的 glibc 和运行库；其他环境可从源码构建。Debian / Ubuntu 桌面运行库示例：
+从 [Releases](https://github.com/MatriQ/su03t-tools/releases/latest) 下载 macOS 通用 ZIP，或对应架构的 Linux `.tar.gz`，并用同一 Release 中的 `SHA256SUMS.txt` 校验。
+
+### 运行要求与首次打开
+
+macOS 应用的构建目标为 12.0，当前使用临时签名、未公证。首次打开请确认下载来源，并按系统提示在“系统设置 → 隐私与安全性”中允许打开。
+
+Linux 发行包在 Ubuntu 24.04 上构建，需要兼容的 glibc 和运行库；其他环境见[源码构建说明](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/development.md#building-from-source)。Debian / Ubuntu 桌面运行库示例：
 
 ```bash
 sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client0 \
   libx11-6 libxcursor1 libxi6 libxrandr2 libgl1 libegl1 fonts-noto-cjk
 ```
 
-中文显示需要可用的中文字体。Linux 串口权限由系统配置决定；检查 dialout/uucp 组或设备权限，工具不会使用 sudo 打开串口。
-
-具体系统、板型和驱动兼容性见[验证范围](.harness/docs/validation.md)。
+中文显示需要可用的中文字体。Linux 串口权限由系统配置决定；检查 dialout/uucp 组或设备权限，工具不会使用 sudo 打开串口。具体系统、板型和驱动兼容性见[验证范围](.harness/docs/validation.md)。
 
 ## macOS 启动驱动检查
 
