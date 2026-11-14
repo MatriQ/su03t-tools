@@ -24,6 +24,8 @@ try {
     if ($LASTEXITCODE) { throw 'License collection failed.' }
     python3 scripts/release_assets.py windows-archive --directory $Stage
     if ($LASTEXITCODE) { throw 'Windows archive creation failed.' }
+    python3 scripts/release_assets.py windows-archive --directory $Stage --portable
+    if ($LASTEXITCODE) { throw 'Windows portable archive creation failed.' }
     Write-Output "Packaged SU-03T Tools $PackageVersion for Windows x64."
 } finally {
     Remove-Item -LiteralPath $Stage -Recurse -Force

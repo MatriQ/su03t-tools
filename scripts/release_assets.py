@@ -13,10 +13,16 @@ import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PLATFORMS = ('macOS-universal', 'Linux-x86_64', 'Linux-aarch64', 'Windows-x86_64')
+WINDOWS_PORTABLE = 'Windows-x86_64-portable'
 
 
 def platforms(value):
     return PLATFORMS if tuple(map(int, value.split('.'))) >= (0, 6, 0) else PLATFORMS[:-1]
+
+
+def package_variants(value):
+    extra = (WINDOWS_PORTABLE,) if tuple(map(int, value.split('.'))) >= (0, 6, 1) else ()
+    return platforms(value) + extra
 
 
 def installers(value):
@@ -38,9 +44,9 @@ def version():
 
 
 def archive_name(value, platform):
-    if platform not in PLATFORMS:
+    if platform not in (*PLATFORMS, WINDOWS_PORTABLE):
         raise ValueError(f'Unsupported package platform: {platform}')
-    suffix = '.zip' if platform in ('macOS-universal', 'Windows-x86_64') else '.tar.gz'
+    suffix = '.zip' if platform in ('macOS-universal', 'Windows-x86_64', WINDOWS_PORTABLE) else '.tar.gz'
     return f'SU03T-Tools-v{value}-{platform}{suffix}'
 
 
@@ -95,7 +101,7 @@ def release_complete(repo, tag, value, allow_draft=False):
     info = release_info(repo, tag)
     if not info or (info['draft'] and not allow_draft):
         return False
-    wanted = [archive_name(value, platform) for platform in platforms(value)] + installers(value)
+    wanted = [archive_name(value, platform) for platform in package_variants(value)] + installers(value)
     manifest = f'SU03T-Tools-v{value}-SHA256SUMS.txt'
     assets = {a['name']: a for a in info['assets'] if a['state'] == 'uploaded'}
     if not all(name in assets for name in wanted + [manifest]):
@@ -145,12 +151,16 @@ def macos_archive():
     print(f'Archive: {archive}')
 
 
-def windows_archive(directory):
+def windows_archive(directory, portable=False):
     value = version()
     for name in ('su03t-update.exe', 'su03t-tools.exe', 'LICENSE', 'THIRD_PARTY_NOTICES.txt'):
         if not (directory / name).is_file():
             raise ValueError(f'Missing Windows package file: {name}')
-    archive = ROOT / 'dist' / archive_name(value, 'Windows-x86_64')
+    for name in ('portable.flag', 'data'):
+        if (directory / name).exists():
+            raise ValueError(f'Windows package staging must not contain local settings: {name}')
+    variant = WINDOWS_PORTABLE if portable else 'Windows-x86_64'
+    archive = ROOT / 'dist' / archive_name(value, variant)
     archive.parent.mkdir(exist_ok=True)
     temporary = archive.with_suffix('.new.zip')
     try:
@@ -160,10 +170,12 @@ def windows_archive(directory):
                     raise ValueError('Windows packages must not contain links')
                 if path.is_file():
                     bundle.write(path, path.relative_to(directory).as_posix())
+            if portable:
+                bundle.writestr('portable.flag', 'SU-03T Tools portable mode\n')
         temporary.replace(archive)
     finally:
         temporary.unlink(missing_ok=True)
-    platform_checksums('Windows-x86_64')
+    platform_checksums(variant)
     print(f'Archive: {archive}')
 
 
@@ -175,7 +187,7 @@ def platform_checksums(platform):
 
 def assemble(directory, value):
     paths = []
-    for platform in platforms(value):
+    for platform in package_variants(value):
         archive = directory / archive_name(value, platform)
         part = directory / f'SU03T-Tools-v{value}-SHA256SUMS-{platform}.txt'
         checks = parse_checksums(part.read_text())
@@ -205,8 +217,16 @@ def publish(args):
         notes = pathlib.Path(temporary) / 'notes.md'
         windows_notes = ''
         if 'Windows-x86_64' in platforms(value):
+            portable_notes = ''
+            if WINDOWS_PORTABLE in package_variants(value):
+                portable_notes = f'''
+Portable edition / 便携版: [Windows x64 portable ZIP](https://github.com/{repo}/releases/download/{tag}/SU03T-Tools-{tag}-Windows-x86_64-portable.zip).
+
+Extract the complete folder and open su03t-tools.exe. Keep portable.flag beside both executables; language settings stay in the adjacent data directory and move with the folder. No installation is required. / 完整解压后运行 su03t-tools.exe，无需安装；保留 portable.flag，语言设置保存在同目录的 data 文件夹，可随整个文件夹移动。
+'''
             windows_notes = f'''
 Windows 10/11 x64: extract the ZIP and open su03t-tools.exe; su03t-update.exe provides the CLI. / Windows 10/11 x64：解压后运行 su03t-tools.exe，命令行使用 su03t-update.exe。
+{portable_notes}
 
 ```powershell
 & ([scriptblock]::Create((irm https://github.com/{repo}/releases/download/{tag}/install.ps1))) -Version {tag}
@@ -269,8 +289,9 @@ def main():
     commands.add_parser('macos-archive')
     windows = commands.add_parser('windows-archive')
     windows.add_argument('--directory', type=pathlib.Path, required=True)
+    windows.add_argument('--portable', action='store_true')
     checks = commands.add_parser('checksums')
-    checks.add_argument('platform', choices=PLATFORMS)
+    checks.add_argument('platform', choices=(*PLATFORMS, WINDOWS_PORTABLE))
     pub = commands.add_parser('publish')
     pub.add_argument('--tag', required=True)
     pub.add_argument('--repo', required=True)
@@ -278,7 +299,7 @@ def main():
     args = parser.parse_args()
     if args.command == 'metadata': metadata(args)
     elif args.command == 'macos-archive': macos_archive()
-    elif args.command == 'windows-archive': windows_archive(args.directory)
+    elif args.command == 'windows-archive': windows_archive(args.directory, args.portable)
     elif args.command == 'checksums': platform_checksums(args.platform)
     elif args.command == 'publish': publish(args)
 

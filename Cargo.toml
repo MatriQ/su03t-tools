@@ -1,6 +1,6 @@
 [package]
 name = "su03t-update"
-version = "0.6.0"
+version = "0.6.1"
 edition = "2024"
 description = "SU-03T firmware transfer and serial diagnostics for macOS, Linux and Windows"
 license = "MIT"

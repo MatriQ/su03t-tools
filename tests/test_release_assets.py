@@ -30,7 +30,7 @@ class ReleaseAssetsTests(unittest.TestCase):
         self.patch.start()
         self.addCleanup(self.patch.stop)
         self.value = '1.2.3'
-        for platform in release.PLATFORMS:
+        for platform in release.package_variants(self.value):
             archive = self.assets / release.archive_name(self.value, platform)
             archive.write_bytes(f'package {platform}'.encode())
             release.write_checksums(self.assets / f'SU03T-Tools-v{self.value}-SHA256SUMS-{platform}.txt', [archive])
@@ -40,7 +40,7 @@ class ReleaseAssetsTests(unittest.TestCase):
         manifest = release.parse_checksums(paths[-1].read_text())
         self.assertEqual(set(manifest), {p.name for p in paths[:-1]})
         self.assertEqual(manifest['install.sh'], release.digest(self.root / 'install.sh'))
-        self.assertEqual(len(paths), 7)
+        self.assertEqual(len(paths), 8)
         self.assertEqual(manifest['install.ps1'], release.digest(self.root / 'install.ps1'))
 
     def test_partial_build_cannot_be_published(self):
@@ -53,16 +53,22 @@ class ReleaseAssetsTests(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             release.assemble(self.assets, self.value)
 
+    def test_portable_windows_package_is_required_for_new_releases(self):
+        (self.assets / release.archive_name(self.value, release.WINDOWS_PORTABLE)).unlink()
+        with self.assertRaises(FileNotFoundError):
+            release.assemble(self.assets, self.value)
+
     def test_older_release_layout_is_preserved(self):
-        value = '0.5.4'
-        expected = {'install.sh'}
-        for platform in ('macOS-universal', 'Linux-x86_64', 'Linux-aarch64'):
-            archive = self.assets / release.archive_name(value, platform)
-            archive.write_bytes(platform.encode())
-            release.write_checksums(self.assets / f'SU03T-Tools-v{value}-SHA256SUMS-{platform}.txt', [archive])
-            expected.add(archive.name)
-        paths = release.assemble(self.assets, value)
-        self.assertEqual(set(release.parse_checksums(paths[-1].read_text())), expected)
+        for value, count in [('0.5.4', 3), ('0.6.0', 4)]:
+            with self.subTest(version=value):
+                expected = set(release.installers(value))
+                for platform in release.PLATFORMS[:count]:
+                    archive = self.assets / release.archive_name(value, platform)
+                    archive.write_bytes(platform.encode())
+                    release.write_checksums(self.assets / f'SU03T-Tools-v{value}-SHA256SUMS-{platform}.txt', [archive])
+                    expected.add(archive.name)
+                paths = release.assemble(self.assets, value)
+                self.assertEqual(set(release.parse_checksums(paths[-1].read_text())), expected)
 
     def test_windows_zip_preserves_nested_unicode_documents(self):
         directory = self.root / 'windows'
@@ -74,10 +80,21 @@ class ReleaseAssetsTests(unittest.TestCase):
         document.write_text('Unicode: 中文', encoding='utf-8')
         with mock.patch.object(release, 'version', return_value=self.value):
             release.windows_archive(directory)
+            release.windows_archive(directory, portable=True)
         import zipfile
         archive = self.root / 'dist' / release.archive_name(self.value, 'Windows-x86_64')
         with zipfile.ZipFile(archive) as bundle:
             self.assertEqual(bundle.read('.harness/docs/validation.md').decode('utf-8'), 'Unicode: 中文')
+            self.assertNotIn('portable.flag', bundle.namelist())
+        portable = self.root / 'dist' / release.archive_name(self.value, release.WINDOWS_PORTABLE)
+        with zipfile.ZipFile(portable) as bundle:
+            self.assertIn('portable.flag', bundle.namelist())
+            self.assertEqual(bundle.read('.harness/docs/validation.md').decode('utf-8'), 'Unicode: 中文')
+            self.assertFalse(any(p.startswith('data/') for p in bundle.namelist()))
+        (directory / 'data').mkdir()
+        with mock.patch.object(release, 'version', return_value=self.value):
+            with self.assertRaisesRegex(ValueError, 'local settings'):
+                release.windows_archive(directory, portable=True)
 
     def test_changed_package_is_rejected_before_combining_checksums(self):
         (self.assets / release.archive_name(self.value, 'macOS-universal')).write_bytes(b'changed')

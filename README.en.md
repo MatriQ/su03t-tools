@@ -41,9 +41,11 @@ Uninstall with `brew uninstall --cask matriq/tap/su03t-tools`. See the [tap inst
 
 ### Windows 10 / 11 x64
 
-Download the `Windows-x86_64.zip` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), extract the complete archive and open `su03t-tools.exe` for the desktop interface. Use `su03t-update.exe` for the CLI; keep both executables in the same directory.
+**Portable edition:** download the archive ending in `Windows-x86_64-portable.zip` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), extract the complete folder into a writable location and open `su03t-tools.exe`. Use `su03t-update.exe` for the CLI. No installation or administrator privileges are required.
 
-Alternatively, install into your user directory from PowerShell, without administrator privileges:
+Keep `portable.flag` beside both executables. Language preferences are saved in the adjacent `data/language.json`. Quit before moving the entire folder; preferences move with it. To upgrade, replace the application files and retain `data`. Delete the folder to remove the portable edition. It does not write to `%APPDATA%` or create Start menu shortcuts. The UI reports a save error if the directory is not writable.
+
+**User installation:** run the following command in PowerShell without administrator privileges. This uses the regular `Windows-x86_64.zip` and keeps language preferences in `%APPDATA%\SU03T Tools`:
 
 ```powershell
 irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1 | iex
@@ -80,7 +82,7 @@ Choose a version or destination:
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
-  bash -s -- --version v0.6.0 --prefix "$HOME/Applications"
+  bash -s -- --version v0.6.1 --prefix "$HOME/Applications"
 ```
 
 On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) before running it.
