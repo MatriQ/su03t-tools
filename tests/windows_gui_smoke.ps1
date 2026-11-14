@@ -16,6 +16,7 @@ public static class NativeSmokeWindow {
     [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr window, int command);
     [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr window);
     [DllImport("user32.dll")] public static extern IntPtr SetThreadDpiAwarenessContext(IntPtr context);
+    [DllImport("kernel32.dll", SetLastError = true)] public static extern bool GetExitCodeProcess(IntPtr process, out uint exitCode);
 }
 '@
 }
@@ -50,7 +51,13 @@ try {
         $Launcher = $null
         try {
             $Launcher = Start-Process (Join-Path $Directory 'su03t-tools.exe') -PassThru -RedirectStandardError "$Output/$Language.stderr.log" -RedirectStandardOutput "$Output/$Language.stdout.log"
-            if (!$Launcher.WaitForExit(15000) -or $Launcher.ExitCode -ne 0) { throw 'Desktop launcher failed.' }
+            # Windows PowerShell 5.1 can leave Start-Process.ExitCode unset.
+            # Retain the handle and query the actual process exit status instead.
+            $LauncherHandle = $Launcher.Handle
+            $LauncherExited = $Launcher.WaitForExit(15000)
+            $LauncherExitCode = [uint32]0
+            $ReadExitCode = [NativeSmokeWindow]::GetExitCodeProcess($LauncherHandle, [ref]$LauncherExitCode)
+            if (!$LauncherExited -or !$ReadExitCode -or $LauncherExitCode -ne 0) { throw "Desktop launcher failed: exited=$LauncherExited read=$ReadExitCode exit=$LauncherExitCode" }
             $Deadline = [DateTime]::UtcNow.AddSeconds(45)
             while ([DateTime]::UtcNow -lt $Deadline) {
                 $Process = Get-Process -Name su03t-update -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $Cli } | Select-Object -First 1
@@ -91,6 +98,8 @@ try {
         } finally {
             if ($Process -and !$Process.HasExited) { $Process.Kill(); $Process.WaitForExit() }
             if ($Launcher -and !$Launcher.HasExited) { $Launcher.Kill(); $Launcher.WaitForExit() }
+            # A launcher check can fail before its child has been discovered.
+            Get-Process -Name su03t-update -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $Cli } | ForEach-Object { $_.Kill(); $_.WaitForExit() }
         }
         if ($Portable -and $Language -eq 'zh') {
             $Moved = Join-Path $Temporary ('moved ' + [char]0x79FB + [char]0x52A8 + ' portable')
@@ -106,5 +115,6 @@ try {
 } finally {
     $env:APPDATA = $OriginalAppData
     if ($DpiContext -ne [IntPtr]::Zero) { [NativeSmokeWindow]::SetThreadDpiAwarenessContext($DpiContext) | Out-Null }
-    Remove-Item -LiteralPath $Temporary -Recurse -Force
+    try { Remove-Item -LiteralPath $Temporary -Recurse -Force }
+    catch { Write-Warning "Could not remove the temporary GUI fixture: $_" }
 }

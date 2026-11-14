@@ -231,7 +231,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -462,7 +462,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -693,7 +693,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -924,7 +924,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -1151,7 +1151,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -1382,7 +1382,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -1613,7 +1613,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -1844,7 +1844,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -2071,7 +2071,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -2302,7 +2302,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -2533,7 +2533,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -2764,7 +2764,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -2995,7 +2995,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -3222,7 +3222,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -3449,7 +3449,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -3676,7 +3676,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         },
@@ -3903,7 +3903,7 @@
             },
             {
               "path": "tests/windows_gui_smoke.ps1",
-              "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
             }
           ]
         }
@@ -4209,7 +4209,7 @@
         },
         {
           "path": "tests/windows_gui_smoke.ps1",
-          "sha256": "6464206b49a53120b0f99f9d479cb6838e96bad3ef79a92c3010fc81a82993fc"
+          "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
         }
       ]
     }
