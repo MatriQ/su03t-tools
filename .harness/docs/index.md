@@ -9,7 +9,7 @@ SU-03T Tools is one Rust package, `su03t-update`, with an eframe/egui desktop UI
 | Implement a change | [Engineering](../skills/engineering/SKILL.md), [architecture](architecture.md) | [CLI](../../src/main.rs), [UI](../../src/gui.rs), [core](../../src/lib.rs) |
 | Prepare or start locally | [Local development](../skills/local-dev/SKILL.md), [development](development.md) | [Cargo manifest](../../Cargo.toml) |
 | Select checks | [Verify](../skills/verify/SKILL.md), [testing](testing.md) | [source CI](../../.github/workflows/check.yml), [PTY acceptance](../../tests/client_acceptance.py) |
-| Package or investigate delivery | [Release guide](release.md), [Homebrew distribution](release.md#homebrew-distribution), [Windows packaging](release.md#windows-packaging) | [package CI](../../.github/workflows/release.yml), [publisher](../../scripts/release_assets.py), [installer](../../install.sh) |
+| Package or investigate delivery | [Release guide](release.md), [Homebrew distribution](release.md#homebrew-distribution), [Windows packaging](release.md#windows-packaging) | [package CI](../../.github/workflows/release.yml), [publisher](../../scripts/release_assets.py), [Unix installer](../../install.sh), [Windows installer](../../install.ps1) |
 | Diagnose no ACK after CCC | [Troubleshooting](troubleshooting.md#ccc-arrives-but-block-1-is-not-acknowledged), [protocol](protocol.md) | [core](../../src/lib.rs), [events](../../src/flash_event.rs) |
 | Investigate B8, captures or drivers | [Troubleshooting](troubleshooting.md), [architecture](architecture.md) | [serial session](../../src/serial_debug.rs), [driver scan](../../src/driver_check.rs) |
 | Refresh the harness | [Maintenance](maintenance.md) | [specification](../harness.json), [registry](../workspace.json) |

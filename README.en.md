@@ -59,6 +59,8 @@ To uninstall while retaining language preferences:
 
 Use the `COM` number shown under Device Manager > Ports (COM & LPT), for example `COM3`. If no serial interface appears, follow the adapter vendor's Windows driver instructions. Windows board acceptance and software CI evidence are recorded separately in [validation](.harness/docs/validation.md).
 
+![Windows interface in English](docs/images/windows-en.png)
+
 ### Install script: macOS / Linux
 
 The script supports macOS (Apple Silicon / Intel) and Linux (x86_64 / ARM64). It selects the latest stable package and verifies SHA-256:
@@ -78,7 +80,7 @@ Choose a version or destination:
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
-  bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
+  bash -s -- --version v0.6.0 --prefix "$HOME/Applications"
 ```
 
 On macOS, `--prefix` is the directory containing the app bundle. On Linux it is the installation root containing `bin/` and `share/`. You can also download and inspect [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) before running it.

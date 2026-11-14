@@ -8,7 +8,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/index.md",
-      "sha256": "c7afb27070f1460272c6945f7fef8ecf80f879a0d54dbf8a7ddc73249142c42d"
+      "sha256": "23da742a6a29cb2850c6514b179d30063875b159e6c08a3426d80d0e64649f63"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "4eafb0455f637e4188ceb47f15b23fdaf8d3c86278586ef8bef3d7a77e9a70d7"
+      "sha256": "db88c712dfcbca23f665ff59838a5badf9ec18237203dc5522d0f844711731bb"
     }
   ],
   "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
@@ -206,11 +206,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "97da0df0d613352ff282c1bee3417de4175b1568e64e3f454b15b2291a5e22a4"
+      "sha256": "ff1545454de59ca954ec24f0641e13f54f625338569cdb6b61f04f13d7785923"
     },
     {
       "path": "README.en.md",
-      "sha256": "62a44d7f490a93dff5a16385a3708c5b9c667e1bc241396114c6c61a20c1a473"
+      "sha256": "49f5e106fefa4ab8904b925eb0879e3cb5476c5aa9e8aba22c5b3a47b7fcac75"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -354,7 +354,7 @@
     },
     {
       "path": ".harness/docs/validation.md",
-      "sha256": "de31c17cd7a488cbaa7366e74ccf0095496c905009383b18a778e4c1eaa6b017"
+      "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
     },
     {
       "path": ".cargo/config.toml",
@@ -403,6 +403,14 @@
     {
       "path": "tests/verify_windows_install.ps1",
       "sha256": "0ed122207e18ca5ffe870e026583e514377717f5c98e33e1a7aaae9e9deeabd8"
+    },
+    {
+      "path": "docs/images/windows-zh.png",
+      "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+    },
+    {
+      "path": "docs/images/windows-en.png",
+      "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
     }
   ]
 }

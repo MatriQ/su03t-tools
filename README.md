@@ -59,6 +59,8 @@ irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1 |
 
 串口使用设备管理器“端口（COM 和 LPT）”中显示的 `COM` 号，例如 `COM3`。未创建串口接口时，请按转接芯片厂商说明安装 Windows 驱动。Windows 实板刷机验收与软件 CI 验证分别记录在[验证范围](.harness/docs/validation.md)。
 
+![Windows 中文界面](docs/images/windows-zh.png)
+
 ### 安装脚本：macOS / Linux
 
 脚本支持 macOS（Apple Silicon / Intel）和 Linux（x86_64 / ARM64），自动选择最新稳定包并校验 SHA-256：
@@ -78,7 +80,7 @@ curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/instal
 
 ```bash
 curl -fsSL https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh | \
-  bash -s -- --version v0.5.4 --prefix "$HOME/Applications"
+  bash -s -- --version v0.6.0 --prefix "$HOME/Applications"
 ```
 
 `--prefix` 在 macOS 指放置 `.app` 的目录；在 Linux 指包含 `bin/` 和 `share/` 的安装根目录。也可下载 [install.sh](https://github.com/MatriQ/su03t-tools/releases/latest/download/install.sh) 阅读后执行。

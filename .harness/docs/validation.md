@@ -4,6 +4,20 @@
 
 Firmware flashing has passed acceptance testing on physical SU-03T hardware, as confirmed by the maintainer. Automated tests and the versioned results below complement this hardware acceptance.
 
+## v0.6.0
+
+Windows support targets Windows 10/11 x64, with a console CLI and a separate desktop launcher. Native automated checks run on Windows Server 2022 GitHub runners; Windows 10/11 physical-board flashing has not yet been accepted. The prior SU-03T hardware acceptance above remains valid for the tested setup.
+
+| Check | Evidence |
+| --- | --- |
+| Rust desktop and CLI variants, formatting and Clippy | [Source CI passed on macOS, Linux and Windows](https://github.com/MatriQ/su03t-tools/actions/runs/43551233437) |
+| Windows installer, PowerShell 5.1 and 7 | 13 scenarios passed in each shell: Unicode paths, reinstall, integrity failures, archive safety, ownership, replacement rollback, locked files and uninstall |
+| Four release targets | [Package CI passed](https://github.com/MatriQ/su03t-tools/actions/runs/43578174530): macOS universal, Linux x86_64/ARM64 and Windows x64 |
+| Extracted Windows executables | Version/help, Unicode firmware paths, independent SHA-256, hidden-worker JSON events and refusal before opening a serial port passed |
+| Native Windows desktop | Chinese and English windows launched, responded, produced complete screenshots and closed with exit status zero |
+
+Windows installer checks use temporary directories and fixture downloads. The native desktop checks use isolated language settings and no physical serial device. The Windows executables embed their icon, use a static MSVC runtime, and enable the DirectX 12 renderer explicitly. Unix PTY transfer suites continue to run on macOS and Linux; native Windows GUI and installer passes do not establish physical Windows serial or flashing acceptance. See the [testing guide](testing.md#windows-package-verification) for reproduction and the [release guide](release.md#windows-packaging) for verification of published downloads.
+
 ## v0.5.4
 
 Repository metadata, release tooling and canonical installation URLs use `MatriQ/su03t-tools`. The 16 installer scenarios include reinstalling a Linux version with the previous repository marker, migrating it to the new marker, and preserving directories owned by another tool. Existing installation paths allow upgrades after the repository rename.
@@ -42,11 +56,11 @@ The transfer suites cover 257 packets, sequence wrap, independent CRC and paddin
 
 A physical SU-03T session with v0.4.1 completed the handshake, all block acknowledgments and the final EOT acknowledgment. The maintainer has confirmed physical flashing acceptance as recorded above. The Rosetta check exercised the Intel binary on an Apple Silicon host.
 
-CI runs the source test suites on macOS and Linux. Linux GUI startup can also be checked under Xvfb with the supplied container scripts. Additional board, adapter and OS combinations can be recorded with their own hardware test results.
+CI now runs the source test suites on macOS, Linux and Windows. Linux GUI startup can also be checked under Xvfb with the supplied container scripts. Additional board, adapter and OS combinations can be recorded with their own hardware test results.
 
 ## Screenshots
 
-README screenshots illustrate the native desktop interface and are maintained through the [capture workflow](https://github.com/MatriQ/su03t-tools/blob/main/CONTRIBUTING.md#native-screenshots). The application captures its own framebuffer. Preview and capture controls are excluded from release builds.
+README screenshots illustrate the native desktop interface. The macOS captures use the application framebuffer through the [capture workflow](https://github.com/MatriQ/su03t-tools/blob/main/CONTRIBUTING.md#native-screenshots); preview and capture controls are excluded from release builds. The Windows images are full client-area captures of the packaged application on the native CI desktop, produced by [the GUI check](../../tests/windows_gui_smoke.ps1). Screenshot capture does not operate a serial device or establish new hardware acceptance.
 
 ## macOS build note
 
