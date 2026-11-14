@@ -61,7 +61,10 @@ fn preference_path() -> Option<PathBuf> {
     }
     #[cfg(windows)]
     {
-        Some(PathBuf::from(std::env::var_os("APPDATA")?).join("SU03T Tools/language.json"))
+        windows_preference_path(
+            std::env::current_exe().ok().as_deref(),
+            std::env::var_os("APPDATA").as_deref(),
+        )
     }
     #[cfg(not(any(target_os = "macos", windows)))]
     {
@@ -71,11 +74,26 @@ fn preference_path() -> Option<PathBuf> {
         Some(base.join("su03t-tools/language.json"))
     }
 }
-pub(super) fn load() -> Language {
-    preference_path()
-        .and_then(|p| std::fs::read(p).ok())
+#[cfg(any(windows, test))]
+fn windows_preference_path(
+    executable: Option<&std::path::Path>,
+    app_data: Option<&std::ffi::OsStr>,
+) -> Option<PathBuf> {
+    if let Some(directory) = executable.and_then(std::path::Path::parent)
+        && directory.join("portable.flag").is_file()
+    {
+        return Some(directory.join("data/language.json"));
+    }
+    app_data.map(|base| PathBuf::from(base).join("SU03T Tools/language.json"))
+}
+fn load_from(path: &std::path::Path) -> Language {
+    std::fs::read(path)
+        .ok()
         .and_then(|b| serde_json::from_slice(&b).ok())
         .unwrap_or_default()
+}
+pub(super) fn load() -> Language {
+    preference_path().map(|p| load_from(&p)).unwrap_or_default()
 }
 pub(super) fn save(language: Language) -> std::io::Result<()> {
     if let Some(path) = preference_path() {
@@ -224,6 +242,56 @@ pub(super) use ui_format;
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn portable_settings_follow_the_executable_without_changing_user_preferences() {
+        let directory = tempfile::tempdir().unwrap();
+        let profile = directory.path().join("profile");
+        let profile_language = profile.join("SU03T Tools/language.json");
+        save_to(&profile_language, Language::Zh).unwrap();
+        let original = directory.path().join("中文 portable");
+        std::fs::create_dir(&original).unwrap();
+        std::fs::write(original.join("portable.flag"), "").unwrap();
+        let path = windows_preference_path(
+            Some(&original.join("su03t-update.exe")),
+            Some(profile.as_os_str()),
+        )
+        .unwrap();
+        assert_eq!(path, original.join("data/language.json"));
+        // A fresh portable copy does not inherit settings from the user profile.
+        assert_eq!(load_from(&path), Language::System);
+        save_to(&path, Language::Zh).unwrap();
+        let moved = directory.path().join("移动后 portable");
+        std::fs::rename(original, &moved).unwrap();
+        let path = windows_preference_path(Some(&moved.join("su03t-update.exe")), None).unwrap();
+        assert_eq!(load_from(&path), Language::Zh);
+        save_to(&path, Language::En).unwrap();
+        assert_eq!(load_from(&path), Language::En);
+        assert_eq!(load_from(&profile_language), Language::Zh);
+    }
+    #[test]
+    fn windows_without_a_portable_marker_uses_user_preferences() {
+        let directory = tempfile::tempdir().unwrap();
+        let executable = directory.path().join("su03t-update.exe");
+        assert_eq!(
+            windows_preference_path(Some(&executable), Some(directory.path().as_os_str())),
+            Some(directory.path().join("SU03T Tools/language.json"))
+        );
+        assert_eq!(windows_preference_path(Some(&executable), None), None);
+    }
+    #[test]
+    fn portable_save_errors_do_not_write_to_user_preferences() {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::write(directory.path().join("portable.flag"), "").unwrap();
+        std::fs::write(directory.path().join("data"), "blocked").unwrap();
+        let profile = directory.path().join("profile");
+        let path = windows_preference_path(
+            Some(&directory.path().join("su03t-update.exe")),
+            Some(profile.as_os_str()),
+        )
+        .unwrap();
+        assert!(save_to(&path, Language::En).is_err());
+        assert!(!profile.exists());
+    }
     #[test]
     fn language_choice_can_replace_an_existing_preference_in_a_unicode_directory() {
         let directory = tempfile::tempdir().unwrap();
