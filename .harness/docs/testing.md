@@ -45,8 +45,14 @@ Unit and PTY suites cover packet framing, CRC, padding, sequence wrap, retries, 
 
 ## CI and reporting
 
-[Source CI](../../.github/workflows/check.yml) covers macOS/Ubuntu. [Package CI](../../.github/workflows/release.yml) covers Mac universal and Ubuntu x86_64/ARM64; it verifies real archives with PTYs and temporary installation, plus eight-second Xvfb GUI startup on Linux. The separate [harness gate](../../.github/workflows/harness-gate.yml) runs Node 24 artifact checks without this machine's local context.
+[Source CI](../../.github/workflows/check.yml) covers macOS, Ubuntu and Windows x64. Windows runs the Rust default/CLI variants and [file-only CLI checks](../../tests/cli_smoke.py); Unix-only PTY suites remain on macOS/Linux. The Windows check uses Unicode file paths, independent SHA-256 and rejection before any serial port open. Native Windows GUI and release-package evidence remain separate from these source checks. [Package CI](../../.github/workflows/release.yml) covers Mac universal, Ubuntu x86_64/ARM64 and Windows x64; it verifies real archives with PTYs and temporary installation, plus eight-second Xvfb GUI startup on Linux. The separate [harness gate](../../.github/workflows/harness-gate.yml) runs Node 24 artifact checks without this machine's local context.
 
 PTY passes establish modeled behavior. Xvfb survival establishes startup, not a full GUI session. Final EOT ACK establishes transfer completion, not readback or voice functions. See [hardware acceptance and historical validation](validation.md#hardware-acceptance) for the physical-device results.
 
 Report revision/working tree, OS/architecture, variant, commands, outcomes and unresolved limits. Preserve first failures and retry reasons. Machine execution reports and raw logs stay ignored locally. Do not relax tests to accept unacknowledged transfer or premature GUI exit.
+
+## Windows package verification
+
+[PowerShell installer tests](../../tests/test_windows_installer.ps1) use local release fixtures and the compiled Windows binaries. They cover Unicode directories, repeat installation, checksum refusals, foreign ownership, unsafe or duplicate archive paths, incomplete packages, replacement rollback, locked files and uninstall. Run them on Windows with PowerShell 7 and Windows PowerShell 5.1. [Native GUI checks](../../tests/windows_gui_smoke.ps1) use isolated APPDATA, launch both language variants, require a responsive native window, capture screenshots and close normally. The package workflow retains those images as windows-ui evidence. These checks never open physical serial ports or transfer firmware.
+
+The GUI check maximizes only the test app within the existing desktop and captures its client area. It does not change monitor settings. Thread DPI context is restored on exit. It opens the process handle while the window is alive so normal-close exit-code checks remain reliable.

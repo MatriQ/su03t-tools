@@ -11,6 +11,10 @@
 | [driver_check.rs](../../src/driver_check.rs), [driver_ui.rs](../../src/driver_ui.rs), [port_picker.rs](../../src/port_picker.rs) | Port discovery and async guidance. macOS queries ioreg read-only and associates a USB node with its own serial descendants. |
 | [ui_i18n.rs](../../src/ui_i18n.rs), [ui_catalog.rs](../../src/ui_catalog.rs) | Chinese/English selection and text. Device data, paths and hashes preserve their original form. |
 
+## Windows runtime
+
+The optional windows-launcher feature builds su03t-tools.exe, a desktop launcher for the sibling console-capable su03t-update.exe. Desktop and serial-worker launches use CREATE_NO_WINDOW; CLI output remains available when invoking the console binary. Windows uses the WGPU DirectX 12 renderer, APPDATA-based language preferences, the Windows display language and Windows CJK fonts. The MSVC target statically links its CRT. macOS/Linux retain the Glow renderer. [Launcher](../../src/windows_launcher.rs), [Windows resources](../../assets/windows.rc) and [target configuration](../../.cargo/config.toml) define these contracts.
+
 ## Firmware transfer journey
 
 1. Desktop selection hashes the image. The CLI worker loads its fixed buffer and verifies that expected SHA before opening the serial port.
