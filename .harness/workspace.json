@@ -7,7 +7,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/architecture.md",
-          "sha256": "c685244453037a37f8f050554e42edd2cddb128c736885dc111e2619343ddfa9",
+          "sha256": "0e881cc81bf5342f73daf297b94f1c528db617a571f99e547ab53d62c73f471c",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -31,7 +31,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -51,11 +51,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -206,7 +206,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -226,11 +226,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -357,7 +357,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/index.md",
-          "sha256": "a87cfe6ea830584a17ba5829d76d3d27a187afb7ee92dbdedf47474e48f80864",
+          "sha256": "86cd070f4472646dda75e239ae3f1ed37091242ab53391a2c9bbf62cd78c1192",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -381,7 +381,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -401,11 +401,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -556,7 +556,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -576,11 +576,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -727,7 +727,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -747,11 +747,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -902,7 +902,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -922,11 +922,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -1053,7 +1053,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/testing.md",
-          "sha256": "503cce2bf2fa1754d64e3814c61c483762bdc4e1d547552280a77a9dabafba22",
+          "sha256": "4eec2e4d26048d0be877ab4fee350fb0f119f1318e106728e34119a6550113e2",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -1077,7 +1077,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -1097,11 +1097,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -1252,7 +1252,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -1272,11 +1272,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -1403,7 +1403,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/docs/validation.md",
-          "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52",
+          "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -1443,11 +1443,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -1574,7 +1574,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": ".harness/rules/engineering.md",
-          "sha256": "09be7d1dc2fc3ba90532373c328ee4ad3714453f42b2ad634f9d1e1370c30138",
+          "sha256": "aa0cbcb67014171d4968a228cde41835990247fdebe3e0a9332ea1f8e927dec5",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -1598,7 +1598,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -1618,11 +1618,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -1773,7 +1773,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -1793,11 +1793,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -1948,7 +1948,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -1968,11 +1968,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -2123,7 +2123,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -2143,11 +2143,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -2298,7 +2298,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "CONTRIBUTING.md",
@@ -2314,11 +2314,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -2469,7 +2469,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -2485,11 +2485,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -2616,7 +2616,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": "README.en.md",
-          "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967",
+          "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -2640,7 +2640,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -2660,7 +2660,7 @@
             },
             {
               "path": "README.md",
-              "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+              "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
             },
             {
               "path": "install.sh",
@@ -2787,7 +2787,7 @@
         {
           "onboarding_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
           "path": "README.md",
-          "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea",
+          "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f",
           "sources": [
             {
               "path": ".github/workflows/check.yml",
@@ -2811,7 +2811,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+              "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
             },
             {
               "path": "AGENTS.md",
@@ -2831,7 +2831,7 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+              "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
             },
             {
               "path": "install.sh",
@@ -3043,7 +3043,7 @@
         },
         {
           "path": ".harness/docs/validation.md",
-          "sha256": "0b363a7e06ebe43530ae904e968327fa6aee6b54d279ff95916879e645385c52"
+          "sha256": "a46b39a65cca33225bb01473cd1dba0dc7f6e6ca35c8535c69b9f0fa7f8fad85"
         },
         {
           "path": "AGENTS.md",
@@ -3063,11 +3063,11 @@
         },
         {
           "path": "README.en.md",
-          "sha256": "c3fda802daf2964492c1877a61aff21620b3007d95c8946237bc3f907341a967"
+          "sha256": "b2290185fd1712022ad068c19755d737950516a231afbbf848834c87991790d0"
         },
         {
           "path": "README.md",
-          "sha256": "42598937aaf6d5ec1b5445a15077094ae4ef97413cac66af24bc73b6e41331ea"
+          "sha256": "1591c14e4329af95c9847729b487c479faa05a97ce2f4d812b0160744dc2296f"
         },
         {
           "path": "install.sh",

@@ -43,6 +43,6 @@ The last two explicitly use the macOS-only --virtual-port adapter. Portable clie
 
 [Source CI](../../.github/workflows/check.yml) covers macOS/Ubuntu. [Package CI](../../.github/workflows/release.yml) covers Mac universal and Ubuntu x86_64/ARM64; it verifies real archives with PTYs and temporary installation, plus eight-second Xvfb GUI startup on Linux. The separate [harness gate](../../.github/workflows/harness-gate.yml) runs Node 24 artifact checks without this machine's local context.
 
-PTY passes establish modeled behavior. Xvfb survival establishes startup, not a full GUI session. Final EOT ACK establishes transfer completion, not readback or voice functions. Keep [historical hardware claims](validation.md) separate.
+PTY passes establish modeled behavior. Xvfb survival establishes startup, not a full GUI session. Final EOT ACK establishes transfer completion, not readback or voice functions. See [hardware acceptance and historical validation](validation.md#hardware-acceptance) for the physical-device results.
 
 Report revision/working tree, OS/architecture, variant, commands, outcomes and unresolved limits. Preserve first failures and retry reasons. Machine execution reports and raw logs stay ignored locally. Do not relax tests to accept unacknowledged transfer or premature GUI exit.

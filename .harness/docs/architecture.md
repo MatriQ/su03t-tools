@@ -21,7 +21,7 @@
 
 ## Diagnostic journey and state
 
-A Session owns the debug serial handle and releases it on stop/drop, including under event backpressure. Connect is passive. TX is explicit; B8 rejects sends in the core and disallows flow control that could generate outgoing signals. Car mode describes one application firmware's bytes, not a universal module protocol.
+A Session owns the debug serial handle and releases it on stop/drop, including under event backpressure. Connect is passive. TX is explicit; B8 rejects sends in the core and disallows flow control that could generate outgoing signals. Serial presets describe parameters and receive/transmit policy; use settings that match the target firmware.
 
 Display and raw RX have separate bounds. Debug display clearing preserves counters, raw RX and recording files. Flash clear_logs clears display rows, eviction/offset bookkeeping and resumes following/jumps to latest; it preserves the live transfer phase, acknowledged/total bytes, target, retry count and failure context. New events still appear. Reading history pauses following; bottom/jump resumes it. Retain those behaviors in both UI languages. [CONTRIBUTING](../../CONTRIBUTING.md) owns the standing constraints.
 

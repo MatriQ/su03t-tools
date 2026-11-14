@@ -1,5 +1,9 @@
 # Validation and compatibility
 
+## Hardware acceptance
+
+Firmware flashing has passed acceptance testing on physical SU-03T hardware, as confirmed by the maintainer. Automated tests and the versioned results below complement this hardware acceptance.
+
 ## v0.5.4
 
 Repository metadata, release tooling and canonical installation URLs use `MatriQ/su03t-tools`. The 16 installer scenarios include reinstalling a Linux version with the previous repository marker, migrating it to the new marker, and preserving directories owned by another tool. Existing installation paths allow upgrades after the repository rename.
@@ -8,7 +12,7 @@ Repository metadata, release tooling and canonical installation URLs use `MatriQ
 
 Packaging and installation changes use 14 installer scenarios (11 portable Linux-layout scenarios plus 3 native macOS signing scenarios) and 14 release-helper scenarios. The tests cover version/architecture selection, upgrades, checksum failures, unsafe archive paths, foreign destinations, missing packages, complete manifests, interrupted drafts and immutable published assets. They use temporary prefixes and mock downloads. Release lookup covers published tags, paginated draft discovery and API errors; new drafts must be verified before publication.
 
-The packaging workflow verifies the executable extracted from each archive with the CLI PTY suites and installs each real package into a temporary prefix through mocked downloads. Linux GUI startup is checked for eight seconds under Xvfb with software rendering. The Mac package also verifies both Mach-O slices and its ad-hoc signature after extraction. Binary installation does not provide missing-driver installation, physical USB flashing or voice-function acceptance.
+The packaging workflow verifies the executable extracted from each archive with the CLI PTY suites and installs each real package into a temporary prefix through mocked downloads. Linux GUI startup is checked for eight seconds under Xvfb with software rendering. The Mac package also verifies both Mach-O slices and its ad-hoc signature after extraction. These checks cover package installation and startup; the physical flashing result is recorded under [hardware acceptance](#hardware-acceptance).
 
 ## v0.5.1
 
@@ -31,19 +35,18 @@ Driver-check screenshots use simulated devices and do not establish missing-driv
 | ARM macOS bundle: client, handshake, transfer and worker-event PTY suites | Passed |
 | Intel macOS bundle under Rosetta: client and worker-event PTY suites | Passed |
 | Universal Mach-O slices and ad-hoc signature | Verified |
-| New physical-device flash after the v0.5.0 UI changes | Not performed |
 
 The UI tests verify that clearing logs preserves progress and retry state, scrolling into history pauses following, returning to the bottom resumes it, and language changes retain the reading position. Device RX/TX text is preserved when application messages change language.
 
 The transfer suites cover 257 packets, sequence wrap, independent CRC and padding checks, NAK/timeout retries, CAN/NNN failures, missing final acknowledgment, handshake-only probing and rejecting a changed image before opening a port. They use operating-system PTYs and never open attached USB devices.
 
-A prior v0.4.1 session on one physical SU-03T completed the handshake, all block acknowledgments and the final EOT acknowledgment. That is limited evidence for that bootloader and setup. It is not broad board, adapter, driver, OS or voice-function acceptance for v0.5.0. An Intel binary running under Rosetta is not an Intel machine USB test.
+A physical SU-03T session with v0.4.1 completed the handshake, all block acknowledgments and the final EOT acknowledgment. The maintainer has confirmed physical flashing acceptance as recorded above. The Rosetta check exercised the Intel binary on an Apple Silicon host.
 
-CI runs the source test suites on macOS and Linux. Linux GUI startup can also be checked under Xvfb with the supplied container scripts. Physical USB behavior, sustained sessions and voice operation require separate hardware validation.
+CI runs the source test suites on macOS and Linux. Linux GUI startup can also be checked under Xvfb with the supplied container scripts. Additional board, adapter and OS combinations can be recorded with their own hardware test results.
 
 ## Screenshots
 
-README screenshots are rendered by the native desktop app in a debug-only simulation. They contain sample filenames and events, not a hardware flashing session. The application captures its own framebuffer; the screenshot script does not capture the desktop or other applications. Preview and capture controls are excluded from release builds.
+README screenshots illustrate the native desktop interface and are maintained through the [capture workflow](../../CONTRIBUTING.md#native-screenshots). The application captures its own framebuffer. Preview and capture controls are excluded from release builds.
 
 ## macOS build note
 
