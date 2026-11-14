@@ -7,7 +7,7 @@ Run commands from the selected Git root. Compilation needs no service credential
 | Tool | Source-backed requirement |
 | --- | --- |
 | Rust/Cargo | CI pins 1.95.0; reproduce CI with that version. See [manifest](../../Cargo.toml), [source CI](../../.github/workflows/check.yml), [rustup](https://rustup.rs/). |
-| Native compiler/libraries | macOS uses Xcode command-line tools. Linux needs a C toolchain, pkg-config and the [native development libraries](#native-dependencies). See also the [Linux build image](../../scripts/Dockerfile.linux). |
+| Native compiler/libraries | macOS uses Xcode command-line tools. Windows uses Visual Studio C++ Build Tools and a Windows SDK with the Rust MSVC toolchain. Linux needs a C toolchain, pkg-config and the [native development libraries](#native-dependencies). See also the [Linux build image](../../scripts/Dockerfile.linux). |
 | Python | Python 3.9+ runs stdlib-only tests/helpers (the scripts use removeprefix and modern built-in generics). |
 | Node | Node 24+ runs the harness checker, not the Rust application; no npm install is needed. |
 | Packaging | Python, rust-docs and platform utilities; see [release](release.md). |
@@ -40,7 +40,7 @@ cargo build --locked --release
 cargo build --locked --release --no-default-features
 ~~~
 
-The first command builds the desktop-capable executable; the second builds CLI-only. Both use target/release/su03t-update unless CARGO_TARGET_DIR is overridden, so build the intended variant before running it. Start the desktop build without arguments in an active desktop session, or pass --help to inspect CLI commands. Chinese rendering needs an available CJK font; Linux port access uses the system's dialout/uucp/device permissions, without running the app as root.
+The first command builds the desktop-capable executable; the second builds CLI-only. Both use target/release/su03t-update (su03t-update.exe on Windows) unless CARGO_TARGET_DIR is overridden, so build the intended variant before running it. Start the desktop build without arguments in an active desktop session, or pass --help to inspect CLI commands. Chinese rendering needs an available CJK font; Linux port access uses the system's dialout/uucp/device permissions, without running the app as root.
 
 For native app bundles and archives, follow [local packaging](release.md#local-packaging). Packaging also requires Python 3 and rust-docs; the platform-specific steps belong to that guide. For a faster development-loop check, use the debug startup below.
 
@@ -72,3 +72,11 @@ python3 .harness/resources/probes.py cli
 If CARGO_TARGET_DIR is set, the probe uses its debug executable. A zero exit and accepted:true establish this CLI path only. For UI work use default-feature checks in [testing](testing.md); use [simulated screenshots](../../CONTRIBUTING.md#native-screenshots) only with an active desktop. Keep a CJK font available.
 
 Stop task-created processes, close PTYs and remove fixtures after checks. Keep caches in target/ and packages in dist/. Firmware, vendor executables, .env and private evidence stay excluded by [.gitignore](../../.gitignore). Do not run the application with sudo.
+
+## Windows development
+
+Use Rust 1.95 with the x86_64-pc-windows-msvc target, Visual Studio 2022 C++ Build Tools and a Windows 10/11 SDK. The GUI uses WGPU's DirectX 12 backend. The target configuration statically links the CRT. Native GUI work needs an active Windows desktop; source checks alone do not exercise graphics initialization.
+
+Build with cargo build --locked --release --target x86_64-pc-windows-msvc --features windows-launcher. Keep the resulting su03t-tools.exe desktop launcher beside su03t-update.exe in target/x86_64-pc-windows-msvc/release. Invoke su03t-update.exe for console commands. Language preferences live in APPDATA/SU03T Tools/language.json; Windows display language and CJK fonts provide the system defaults.
+
+[Windows packaging](release.md#windows-packaging) includes a user-scoped installer. [Native Windows checks](testing.md#windows-package-verification) use local fixtures and isolated application settings, never an attached board. COM port names come from Device Manager; driver installation remains a vendor/OS operation.

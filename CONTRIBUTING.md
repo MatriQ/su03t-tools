@@ -4,7 +4,7 @@ Issues and pull requests are welcome in English or Chinese. See the [English REA
 
 ## Development
 
-Use Rust 1.95 and the platform libraries listed in the [development guide](.harness/docs/development.md#native-dependencies). Run formatting, Clippy, the default-feature and CLI-only test suites, and the PTY acceptance scripts before submitting a change. CI checks macOS and Linux. Tests must not silently open attached USB devices or send firmware to hardware.
+Use Rust 1.95 and the platform libraries listed in the [development guide](.harness/docs/development.md#native-dependencies). Run formatting, Clippy, the default-feature and CLI-only test suites, and the PTY acceptance scripts before submitting a change. CI checks macOS, Linux and Windows x64. Windows uses the file-only CLI and PowerShell installer suites; PTY scripts run on Unix platforms. Tests must not silently open attached USB devices or send firmware to hardware.
 
 Keep firmware transfer behavior separate from application presets. Progress must count acknowledged bytes; 100% data progress must not imply final acknowledgment. Changes to framing, CRC, retry behavior or completion handling need wire-level regression evidence. Keep receive-only B8 mode enforced in the communication core.
 

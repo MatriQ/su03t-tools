@@ -8,7 +8,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/index.md",
-      "sha256": "91cfaf931b88822acc9dd3d75353b201ae6bb509de294369ee98c32ddad1f7b5"
+      "sha256": "c7afb27070f1460272c6945f7fef8ecf80f879a0d54dbf8a7ddc73249142c42d"
     },
     {
       "executable": false,
@@ -18,7 +18,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/architecture.md",
-      "sha256": "4bd360908b35b4efdd8b5872c40259622261f8bca8ed9a0243cc2ba6f8c0701f"
+      "sha256": "38e7e9acca17491dd3eeb3de9de5c6f957d44788e1274bdfe4c178d9d487e7e0"
     },
     {
       "executable": false,
@@ -28,7 +28,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/development.md",
-      "sha256": "a1f34b18b84075d7b68a27ddfe3c60fe9adefb5ede15cb083d9d791c7c693c03"
+      "sha256": "a0e083191fa358443d4fc324950335fc9ff605e17188e88014b2035847d6341d"
     },
     {
       "executable": false,
@@ -38,7 +38,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/testing.md",
-      "sha256": "fbe39a7aaab3176a3ac197ba9e3d03bd9373f92b4e093c8f617d5c0a74ec65f2"
+      "sha256": "7fbee2dd235344f464884bd6fe3f04b38e01ddf14240f22c2fc3e44fa244bdfa"
     },
     {
       "executable": false,
@@ -48,7 +48,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/release.md",
-      "sha256": "c2d225bea4a1cf75c7671fa689f08b974b6fb6c3f4eb39825d054ef72cd93e52"
+      "sha256": "fd1c06bfb64ca23c4df409a3e85ae486000fd17c4c848f7e0e53f6317f1b4492"
     },
     {
       "executable": false,
@@ -190,31 +190,31 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "b1945ad16fd14dc476339539738e229af64e1c284471aed1bdf8dac69fb877c5"
+      "sha256": "706169c2c74d63677db5e439a686d2466197eaebe8850c2197bb0e3ca6d19e13"
     }
   ],
-  "profile_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
+  "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
   "schema_version": 1,
   "sources": [
     {
       "path": "Cargo.toml",
-      "sha256": "ae0811c23115ccc1abc87c6375b366b04e9d59025d52ba53cc56b4e3384da2ee"
+      "sha256": "07b2c57cd8fbb9393f93f43389fff8fe0b322c716980c049d89c64e3de115ae8"
     },
     {
       "path": "Cargo.lock",
-      "sha256": "d564e0565436257103fbcc084405b68c791bf4957a202ba71ad5cafe0b6785fd"
+      "sha256": "f528aedab966fb16b74bab69f0db1476c2a54276ce32d0db9f8916b7e3cb9f73"
     },
     {
       "path": "README.md",
-      "sha256": "9785e5ad07de0557d3202510276c6c1f31edd0f6678d19b4510b0ebe6f91d392"
+      "sha256": "97da0df0d613352ff282c1bee3417de4175b1568e64e3f454b15b2291a5e22a4"
     },
     {
       "path": "README.en.md",
-      "sha256": "b41a45104097f9b196637034897297938ab0c25a94a2b4100cc1fab81d79fb6c"
+      "sha256": "62a44d7f490a93dff5a16385a3708c5b9c667e1bc241396114c6c61a20c1a473"
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "8c41d8a2efd30f3376ac6e71913888759af83abae7d165f57ff734619f2558e8"
+      "sha256": "7b81ce4e6dbcdd0f3d62a16ff16bbad1468eeee39441f6c7bd83f9b4d6764105"
     },
     {
       "path": ".gitignore",
@@ -246,11 +246,11 @@
     },
     {
       "path": "src/gui.rs",
-      "sha256": "8d7d824bee1dbc61ec6696350edd6672a005b3ef9548cc87df13fa7793525863"
+      "sha256": "2d0fc95a54e8712350664d6ca45d5b1c6e8f0db712cdd740cd42948ad97c69fd"
     },
     {
       "path": "src/debug_ui.rs",
-      "sha256": "78c3d27feaf2e993b1e5897884036410a19e9bfacfa8b766f5da8762f8d7a899"
+      "sha256": "2eeec8e38e1d26680c73d140eaa7b80dc9fa8e7a2b3bc0a7072a3b497cd2ba85"
     },
     {
       "path": "src/serial_debug.rs",
@@ -290,7 +290,7 @@
     },
     {
       "path": "scripts/package-macos.sh",
-      "sha256": "b243535064371125e1f52e4836adb04860b5cd474b158f417b91220ae9e5c619"
+      "sha256": "b87f3479a47c6f3f6154b4db2e7d783c90c16b9c60527b1516461e15abaf0e9c"
     },
     {
       "path": "scripts/collect-licenses.py",
@@ -378,7 +378,7 @@
     },
     {
       "path": "tests/cli_smoke.py",
-      "sha256": "1e95e7321a9d3ceb16519acca66bf245119b8b06dac6186c4227a5ad52c24e55"
+      "sha256": "ebda72f00e38d10ec4305674551a7fe9f9e6c315ac61a82b9d60c0d5cd7af282"
     },
     {
       "path": "install.ps1",
@@ -395,6 +395,10 @@
     {
       "path": "tests/windows_gui_smoke.ps1",
       "sha256": "4100093ce69ef9faaf30517ce087cbc114ad06ba8b12550e8fb16948fc581856"
+    },
+    {
+      "path": ".github/workflows/verify-install.yml",
+      "sha256": "bc9ac6af94de30ac696664b7c33e43c0d9b2e02a06722e6001f8f7bfccc1446f"
     }
   ]
 }

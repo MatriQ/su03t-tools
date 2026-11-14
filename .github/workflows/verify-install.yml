@@ -1,0 +1,53 @@
+name: Verify Windows installation
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published stable release to verify (latest or vX.Y.Z)
+        type: string
+        default: latest
+permissions:
+  contents: read
+jobs:
+  install:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [pwsh, powershell]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify the public installer and application
+        shell: ${{ matrix.shell }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_REQUEST: ${{ inputs.version }}
+          PYTHONUTF8: '1'
+        run: |
+          if ($env:RELEASE_REQUEST -notmatch '^latest$|^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$') { throw 'Expected latest or vX.Y.Z.' }
+          $Endpoint = if ($env:RELEASE_REQUEST -eq 'latest') { 'latest' } else { 'tags/' + $env:RELEASE_REQUEST }
+          $Release = gh api "repos/MatriQ/su03t-tools/releases/$Endpoint" | ConvertFrom-Json
+          if ($LASTEXITCODE -or $Release.draft -or $Release.prerelease) { throw 'Expected a public stable Release.' }
+          $Tag = $Release.tag_name
+          $Download = Join-Path $env:RUNNER_TEMP 'public-installer'
+          New-Item -ItemType Directory -Path $Download -Force | Out-Null
+          gh release download $Tag --repo MatriQ/su03t-tools --pattern install.ps1 --dir $Download
+          if ($LASTEXITCODE) { throw 'Public installer download failed.' }
+          $Installer = Join-Path $Download 'install.ps1'
+          $Asset = @($Release.assets | Where-Object { $_.name -eq 'install.ps1' })
+          if ($Asset.Count -ne 1 -or $Asset[0].digest -ne ('sha256:' + (Get-FileHash $Installer -Algorithm SHA256).Hash.ToLowerInvariant())) { throw 'Installer digest mismatch.' }
+          $Prefix = Join-Path $env:RUNNER_TEMP ('public install ' + [char]0x4E2D + [char]0x6587)
+          try {
+            & $Installer -Version $Tag -Prefix $Prefix -NoShortcut
+            $Cli = Join-Path $Prefix 'app/su03t-update.exe'
+            if ((& $Cli --version) -ne "su03t-update $($Tag.TrimStart('v'))") { throw 'Public installed version mismatch.' }
+            python3 tests/cli_smoke.py $Cli
+            if ($LASTEXITCODE) { throw 'Public installed CLI checks failed.' }
+          } finally {
+            if (Test-Path (Join-Path $Prefix 'install.json')) { & $Installer -Prefix $Prefix -NoShortcut -Uninstall }
+          }
+          if (Test-Path (Join-Path $Prefix 'app')) { throw 'Uninstall left application files behind.' }
+          Write-Output "PASS: public $Tag Windows download, installer SHA-256, installation, Unicode path, CLI and uninstall"

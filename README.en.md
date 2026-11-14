@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | English
 
-A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool for macOS and Linux, built in Rust with a desktop UI and CLI.
+A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool for macOS, Linux and Windows, built in Rust with a desktop UI and CLI.
 
 [![CI](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml/badge.svg)](https://github.com/MatriQ/su03t-tools/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -39,6 +39,26 @@ brew upgrade --cask matriq/tap/su03t-tools
 
 Uninstall with `brew uninstall --cask matriq/tap/su03t-tools`. See the [tap installation guide](https://github.com/MatriQ/homebrew-tap/blob/main/README.en.md) for a custom app directory and other options.
 
+### Windows 10 / 11 x64
+
+Download the `Windows-x86_64.zip` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), extract the complete archive and open `su03t-tools.exe` for the desktop interface. Use `su03t-update.exe` for the CLI; keep both executables in the same directory.
+
+Alternatively, install into your user directory from PowerShell, without administrator privileges:
+
+```powershell
+irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1 | iex
+```
+
+The script verifies SHA-256, installs into `%LOCALAPPDATA%\Programs\SU03T Tools\app` by default, creates a Start menu shortcut and prints the full CLI path. Quit the app and run the same command to upgrade.
+
+To uninstall while retaining language preferences:
+
+```powershell
+& ([scriptblock]::Create((irm https://github.com/MatriQ/su03t-tools/releases/latest/download/install.ps1))) -Uninstall
+```
+
+Use the `COM` number shown under Device Manager > Ports (COM & LPT), for example `COM3`. If no serial interface appears, follow the adapter vendor's Windows driver instructions. Windows board acceptance and software CI evidence are recorded separately in [validation](.harness/docs/validation.md).
+
 ### Install script: macOS / Linux
 
 The script supports macOS (Apple Silicon / Intel) and Linux (x86_64 / ARM64). It selects the latest stable package and verifies SHA-256:
@@ -65,11 +85,13 @@ On macOS, `--prefix` is the directory containing the app bundle. On Linux it is 
 
 ### Manual download
 
-Download the macOS universal ZIP or your Linux architecture's `.tar.gz` from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), and verify it with the `SHA256SUMS.txt` from the same release.
+Download the macOS universal ZIP, your Linux architecture's `.tar.gz`, or the Windows x64 ZIP from [Releases](https://github.com/MatriQ/su03t-tools/releases/latest), and verify it with the `SHA256SUMS.txt` from the same release.
 
 ### Runtime requirements and first launch
 
 The macOS deployment target is 12.0. The current app is ad-hoc signed and not notarized. Verify the download source, then follow macOS prompts to approve the first launch in System Settings > Privacy & Security.
+
+The Windows package is unsigned; Windows may show an unknown-publisher prompt on first launch. Windows builds target x64 and the GUI needs an active desktop session.
 
 Linux packages are built on Ubuntu 24.04 and need compatible glibc and runtime libraries; see [building from source](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/development.md#building-from-source) for other environments. Debian / Ubuntu desktop runtime packages:
 
@@ -151,7 +173,7 @@ su03t-update probe --port /dev/ttyUSB0 --baud 921600 --wait 15
 su03t-update flash --port /dev/ttyUSB0 --firmware firmware_update.bin
 ```
 
-On macOS, use the enumerated `/dev/cu.*` path. `probe` listens passively unless `--trigger` is supplied. `monitor` transmits only with explicit `--send-hex` or `--send-text` arguments. See `--help` for additional options. Desktop language selection does not change the existing CLI output format.
+On Windows, use `.\su03t-update.exe` from the extracted directory and the actual `COM` number, or use the full CLI path printed by the installer. On macOS, use the enumerated `/dev/cu.*` path. `probe` listens passively unless `--trigger` is supplied. `monitor` transmits only with explicit `--send-hex` or `--send-text` arguments. See `--help` for additional options. Desktop language selection does not change the existing CLI output format.
 
 ## Compatibility
 
@@ -170,6 +192,6 @@ Read the [contribution guide](https://github.com/MatriQ/su03t-tools/blob/main/CO
 
 ## License and references
 
-Original code is provided under the [MIT License](LICENSE). Vendor firmware, Windows tools and drivers are not included. Third-party dependencies and optional vendor materials retain their own licenses. This is an independent project, not an official vendor client.
+Original code is provided under the [MIT License](LICENSE). Vendor firmware, vendor flashing tools and drivers are not included. Third-party dependencies and optional vendor materials retain their own licenses. This is an independent project, not an official vendor client.
 
 [SU-03T documentation](https://docs.aimachip.com/zh-cn/latest/file/offlineVoice/SU03T.html) · [Hummingbird-M FAQ](https://doc.hivoice.cn/udp/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html)
