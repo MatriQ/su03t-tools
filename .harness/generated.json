@@ -18,7 +18,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/architecture.md",
-      "sha256": "d5d17d3dd0e3434617c1e404fb869b2007451d1df4280e8a616f41dc40f397f0"
+      "sha256": "4bd360908b35b4efdd8b5872c40259622261f8bca8ed9a0243cc2ba6f8c0701f"
     },
     {
       "executable": false,
@@ -38,7 +38,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/testing.md",
-      "sha256": "712ec4cc6b5c39652dfce7a187fb3100f8f88d49bb1951444bf0d4191e520653"
+      "sha256": "fbe39a7aaab3176a3ac197ba9e3d03bd9373f92b4e093c8f617d5c0a74ec65f2"
     },
     {
       "executable": false,
@@ -48,7 +48,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/release.md",
-      "sha256": "4a3a32b2d37133c1c9af87608fb5348a1a3eb445f4c8b41a90dadae04b48b4f8"
+      "sha256": "c2d225bea4a1cf75c7671fa689f08b974b6fb6c3f4eb39825d054ef72cd93e52"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "18d4f61ad8f9068b5d735223d054ae171035015304fac752c7ffcf290d386519"
+      "sha256": "b1945ad16fd14dc476339539738e229af64e1c284471aed1bdf8dac69fb877c5"
     }
   ],
   "profile_sha256": "99f2dd284790d3f9fb3de5871c55e32d9505b32ffe8bb5aa09b250309e54a08a",
@@ -222,11 +222,11 @@
     },
     {
       "path": ".github/workflows/check.yml",
-      "sha256": "133c4829a00daa3e3a82a7e49401aaebb87ab3dc07a627b90713c97a3100ac38"
+      "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "0451f3fd44d71ce675ec066ca19b0aced8db4a35d09a15fd74c6fa7d5aac4f0e"
+      "sha256": "9d02be311635efc31b12087d83ce69329d9f859e0d33442fbac76e8ce25f2740"
     },
     {
       "path": "src/main.rs",
@@ -278,7 +278,7 @@
     },
     {
       "path": "src/ui_i18n.rs",
-      "sha256": "cfc198b2c9a2cae233452bea0b4a26cbb60825efd68a64e3ba1df78f3ee0796e"
+      "sha256": "7be2d690d387e8fca9ac3ce7e52e1a26ed1e70ddbcfbccd5fbdfa26f4cd69210"
     },
     {
       "path": "src/ui_catalog.rs",
@@ -298,7 +298,7 @@
     },
     {
       "path": "scripts/release_assets.py",
-      "sha256": "f5bcf02cb4430f01e0e666b06eb799e5d46a8d92bccc854cf1100f936b248e9b"
+      "sha256": "efddf80f638d1b065299fc7432b228cd8be66d862ef5decde9fee9769fc10b46"
     },
     {
       "path": "scripts/capture-ui.py",
@@ -342,7 +342,7 @@
     },
     {
       "path": "tests/test_release_assets.py",
-      "sha256": "8c6c96b647af450b176301c9ba9f5ba329d118e5e434413a4adabc45e6cf94a6"
+      "sha256": "d8a2933efae676966556221d474578c41877eafc4c221f7ee4e1f73bfd778716"
     },
     {
       "path": "tests/install_package.py",
@@ -378,7 +378,23 @@
     },
     {
       "path": "tests/cli_smoke.py",
-      "sha256": "07aa3dcf5afe0a93865d3ff84b8b20a62b74755cdcc015e7a954b0cb7e2d83df"
+      "sha256": "1e95e7321a9d3ceb16519acca66bf245119b8b06dac6186c4227a5ad52c24e55"
+    },
+    {
+      "path": "install.ps1",
+      "sha256": "79388b3efc0d6b77cb13c93308cb232c8f38bbdd686f3fd3ff9fc04f1ecff8e0"
+    },
+    {
+      "path": "scripts/package-windows.ps1",
+      "sha256": "2b407337b151063082ceb29d7d8556d869f507c3d65c6f0a311c91e3fa1bb267"
+    },
+    {
+      "path": "tests/test_windows_installer.ps1",
+      "sha256": "d10ea759b07c72c19fed4dcd2f222fe95240a2be42927ec39ab62912731c9dad"
+    },
+    {
+      "path": "tests/windows_gui_smoke.ps1",
+      "sha256": "4100093ce69ef9faaf30517ce087cbc114ad06ba8b12550e8fb16948fc581856"
     }
   ]
 }

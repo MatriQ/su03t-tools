@@ -55,7 +55,9 @@ jobs:
   package:
     if: needs.metadata.outputs.released != 'true'
     needs: metadata
-    timeout-minutes: 35
+    timeout-minutes: 45
+    env:
+      PYTHONUTF8: '1'
     strategy:
       fail-fast: false
       matrix:
@@ -66,6 +68,8 @@ jobs:
             platform: Linux-x86_64
           - os: ubuntu-24.04-arm
             platform: Linux-aarch64
+          - os: windows-2022
+            platform: Windows-x86_64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -87,18 +91,26 @@ jobs:
           restore-keys: packages-${{ runner.os }}-${{ runner.arch }}-rust195-
       - if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libudev-dev libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev xvfb xauth fonts-noto-cjk libgl1-mesa-dri
-      - name: Test installer and release helpers
+      - if: runner.os != 'Windows'
+        name: Test installer and release helpers
         run: |
           bash -n install.sh
           python3 tests/test_installer.py
           python3 tests/test_release_assets.py
+      - if: runner.os == 'Windows'
+        run: python3 tests/test_release_assets.py
       - if: runner.os == 'macOS'
         name: Package the universal Mac app
         run: bash scripts/package-macos.sh --universal
       - if: runner.os == 'Linux'
         name: Package the native Linux app
         run: bash scripts/package-linux.sh
-      - name: Verify the packaged executable
+      - if: runner.os == 'Windows'
+        name: Package the Windows desktop and CLI
+        shell: pwsh
+        run: ./scripts/package-windows.ps1
+      - if: runner.os != 'Windows'
+        name: Verify the packaged executable
         shell: bash
         env:
           RELEASE_VERSION: ${{ needs.metadata.outputs.version }}
@@ -142,6 +154,27 @@ jobs:
             fi
           fi
           python3 tests/install_package.py --archive "$ARCHIVE" --version "$RELEASE_VERSION" --platform "$PACKAGE_PLATFORM"
+      - if: runner.os == 'Windows'
+        name: Verify the Windows package
+        shell: pwsh
+        env:
+          RELEASE_VERSION: ${{ needs.metadata.outputs.version }}
+        run: |
+          Expand-Archive "dist/SU03T-Tools-v$env:RELEASE_VERSION-Windows-x86_64.zip" archive-smoke
+          $Reported = & ./archive-smoke/su03t-update.exe --version
+          if ($LASTEXITCODE -or $Reported -ne "su03t-update $env:RELEASE_VERSION") { throw 'Packaged version mismatch.' }
+          python3 tests/cli_smoke.py archive-smoke/su03t-update.exe
+          if ($LASTEXITCODE) { throw 'Packaged CLI checks failed.' }
+          ./tests/test_windows_installer.ps1 -BinaryDirectory archive-smoke
+          ./tests/windows_gui_smoke.ps1 -Directory archive-smoke
+      - if: always() && runner.os == 'Windows'
+        name: Retain Windows GUI evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: windows-ui
+          path: .harness/local-evidence/windows-ui/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Upload package and platform checksum
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

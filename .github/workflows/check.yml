@@ -52,6 +52,15 @@ jobs:
       - if: runner.os == 'Windows'
         run: |
           cargo build --locked --features windows-launcher
+          if ($LASTEXITCODE) { throw 'Windows launcher build failed.' }
           python3 tests/cli_smoke.py target/debug/su03t-update.exe
+      - if: runner.os == 'Windows'
+        name: Test the Windows installer with PowerShell 7
+        shell: pwsh
+        run: ./tests/test_windows_installer.ps1 -BinaryDirectory target/debug
+      - if: runner.os == 'Windows'
+        name: Test the Windows installer with Windows PowerShell 5.1
+        shell: powershell
+        run: ./tests/test_windows_installer.ps1 -BinaryDirectory target/debug
       - if: runner.os == 'macOS'
         run: python3 tests/simulate_device.py target/debug/su03t-update

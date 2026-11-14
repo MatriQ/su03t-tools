@@ -13,7 +13,7 @@
 
 ## Windows runtime
 
-The optional windows-launcher feature builds su03t-tools.exe, a desktop launcher for the sibling console-capable su03t-update.exe. Desktop and serial-worker launches use CREATE_NO_WINDOW; CLI output remains available when invoking the console binary. Windows uses the WGPU renderer, APPDATA-based language preferences, the user locale and Windows CJK fonts. The MSVC target statically links its CRT. macOS/Linux retain the Glow renderer. [Launcher](../../src/windows_launcher.rs), [Windows resources](../../assets/windows.rc) and [target configuration](../../.cargo/config.toml) define these contracts.
+The optional windows-launcher feature builds su03t-tools.exe, a desktop launcher for the sibling console-capable su03t-update.exe. Desktop and serial-worker launches use CREATE_NO_WINDOW; CLI output remains available when invoking the console binary. Windows uses the WGPU renderer, APPDATA-based language preferences, the Windows display language and Windows CJK fonts. The MSVC target statically links its CRT. macOS/Linux retain the Glow renderer. [Launcher](../../src/windows_launcher.rs), [Windows resources](../../assets/windows.rc) and [target configuration](../../.cargo/config.toml) define these contracts.
 
 ## Firmware transfer journey
 
