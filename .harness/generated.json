@@ -38,7 +38,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/testing.md",
-      "sha256": "7fbee2dd235344f464884bd6fe3f04b38e01ddf14240f22c2fc3e44fa244bdfa"
+      "sha256": "5f2d9e0b34769efc0870e1ad706ec6d571827a43b14da1a526dda97a568dfeae"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "706169c2c74d63677db5e439a686d2466197eaebe8850c2197bb0e3ca6d19e13"
+      "sha256": "4b67de22c2a1ac15fa5ad77746c5dc29b751ce82ec4c3106c15f3acb618c6393"
     }
   ],
   "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
@@ -226,7 +226,7 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "9d02be311635efc31b12087d83ce69329d9f859e0d33442fbac76e8ce25f2740"
+      "sha256": "c0fd9d69c75e39aa8962e8361ff82c3cac415aab3b49a89dcae25e1d5496ae55"
     },
     {
       "path": "src/main.rs",
@@ -394,11 +394,15 @@
     },
     {
       "path": "tests/windows_gui_smoke.ps1",
-      "sha256": "4100093ce69ef9faaf30517ce087cbc114ad06ba8b12550e8fb16948fc581856"
+      "sha256": "6fd0a12c4699b3763be88622822fde99e7d7a2f769779184a1dc1dd7aed0d2a6"
     },
     {
       "path": ".github/workflows/verify-install.yml",
-      "sha256": "bc9ac6af94de30ac696664b7c33e43c0d9b2e02a06722e6001f8f7bfccc1446f"
+      "sha256": "37097e12ce04b7db996d608206e61be703f8e00ae4621393c1a0a5b2302242a9"
+    },
+    {
+      "path": "tests/verify_windows_install.ps1",
+      "sha256": "0ed122207e18ca5ffe870e026583e514377717f5c98e33e1a7aaae9e9deeabd8"
     }
   ]
 }

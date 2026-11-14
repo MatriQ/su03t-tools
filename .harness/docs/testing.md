@@ -54,3 +54,5 @@ Report revision/working tree, OS/architecture, variant, commands, outcomes and u
 ## Windows package verification
 
 [PowerShell installer tests](../../tests/test_windows_installer.ps1) use local release fixtures and the compiled Windows binaries. They cover Unicode directories, repeat installation, checksum refusals, foreign ownership, unsafe or duplicate archive paths, incomplete packages, replacement rollback, locked files and uninstall. Run them on Windows with PowerShell 7 and Windows PowerShell 5.1. [Native GUI checks](../../tests/windows_gui_smoke.ps1) use isolated APPDATA, launch both language variants, require a responsive native window, capture screenshots and close normally. The package workflow retains those images as windows-ui evidence. These checks never open physical serial ports or transfer firmware.
+
+The GUI check takes -ResizeDisplay only in isolated CI to select a supported larger display mode for full-window screenshots. It restores the original mode and thread DPI context on exit; local callers can leave the switch unset. It opens the process handle while the window is alive so normal-close exit-code checks remain reliable.
