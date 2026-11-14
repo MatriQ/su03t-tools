@@ -109,6 +109,11 @@ fn start_job(spec: JobSpec) -> std::io::Result<Job> {
     let (tx, events) = mpsc::channel();
     let worker = thread::spawn(move || {
         let mut command = Command::new(executable);
+        #[cfg(windows)]
+        {
+            use std::os::windows::process::CommandExt;
+            command.creation_flags(0x0800_0000); // Keep serial workers out of the desktop.
+        }
         command
             .arg(if spec.probe { "probe" } else { "flash" })
             .arg("--events")
@@ -1440,13 +1445,27 @@ impl eframe::App for Updater {
         });
     }
 }
+#[cfg(all(test, windows))]
+#[test]
+fn windows_build_has_a_native_graphics_backend() {
+    assert!(wgpu::Instance::enabled_backend_features().contains(wgpu::Backends::DX12));
+}
+
 fn configure_fonts(ctx: &egui::Context) {
-    for path in [
+    let mut paths: Vec<PathBuf> = [
         "/System/Library/Fonts/PingFang.ttc",
         "/System/Library/Fonts/STHeiti Medium.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
-    ] {
+    ]
+    .into_iter()
+    .map(PathBuf::from)
+    .collect();
+    if let Some(windows) = std::env::var_os("WINDIR") {
+        let fonts = PathBuf::from(windows).join("Fonts");
+        paths.extend(["msyh.ttc", "simsun.ttc", "msjh.ttc"].map(|name| fonts.join(name)));
+    }
+    for path in paths {
         if let Ok(bytes) = std::fs::read(path) {
             let mut fonts = egui::FontDefinitions::default();
             fonts.font_data.insert(
@@ -1473,7 +1492,15 @@ pub fn run() -> eframe::Result {
             "SU-03T Tools"
         },
         eframe::NativeOptions {
+            #[cfg(windows)]
+            renderer: eframe::Renderer::Wgpu,
             viewport: egui::ViewportBuilder::default()
+                .with_icon(
+                    eframe::icon_data::from_png_bytes(include_bytes!(
+                        "../assets/AppIcon.iconset/icon_256x256.png"
+                    ))
+                    .expect("embedded application icon"),
+                )
                 .with_inner_size([1120.0, 840.0])
                 .with_min_inner_size([850.0, 700.0])
                 .with_active(

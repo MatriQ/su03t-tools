@@ -542,7 +542,9 @@ impl Debugger {
                 egui::CollapsingHeader::new(t("手动输入串口路径")).show(ui, |ui| {
                     ui.add(
                         egui::TextEdit::singleline(&mut self.port)
-                            .hint_text(if cfg!(target_os = "linux") {
+                            .hint_text(if cfg!(windows) {
+                                "COM3"
+                            } else if cfg!(target_os = "linux") {
                                 "/dev/ttyUSB0"
                             } else {
                                 "/dev/cu.usbserial-…"
