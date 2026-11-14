@@ -4,6 +4,20 @@
 
 Firmware flashing has passed acceptance testing on physical SU-03T hardware, as confirmed by the maintainer. Automated tests and the versioned results below complement this hardware acceptance.
 
+## v0.6.1
+
+The Windows release adds a separate Windows-x86_64-portable ZIP. A portable.flag file beside the executables selects data/language.json there. The complete folder can be moved without losing settings; ordinary installations continue to use APPDATA. Failed portable writes are reported and never redirect preferences into the user profile.
+
+| Check | Evidence |
+| --- | --- |
+| Rust desktop/CLI variants, formatting and Clippy | [Source checks passed on all three operating systems](https://github.com/MatriQ/su03t-tools/actions/runs/43589312186) |
+| Four platform jobs and both Windows archives | [Package checks passed](https://github.com/MatriQ/su03t-tools/actions/runs/43589888583) |
+| Native portable desktop, PowerShell 5.1 and 7 | Chinese and English windows opened and closed normally, before and after moving a private copy between Unicode paths; opposing APPDATA settings were preserved |
+| Preference regression tests | Saved language survives relocation; a fresh portable copy ignores profile settings; a blocked data directory does not cause profile writes |
+| Release integrity | 18 release-helper scenarios passed, including mandatory portable assets, clean staging and the unchanged v0.5.x/v0.6.0 layouts |
+
+Both Windows ZIP checksums, archive CRCs and marker separation were verified. The portable ZIP contains no saved data directory. Its native screenshots were reviewed in both languages. Package tests use isolated temporary directories and never open a physical serial port. Windows physical-board acceptance remains pending as described below.
+
 ## v0.6.0
 
 Windows support targets Windows 10/11 x64, with a console CLI and a separate desktop launcher. Native automated checks run on Windows Server 2022 GitHub runners; Windows 10/11 physical-board flashing has not yet been accepted. The prior SU-03T hardware acceptance above remains valid for the tested setup.

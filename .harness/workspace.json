@@ -39,7 +39,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -79,11 +79,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -270,7 +270,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -310,11 +310,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -469,7 +469,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/index.md",
-          "sha256": "23da742a6a29cb2850c6514b179d30063875b159e6c08a3426d80d0e64649f63",
+          "sha256": "63389c39a7b1d8c093fe365b162898c808c9f3de1563b56ae7defb7ef91da4d5",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -501,7 +501,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -541,11 +541,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -732,7 +732,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -772,11 +772,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -959,7 +959,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -999,11 +999,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -1190,7 +1190,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -1230,11 +1230,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -1421,7 +1421,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -1461,11 +1461,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -1652,7 +1652,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -1692,11 +1692,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -1851,7 +1851,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/validation.md",
-          "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1",
+          "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -1919,11 +1919,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -2110,7 +2110,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -2150,11 +2150,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -2341,7 +2341,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -2381,11 +2381,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -2572,7 +2572,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -2612,11 +2612,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -2803,7 +2803,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -2843,11 +2843,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -3034,7 +3034,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "CONTRIBUTING.md",
@@ -3070,11 +3070,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -3261,7 +3261,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -3297,11 +3297,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -3488,7 +3488,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -3524,11 +3524,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -3715,7 +3715,7 @@
             },
             {
               "path": ".harness/docs/validation.md",
-              "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
             },
             {
               "path": "AGENTS.md",
@@ -3751,11 +3751,11 @@
             },
             {
               "path": "docs/images/windows-en.png",
-              "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
             },
             {
               "path": "docs/images/windows-zh.png",
-              "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
             },
             {
               "path": "install.ps1",
@@ -4017,7 +4017,7 @@
         },
         {
           "path": ".harness/docs/validation.md",
-          "sha256": "0dad65dc4452b69fa1596eee541cb361c2683b60107e19a55a05a70c244201d1"
+          "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
         },
         {
           "path": "AGENTS.md",
@@ -4057,11 +4057,11 @@
         },
         {
           "path": "docs/images/windows-en.png",
-          "sha256": "abc98bf2ca73380ec47799199f59a502ab3335ce98f71480bf38c257310083f1"
+          "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
         },
         {
           "path": "docs/images/windows-zh.png",
-          "sha256": "980beb8d3ad08111d6020242165c0cea632c44a0ec9878b8e98cfc79877ccdf6"
+          "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
         },
         {
           "path": "install.ps1",
