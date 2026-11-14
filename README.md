@@ -20,6 +20,14 @@
 
 ## 安装
 
+macOS 可通过自维护的 [Homebrew tap](https://github.com/MatriQ/homebrew-tap) 安装应用和 `su03t-update` 命令：
+
+```bash
+brew install --cask matriq/tap/su03t-tools
+```
+
+更新使用 `brew update` 后执行 `brew upgrade --cask matriq/tap/su03t-tools`；卸载使用 `brew uninstall --cask matriq/tap/su03t-tools`。Homebrew 默认将应用安装到 `/Applications`。更换安装方式前请退出应用并处理已有安装或命令冲突。当前版本未公证，首次打开仍需按 macOS 系统提示确认。
+
 macOS（Apple Silicon / Intel）与 Linux（x86_64 / ARM64）均可执行：
 
 ```bash
