@@ -1,5 +1,7 @@
 # Packaging and release
 
+Use the [release workflow](../skills/release/SKILL.md) for version preparation, publication, failure recovery and delivery verification.
+
 ## Targets
 
 Confirm [MatriQ/su03t-tools](https://github.com/MatriQ/su03t-tools) before a gh operation. CI source checks use macOS, Ubuntu and Windows x64; package runners are macos-latest, ubuntu-24.04, ubuntu-24.04-arm and windows-2022. The universal Mac app contains arm64/x86_64 slices, targets macOS 12.0, and is ad-hoc signed, not notarized. Linux archives need Ubuntu 24.04-compatible glibc/native libraries. Windows packages target Windows 10/11 x64, contain desktop and console executables and retain system download protections. Native CI and physical-board acceptance remain distinct.

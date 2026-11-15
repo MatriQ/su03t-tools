@@ -8,7 +8,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/index.md",
-      "sha256": "63389c39a7b1d8c093fe365b162898c808c9f3de1563b56ae7defb7ef91da4d5"
+      "sha256": "ad567d33ea416b73d26f479e95d921d9383e4dd8048d9dd98814b42d5ffbffe7"
     },
     {
       "executable": false,
@@ -48,7 +48,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/release.md",
-      "sha256": "a32e0dc883a61e6a978beb7824ae4c8eed87f752b106696276fb6cb6f8028edd"
+      "sha256": "d73ab91ede9a53976b947c7aa08607da24dc8f5e9a027c0b36bdb44c99dffb7c"
     },
     {
       "executable": false,
@@ -112,6 +112,16 @@
     },
     {
       "executable": false,
+      "kind": "skill",
+      "logical_paths": [
+        ".harness/skills/release/SKILL.md"
+      ],
+      "owns_file": true,
+      "path": ".harness/skills/release/SKILL.md",
+      "sha256": "963069f77d1b19f994e35a3ad2723d2e2a28983b524e008f13d0d9ad2243461e"
+    },
+    {
+      "executable": false,
       "kind": "rule",
       "logical_paths": [
         ".harness/rules/engineering.md"
@@ -126,10 +136,10 @@
       "logical_paths": [
         "AGENTS.md"
       ],
-      "managed_sha256": "5b3089feb139a8028406aeb77389ce0c1adbe72081578a78f9cb0085a636b5bf",
+      "managed_sha256": "37e0e582b9a93ccd5b0efbafb1430ab9d28d6dac8e96c837b1e07acea30f491b",
       "owns_file": true,
       "path": "AGENTS.md",
-      "sha256": "abae5422bfc71cb897408bb9a50651ba9d37ac67234650b96ffd0dd814d4cf7e"
+      "sha256": "2e490c6d6b00e2435bbf01e3f45f3178e0c6c93d82e6de46abbaedcf9aab0773"
     },
     {
       "executable": false,
@@ -190,7 +200,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "f50bd349675c6c632d6ab8c1d8cfd4152ab1f29826333e40e583d6b61df96cc1"
+      "sha256": "c4c8b7dec56ef59d51c1f36a65d1af2c4e348e6a25c8bcd1bb49ea9e7c3cdf19"
     }
   ],
   "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",

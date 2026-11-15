@@ -23,6 +23,7 @@ For machine checkout paths, environment, tools or personal access context, first
 - Implement a change while preserving firmware, serial and UI contracts. — [engineering](.harness/skills/engineering/SKILL.md)
 - Prepare local prerequisites and prove a hardware-free startup path. — [local-dev](.harness/skills/local-dev/SKILL.md)
 - Select meaningful unit, PTY, installer and package checks for a change. — [verify](.harness/skills/verify/SKILL.md)
+- Prepare, publish or recover a versioned release and verify delivered packages. — [release](.harness/skills/release/SKILL.md)
 - Required guidance: [engineering](.harness/rules/engineering.md).
 
 Configuration and local verification: [harness specification](.harness/harness.json). Run `node .harness/runtime/check.mjs --workspace .` after changes. A passing check does not establish agent activation or deployment readiness.
