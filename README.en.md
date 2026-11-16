@@ -164,6 +164,21 @@ Connections start passively. Transmission requires an explicit action and suppor
 - Continuous recording creates `.rx.bin` and `.log` streams, each retaining up to four rotating 16 MiB files. A new connection creates new files rather than overwriting other sessions.
 - TX counts host writes, not device acknowledgments. Serial read chunks are not protocol frames.
 
+## B8 logs
+
+Select **B8 logs** and follow [Wiring and modes](#wiring-and-modes): **B8 → adapter RXD, GND ↔ GND, adapter TXD disconnected**. Defaults are **57600 / 8N1 / no flow control, receive only**.
+
+1. Select the actual port and connect. For complete startup coverage, connect before manually powering on or restarting the module. Enable continuous recording before connection when needed.
+2. **Text lines** joins split UTF-8 characters and complete lines across reads and removes terminal color codes. Switch to **HEX** or **UTF-8 chunks** to inspect the original output.
+3. Use **Commands / issues only** and **Find** to locate phrases, commands or errors printed by the firmware. Filtering uses text keywords; recognition results must be emitted by the firmware.
+4. **Copy / Save log** exports the current view; **Export RX BIN** retains original RX bytes. Filtering and clearing the display preserve raw RX, session counters and continuous recording files.
+
+![B8 text-line logs with complete commands and highlighted issues](https://raw.githubusercontent.com/MatriQ/su03t-tools/main/.harness/docs/images/b8-lines-en.png)
+
+*The screenshot uses simulated data from current sources. Features in an installed release depend on its version.*
+
+The name “B8 startup logs” does not establish startup coverage. A text export cannot recover earlier display records that have already been evicted. The serial-error counter is also separate from device `[E]` messages. See [log display, exact captures and startup coverage](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/console.md).
+
 ## CLI
 
 Running without arguments opens the desktop app. These commands use the same communication core:

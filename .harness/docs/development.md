@@ -73,6 +73,24 @@ If CARGO_TARGET_DIR is set, the probe uses its debug executable. A zero exit and
 
 Stop task-created processes, close PTYs and remove fixtures after checks. Keep caches in target/ and packages in dist/. Firmware, vendor executables, .env and private evidence stay excluded by [.gitignore](../../.gitignore). Do not run the application with sudo.
 
+## Repository helper scripts
+
+Installed applications do not depend on the repository's `scripts/` directory. Source packaging, release automation, screenshots and optional asset/reference maintenance still use these helpers:
+
+| Helpers | Purpose / caller |
+| --- | --- |
+| [package-macos.sh](../../scripts/package-macos.sh), [package-linux.sh](../../scripts/package-linux.sh), [package-windows.ps1](../../scripts/package-windows.ps1) | Platform archives, invoked by package CI and local release commands |
+| [collect-licenses.py](../../scripts/collect-licenses.py) | Dependency notices, invoked by all platform packagers |
+| [release_assets.py](../../scripts/release_assets.py) | Release metadata, checksums, archive checks and publication; covered by release-helper tests |
+| [capture-ui.py](../../scripts/capture-ui.py) | Synthetic bilingual UI screenshots, including B8 logs; invoked explicitly by the capture workflow |
+| [Dockerfile.linux](../../scripts/Dockerfile.linux) | Optional Linux build/test environment with native development libraries; the installed application does not require Docker |
+| [create-icon.swift](../../scripts/create-icon.swift) | Editable source of the checked-in icon PNG set; run manually only when regenerating artwork |
+| [fetch-vendor.sh](../../scripts/fetch-vendor.sh), [analyze_vendor.py](../../scripts/analyze_vendor.py) | Optional acquisition/static verification of historical vendor references and CRC/image relations; never run Windows vendor code and are not build/test prerequisites |
+
+The obsolete `verify-linux.sh` wrapper was removed: no current workflow invokes it, its hard-coded container paths require undocumented setup, and maintained source/package CI already performs its checks. Use the commands in [testing](testing.md) and [release](release.md) instead. Optional maintenance tools are retained because they preserve artwork/reference reproducibility, rather than being application runtime dependencies. No vendor downloads or artwork regeneration is triggered by ordinary compilation.
+
+B8 README screenshots and the detailed guide use hosted repository URLs so the README copies inside release archives do not point at unbundled engineering-document assets.
+
 ## Windows development
 
 Use Rust 1.95 with the x86_64-pc-windows-msvc target, Visual Studio 2022 C++ Build Tools and a Windows 10/11 SDK. The GUI uses WGPU's DirectX 12 backend. The target configuration statically links the CRT. Native GUI work needs an active Windows desktop; source checks alone do not exercise graphics initialization.

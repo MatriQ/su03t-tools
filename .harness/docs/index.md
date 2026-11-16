@@ -13,6 +13,7 @@ SU-03T Tools is one Rust package, `su03t-update`, with an eframe/egui desktop UI
 | Diagnose no ACK after CCC | [Troubleshooting](troubleshooting.md#ccc-arrives-but-block-1-is-not-acknowledged), [protocol](protocol.md) | [core](../../src/lib.rs), [events](../../src/flash_event.rs) |
 | Read commands in serial logs | [Text-line console and startup coverage](console.md) | [Text presentation](../../src/console_text.rs), [native console](../../src/debug_ui.rs) |
 | Investigate B8, captures or drivers | [Troubleshooting](troubleshooting.md), [architecture](architecture.md) | [serial session](../../src/serial_debug.rs), [driver scan](../../src/driver_check.rs) |
+| Understand repository scripts | [Helper roles and optional maintenance](development.md#repository-helper-scripts) | Packaging workflows, asset sources and historical reference tools |
 | Refresh the harness | [Maintenance](maintenance.md) | [specification](../harness.json), [registry](../workspace.json) |
 
 Read the [required engineering rules](../rules/engineering.md) and [contribution guide](../../CONTRIBUTING.md) before changes. Procedures are reached through AGENTS.md and its CLAUDE.md alias; they are not registered native commands, auto-discovered Skills or custom agents.

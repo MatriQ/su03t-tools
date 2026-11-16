@@ -71,11 +71,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -132,10 +132,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -314,11 +310,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -375,10 +371,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -497,7 +489,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/development.md",
-          "sha256": "f7df3c095ac3613b27ddc04bd3d070316cfe3540dcc008875040864abbb8f818",
+          "sha256": "6337f97e8a4001133321a4f781af9ec23d034301c10b0a879a1931b7301c8b77",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -561,11 +553,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -622,10 +614,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -744,7 +732,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/index.md",
-          "sha256": "cd151e1e11e8fda9f7000f7403de72725ff1cc20dffe906b5f95a55c4bf5cab0",
+          "sha256": "4860786a4e4dd0e128195ea3db8dd0e87028f802e7db063e0431ce4c88d9bd23",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -808,11 +796,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -869,10 +857,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -1055,11 +1039,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1116,10 +1100,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -1298,11 +1278,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1359,10 +1339,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -1545,11 +1521,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1606,10 +1582,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -1792,11 +1764,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1853,10 +1825,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -2039,11 +2007,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2100,10 +2068,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -2282,11 +2246,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2343,10 +2307,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -2529,11 +2489,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2590,10 +2550,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -2776,11 +2732,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2837,10 +2793,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -3023,11 +2975,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3084,10 +3036,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -3270,11 +3218,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3331,10 +3279,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -3513,11 +3457,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3574,10 +3518,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -3756,11 +3696,11 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3817,10 +3757,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -3939,7 +3875,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": "README.en.md",
-          "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab",
+          "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -4003,7 +3939,7 @@
             },
             {
               "path": "README.md",
-              "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -4060,10 +3996,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -4182,7 +4114,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": "README.md",
-          "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568",
+          "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -4246,7 +4178,7 @@
             },
             {
               "path": "README.en.md",
-              "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -4303,10 +4235,6 @@
             {
               "path": "scripts/release_assets.py",
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-            },
-            {
-              "path": "scripts/verify-linux.sh",
-              "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
             },
             {
               "path": "src/capture.rs",
@@ -4476,7 +4404,6 @@
         "scripts/package-macos.sh",
         "scripts/package-windows.ps1",
         "scripts/release_assets.py",
-        "scripts/verify-linux.sh",
         "src/capture.rs",
         "src/console_text.rs",
         "src/debug_ui.rs",
@@ -4569,11 +4496,11 @@
         },
         {
           "path": "README.en.md",
-          "sha256": "5b1d462bff818dfbbbee7458495b668087875ee78dcaa1f3d3f76000835f72ab"
+          "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
         },
         {
           "path": "README.md",
-          "sha256": "5cbbd7a66c327e0a876d2602050f344a8de8ca17826b2a695ec8698f940e6568"
+          "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
         },
         {
           "path": "assets/AppIcon.ico",
@@ -4630,10 +4557,6 @@
         {
           "path": "scripts/release_assets.py",
           "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
-        },
-        {
-          "path": "scripts/verify-linux.sh",
-          "sha256": "6556cce6ae67109423b46e732d5f28d148557e5e43be3bfff58c31dff7876191"
         },
         {
           "path": "src/capture.rs",
