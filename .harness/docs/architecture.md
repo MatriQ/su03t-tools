@@ -7,7 +7,7 @@
 | [firmware.rs](../../src/firmware.rs) | Bounds and reads the image once, screens filename/known boot-region content, hashes exact bytes and rejects an expected-hash mismatch before opening a port. |
 | [gui.rs](../../src/gui.rs) | Power guidance, activity log and phases. A separate CLI process owns flash/probe serial I/O and emits `SU03T_EVENT ` JSON lines; cancellation can terminate it. |
 | [serial_debug.rs](../../src/serial_debug.rs), [profiles.rs](../../src/profiles.rs) | Passive debug session, explicit TX, bounded queues and receive-only B8; application presets stay separate from flashing. |
-| [debug_ui.rs](../../src/debug_ui.rs), [capture.rs](../../src/capture.rs) | Display/raw RX retention, exports, counters and independent rotating recordings. RX chunks are not protocol frames. |
+| [debug_ui.rs](../../src/debug_ui.rs), [capture.rs](../../src/capture.rs) | Independent text-line/chunk/raw RX retention, selected-view exports, counters and rotating recordings. [console_text.rs](../../src/console_text.rs) joins UTF-8/newlines and strips display ANSI without changing raw bytes. RX reads and text lines are not protocol frames. |
 | [driver_check.rs](../../src/driver_check.rs), [driver_ui.rs](../../src/driver_ui.rs), [port_picker.rs](../../src/port_picker.rs) | Port discovery and async guidance. macOS queries ioreg read-only and associates a USB node with its own serial descendants. |
 | [ui_i18n.rs](../../src/ui_i18n.rs), [ui_catalog.rs](../../src/ui_catalog.rs) | Chinese/English selection and text. Device data, paths and hashes preserve their original form. |
 

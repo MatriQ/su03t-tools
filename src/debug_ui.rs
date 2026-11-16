@@ -9,15 +9,20 @@ use std::{
 use su03t_update::serial_debug::{self as serial, Config, Event, Session, TextDecoder};
 use su03t_update::{
     capture::{self, RawBuffer},
+    console_text::{self, Origin, TextLog},
     profiles::{CAR_COMMANDS, CarTracker, Profile},
 };
 
+fn scanning_allowed() -> bool {
+    !(cfg!(test) || cfg!(debug_assertions) && std::env::var_os("SU03T_UI_PREVIEW").is_some())
+}
 const LOG_LIMIT: usize = 1024 * 1024;
 const RECORD_LIMIT: usize = 2000;
 #[derive(Clone, Copy, PartialEq)]
 enum Format {
     Hex,
     Text,
+    Lines,
 }
 
 #[cfg(test)]
@@ -39,6 +44,118 @@ mod tests {
         assert!(output.contains("停止"));
         super::super::i18n::set(super::super::i18n::Language::Zh, false);
         assert!(debugger.export().starts_with("SU-03T 串口调试日志"));
+    }
+    #[test]
+    fn b8_line_view_keeps_commands_errors_and_exact_raw_bytes_after_chunk_eviction() {
+        let mut debugger = Debugger::default();
+        debugger.set_profile(Profile::B8);
+        assert!(matches!(debugger.view, Format::Lines));
+        let mut wire = String::new();
+        for _ in 0..100 {
+            wire.push_str("\x1b[33m[T] command=打开灯光\x1b[0m\r\n");
+        }
+        wire.push_str("[T] send watchdog event[14]\r\n[E] ERROR-127\r\n");
+        for byte in wire.as_bytes() {
+            debugger.receive_event(Event::Received {
+                at: Duration::from_secs(2),
+                bytes: vec![*byte],
+            });
+        }
+        assert!(debugger.removed > 0);
+        assert_eq!(debugger.text_log.removed, 0);
+        let export = debugger.export();
+        assert_eq!(export.matches("command=打开灯光").count(), 100);
+        assert!(!export.contains("\\x1B"));
+        assert!(!export.contains("HEX=["));
+        debugger.focus_commands = true;
+        let filtered = debugger.export();
+        assert!(filtered.contains("ERROR-127"));
+        assert!(!filtered.contains("send watchdog"));
+        debugger.text_filter = "打开灯光".into();
+        let searched = debugger.export();
+        assert_eq!(searched.matches("command=打开灯光").count(), 100);
+        assert!(!searched.contains("ERROR-127"));
+        let dir = tempfile::tempdir().unwrap();
+        let raw = dir.path().join("raw.bin");
+        debugger.raw.save(&raw).unwrap();
+        assert_eq!(std::fs::read(&raw).unwrap(), wire.as_bytes());
+        debugger.receive_event(Event::Received {
+            at: Duration::ZERO,
+            bytes: b"stale partial".to_vec(),
+        });
+        let rx = debugger.rx;
+        debugger.clear();
+        assert_eq!(debugger.rx, rx);
+        assert!(debugger.text_log.pending_line().is_none());
+        debugger.text_filter.clear();
+        debugger.receive_event(Event::Received {
+            at: Duration::ZERO,
+            bytes: "command=新命令\r\n".as_bytes().to_vec(),
+        });
+        assert!(debugger.export().contains("command=新命令"));
+        assert!(!debugger.export().contains("stale partial"));
+    }
+    #[test]
+    fn text_console_scroll_pause_survives_new_rows_and_language_changes() {
+        let mut debugger = Debugger::default();
+        debugger.set_profile(Profile::B8);
+        for index in 0..300 {
+            debugger.receive_event(Event::Received {
+                at: Duration::ZERO,
+                bytes: format!("command={index}\n").into_bytes(),
+            });
+        }
+        let ctx = egui::Context::default();
+        let mut time = 0.0;
+        let mut draw = |debugger: &mut Debugger, events: Vec<egui::Event>| {
+            time += 0.1;
+            let _ = ctx.run(
+                egui::RawInput {
+                    screen_rect: Some(egui::Rect::from_min_size(
+                        egui::Pos2::ZERO,
+                        egui::vec2(1000.0, 600.0),
+                    )),
+                    time: Some(time),
+                    events,
+                    ..Default::default()
+                },
+                |ctx| {
+                    egui::CentralPanel::default().show(ctx, |ui| debugger.log_panel(ui));
+                },
+            );
+        };
+        draw(&mut debugger, vec![]);
+        draw(&mut debugger, vec![]);
+        assert!(debugger.follow);
+        draw(
+            &mut debugger,
+            vec![
+                egui::Event::PointerMoved(egui::pos2(400.0, 350.0)),
+                egui::Event::MouseWheel {
+                    unit: egui::MouseWheelUnit::Point,
+                    delta: Vec2::new(0.0, 300.0),
+                    modifiers: egui::Modifiers::NONE,
+                },
+            ],
+        );
+        for _ in 0..5 {
+            draw(&mut debugger, vec![]);
+        }
+        assert!(!debugger.follow);
+        let offset = debugger.log_offset;
+        debugger.receive_event(Event::Received {
+            at: Duration::ZERO,
+            bytes: "command=新命令\n".as_bytes().to_vec(),
+        });
+        draw(&mut debugger, vec![]);
+        assert!((debugger.log_offset - offset).abs() < 1.0);
+        super::super::i18n::set(super::super::i18n::Language::En, false);
+        draw(&mut debugger, vec![]);
+        assert!((debugger.log_offset - offset).abs() < 1.0);
+        assert!(!debugger.follow);
+        debugger.jump = true;
+        draw(&mut debugger, vec![]);
+        assert!(debugger.follow);
     }
     #[test]
     fn clearing_display_preserves_session_counters_raw_capture_and_command_counts() {
@@ -131,6 +248,9 @@ pub(super) struct Debugger {
     status: String,
     error: Option<String>,
     records: VecDeque<Record>,
+    text_log: TextLog,
+    focus_commands: bool,
+    text_filter: String,
     log_cost: usize,
     removed: u64,
     rx: u64,
@@ -176,6 +296,9 @@ impl Default for Debugger {
             status: "未连接".into(),
             error: None,
             records: VecDeque::new(),
+            text_log: TextLog::default(),
+            focus_commands: false,
+            text_filter: String::new(),
             log_cost: 0,
             removed: 0,
             rx: 0,
@@ -204,7 +327,9 @@ impl Default for Debugger {
             jump: false,
             unseen: 0,
         };
-        me.refresh();
+        if scanning_allowed() {
+            me.refresh();
+        }
         me
     }
 }
@@ -220,7 +345,7 @@ impl Debugger {
         self.stop_bits = serialport::StopBits::One;
         self.flow_control = serialport::FlowControl::None;
         self.view = if profile == Profile::B8 {
-            Format::Text
+            Format::Lines
         } else {
             Format::Hex
         };
@@ -247,7 +372,7 @@ impl Debugger {
         }
     }
     fn append(&mut self, record: Record) {
-        if !self.follow {
+        if !self.follow && self.view != Format::Lines {
             self.unseen = self.unseen.saturating_add(1);
         }
         self.log_cost += record.cost();
@@ -256,22 +381,50 @@ impl Debugger {
             if let Some(old) = self.records.pop_front() {
                 self.log_cost -= old.cost();
                 self.removed += 1;
-                if !self.follow {
+                if !self.follow && self.view != Format::Lines {
                     self.evicted_pending += 1;
                 }
             }
         }
     }
+    fn matches_line(&self, line: &console_text::Line) -> bool {
+        (line.origin == Origin::System
+            || !self.focus_commands
+            || console_text::is_command_or_issue(&line.text))
+            && (self.text_filter.is_empty()
+                || (if line.origin == Origin::System {
+                    display(&line.text)
+                } else {
+                    std::borrow::Cow::Borrowed(line.text.as_str())
+                })
+                .to_lowercase()
+                .contains(&self.text_filter.to_lowercase()))
+    }
+    fn text_update(&mut self, update: console_text::Update) {
+        if self.view == Format::Lines && !self.follow {
+            self.unseen = self.unseen.saturating_add(update.completed as u64);
+            self.evicted_pending += update
+                .evicted
+                .iter()
+                .filter(|line| self.matches_line(line))
+                .count() as u64;
+        }
+    }
     fn info(&mut self, text: impl Into<String>) {
+        let text = text.into();
+        let at = self.started.elapsed();
+        let update = self.text_log.notice(at, Origin::System, text.clone());
+        self.text_update(update);
         self.append(Record {
-            at: self.started.elapsed(),
+            at,
             direction: "SYS",
             bytes: vec![],
-            text: text.into(),
+            text,
         });
     }
     fn clear(&mut self) {
         self.records.clear();
+        self.text_log.clear();
         self.log_offset = 0.0;
         self.evicted_pending = 0;
         self.log_cost = 0;
@@ -358,6 +511,8 @@ impl Debugger {
             Event::Received { at, bytes } => {
                 self.rx = self.rx.saturating_add(bytes.len() as u64);
                 self.raw.push(&bytes);
+                let update = self.text_log.push(at, &bytes);
+                self.text_update(update);
                 if self.profile == Profile::Car {
                     self.car.observe(&bytes);
                 }
@@ -373,6 +528,13 @@ impl Debugger {
             }
             Event::Sent { at, bytes } => {
                 self.tx = self.tx.saturating_add(bytes.len() as u64);
+                let mut line_decoder = TextLog::default();
+                line_decoder.push(at, &bytes);
+                line_decoder.finish();
+                for line in line_decoder.lines {
+                    let update = self.text_log.notice(at, Origin::Tx, line.text);
+                    self.text_update(update);
+                }
                 let mut decoder = TextDecoder::default();
                 for chunk in bytes.chunks(64) {
                     let text = decoder.push(chunk);
@@ -399,7 +561,8 @@ impl Debugger {
         if self.busy() {
             self.elapsed = self.started.elapsed();
         }
-        if !self.busy() && self.last_scan.elapsed() >= Duration::from_secs(1) {
+        if scanning_allowed() && !self.busy() && self.last_scan.elapsed() >= Duration::from_secs(1)
+        {
             self.last_scan = Instant::now();
             if let Ok(ports) = port_picker::scan() {
                 if self.port.is_empty() {
@@ -426,6 +589,8 @@ impl Debugger {
             while let Some(event) = session.try_event() {
                 self.receive_event(event);
             }
+            let update = self.text_log.finish();
+            self.text_update(update);
             let tail = self.decoder.finish();
             if !tail.is_empty() {
                 self.info(format!("接收尾部不完整 UTF-8 字节：{tail}"));
@@ -468,6 +633,47 @@ impl Debugger {
         }
     }
     fn export(&self) -> String {
+        if self.view == Format::Lines {
+            let mut output = format!(
+                "{}\n{}\nRX={} bytes, TX={} bytes, errors={}, duration={:.3}s\n{}\n{} {} · RX {} B / {} B\n\n",
+                tr("SU-03T 文本行日志", "SU-03T text-line log"),
+                self.connection_label,
+                self.rx,
+                self.tx,
+                self.errors,
+                self.elapsed.as_secs_f64(),
+                tr(
+                    "按设备换行合并；终端颜色码已移除。筛选仅影响当前显示与文本导出；原始 RX 可单独导出。",
+                    "Joined by device newlines; terminal color codes removed. Filters affect display/text export only; raw RX has a separate export."
+                ),
+                tr("已移除较早文本行：", "Earlier text lines removed:"),
+                self.text_log.removed,
+                self.raw.len(),
+                self.raw.removed
+            );
+            let pending = self.text_log.pending_line();
+            for line in self
+                .text_log
+                .lines
+                .iter()
+                .chain(pending.iter())
+                .filter(|line| self.matches_line(line))
+            {
+                let value = if line.origin == Origin::System {
+                    display(&line.text).into_owned()
+                } else {
+                    line.text.clone()
+                };
+                output.push_str(&format!(
+                    "[{:.3}s] {} {}{}\n",
+                    line.at.as_secs_f64(),
+                    line.origin.label(),
+                    value.replace(['\r', '\n'], " "),
+                    if line.continued { " ↩" } else { "" }
+                ));
+            }
+            return output;
+        }
         let mut text = display(&format!(
             "SU-03T 串口调试日志\n{}\nRX={} bytes, TX={} bytes, errors={}, duration={:.3}s\n相对时间；TX仅表示主机写入；记录按串口读取分块，不代表协议帧。\n已移除{}条较早记录；导出当前显示缓冲；独立RX缓冲保留{}字节，移除{}字节。\n\n",
             self.connection_label,
@@ -710,7 +916,12 @@ impl Debugger {
             ui.add_space(8.0);
             label(
                 ui,
-                if blocked {
+                if cfg!(debug_assertions) && std::env::var_os("SU03T_UI_PREVIEW").is_some() {
+                    tr(
+                        "模拟界面，串口操作已禁用。",
+                        "Simulated preview; serial actions disabled.",
+                    )
+                } else if blocked {
                     t("固件升级正在占用串口，请先停止升级。")
                 } else {
                     t("连接后不会自动发送任何指令。")
@@ -767,8 +978,8 @@ impl Debugger {
                 ui.add_space(12.0);
                 ui.label(
                     RichText::new(ui_format!(
-                        "错误 {}  ·  {:.1}s",
-                        "Errors {} · {:.1}s",
+                        "串口错误 {}  ·  {:.1}s",
+                        "Serial errors {} · {:.1}s",
                         self.errors,
                         self.elapsed.as_secs_f64()
                     ))
@@ -823,24 +1034,44 @@ impl Debugger {
             *ui.visuals_mut() = egui::Visuals::dark(); ui.visuals_mut().override_text_color = Some(Color32::from_rgb(218,233,223));
             ui.horizontal_wrapped(|ui| {
                 ui.strong(t("收发记录"));
-                for (format,name) in [(Format::Hex,"HEX"),(Format::Text,"UTF-8")] {ui.selectable_value(&mut self.view,format,name);}
+                for (format,name) in [(Format::Lines,tr("文本行", "Text lines")),(Format::Hex,"HEX"),(Format::Text,tr("UTF-8 分块", "UTF-8 chunks"))] {
+                    if ui.selectable_value(&mut self.view,format,name).changed() {self.evicted_pending=0;self.jump=true;self.follow=true;self.unseen=0;}
+                }
                 ui.label(egui::RichText::new(if self.follow {tr("跟随最新","Following latest").to_owned()} else {format!("{} · +{}",tr("已暂停跟随","Follow paused"),self.unseen)}).size(10.0));
             });
             ui.horizontal_wrapped(|ui| {
                 if ui.add_enabled(!self.follow,egui::Button::new(tr("回到底部并跟随","Jump to latest & follow")).small()).clicked(){self.jump=true;self.follow=true;self.unseen=0;}
-                if ui.add_enabled(!self.records.is_empty(),egui::Button::new(if self.copied.is_some_and(|t|t.elapsed()<Duration::from_secs(2)){t("已复制")}else{t("复制日志")}).small()).clicked(){ui.ctx().copy_text(self.export());self.copied=Some(Instant::now());}
-                if ui.add_enabled(!self.records.is_empty(),egui::Button::new(t("保存日志…")).small()).clicked()&&let Some(path)=rfd::FileDialog::new().set_file_name("su03t-debug.log").add_filter(t("日志"),&["log","txt"]).save_file(){match std::fs::write(&path,self.export()){Ok(())=>self.info(format!("日志已保存：{}",path.display())),Err(e)=>self.error=Some(format!("保存日志失败：{e}"))}}
-                if ui.add_enabled(!self.records.is_empty(),egui::Button::new(t("清空显示")).small()).clicked(){self.clear();}
+                if ui.add_enabled(!self.records.is_empty() || !self.text_log.lines.is_empty() || self.text_log.pending_line().is_some(),egui::Button::new(if self.copied.is_some_and(|t|t.elapsed()<Duration::from_secs(2)){t("已复制")}else{t("复制日志")}).small()).clicked(){ui.ctx().copy_text(self.export());self.copied=Some(Instant::now());}
+                if ui.add_enabled(!self.records.is_empty() || !self.text_log.lines.is_empty() || self.text_log.pending_line().is_some(),egui::Button::new(t("保存日志…")).small()).clicked()&&let Some(path)=rfd::FileDialog::new().set_file_name("su03t-debug.log").add_filter(t("日志"),&["log","txt"]).save_file(){match std::fs::write(&path,self.export()){Ok(())=>self.info(format!("日志已保存：{}",path.display())),Err(e)=>self.error=Some(format!("保存日志失败：{e}"))}}
+                if ui.add_enabled(!self.records.is_empty() || !self.text_log.lines.is_empty() || self.text_log.pending_line().is_some(),egui::Button::new(t("清空显示")).small()).clicked(){self.clear();}
                 if ui.add_enabled(!self.raw.is_empty(),egui::Button::new(t("导出接收 BIN…")).small()).clicked()&&let Some(path)=rfd::FileDialog::new().set_file_name("su03t-rx.bin").add_filter(t("原始接收字节"),&["bin"]).save_file(){match self.raw.save(&path){Ok(())=>self.info(format!("原始接收缓冲已保存：{}（{}字节）",path.display(),self.raw.len())),Err(error)=>{self.errors+=1;self.error=Some(format!("保存原始数据失败：{error}"));}}}
             });
+            if self.view==Format::Lines {
+                ui.horizontal_wrapped(|ui| {
+                    let focused=ui.checkbox(&mut self.focus_commands,tr("仅命令 / 异常", "Commands / issues only")).on_hover_text(tr("按关键词筛选，不代表协议解析；原始接收数据不变。", "Keyword filter, not a protocol decoder. Original RX bytes are unchanged.")).changed();
+                    ui.label(tr("查找", "Find"));
+                    let filtered=ui.add(egui::TextEdit::singleline(&mut self.text_filter).desired_width(180.0).hint_text(tr("识别词、命令或错误", "Phrase, command or error"))).changed();
+                    if focused||filtered {self.evicted_pending=0;self.jump=true;self.follow=true;self.unseen=0;}
+                    ui.small(tr("设备需实际输出识别结果；原始 HEX 可随时查看。", "The firmware must emit recognition results; raw HEX stays available."));
+                });
+            }
             ui.add_space(5.0);ui.separator();ui.add_space(5.0);
             let height=(ui.available_height()-38.0).max(40.0);
             let mut scroll=egui::ScrollArea::both().id_salt("debug-console").auto_shrink([false,false]).max_height(height).stick_to_bottom(true);
-            if self.jump{scroll=scroll.vertical_scroll_offset(f32::MAX);self.jump=false;}
+            if self.jump{scroll=scroll.vertical_scroll_offset((RECORD_LIMIT as f32 + 1.0) * 16.0);self.jump=false;}
             else if self.evicted_pending>0 && !self.follow {scroll=scroll.vertical_scroll_offset((self.log_offset-self.evicted_pending as f32*16.0).max(0.0));}
             self.evicted_pending=0;
+            let pending=self.text_log.pending_line();
+            let lines:Vec<_>=self.text_log.lines.iter().chain(pending.iter()).filter(|line|self.matches_line(line)).collect();
             let out=ui.scope(|ui|{ui.spacing_mut().item_spacing.y=0.0;
-                if self.records.is_empty(){scroll.show(ui,|ui|{ui.set_min_height(height);ui.label(egui::RichText::new(t("连接后，说出唤醒词和指令，观察模块输出。")).size(11.0));})}
+                if self.view==Format::Lines {
+                    scroll.show_rows(ui,16.0,lines.len(),|ui,range|{for index in range {
+                        let line=lines[index];
+                        let value=if line.origin==Origin::System {display(&line.text).into_owned()}else{line.text.clone()}.replace(['\r','\n']," ");
+                        let color=if console_text::is_issue(&value) {Color32::from_rgb(255,158,142)}else if line.origin==Origin::Tx {Color32::from_rgb(150,193,242)}else{Color32::from_rgb(152,215,185)};
+                        ui.add(egui::Label::new(egui::RichText::new(format!("[{:8.3}s] {} {value}{}",line.at.as_secs_f64(),line.origin.label(),if line.continued {" ↩"}else{""})).monospace().size(11.0).line_height(Some(16.0)).color(color)).extend().selectable(true));
+                    }})
+                } else if self.records.is_empty(){scroll.show(ui,|ui|{ui.set_min_height(height);ui.label(egui::RichText::new(t("连接后，说出唤醒词和指令，观察模块输出。")).size(11.0));})}
                 else{scroll.show_rows(ui,16.0,self.records.len(),|ui,range|{for index in range{
                     let record=&self.records[index];
                     let value=if self.view==Format::Hex&&!record.bytes.is_empty(){serial::hex(&record.bytes)}else{if record.direction=="SYS"{display(&record.text).into_owned()}else{record.text.clone()}.replace('\r',"\\r").replace('\n',"\\n")};
@@ -850,7 +1081,7 @@ impl Debugger {
             }).inner;
             self.log_offset=out.state.offset.y;
             self.follow=out.state.offset.y+out.inner_rect.height()>=out.content_size.y-0.5;if self.follow{self.unseen=0;}
-            ui.add_space(5.0);ui.label(egui::RichText::new(ui_format!("显示缓冲已移除 {} 条 · RX缓冲保留 {} B，移除 {} B · 清空显示保留计数、RX缓冲及记录文件", "Display dropped {} records · RX buffer: {} B, dropped {} B · Clearing keeps counts, RX buffer and recorded files",self.removed,self.raw.len(),self.raw.removed)).size(10.0));
+            ui.add_space(5.0);ui.label(egui::RichText::new(ui_format!("显示缓冲已移除 {} 条 · RX缓冲保留 {} B，移除 {} B · 清空显示保留计数、RX缓冲及记录文件", "Display dropped {} records · RX buffer: {} B, dropped {} B · Clearing keeps counts, RX buffer and recorded files",if self.view==Format::Lines {self.text_log.removed}else{self.removed},self.raw.len(),self.raw.removed)).size(10.0));
         });
     }
     fn sending(&mut self, ui: &mut egui::Ui) {
@@ -939,6 +1170,35 @@ impl Debugger {
         });
     }
 
+    #[cfg(all(debug_assertions, not(test)))]
+    pub(super) fn preview_b8(&mut self) {
+        self.set_profile(Profile::B8);
+        self.port = "/dev/SIMULATED".into();
+        self.connection_label = "SIMULATED · B8 / 57600 / 8N1 · TX=0".into();
+        self.info(tr(
+            "模拟日志，未打开串口。",
+            "Simulated log; no serial port opened.",
+        ));
+        let lines = [
+            "[BOOT] simulated startup",
+            "[T] engine ready",
+            "[T] send watchdog event[14]",
+            "[T] command={\"asr\":\"打开灯光\",\"cmd\":\"LightOn\"}",
+            "[T] reply id=7",
+            "[T] command={\"asr\":\"关闭灯光\",\"cmd\":\"LightOff\"}",
+            "[E] simulated audio ERROR-127",
+            "[T] recogn start success. mode_id=0",
+        ];
+        for (index, line) in lines.iter().enumerate() {
+            let wire = format!("\x1b[33m{line}\x1b[0m\r\n");
+            for bytes in wire.as_bytes().chunks(2) {
+                self.receive_event(Event::Received {
+                    at: Duration::from_millis(index as u64 * 500),
+                    bytes: bytes.to_vec(),
+                });
+            }
+        }
+    }
     pub(super) fn ui(
         &mut self,
         ui: &mut egui::Ui,

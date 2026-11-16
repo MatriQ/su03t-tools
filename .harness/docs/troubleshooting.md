@@ -32,6 +32,12 @@ Even passive probe opens its selected port and requires task scope. It sends no 
 
 Debug display clearing retains counters, raw RX and recordings; flash clearing retains progress/retry context. History reading pauses following. Recordings are .rx.bin/.log streams, each keeping four rotating 16 MiB files; new sessions need new prefixes. Inspect [capture](../../src/capture.rs), [session](../../src/serial_debug.rs) and [debug UI](../../src/debug_ui.rs) for independent buffers.
 
+## Fragmented B8 output or missing commands
+
+Select **Text lines** to join serial reads and remove terminal color sequences. HEX/UTF-8 chunks remain useful for exact byte boundaries. Use the optional command/issues filter and Find; firmware must print recognition results before they can be shown. Display errors and serial-task error counters describe different sources. See [console usage](console.md).
+
+The B8 mode name does not establish startup coverage. A retained window from several minutes into a connection, with earlier records removed, cannot prove the startup sequence. Connect before the user manually restarts the selected module, or inspect an explicitly captured raw RX/continuous recording. This workflow does not automatically reset or transmit to a physical device.
+
 ## Build and publication
 
 macOS 27 LINKEDIT failures follow the documented [build override](validation.md#macos-build-note). Linux loader failure requires archive architecture/runtime checks. Publication follows [release](release.md); an asset checksum mismatch must stop replacement.

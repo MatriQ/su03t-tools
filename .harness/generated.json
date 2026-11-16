@@ -8,7 +8,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/index.md",
-      "sha256": "23da742a6a29cb2850c6514b179d30063875b159e6c08a3426d80d0e64649f63"
+      "sha256": "cd151e1e11e8fda9f7000f7403de72725ff1cc20dffe906b5f95a55c4bf5cab0"
     },
     {
       "executable": false,
@@ -18,7 +18,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/architecture.md",
-      "sha256": "116c87f25058bb598dbabc66d4778f226e0915a43094ed7624d89fc346b1238e"
+      "sha256": "f23adcd2300272890971271b5ac8c3e3bda3a3a3de8f8568f5487317b70d1cfb"
     },
     {
       "executable": false,
@@ -38,7 +38,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/testing.md",
-      "sha256": "d86258628d54640022939d6c4ba8fa4a1a03c04660062bfa593e8208ccfd69e5"
+      "sha256": "5d7826a8ec636ca643a05cd2630cdd016773204d367e42becafc7f1df7293262"
     },
     {
       "executable": false,
@@ -58,7 +58,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/troubleshooting.md",
-      "sha256": "5332a0d79430cff69cdc4d22cece0261fc57322a538e28d2a35701cbc0934bf2"
+      "sha256": "b8aa11f358611e9e2b31253463aa31799668fd1309ddc868472479b9f2ae051a"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "610963710772386f197f192aaa9c8680cd7d87e637e3e43d10c731095b5a1f93"
+      "sha256": "f8a90751cf3008272f96443c1d5158c57780bde6b39d5136b00c2891aa19209d"
     }
   ],
   "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
@@ -234,7 +234,7 @@
     },
     {
       "path": "src/lib.rs",
-      "sha256": "2aeefe651209dcee55e7e09ad95d7b765ca12e61d8fb41c41a4e088363f051ae"
+      "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
     },
     {
       "path": "src/firmware.rs",
@@ -246,11 +246,11 @@
     },
     {
       "path": "src/gui.rs",
-      "sha256": "2d0fc95a54e8712350664d6ca45d5b1c6e8f0db712cdd740cd42948ad97c69fd"
+      "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
     },
     {
       "path": "src/debug_ui.rs",
-      "sha256": "2eeec8e38e1d26680c73d140eaa7b80dc9fa8e7a2b3bc0a7072a3b497cd2ba85"
+      "sha256": "c73e0f08a91b03383266846be79e6da5048f9332ceb0b410c906332487dc3cae"
     },
     {
       "path": "src/serial_debug.rs",
@@ -302,7 +302,7 @@
     },
     {
       "path": "scripts/capture-ui.py",
-      "sha256": "4e1a243b5def147d9c1543c8990201f479b38a9dee5a641ab6640ecd3a7ad87f"
+      "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
     },
     {
       "path": "scripts/Dockerfile.linux",
@@ -411,6 +411,22 @@
     {
       "path": "docs/images/windows-en.png",
       "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
+    },
+    {
+      "path": "src/console_text.rs",
+      "sha256": "b42963ef8d4451c183b6b3d548ec4e4aba25c902d74d0db7ab9b38f17eaed744"
+    },
+    {
+      "path": ".harness/docs/console.md",
+      "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+    },
+    {
+      "path": ".harness/docs/images/b8-lines-zh.png",
+      "sha256": "cb6e86a785ea2ab5d54b4b161d2983160c91ff99c8bc997f89f7778eb6943bda"
+    },
+    {
+      "path": ".harness/docs/images/b8-lines-en.png",
+      "sha256": "8d2a0cb0f2b5630a56a51d98b207120eac4d338e614dba5f52cc89a7bbddefaf"
     }
   ]
 }

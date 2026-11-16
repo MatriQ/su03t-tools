@@ -1,6 +1,7 @@
 //! SU-03T updater protocol, reconstructed from the vendor's 2021 DLL.
 //! See .harness/docs/protocol.md for protocol details and hardware verification limits.
 pub mod capture;
+pub mod console_text;
 #[cfg(feature = "gui")]
 pub mod driver_check;
 pub mod firmware;

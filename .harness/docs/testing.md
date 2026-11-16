@@ -58,3 +58,7 @@ Report revision/working tree, OS/architecture, variant, commands, outcomes and u
 The GUI check maximizes only the test app within the existing desktop and captures its client area. It does not change monitor settings. Thread DPI context is restored on exit. It opens the process handle while the window is alive so normal-close exit-code checks remain reliable.
 
 Portable preference regression tests in ui_i18n.rs exercise relocation, profile isolation and a blocked data directory. Release-helper checks require the portable archive from v0.6.1, verify its marker and reject staging directories containing saved preferences. Release layouts for v0.5.x and v0.6.0 remain unchanged.
+
+## Text-line console checks
+
+[Console tests](../../src/console_text.rs) cover tiny-read UTF-8/ANSI assembly, CRLF variants, bounded OSC/malformed escapes and incomplete/binary tails. Native console tests retain exact raw RX after chunk eviction, independent line history, search/issues export, clear semantics and history/follow positions during new input and language changes. The finite jump offset prevents virtual-row overflow. Native `b8-lines` previews suppress discovery and use synthetic commands/errors only. [Usage and startup boundaries](console.md) distinguish formatted text from exact captures and actual device acceptance.

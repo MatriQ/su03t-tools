@@ -360,6 +360,11 @@ impl Updater {
         self.cleared = Some(Instant::now());
     }
     fn refresh_ports(&mut self) {
+        if cfg!(test) || (cfg!(debug_assertions) && std::env::var_os("SU03T_UI_PREVIEW").is_some())
+        {
+            self.ports.clear();
+            return;
+        }
         match port_picker::scan() {
             Ok(ports) => {
                 if !ports.iter().any(|p| p.path == self.port) {
@@ -1607,6 +1612,11 @@ impl Updater {
                 _ => self.language,
             };
             i18n::set(self.language, self.system_english);
+        }
+        if scene == "b8-lines" {
+            self.mode = Mode::BootLog;
+            self.debugger.preview_b8();
+            return;
         }
         if scene.starts_with("drivers-") {
             self.driver_check.preview(scene == "drivers-ready");

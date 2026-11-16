@@ -34,14 +34,16 @@ def encode_png(ppm, destination):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--skip-build', action='store_true')
+    parser.add_argument('--scene', action='append', choices=('transfer', 'power', 'retry', 'drivers-missing', 'b8-lines'))
     parser.add_argument('--output', type=pathlib.Path, default=ROOT / 'docs/images')
     args = parser.parse_args()
     if not args.skip_build:
         subprocess.run(['cargo', 'build', '--locked'], cwd=ROOT, check=True)
+    args.output = args.output.resolve()
     args.output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='su03t-screenshots-') as directory:
         for language in ('zh', 'en'):
-            for scene in ('transfer', 'power', 'retry', 'drivers-missing'):
+            for scene in (args.scene or ('transfer', 'power', 'retry', 'drivers-missing', 'b8-lines')):
                 stem = f'{scene}-{language}'
                 ppm = pathlib.Path(directory) / f'{stem}.ppm'
                 env = os.environ.copy()
@@ -52,7 +54,7 @@ def main():
                     raise RuntimeError(f'{stem}: {result.stderr.decode(errors="replace")}')
                 destination = args.output / f'{stem}.png'
                 width, height = encode_png(ppm, destination)
-                print(f'{destination.relative_to(ROOT)} ({width}x{height})', flush=True)
+                print(f'{os.path.relpath(destination, ROOT)} ({width}x{height})', flush=True)
 
 
 if __name__ == '__main__':
