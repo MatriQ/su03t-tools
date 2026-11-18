@@ -450,7 +450,7 @@
     },
     {
       "path": "src/audio_asset.rs",
-      "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+      "sha256": "54522c4c143eed58cd52bfdbcbc4db5664f2cb7195169c445e7890353052c97b"
     },
     {
       "path": "src/audio_device.rs",
