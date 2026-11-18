@@ -34,7 +34,7 @@ def encode_png(ppm, destination):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--skip-build', action='store_true')
-    parser.add_argument('--scene', action='append', choices=('transfer', 'power', 'retry', 'drivers-missing', 'b8-lines'))
+    parser.add_argument('--scene', action='append', choices=('transfer', 'power', 'retry', 'drivers-missing', 'studio', 'studio-commands', 'studio-add-command', 'b8-lines'))
     parser.add_argument('--output', type=pathlib.Path, default=ROOT / 'docs/images')
     args = parser.parse_args()
     if not args.skip_build:
@@ -43,7 +43,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='su03t-screenshots-') as directory:
         for language in ('zh', 'en'):
-            for scene in (args.scene or ('transfer', 'power', 'retry', 'drivers-missing', 'b8-lines')):
+            for scene in (args.scene or ('transfer', 'power', 'retry', 'drivers-missing', 'studio', 'studio-commands', 'studio-add-command', 'b8-lines')):
                 stem = f'{scene}-{language}'
                 ppm = pathlib.Path(directory) / f'{stem}.ppm'
                 env = os.environ.copy()

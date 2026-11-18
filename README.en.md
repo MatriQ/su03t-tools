@@ -17,6 +17,7 @@ A native **SU-03T / Hummingbird-M** firmware updater and serial diagnostic tool 
 - **Persistent logs:** a full-height right pane with adjustable width and compact spacing. Scroll up to pause following, return to the bottom to resume; clear, copy or save the log.
 - **Serial diagnostics:** passive monitoring, HEX / UTF-8 views, explicit manual transmission, raw RX export and rotating recordings.
 - **Chinese and English UI:** follow the system language or remember a manual choice. Switching languages preserves the connection, progress and log reading position.
+- **Firmware studio (experimental)**: inspect full or update BINs, replace replies, toggle supported runtime logging and export an update file.
 
 ## Installation
 
@@ -178,6 +179,16 @@ Select **B8 logs** and follow [Wiring and modes](#wiring-and-modes): **B8 → ad
 *The screenshot uses simulated data from current sources. Features in an installed release depend on its version.*
 
 The name “B8 startup logs” does not establish startup coverage. A text export cannot recover earlier display records that have already been evicted. The serial-error counter is also separate from device `[E]` messages. See [log display, exact captures and startup coverage](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/console.md).
+
+## Firmware studio
+
+1. Open **Studio** and select or drop a full or update BIN to see recovered commands, replies and image structure.
+2. For a supported image, select a reply. Play or extract the original, record a replacement or import a WAV. Trim on the waveform, adjust gain and choose **Convert and replace selected reply**. Firmware reply playback and conversion need a local FFmpeg executable with libmp3lame.
+3. Use **Firmware logging** to toggle supported application logging. Choose **Export experimental update** to write a new update BIN and integrity manifest.
+
+Save added or removed phrases in a command plan. Vocabulary changes require a compatible recognition compiler. Unknown images support inspection, and edited firmware still requires device validation. See the [usage and compatibility guide](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/firmware/studio.md).
+
+![Firmware studio with synthetic data](https://raw.githubusercontent.com/MatriQ/su03t-tools/main/.harness/docs/firmware/images/studio-en.png)
 
 ## CLI
 

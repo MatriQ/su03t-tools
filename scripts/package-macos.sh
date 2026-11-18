@@ -56,6 +56,7 @@ cat > "$APP/Contents/Info.plist" <<PLIST
   <key>CFBundleShortVersionString</key><string>$APP_VERSION</string>
   <key>CFBundleVersion</key><string>13</string>
   <key>LSMinimumSystemVersion</key><string>12.0</string>
+  <key>NSMicrophoneUsageDescription</key><string>Record replacement spoken replies when you click Start recording in Firmware studio.</string>
   <key>NSHighResolutionCapable</key><true/>
   <key>NSSupportsAutomaticGraphicsSwitching</key><true/>
 </dict>
@@ -64,9 +65,11 @@ PLIST
 mkdir -p "$APP/Contents/Resources/en.lproj" "$APP/Contents/Resources/zh-Hans.lproj"
 cat > "$APP/Contents/Resources/en.lproj/InfoPlist.strings" <<'LOCALIZATION'
 "CFBundleDisplayName" = "SU-03T Tools";
+"NSMicrophoneUsageDescription" = "Record replacement spoken replies when you click Start recording in Firmware studio.";
 LOCALIZATION
 cat > "$APP/Contents/Resources/zh-Hans.lproj/InfoPlist.strings" <<'LOCALIZATION'
 "CFBundleDisplayName" = "SU-03T 升级与调试";
+"NSMicrophoneUsageDescription" = "仅在您点击固件工作台的开始录音后，使用麦克风录制替换播报。";
 LOCALIZATION
 plutil -lint "$APP/Contents/Info.plist"
 codesign --force --deep --sign - "$APP"

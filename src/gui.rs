@@ -17,10 +17,18 @@ use su03t_update::{
     profiles::Profile,
     serial_debug::hex,
 };
+#[path = "audio_device.rs"]
+mod audio_device;
+#[path = "audio_editor.rs"]
+mod audio_editor;
+#[path = "command_ui.rs"]
+mod command_ui;
 #[path = "debug_ui.rs"]
 mod debug_ui;
 #[path = "driver_ui.rs"]
 mod driver_ui;
+#[path = "firmware_ui.rs"]
+mod firmware_ui;
 #[path = "ui_i18n.rs"]
 mod i18n;
 #[path = "port_picker.rs"]
@@ -40,6 +48,7 @@ enum Mode {
     Upgrade,
     Debug,
     BootLog,
+    Studio,
 }
 #[derive(Clone, Copy, PartialEq, Debug)]
 enum Phase {
@@ -264,6 +273,7 @@ struct Updater {
     system_english: bool,
     mode: Mode,
     debugger: debug_ui::Debugger,
+    studio: firmware_ui::Studio,
     finder: port_picker::Finder,
     driver_check: driver_ui::Checker,
 }
@@ -319,6 +329,7 @@ impl Default for Updater {
             system_english,
             mode: Mode::Upgrade,
             debugger: debug_ui::Debugger::default(),
+            studio: firmware_ui::Studio::default(),
             finder: port_picker::Finder::default(),
             driver_check: driver_ui::Checker::default(),
         };
@@ -1415,11 +1426,16 @@ impl eframe::App for Updater {
                 });
             });
             ui.add_space(10.0);ui.horizontal_wrapped(|ui|{
-                let before=self.mode;ui.add_enabled_ui(self.job.is_none()&&!self.debugger.busy(),|ui|{ui.selectable_value(&mut self.mode,Mode::Debug,tr("语音调试","Voice debug"));ui.selectable_value(&mut self.mode,Mode::BootLog,tr("B8 日志","B8 logs"));ui.selectable_value(&mut self.mode,Mode::Upgrade,tr("固件升级","Firmware"));});
-                if before!=self.mode{match self.mode{Mode::Debug=>self.debugger.set_profile(Profile::Car),Mode::BootLog=>self.debugger.set_profile(Profile::B8),Mode::Upgrade=>{}}}
+                let before=self.mode;ui.add_enabled_ui(self.job.is_none()&&!self.debugger.busy()&&!self.studio.busy(),|ui|{ui.selectable_value(&mut self.mode,Mode::Debug,tr("语音调试","Voice debug"));ui.selectable_value(&mut self.mode,Mode::BootLog,tr("B8 日志","B8 logs"));ui.selectable_value(&mut self.mode,Mode::Upgrade,tr("固件升级","Firmware"));ui.selectable_value(&mut self.mode,Mode::Studio,tr("固件制作","Studio"));});
+                if before!=self.mode{match self.mode{Mode::Debug=>self.debugger.set_profile(Profile::Car),Mode::BootLog=>self.debugger.set_profile(Profile::B8),Mode::Upgrade|Mode::Studio=>{}}}
                 if self.job.is_some(){label(ui,tr("串口正在使用","Serial port in use"));}
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center),|ui|self.driver_check.entry(ui));
             });ui.add_space(12.0);
+            if self.mode==Mode::Studio{
+                if let Some(path)=ctx.input(|i|i.raw.dropped_files.iter().find_map(|f|f.path.clone())){self.studio.import(path);}
+                self.studio.ui(ui);
+                return
+            }
             if self.mode!=Mode::Upgrade{
                 let blocked=self.job.is_some();
                 #[cfg(debug_assertions)] let blocked=blocked||std::env::var_os("SU03T_UI_PREVIEW").is_some();
@@ -1616,6 +1632,17 @@ impl Updater {
         if scene == "b8-lines" {
             self.mode = Mode::BootLog;
             self.debugger.preview_b8();
+            return;
+        }
+        if matches!(
+            scene.as_str(),
+            "studio" | "studio-commands" | "studio-add-command"
+        ) {
+            self.mode = Mode::Studio;
+            self.studio.preview();
+            if scene != "studio" {
+                self.studio.preview_commands(scene == "studio-add-command");
+            }
             return;
         }
         if scene.starts_with("drivers-") {

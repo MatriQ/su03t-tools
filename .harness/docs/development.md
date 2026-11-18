@@ -24,7 +24,7 @@ python3 .harness/resources/probes.py tools
 On Debian/Ubuntu, install the C toolchain and native development libraries when absent:
 
 ~~~bash
-sudo apt-get install build-essential pkg-config libudev-dev libxkbcommon-dev \
+sudo apt-get install build-essential pkg-config libudev-dev libasound2-dev libxkbcommon-dev \
   libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev \
   libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev fonts-noto-cjk
 ~~~
@@ -72,6 +72,10 @@ python3 .harness/resources/probes.py cli
 If CARGO_TARGET_DIR is set, the probe uses its debug executable. A zero exit and accepted:true establish this CLI path only. For UI work use default-feature checks in [testing](testing.md); use [simulated screenshots](../../CONTRIBUTING.md#native-screenshots) only with an active desktop. Keep a CJK font available.
 
 Stop task-created processes, close PTYs and remove fixtures after checks. Keep caches in target/ and packages in dist/. Firmware, vendor executables, .env and private evidence stay excluded by [.gitignore](../../.gitignore). Do not run the application with sudo.
+
+## Firmware studio audio
+
+The [firmware studio](firmware/studio.md) uses CPAL for explicit native capture/playback and optional external FFmpeg with libmp3lame for firmware MP3 conversion/decoding. FFmpeg is not needed to build or launch the app; the studio shows conversion errors and lets users select its executable. It is not bundled or installed automatically. Linux GUI builds additionally require libasound2-dev; the distributed GUI needs the corresponding ALSA runtime. macOS app packaging declares microphone usage in English and Simplified Chinese. OS permission/capture is requested only by the user's Start recording action. Automated checks use synthetic audio and never operate the microphone/speakers.
 
 ## Repository helper scripts
 

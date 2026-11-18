@@ -19,10 +19,12 @@ ctrlc = "3"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 plist = { version = "1", optional = true, default-features = false }
+cpal = { version = "0.18.2", optional = true }
+hound = "3.5.1"
 
 [features]
 default = ["gui"]
-gui = ["dep:eframe", "dep:rfd", "dep:plist", "dep:wgpu"]
+gui = ["dep:eframe", "dep:rfd", "dep:plist", "dep:wgpu", "dep:cpal"]
 windows-launcher = ["gui"]
 
 [[bin]]

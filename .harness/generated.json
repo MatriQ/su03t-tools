@@ -8,7 +8,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/index.md",
-      "sha256": "4860786a4e4dd0e128195ea3db8dd0e87028f802e7db063e0431ce4c88d9bd23"
+      "sha256": "3fce8149cf5d71e8b5d22a33ff36ea435d11cbd809ff160c661f98c72a3a0a1f"
     },
     {
       "executable": false,
@@ -18,7 +18,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/architecture.md",
-      "sha256": "f23adcd2300272890971271b5ac8c3e3bda3a3a3de8f8568f5487317b70d1cfb"
+      "sha256": "1885272202feb4dfb69aeadc0920b39e514496988837cc2e21c08ed6433bad4c"
     },
     {
       "executable": false,
@@ -28,7 +28,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/development.md",
-      "sha256": "6337f97e8a4001133321a4f781af9ec23d034301c10b0a879a1931b7301c8b77"
+      "sha256": "c2565067d8021e2beaeb060309b5085f9a2ed6ca7132bd2f4de55c51f88a05d3"
     },
     {
       "executable": false,
@@ -38,7 +38,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/testing.md",
-      "sha256": "5d7826a8ec636ca643a05cd2630cdd016773204d367e42becafc7f1df7293262"
+      "sha256": "2387d91b5daab75447b8125d409c9ad50169bbf04623f50d779474963a743113"
     },
     {
       "executable": false,
@@ -48,7 +48,7 @@
       ],
       "owns_file": true,
       "path": ".harness/docs/release.md",
-      "sha256": "a32e0dc883a61e6a978beb7824ae4c8eed87f752b106696276fb6cb6f8028edd"
+      "sha256": "ef153f2aaf58161d45b1a153358a9db224031e001e4fc7813e5ae66b506e2ad1"
     },
     {
       "executable": false,
@@ -190,7 +190,7 @@
       ],
       "owns_file": true,
       "path": ".harness/harness.json",
-      "sha256": "63ea88ba45872417b4482728cafc58818dea14914bf9bd635f301d82707dec68"
+      "sha256": "13885294778d0e441b694b412ef4a6e81a907a3e6ddbe44784e70b5fde7f4432"
     }
   ],
   "profile_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
@@ -198,19 +198,19 @@
   "sources": [
     {
       "path": "Cargo.toml",
-      "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+      "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
     },
     {
       "path": "Cargo.lock",
-      "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+      "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
     },
     {
       "path": "README.md",
-      "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+      "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
     },
     {
       "path": "README.en.md",
-      "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+      "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -222,19 +222,19 @@
     },
     {
       "path": ".github/workflows/check.yml",
-      "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+      "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+      "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
     },
     {
       "path": "src/main.rs",
-      "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+      "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
     },
     {
       "path": "src/lib.rs",
-      "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+      "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
     },
     {
       "path": "src/firmware.rs",
@@ -246,7 +246,7 @@
     },
     {
       "path": "src/gui.rs",
-      "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+      "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
     },
     {
       "path": "src/debug_ui.rs",
@@ -290,7 +290,7 @@
     },
     {
       "path": "scripts/package-macos.sh",
-      "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+      "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
     },
     {
       "path": "scripts/collect-licenses.py",
@@ -302,11 +302,11 @@
     },
     {
       "path": "scripts/capture-ui.py",
-      "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+      "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
     },
     {
       "path": "scripts/Dockerfile.linux",
-      "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+      "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
     },
     {
       "path": "install.sh",
@@ -423,6 +423,86 @@
     {
       "path": ".harness/docs/images/b8-lines-en.png",
       "sha256": "8d2a0cb0f2b5630a56a51d98b207120eac4d338e614dba5f52cc89a7bbddefaf"
+    },
+    {
+      "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+      "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+    },
+    {
+      "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+      "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+    },
+    {
+      "path": ".harness/docs/firmware/images/studio-en.png",
+      "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+    },
+    {
+      "path": ".harness/docs/firmware/images/studio-zh.png",
+      "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+    },
+    {
+      "path": ".harness/docs/firmware/logging.md",
+      "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+    },
+    {
+      "path": ".harness/docs/firmware/studio.md",
+      "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
+    },
+    {
+      "path": "src/audio_asset.rs",
+      "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+    },
+    {
+      "path": "src/audio_device.rs",
+      "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+    },
+    {
+      "path": "src/audio_editor.rs",
+      "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+    },
+    {
+      "path": "src/command_plan.rs",
+      "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+    },
+    {
+      "path": "src/command_ui.rs",
+      "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
+    },
+    {
+      "path": "src/firmware_audio.rs",
+      "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+    },
+    {
+      "path": "src/firmware_inspect.rs",
+      "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+    },
+    {
+      "path": "src/firmware_logging.rs",
+      "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+    },
+    {
+      "path": "src/firmware_profile.rs",
+      "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+    },
+    {
+      "path": "src/firmware_studio.rs",
+      "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+    },
+    {
+      "path": "src/firmware_ui.rs",
+      "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+    },
+    {
+      "path": "tests/firmware_audio_acceptance.py",
+      "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+    },
+    {
+      "path": "tests/firmware_logging_acceptance.py",
+      "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+    },
+    {
+      "path": "tests/firmware_studio.rs",
+      "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
     }
   ]
 }

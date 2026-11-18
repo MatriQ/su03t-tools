@@ -7,7 +7,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/architecture.md",
-          "sha256": "f23adcd2300272890971271b5ac8c3e3bda3a3a3de8f8568f5487317b70d1cfb",
+          "sha256": "1885272202feb4dfb69aeadc0920b39e514496988837cc2e21c08ed6433bad4c",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -15,7 +15,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -23,7 +23,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -36,6 +36,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -63,19 +87,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -107,11 +131,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -123,7 +147,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -134,8 +158,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -158,20 +202,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -204,6 +272,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -258,7 +338,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -266,7 +346,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -275,6 +355,30 @@
             {
               "path": ".gitignore",
               "sha256": "d6d85eaefdbf81f4d68836a6a2a0a59486c4ddc5977a3b811039a233c2030a5b"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -302,19 +406,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -346,11 +450,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -362,7 +466,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -373,8 +477,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -397,20 +521,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -443,6 +591,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -489,7 +649,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/development.md",
-          "sha256": "6337f97e8a4001133321a4f781af9ec23d034301c10b0a879a1931b7301c8b77",
+          "sha256": "c2565067d8021e2beaeb060309b5085f9a2ed6ca7132bd2f4de55c51f88a05d3",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -497,7 +657,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -505,7 +665,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -518,6 +678,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -545,19 +729,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -589,11 +773,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -605,7 +789,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -616,8 +800,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -640,20 +844,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -686,6 +914,656 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
+            },
+            {
+              "path": "tests/handshake_diagnostics.py",
+              "sha256": "be2ddec7cd2bb7dfe81366cc90eca243633ca8a653d5e3f727aaaf99774c574b"
+            },
+            {
+              "path": "tests/install_package.py",
+              "sha256": "6902e3e0816ec5a83f6d52e99f48df560768b157a282b0b70dd800158ebfd8aa"
+            },
+            {
+              "path": "tests/serial_debug_pty.rs",
+              "sha256": "e856ff7a56b7589677b9b1d796b112b662b01999c175413df86fd58e358e18da"
+            },
+            {
+              "path": "tests/simulate_device.py",
+              "sha256": "856526f0a286214b3c0e80bffe85ffd3210b9960ccabe63b4dfc02a6b9029a79"
+            },
+            {
+              "path": "tests/test_installer.py",
+              "sha256": "f564a59613c7e83f216d5ea260ed0a2f5a2ada0478828a09b1fd1589f6a00a52"
+            },
+            {
+              "path": "tests/test_release_assets.py",
+              "sha256": "9932720d2f8063180072981caf704468ebe4781e8236d1a015c5bb3a912519d3"
+            },
+            {
+              "path": "tests/test_windows_installer.ps1",
+              "sha256": "d10ea759b07c72c19fed4dcd2f222fe95240a2be42927ec39ab62912731c9dad"
+            },
+            {
+              "path": "tests/transfer_events.py",
+              "sha256": "c1ac4834a51fc00faf9526bb6c937cd57e185978fa21c7b0a73a401037b6eb15"
+            },
+            {
+              "path": "tests/verify_windows_install.ps1",
+              "sha256": "d308778b4118f8ee021f23f332d32e78f1be30f9a07095710508cbfd15700692"
+            },
+            {
+              "path": "tests/windows_gui_smoke.ps1",
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
+            }
+          ]
+        },
+        {
+          "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
+          "path": ".harness/docs/firmware/logging.md",
+          "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee",
+          "sources": [
+            {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
+              "path": ".github/workflows/check.yml",
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
+            },
+            {
+              "path": ".github/workflows/harness-gate.yml",
+              "sha256": "0c5b558db84c9567b592dae5c49146e06e098861bf997da937542f2e489cf6fb"
+            },
+            {
+              "path": ".github/workflows/release.yml",
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
+            },
+            {
+              "path": ".github/workflows/verify-install.yml",
+              "sha256": "2b67d2cafdcf999f696c7b7e483d58839dabca89d539d9ae6e6a37ffc1621e52"
+            },
+            {
+              "path": ".gitignore",
+              "sha256": "d6d85eaefdbf81f4d68836a6a2a0a59486c4ddc5977a3b811039a233c2030a5b"
+            },
+            {
+              "path": ".harness/docs/console.md",
+              "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
+            },
+            {
+              "path": ".harness/docs/images/b8-lines-en.png",
+              "sha256": "8d2a0cb0f2b5630a56a51d98b207120eac4d338e614dba5f52cc89a7bbddefaf"
+            },
+            {
+              "path": ".harness/docs/images/b8-lines-zh.png",
+              "sha256": "cb6e86a785ea2ab5d54b4b161d2983160c91ff99c8bc997f89f7778eb6943bda"
+            },
+            {
+              "path": ".harness/docs/protocol.md",
+              "sha256": "b0b28b82d7798a8aa381cc2cffe7962cd260370919ddf0c432f3dd4bbdfd4d40"
+            },
+            {
+              "path": ".harness/docs/validation.md",
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
+            },
+            {
+              "path": "AGENTS.md",
+              "sha256": "abae5422bfc71cb897408bb9a50651ba9d37ac67234650b96ffd0dd814d4cf7e"
+            },
+            {
+              "path": "CONTRIBUTING.md",
+              "sha256": "72f9d2cbd25786ce47ed2c04980c56296fda0c0f0069cea6afa411f5256fc231"
+            },
+            {
+              "path": "Cargo.lock",
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
+            },
+            {
+              "path": "Cargo.toml",
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
+            },
+            {
+              "path": "README.en.md",
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
+            },
+            {
+              "path": "README.md",
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
+            },
+            {
+              "path": "docs/images/windows-en.png",
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
+            },
+            {
+              "path": "docs/images/windows-zh.png",
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
+            },
+            {
+              "path": "install.ps1",
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
+            },
+            {
+              "path": "install.sh",
+              "sha256": "1cea73e8d38e3a9d2e9f5430267a476f0f8970e0a72ff180216d43ca98d0b10d"
+            },
+            {
+              "path": "scripts/Dockerfile.linux",
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
+            },
+            {
+              "path": "scripts/capture-ui.py",
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
+            },
+            {
+              "path": "scripts/collect-licenses.py",
+              "sha256": "70c81ca6ac7886522b73a48925fc64c632b34665e9c6690bac2edbbd09c936e6"
+            },
+            {
+              "path": "scripts/package-linux.sh",
+              "sha256": "6063e620a3de66bec38e4e8aa8f896fdb119c7bea963c9f145c7dbc87eb01153"
+            },
+            {
+              "path": "scripts/package-macos.sh",
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
+            },
+            {
+              "path": "scripts/package-windows.ps1",
+              "sha256": "57f6aa4550aa0d364db13d86619c9bad2286fdca5f09a9631e247269ce41a474"
+            },
+            {
+              "path": "scripts/release_assets.py",
+              "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
+            },
+            {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
+              "path": "src/capture.rs",
+              "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
+            },
+            {
+              "path": "src/console_text.rs",
+              "sha256": "b42963ef8d4451c183b6b3d548ec4e4aba25c902d74d0db7ab9b38f17eaed744"
+            },
+            {
+              "path": "src/debug_ui.rs",
+              "sha256": "c73e0f08a91b03383266846be79e6da5048f9332ceb0b410c906332487dc3cae"
+            },
+            {
+              "path": "src/driver_check.rs",
+              "sha256": "2a5a07d8c766bf4bec333e4dfae0be954faf4491ef849b3ce41bfa0bd325be30"
+            },
+            {
+              "path": "src/driver_ui.rs",
+              "sha256": "651242216af1eeabc362ec1a8ae4ea28632e189241ef32dda506724e7376d835"
+            },
+            {
+              "path": "src/firmware.rs",
+              "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
+            },
+            {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
+              "path": "src/flash_event.rs",
+              "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
+            },
+            {
+              "path": "src/gui.rs",
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
+            },
+            {
+              "path": "src/lib.rs",
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
+            },
+            {
+              "path": "src/main.rs",
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
+            },
+            {
+              "path": "src/port_picker.rs",
+              "sha256": "ab67e01e1a22c07f186f92898668804a016a95bf96ff2235d2e3aa89db899fb1"
+            },
+            {
+              "path": "src/profiles.rs",
+              "sha256": "40b0005d34e525a1804be7c20805d25e75515760b24b761ddcecaa6f0acf4f7a"
+            },
+            {
+              "path": "src/serial_debug.rs",
+              "sha256": "70f83d057d655cf74d0fbf0b36e1c92f599309abbdc3a70c7e4730626e626af6"
+            },
+            {
+              "path": "src/ui_catalog.rs",
+              "sha256": "ff23107efe263cfee1cec4564ff3cba1f2e0a02dfb608fd20836ec2cff2835f2"
+            },
+            {
+              "path": "src/ui_i18n.rs",
+              "sha256": "806cccfe40ee2c0339fe913ff51c9c3344efabb19503c5e64a793a664cba555e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "ebda72f00e38d10ec4305674551a7fe9f9e6c315ac61a82b9d60c0d5cd7af282"
+            },
+            {
+              "path": "tests/client_acceptance.py",
+              "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
+            },
+            {
+              "path": "tests/handshake_diagnostics.py",
+              "sha256": "be2ddec7cd2bb7dfe81366cc90eca243633ca8a653d5e3f727aaaf99774c574b"
+            },
+            {
+              "path": "tests/install_package.py",
+              "sha256": "6902e3e0816ec5a83f6d52e99f48df560768b157a282b0b70dd800158ebfd8aa"
+            },
+            {
+              "path": "tests/serial_debug_pty.rs",
+              "sha256": "e856ff7a56b7589677b9b1d796b112b662b01999c175413df86fd58e358e18da"
+            },
+            {
+              "path": "tests/simulate_device.py",
+              "sha256": "856526f0a286214b3c0e80bffe85ffd3210b9960ccabe63b4dfc02a6b9029a79"
+            },
+            {
+              "path": "tests/test_installer.py",
+              "sha256": "f564a59613c7e83f216d5ea260ed0a2f5a2ada0478828a09b1fd1589f6a00a52"
+            },
+            {
+              "path": "tests/test_release_assets.py",
+              "sha256": "9932720d2f8063180072981caf704468ebe4781e8236d1a015c5bb3a912519d3"
+            },
+            {
+              "path": "tests/test_windows_installer.ps1",
+              "sha256": "d10ea759b07c72c19fed4dcd2f222fe95240a2be42927ec39ab62912731c9dad"
+            },
+            {
+              "path": "tests/transfer_events.py",
+              "sha256": "c1ac4834a51fc00faf9526bb6c937cd57e185978fa21c7b0a73a401037b6eb15"
+            },
+            {
+              "path": "tests/verify_windows_install.ps1",
+              "sha256": "d308778b4118f8ee021f23f332d32e78f1be30f9a07095710508cbfd15700692"
+            },
+            {
+              "path": "tests/windows_gui_smoke.ps1",
+              "sha256": "2dd13d0b552516560fb215a38270a1f094c6a637a9c2b2ee4197bf76daaf8a61"
+            }
+          ]
+        },
+        {
+          "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
+          "path": ".harness/docs/firmware/studio.md",
+          "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da",
+          "sources": [
+            {
+              "path": ".cargo/config.toml",
+              "sha256": "53329a3ce3b81a3bcb1c083a46a8d47a09a459b457c8f2f5441fd13d9445d8b3"
+            },
+            {
+              "path": ".github/workflows/check.yml",
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
+            },
+            {
+              "path": ".github/workflows/harness-gate.yml",
+              "sha256": "0c5b558db84c9567b592dae5c49146e06e098861bf997da937542f2e489cf6fb"
+            },
+            {
+              "path": ".github/workflows/release.yml",
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
+            },
+            {
+              "path": ".github/workflows/verify-install.yml",
+              "sha256": "2b67d2cafdcf999f696c7b7e483d58839dabca89d539d9ae6e6a37ffc1621e52"
+            },
+            {
+              "path": ".gitignore",
+              "sha256": "d6d85eaefdbf81f4d68836a6a2a0a59486c4ddc5977a3b811039a233c2030a5b"
+            },
+            {
+              "path": ".harness/docs/console.md",
+              "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/images/b8-lines-en.png",
+              "sha256": "8d2a0cb0f2b5630a56a51d98b207120eac4d338e614dba5f52cc89a7bbddefaf"
+            },
+            {
+              "path": ".harness/docs/images/b8-lines-zh.png",
+              "sha256": "cb6e86a785ea2ab5d54b4b161d2983160c91ff99c8bc997f89f7778eb6943bda"
+            },
+            {
+              "path": ".harness/docs/protocol.md",
+              "sha256": "b0b28b82d7798a8aa381cc2cffe7962cd260370919ddf0c432f3dd4bbdfd4d40"
+            },
+            {
+              "path": ".harness/docs/validation.md",
+              "sha256": "0e0212c3496debae46c261a552b2bfb581d82d0ef69243e97645ca9e4bacb91b"
+            },
+            {
+              "path": "AGENTS.md",
+              "sha256": "abae5422bfc71cb897408bb9a50651ba9d37ac67234650b96ffd0dd814d4cf7e"
+            },
+            {
+              "path": "CONTRIBUTING.md",
+              "sha256": "72f9d2cbd25786ce47ed2c04980c56296fda0c0f0069cea6afa411f5256fc231"
+            },
+            {
+              "path": "Cargo.lock",
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
+            },
+            {
+              "path": "Cargo.toml",
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
+            },
+            {
+              "path": "README.en.md",
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
+            },
+            {
+              "path": "README.md",
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
+            },
+            {
+              "path": "assets/AppIcon.ico",
+              "sha256": "994a71b7caeda964201c8f1b5edeb79ef61b7d00c6b6f0e89a35807aabc04c41"
+            },
+            {
+              "path": "assets/windows.rc",
+              "sha256": "805e4ab255c9b3850b8fb7b90d51ed9fa6f4463932de3fb6534f9831f32dac7c"
+            },
+            {
+              "path": "build.rs",
+              "sha256": "faae636e51a650d9b772a5c0e3a07c04c12b66fbdc4ade811eb4da3c8f1a9f01"
+            },
+            {
+              "path": "docs/images/windows-en.png",
+              "sha256": "935397818840e317d100aa1029dcde05b0d7652ccc3e6e4ba12f7a06faef140e"
+            },
+            {
+              "path": "docs/images/windows-zh.png",
+              "sha256": "58c68ee9d247b56285c07c97f62de9d96719c8c52e9899ec8f53edf10b4ec930"
+            },
+            {
+              "path": "install.ps1",
+              "sha256": "1a1ddd141fbb1745e2110ac88330d930fa2b5c28f423f03cbaea35d9949fb624"
+            },
+            {
+              "path": "install.sh",
+              "sha256": "1cea73e8d38e3a9d2e9f5430267a476f0f8970e0a72ff180216d43ca98d0b10d"
+            },
+            {
+              "path": "scripts/Dockerfile.linux",
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
+            },
+            {
+              "path": "scripts/capture-ui.py",
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
+            },
+            {
+              "path": "scripts/collect-licenses.py",
+              "sha256": "70c81ca6ac7886522b73a48925fc64c632b34665e9c6690bac2edbbd09c936e6"
+            },
+            {
+              "path": "scripts/package-linux.sh",
+              "sha256": "6063e620a3de66bec38e4e8aa8f896fdb119c7bea963c9f145c7dbc87eb01153"
+            },
+            {
+              "path": "scripts/package-macos.sh",
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
+            },
+            {
+              "path": "scripts/package-windows.ps1",
+              "sha256": "57f6aa4550aa0d364db13d86619c9bad2286fdca5f09a9631e247269ce41a474"
+            },
+            {
+              "path": "scripts/release_assets.py",
+              "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
+            },
+            {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
+              "path": "src/capture.rs",
+              "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
+            },
+            {
+              "path": "src/console_text.rs",
+              "sha256": "b42963ef8d4451c183b6b3d548ec4e4aba25c902d74d0db7ab9b38f17eaed744"
+            },
+            {
+              "path": "src/debug_ui.rs",
+              "sha256": "c73e0f08a91b03383266846be79e6da5048f9332ceb0b410c906332487dc3cae"
+            },
+            {
+              "path": "src/driver_check.rs",
+              "sha256": "2a5a07d8c766bf4bec333e4dfae0be954faf4491ef849b3ce41bfa0bd325be30"
+            },
+            {
+              "path": "src/driver_ui.rs",
+              "sha256": "651242216af1eeabc362ec1a8ae4ea28632e189241ef32dda506724e7376d835"
+            },
+            {
+              "path": "src/firmware.rs",
+              "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
+            },
+            {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
+              "path": "src/flash_event.rs",
+              "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
+            },
+            {
+              "path": "src/gui.rs",
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
+            },
+            {
+              "path": "src/lib.rs",
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
+            },
+            {
+              "path": "src/main.rs",
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
+            },
+            {
+              "path": "src/port_picker.rs",
+              "sha256": "ab67e01e1a22c07f186f92898668804a016a95bf96ff2235d2e3aa89db899fb1"
+            },
+            {
+              "path": "src/profiles.rs",
+              "sha256": "40b0005d34e525a1804be7c20805d25e75515760b24b761ddcecaa6f0acf4f7a"
+            },
+            {
+              "path": "src/serial_debug.rs",
+              "sha256": "70f83d057d655cf74d0fbf0b36e1c92f599309abbdc3a70c7e4730626e626af6"
+            },
+            {
+              "path": "src/ui_catalog.rs",
+              "sha256": "ff23107efe263cfee1cec4564ff3cba1f2e0a02dfb608fd20836ec2cff2835f2"
+            },
+            {
+              "path": "src/ui_i18n.rs",
+              "sha256": "806cccfe40ee2c0339fe913ff51c9c3344efabb19503c5e64a793a664cba555e"
+            },
+            {
+              "path": "src/windows_launcher.rs",
+              "sha256": "16164170d3d09de7b8a5117cfca7748cb0d979250562bd61076f79cc62d27afb"
+            },
+            {
+              "path": "tests/cli_smoke.py",
+              "sha256": "ebda72f00e38d10ec4305674551a7fe9f9e6c315ac61a82b9d60c0d5cd7af282"
+            },
+            {
+              "path": "tests/client_acceptance.py",
+              "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -732,7 +1610,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/index.md",
-          "sha256": "4860786a4e4dd0e128195ea3db8dd0e87028f802e7db063e0431ce4c88d9bd23",
+          "sha256": "3fce8149cf5d71e8b5d22a33ff36ea435d11cbd809ff160c661f98c72a3a0a1f",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -740,7 +1618,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -748,7 +1626,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -761,6 +1639,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -788,19 +1690,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -832,11 +1734,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -848,7 +1750,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -859,8 +1761,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -883,20 +1805,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -929,6 +1875,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -983,7 +1941,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -991,7 +1949,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -1004,6 +1962,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -1031,19 +2013,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1075,11 +2057,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -1091,7 +2073,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -1102,8 +2084,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -1126,20 +2128,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -1172,6 +2198,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -1226,7 +2264,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1234,7 +2272,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -1247,6 +2285,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -1270,19 +2332,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1314,11 +2376,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -1330,7 +2392,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -1341,8 +2403,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -1365,20 +2447,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -1411,6 +2517,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -1457,7 +2575,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/release.md",
-          "sha256": "a32e0dc883a61e6a978beb7824ae4c8eed87f752b106696276fb6cb6f8028edd",
+          "sha256": "ef153f2aaf58161d45b1a153358a9db224031e001e4fc7813e5ae66b506e2ad1",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -1465,7 +2583,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1473,7 +2591,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -1486,6 +2604,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -1513,19 +2655,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1557,11 +2699,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -1573,7 +2715,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -1584,8 +2726,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -1608,20 +2770,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -1654,6 +2840,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -1700,7 +2898,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": ".harness/docs/testing.md",
-          "sha256": "5d7826a8ec636ca643a05cd2630cdd016773204d367e42becafc7f1df7293262",
+          "sha256": "2387d91b5daab75447b8125d409c9ad50169bbf04623f50d779474963a743113",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -1708,7 +2906,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1716,7 +2914,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -1729,6 +2927,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -1756,19 +2978,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -1800,11 +3022,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -1816,7 +3038,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -1827,8 +3049,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -1851,20 +3093,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -1897,6 +3163,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -1951,7 +3229,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -1959,7 +3237,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -1972,6 +3250,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -1999,19 +3301,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2043,11 +3345,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -2059,7 +3361,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -2070,8 +3372,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -2094,20 +3416,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -2140,6 +3486,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -2194,7 +3552,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2202,7 +3560,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -2215,6 +3573,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -2238,19 +3620,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2282,11 +3664,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -2298,7 +3680,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -2309,8 +3691,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -2333,20 +3735,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -2379,6 +3805,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -2433,7 +3871,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2441,7 +3879,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -2454,6 +3892,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -2481,19 +3943,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2525,11 +3987,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -2541,7 +4003,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -2552,8 +4014,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -2576,20 +4058,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -2622,6 +4128,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -2676,7 +4194,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2684,7 +4202,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -2697,6 +4215,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -2724,19 +4266,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -2768,11 +4310,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -2784,7 +4326,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -2795,8 +4337,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -2819,20 +4381,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -2865,6 +4451,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -2919,7 +4517,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -2927,7 +4525,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -2940,6 +4538,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -2967,19 +4589,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3011,11 +4633,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -3027,7 +4649,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -3038,8 +4660,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -3062,20 +4704,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -3108,6 +4774,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -3162,7 +4840,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -3170,7 +4848,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -3183,6 +4861,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -3210,19 +4912,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3254,11 +4956,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -3270,7 +4972,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -3281,8 +4983,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -3305,20 +5027,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -3351,6 +5097,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -3405,7 +5163,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -3413,7 +5171,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -3426,6 +5184,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -3449,19 +5231,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3493,11 +5275,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -3509,7 +5291,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -3520,8 +5302,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -3544,20 +5346,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -3590,6 +5416,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -3644,7 +5482,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -3652,7 +5490,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -3665,6 +5503,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -3688,19 +5550,19 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3732,11 +5594,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -3748,7 +5610,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -3759,8 +5621,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -3783,20 +5665,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -3829,6 +5735,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -3875,7 +5793,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": "README.en.md",
-          "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a",
+          "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -3883,7 +5801,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -3891,7 +5809,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -3904,6 +5822,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -3931,15 +5873,15 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.md",
-              "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+              "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -3971,11 +5913,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -3987,7 +5929,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -3998,8 +5940,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -4022,20 +5984,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -4068,6 +6054,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -4114,7 +6112,7 @@
         {
           "onboarding_sha256": "66c1d00195ddd5b0682efe32f053cc7fb4aa50244cdd5ff588584d8a9e6e042f",
           "path": "README.md",
-          "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a",
+          "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1",
           "sources": [
             {
               "path": ".cargo/config.toml",
@@ -4122,7 +6120,7 @@
             },
             {
               "path": ".github/workflows/check.yml",
-              "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+              "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
             },
             {
               "path": ".github/workflows/harness-gate.yml",
@@ -4130,7 +6128,7 @@
             },
             {
               "path": ".github/workflows/release.yml",
-              "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+              "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
             },
             {
               "path": ".github/workflows/verify-install.yml",
@@ -4143,6 +6141,30 @@
             {
               "path": ".harness/docs/console.md",
               "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+              "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+              "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-en.png",
+              "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+            },
+            {
+              "path": ".harness/docs/firmware/images/studio-zh.png",
+              "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+            },
+            {
+              "path": ".harness/docs/firmware/logging.md",
+              "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+            },
+            {
+              "path": ".harness/docs/firmware/studio.md",
+              "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
             },
             {
               "path": ".harness/docs/images/b8-lines-en.png",
@@ -4170,15 +6192,15 @@
             },
             {
               "path": "Cargo.lock",
-              "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+              "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
             },
             {
               "path": "Cargo.toml",
-              "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+              "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
             },
             {
               "path": "README.en.md",
-              "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+              "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
             },
             {
               "path": "assets/AppIcon.ico",
@@ -4210,11 +6232,11 @@
             },
             {
               "path": "scripts/Dockerfile.linux",
-              "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+              "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
             },
             {
               "path": "scripts/capture-ui.py",
-              "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+              "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
             },
             {
               "path": "scripts/collect-licenses.py",
@@ -4226,7 +6248,7 @@
             },
             {
               "path": "scripts/package-macos.sh",
-              "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+              "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
             },
             {
               "path": "scripts/package-windows.ps1",
@@ -4237,8 +6259,28 @@
               "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
             },
             {
+              "path": "src/audio_asset.rs",
+              "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+            },
+            {
+              "path": "src/audio_device.rs",
+              "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+            },
+            {
+              "path": "src/audio_editor.rs",
+              "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+            },
+            {
               "path": "src/capture.rs",
               "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+            },
+            {
+              "path": "src/command_plan.rs",
+              "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+            },
+            {
+              "path": "src/command_ui.rs",
+              "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
             },
             {
               "path": "src/console_text.rs",
@@ -4261,20 +6303,44 @@
               "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
             },
             {
+              "path": "src/firmware_audio.rs",
+              "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+            },
+            {
+              "path": "src/firmware_inspect.rs",
+              "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+            },
+            {
+              "path": "src/firmware_logging.rs",
+              "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+            },
+            {
+              "path": "src/firmware_profile.rs",
+              "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+            },
+            {
+              "path": "src/firmware_studio.rs",
+              "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+            },
+            {
+              "path": "src/firmware_ui.rs",
+              "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+            },
+            {
               "path": "src/flash_event.rs",
               "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
             },
             {
               "path": "src/gui.rs",
-              "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+              "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
             },
             {
               "path": "src/lib.rs",
-              "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+              "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
             },
             {
               "path": "src/main.rs",
-              "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+              "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
             },
             {
               "path": "src/port_picker.rs",
@@ -4307,6 +6373,18 @@
             {
               "path": "tests/client_acceptance.py",
               "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+            },
+            {
+              "path": "tests/firmware_audio_acceptance.py",
+              "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+            },
+            {
+              "path": "tests/firmware_logging_acceptance.py",
+              "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+            },
+            {
+              "path": "tests/firmware_studio.rs",
+              "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
             },
             {
               "path": "tests/handshake_diagnostics.py",
@@ -4355,6 +6433,8 @@
         ".harness/docs/architecture.md",
         ".harness/docs/console.md",
         ".harness/docs/development.md",
+        ".harness/docs/firmware/logging.md",
+        ".harness/docs/firmware/studio.md",
         ".harness/docs/index.md",
         ".harness/docs/maintenance.md",
         ".harness/docs/protocol.md",
@@ -4381,6 +6461,12 @@
         ".github/workflows/verify-install.yml",
         ".gitignore",
         ".harness/docs/console.md",
+        ".harness/docs/firmware/images/studio-add-command-en.png",
+        ".harness/docs/firmware/images/studio-add-command-zh.png",
+        ".harness/docs/firmware/images/studio-en.png",
+        ".harness/docs/firmware/images/studio-zh.png",
+        ".harness/docs/firmware/logging.md",
+        ".harness/docs/firmware/studio.md",
         ".harness/docs/images/b8-lines-en.png",
         ".harness/docs/images/b8-lines-zh.png",
         ".harness/docs/protocol.md",
@@ -4404,12 +6490,23 @@
         "scripts/package-macos.sh",
         "scripts/package-windows.ps1",
         "scripts/release_assets.py",
+        "src/audio_asset.rs",
+        "src/audio_device.rs",
+        "src/audio_editor.rs",
         "src/capture.rs",
+        "src/command_plan.rs",
+        "src/command_ui.rs",
         "src/console_text.rs",
         "src/debug_ui.rs",
         "src/driver_check.rs",
         "src/driver_ui.rs",
         "src/firmware.rs",
+        "src/firmware_audio.rs",
+        "src/firmware_inspect.rs",
+        "src/firmware_logging.rs",
+        "src/firmware_profile.rs",
+        "src/firmware_studio.rs",
+        "src/firmware_ui.rs",
         "src/flash_event.rs",
         "src/gui.rs",
         "src/lib.rs",
@@ -4422,6 +6519,9 @@
         "src/windows_launcher.rs",
         "tests/cli_smoke.py",
         "tests/client_acceptance.py",
+        "tests/firmware_audio_acceptance.py",
+        "tests/firmware_logging_acceptance.py",
+        "tests/firmware_studio.rs",
         "tests/handshake_diagnostics.py",
         "tests/install_package.py",
         "tests/serial_debug_pty.rs",
@@ -4440,7 +6540,7 @@
         },
         {
           "path": ".github/workflows/check.yml",
-          "sha256": "384f18dcd6226e87f6d7274c7c90b18d490e3716375aa2defa488e2e1656191b"
+          "sha256": "c0096ba93ccb8c59e81d73a2e8e336c27b99cf5a07918040f87bc03ac0282206"
         },
         {
           "path": ".github/workflows/harness-gate.yml",
@@ -4448,7 +6548,7 @@
         },
         {
           "path": ".github/workflows/release.yml",
-          "sha256": "044b99e135e045db62db75b24cca8e1dddb2558fa13c235da1f1f84115a15cf8"
+          "sha256": "bfc63f4f4165189b0f995be351ef15c1423019bffc679685f83c87fda6b55417"
         },
         {
           "path": ".github/workflows/verify-install.yml",
@@ -4461,6 +6561,30 @@
         {
           "path": ".harness/docs/console.md",
           "sha256": "6451a8df65e06afbc896bf298bda6c654f90e38f20e1927d05a6db2b56a74d8a"
+        },
+        {
+          "path": ".harness/docs/firmware/images/studio-add-command-en.png",
+          "sha256": "17f4d6c6d3b75a8e9f8819b7339210d882c46f5adab031724612df2435665f15"
+        },
+        {
+          "path": ".harness/docs/firmware/images/studio-add-command-zh.png",
+          "sha256": "df2d4fd3ceec42ac05f046783bd9c61c6c341e9d757f8a3ce4071c104dce14f0"
+        },
+        {
+          "path": ".harness/docs/firmware/images/studio-en.png",
+          "sha256": "010235295d786f8f87972d0a66a269e7913cdeef7b78b535e050d04624d534c9"
+        },
+        {
+          "path": ".harness/docs/firmware/images/studio-zh.png",
+          "sha256": "591b41018fedca2f9d4a4550ca51d248071fc01c6b196449a98406c21dad46e1"
+        },
+        {
+          "path": ".harness/docs/firmware/logging.md",
+          "sha256": "a07a83f045b630a92d27046b556833a0487c83bcaeaf996a0cd9ba25d7ef96ee"
+        },
+        {
+          "path": ".harness/docs/firmware/studio.md",
+          "sha256": "b182a8c68e31d68f83c53db7cb1ba6fa8715232a395a9e959af050a725ab00da"
         },
         {
           "path": ".harness/docs/images/b8-lines-en.png",
@@ -4488,19 +6612,19 @@
         },
         {
           "path": "Cargo.lock",
-          "sha256": "3aaf3d654b632bdda9eefa742ff65fab8895c8512ef116d84b0c16c019557b78"
+          "sha256": "b21bc2e1f6a6a7287cb57ea6b997449587fbab7849e14d575f659d9fa1c374e4"
         },
         {
           "path": "Cargo.toml",
-          "sha256": "3502977787c53da7c591ec8780883ee2b8314b4cae9ffda0532342ece41ab9c8"
+          "sha256": "a816d2054003b915113e4075611d9afb75dd06cafa6ae57fd752ddf76c738d46"
         },
         {
           "path": "README.en.md",
-          "sha256": "3df50fce4dabb7967e6635b71ff399b19d1c1ff8f4e3a159bf79f4ec2e2dd57a"
+          "sha256": "a91b0a65a0fdca99429b763996f0a6350f47116eca939e6d56231402940c8cb6"
         },
         {
           "path": "README.md",
-          "sha256": "b8f659b6238078677fe65b42957620020fc72a92d159a340dab018dd89cf505a"
+          "sha256": "99e52d3c3da7cbb084359921243eaf9c430108e2b5e285f6382a3398217241d1"
         },
         {
           "path": "assets/AppIcon.ico",
@@ -4532,11 +6656,11 @@
         },
         {
           "path": "scripts/Dockerfile.linux",
-          "sha256": "b24734e859c48601c6d51d0941c3e4c92aa2d270abb80debab1ba61f5dbe2b05"
+          "sha256": "b1340922cebfc5007682d371a6f4cc083617e57c475e5c491286c659431e29e9"
         },
         {
           "path": "scripts/capture-ui.py",
-          "sha256": "3689ca81fc22ff2c77c7224f3740b4558152abc5877176ea1eaf2f77993cbfce"
+          "sha256": "ee1c4fcab1a5d67fa58ffcbe401d02d1e09771d463187431b2ed84ac88d022dc"
         },
         {
           "path": "scripts/collect-licenses.py",
@@ -4548,7 +6672,7 @@
         },
         {
           "path": "scripts/package-macos.sh",
-          "sha256": "4333cabbd3ab9e4e04543b5219eb1cbf33c1eb334d387d6a8366fc5b75e67414"
+          "sha256": "0fe2d495ad55f1d9c84852ae5a48542939fcf5773f3f742f6635e1eaed64bb50"
         },
         {
           "path": "scripts/package-windows.ps1",
@@ -4559,8 +6683,28 @@
           "sha256": "3a0d007c46840c27cc4af14c0996e4e2f2efa0e9ef72afed23fbe21c378826ca"
         },
         {
+          "path": "src/audio_asset.rs",
+          "sha256": "9f2088f5f8a325a010cd0319cc37447f390e4793f3265a71098358ae8fa36dba"
+        },
+        {
+          "path": "src/audio_device.rs",
+          "sha256": "22f7b6080f003c3848b0afc86766056a94af80fd9a89cf9532ac7554cd4cefdd"
+        },
+        {
+          "path": "src/audio_editor.rs",
+          "sha256": "49c6e088945e3fdd1925a2a2dfaa78efba10c59cb528f5fdf7bf1969e12b55b6"
+        },
+        {
           "path": "src/capture.rs",
           "sha256": "f1349e1b757e9f9e543dea655a3b901dceb3f3d0c612569ba3416c1f2271581b"
+        },
+        {
+          "path": "src/command_plan.rs",
+          "sha256": "51aab6ec56ee5d57e56e5e1e0e484671d886c4317ecf29feae128c607d949d19"
+        },
+        {
+          "path": "src/command_ui.rs",
+          "sha256": "b6fac64e0c21f5d9284844d5f5eb576f3d07552e7d8c6d6f9b9a3fa5a90995b5"
         },
         {
           "path": "src/console_text.rs",
@@ -4583,20 +6727,44 @@
           "sha256": "ca5b1d6611d0f8064393d9a876af06bcc2ff57159fec852e0d19daf32333372f"
         },
         {
+          "path": "src/firmware_audio.rs",
+          "sha256": "bf2ad9cccc1d68083e572652cf2e42fe13390719b176f54d2069b2823663503e"
+        },
+        {
+          "path": "src/firmware_inspect.rs",
+          "sha256": "0981ebe7382e0cd9adfc858cdb853fdbb968bb00e35358914e7338939828dd94"
+        },
+        {
+          "path": "src/firmware_logging.rs",
+          "sha256": "4827c3a1309521935163de551f8d2822d169383cf6f449abed8ad0912e2aa12c"
+        },
+        {
+          "path": "src/firmware_profile.rs",
+          "sha256": "8e77fbf8311fe061f686d95dda6d8281383b4d1028b3095b4740eb538c550e46"
+        },
+        {
+          "path": "src/firmware_studio.rs",
+          "sha256": "cbacaa1b2cc262cbc24fc6afb5942a71d81373101ec51e520fd370931827bb54"
+        },
+        {
+          "path": "src/firmware_ui.rs",
+          "sha256": "8f8eb3cb1604f8451e6247535d98476bb9b9f93523f9aa239b0b7f997b72c04e"
+        },
+        {
           "path": "src/flash_event.rs",
           "sha256": "fcea38f5a631184a0a6c2ce29cf7539fe6811774877bb37f625639f2b11b926e"
         },
         {
           "path": "src/gui.rs",
-          "sha256": "cf8504198242839a32a9c1bdc64e19d9de65de41aaa692229b38c3219cd13170"
+          "sha256": "44ba0e730259b1551c93699c4e8cd358c375d318f93da55a00b8c281f4a3b60c"
         },
         {
           "path": "src/lib.rs",
-          "sha256": "fb7978a1a1863c5e93c5e8c33f04da5dee4225b51d94e35c1b77f4b0c29c7a84"
+          "sha256": "e6c518cc6ab05a7cd66dfe0eaf600e1cce4118d3c588eb3b109215e32563559b"
         },
         {
           "path": "src/main.rs",
-          "sha256": "e24543bc177a05343f2b02c96d7aaa035ad773d06264125dd9de0f6028c7a327"
+          "sha256": "64cf2ec3a568edbb57cdbb7596e6a57a658c36cd7675b353137587decd6c18d5"
         },
         {
           "path": "src/port_picker.rs",
@@ -4629,6 +6797,18 @@
         {
           "path": "tests/client_acceptance.py",
           "sha256": "cb4634c7e74c791f9c7a06936385110917f825cb846be57d1b6e5a394a5021be"
+        },
+        {
+          "path": "tests/firmware_audio_acceptance.py",
+          "sha256": "8ab06643900987bf8c8b99ded56d89dbc5ce5a26ab60d6dd2860577d570f48ca"
+        },
+        {
+          "path": "tests/firmware_logging_acceptance.py",
+          "sha256": "2a6983a0ac661870909b39b73cad8c8ff0bf129e0902ef06de329d83b891c027"
+        },
+        {
+          "path": "tests/firmware_studio.rs",
+          "sha256": "72ca619b868e118cdbf9958ea09b5fe18de1c5967f24c1bcdaed404993016ccc"
         },
         {
           "path": "tests/handshake_diagnostics.py",

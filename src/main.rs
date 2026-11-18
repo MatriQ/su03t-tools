@@ -35,6 +35,52 @@ enum Commands {
         #[arg(long)]
         firmware: PathBuf,
     },
+    /// 只读解析完整/升级固件中的命令和配置，不打开串口
+    FirmwareInspect {
+        #[arg(long)]
+        firmware: PathBuf,
+        /// 输出结构化 JSON（包含恢复的命令和配置）
+        #[arg(long)]
+        json: bool,
+    },
+    /// 提取已知指纹固件中的原始 MP3，不访问音频设备
+    FirmwareExtract {
+        #[arg(long)]
+        firmware: PathBuf,
+        #[arg(long)]
+        reply: u32,
+        #[arg(long)]
+        output: PathBuf,
+    },
+    /// 实验性：将 WAV 裁剪/转换并替换一条播报，导出新升级 BIN 和清单
+    FirmwareReplace {
+        #[arg(long)]
+        firmware: PathBuf,
+        #[arg(long)]
+        reply: u32,
+        #[arg(long)]
+        wav: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long)]
+        ffmpeg: Option<PathBuf>,
+        #[arg(long, default_value_t = 0.0)]
+        start: f64,
+        #[arg(long)]
+        end: Option<f64>,
+        #[arg(long, default_value_t = 1.0)]
+        gain: f32,
+    },
+    /// 检查/切换受限版本的运行日志配置，不访问设备
+    FirmwareLogging {
+        #[arg(long)]
+        firmware: PathBuf,
+        /// 省略时只检查；on/off 修改运行日志，需同时指定新输出文件
+        #[arg(long, value_parser = ["on", "off"], requires = "output")]
+        runtime: Option<String>,
+        #[arg(long, requires = "runtime")]
+        output: Option<PathBuf>,
+    },
     /// 实验性串口升级：仅适用于已兼容的蜂鸟M引导程序
     Flash {
         #[arg(long)]
@@ -444,6 +490,119 @@ fn main() -> Result<()> {
                 image.bytes().len(),
                 image.sha256
             );
+            Ok(())
+        }
+        Some(Commands::FirmwareLogging {
+            firmware,
+            runtime,
+            output,
+        }) => {
+            let mut session = su03t_update::firmware_studio::Session::load(&firmware)?;
+            if let Some(runtime) = runtime {
+                session.set_logging(
+                    su03t_update::firmware_logging::Kind::Runtime,
+                    runtime == "on",
+                )?;
+                let manifest = session.export(&output.expect("clap requires output"))?;
+                println!("{}", serde_json::to_string_pretty(&manifest)?);
+            } else {
+                println!("{}", serde_json::to_string_pretty(&session.report.logging)?);
+            }
+            Ok(())
+        }
+        Some(Commands::FirmwareExtract {
+            firmware,
+            reply,
+            output,
+        }) => {
+            let session = su03t_update::firmware_studio::Session::load(&firmware)?;
+            let mp3 = session.reply(reply, true)?;
+            su03t_update::firmware_audio::write_new(&output, &mp3)?;
+            println!(
+                "{}",
+                serde_json::json!({"reply_id":reply, "bytes":mp3.len(), "output":output})
+            );
+            Ok(())
+        }
+        Some(Commands::FirmwareReplace {
+            firmware,
+            reply,
+            wav,
+            output,
+            ffmpeg,
+            start,
+            end,
+            gain,
+        }) => {
+            let mut session = su03t_update::firmware_studio::Session::load(&firmware)?;
+            // Authenticate the requested resource before invoking an external converter.
+            session.reply(reply, true)?;
+            let clip = su03t_update::audio_asset::load_wav(&wav)?;
+            let prepared = clip.wav(start, end.unwrap_or_else(|| clip.duration()), gain)?;
+            let cancel = su03t_update::audio_asset::cancellation();
+            let flag = cancel.clone();
+            ctrlc::set_handler(move || flag.store(true, std::sync::atomic::Ordering::Relaxed))?;
+            let mp3 = su03t_update::audio_asset::encode_reply(
+                &ffmpeg.unwrap_or_else(su03t_update::audio_asset::default_ffmpeg),
+                &prepared,
+                &cancel,
+            )?;
+            anyhow::ensure!(
+                !cancel.load(std::sync::atomic::Ordering::Relaxed),
+                "Cancelled"
+            );
+            session.replace(reply, &mp3)?;
+            let manifest = session.export(&output)?;
+            println!("{}", serde_json::to_string_pretty(&manifest)?);
+            Ok(())
+        }
+        Some(Commands::FirmwareInspect { firmware, json }) => {
+            let (_, report) = su03t_update::firmware_inspect::load(&firmware)?;
+            if json {
+                println!("{}", serde_json::to_string_pretty(&report)?);
+            } else {
+                println!(
+                    "{}\n{} bytes · SHA-256 {}\nLayout: {:?}\nCommands: {} · Configurations: {} · Grammar resources: {}",
+                    firmware.display(),
+                    report.bytes,
+                    report.sha256,
+                    report.image_kind,
+                    report.commands.len(),
+                    report.configurations.len(),
+                    report.grammar_resources.len()
+                );
+                for entry in &report.commands {
+                    println!(
+                        "0x{:08x}\t{}\t{}\t{}\t{}",
+                        entry.span.offset,
+                        serde_json::to_string(&entry.text)?,
+                        serde_json::to_string(&entry.command)?,
+                        serde_json::to_string(&entry.pcm)?,
+                        if entry.pointer_offset.is_some() {
+                            "referenced"
+                        } else {
+                            "candidate"
+                        }
+                    );
+                }
+                if let Some(audio) = &report.audio {
+                    println!(
+                        "Audio profile: {} · {} MP3 replies · experimental fixed-slot editing; device acceptance pending",
+                        audio.profile,
+                        audio.replies.len()
+                    );
+                } else {
+                    println!(
+                        "Unknown audio fingerprint: inspect-only; no reply edit/export adapter available."
+                    );
+                }
+                println!(
+                    "Static file observations; bootability is unverified. Use --json for configuration values and evidence offsets."
+                );
+                for warning in &report.warnings {
+                    println!("Warning: {warning}");
+                }
+            }
             Ok(())
         }
         Some(Commands::Flash {

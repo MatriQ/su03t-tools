@@ -2,7 +2,7 @@
 
 | Area | Responsibility |
 | --- | --- |
-| [main.rs](../../src/main.rs) | Clap entry: default-feature no-argument startup opens the GUI; ports, firmware-info, probe, monitor and flash expose the CLI. |
+| [main.rs](../../src/main.rs) | Clap entry: default-feature no-argument startup opens the GUI; ports, firmware-info, firmware-inspect/extract/replace, probe, monitor and flash expose the CLI. |
 | [lib.rs](../../src/lib.rs), [flash_event.rs](../../src/flash_event.rs) | CRC, framing, handshake, retries, EOT acknowledgment and language-independent transfer events. |
 | [firmware.rs](../../src/firmware.rs) | Bounds and reads the image once, screens filename/known boot-region content, hashes exact bytes and rejects an expected-hash mismatch before opening a port. |
 | [gui.rs](../../src/gui.rs) | Power guidance, activity log and phases. A separate CLI process owns flash/probe serial I/O and emits `SU03T_EVENT ` JSON lines; cancellation can terminate it. |
@@ -10,6 +10,12 @@
 | [debug_ui.rs](../../src/debug_ui.rs), [capture.rs](../../src/capture.rs) | Independent text-line/chunk/raw RX retention, selected-view exports, counters and rotating recordings. [console_text.rs](../../src/console_text.rs) joins UTF-8/newlines and strips display ANSI without changing raw bytes. RX reads and text lines are not protocol frames. |
 | [driver_check.rs](../../src/driver_check.rs), [driver_ui.rs](../../src/driver_ui.rs), [port_picker.rs](../../src/port_picker.rs) | Port discovery and async guidance. macOS queries ioreg read-only and associates a USB node with its own serial descendants. |
 | [ui_i18n.rs](../../src/ui_i18n.rs), [ui_catalog.rs](../../src/ui_catalog.rs) | Chinese/English selection and text. Device data, paths and hashes preserve their original form. |
+
+## Firmware studio
+
+[Read-only inspection](../../src/firmware_inspect.rs) recovers bounded command/configuration constants with offsets and pointer evidence. [Shared image profiles](../../src/firmware_profile.rs) authenticate all immutable bytes while permitting only valid audio ranges and a strictly boolean runtime logging digit. [Firmware logging](../../src/firmware_logging.rs) controls the verified common runtime gate; engine independent level and bootloader output remain unsupported. [The audio adapter](../../src/firmware_audio.rs) enables experimental fixed-slot MP3 replacement only for six immutable-fingerprint families in full/update form. [The studio session](../../src/firmware_studio.rs) keeps original/current buffers, independent audio/logging undo and validated combined update export with hash/range manifests. Export cannot overwrite original/existing paths. Known full profiles are split only after authentication, and the resulting update is authenticated again. Existing flash screening is unchanged.
+
+[WAV/conversion](../../src/audio_asset.rs) preserves the full source and runs cancellable FFmpeg in private temporary directories. [Native audio](../../src/audio_device.rs) creates CPAL streams on owning workers only on explicit UI refresh/record/play actions. [The studio UI](../../src/firmware_ui.rs) separates reply audio, recognition commands, firmware logging and inspection into panes with retained editing/scroll state and a fixed header export action. It connects these layers, limits recording to 60 seconds and keeps hardware out of import/inspection. [Waveform gestures](../../src/audio_editor.rs) retain source samples while changing trim/gain. [The command table](../../src/command_ui.rs) and [validation](../../src/command_plan.rs) edit source-bound recognition drafts with alias and action conflict checks. Pending BIN command plans block core export until a compatible grammar rebuild is available or commands are restored. Control logic is not reconstructed from BINs. [Usage and acceptance limits](firmware/studio.md) distinguish host byte/codec checks from microphone/OS and device acceptance.
 
 ## Windows runtime
 

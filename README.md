@@ -18,6 +18,7 @@
 - **串口调试**：被动监听、HEX / UTF-8 显示、显式手动发送、接收 BIN 导出和滚动记录。
 - **B8 日志**：只接收监听、中文整行拼接、颜色码清理、命令 / 异常筛选及原始 RX 保留。
 - **中英界面**：中文 / English / 系统语言，记住选择；切换不重置连接、进度或日志阅读位置。
+- **固件制作（实验性）**：导入全量或升级 BIN，查看指令和播报资源，替换播报、切换受支持的运行日志并导出升级文件。
 
 ## 安装
 
@@ -179,6 +180,16 @@ sudo apt-get install libudev1 libxkbcommon0 libxkbcommon-x11-0 libwayland-client
 *截图使用模拟数据，对应当前源码；发行包功能以所安装版本为准。*
 
 模式名“B8 启动日志”不代表已捕获启动过程；显示缓冲若已移除较早记录，当前文本导出无法恢复它们。“串口错误”计数也不等于设备输出中 `[E]` 的数量。详见[日志显示、原始记录与启动覆盖说明](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/console.md)。
+
+## 固件制作
+
+1. 打开 **固件制作**，导入或拖入全量 / 升级 BIN。查看识别指令、资源列表和固件结构。
+2. 对受支持的固件，选择播报资源，试听原音或导入 WAV / 录音。拖动波形手柄裁剪，调整音量后点击 **转换并替换选中播报**。预览固件播报和转换需要本机 FFmpeg（含 libmp3lame）。
+3. 可在 **固件日志** 切换受支持的应用运行日志。点击 **导出实验性升级固件**，得到升级 BIN 和校验清单。
+
+新增或删除识别词可保存为命令方案。词表修改需要兼容的识别资源编译器。未知固件仅支持检查，编辑后的固件尚需上板验证。查看[操作指南与兼容范围](https://github.com/MatriQ/su03t-tools/blob/main/.harness/docs/firmware/studio.md)。
+
+![固件制作界面（合成示例）](https://raw.githubusercontent.com/MatriQ/su03t-tools/main/.harness/docs/firmware/images/studio-zh.png)
 
 ## CLI
 

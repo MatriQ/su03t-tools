@@ -91,7 +91,7 @@ jobs:
           key: packages-${{ runner.os }}-${{ runner.arch }}-rust195-${{ hashFiles('Cargo.lock') }}
           restore-keys: packages-${{ runner.os }}-${{ runner.arch }}-rust195-
       - if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y libudev-dev libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev xvfb xauth fonts-noto-cjk libgl1-mesa-dri
+        run: sudo apt-get update && sudo apt-get install -y libudev-dev libasound2-dev libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev libgl1-mesa-dev libegl1-mesa-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev xvfb xauth fonts-noto-cjk libgl1-mesa-dri
       - if: runner.os != 'Windows'
         name: Test installer and release helpers
         run: |
